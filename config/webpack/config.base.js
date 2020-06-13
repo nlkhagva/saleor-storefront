@@ -5,6 +5,8 @@ const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const webpack = require("webpack");
 
+process.env.API_URI = "http://localhost:8000/graphql/";
+
 if (!process.env.API_URI) {
   throw new Error("Environment variable API_URI not set");
 }
