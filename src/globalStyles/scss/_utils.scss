@@ -21,3 +21,21 @@
     cursor: pointer;
   }
 }
+.t-c{
+  text-align: center;
+}
+.m-b3{
+  margin-bottom: $spacer*3;
+}
+.m-t3{
+  margin-bottom: $spacer*3;
+}
+
+.ushop-title {
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: $spacer*3;
+
+  & > h4 { font-size: 12px; font-weight: normal; }
+  & > h3 { font-size: 22px; font-weight: bold; }
+}

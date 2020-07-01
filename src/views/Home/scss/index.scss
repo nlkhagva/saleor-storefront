@@ -2,7 +2,7 @@
 
 .home-page {
   &__hero {
-    background-color: $blue-overlay;
+    // background-color: $blue-overlay;
     background-blend-mode: multiply;
     background-size: cover;
     background-position: center;
@@ -17,7 +17,7 @@
       align-items: center;
       display: flex;
       flex-direction: column;
-      height: calc(100vh - 56px);
+      height: calc(50vh - 56px);
       justify-content: space-between;
       padding: $spacer;
 
@@ -70,35 +70,39 @@
     h3 {
       text-transform: uppercase;
       font-weight: $bold-font-weight;
-      margin-bottom: 1rem;
     }
 
     &__list {
       display: grid;
-      grid-template-columns: 1fr;
-      grid-gap: 2rem;
+      grid-template-areas:
+        'header header '
+        'main1 main2'
+        'footer footer';
 
-      @media (min-width: $small-screen) {
-        grid-template-columns: 1fr 1fr;
+      grid-gap: 1rem;
 
-        > div {
-          &:nth-child(3) {
-            grid-column: 3 / 1;
-          }
+      div:nth-child(1) { grid-area: header; }
+      div:nth-child(2) { grid-area: main1; }
+      div:nth-child(3) { grid-area: main2; }
+      div:nth-child(4) { grid-area: footer; }
+      
 
-          &:nth-child(n + 4) {
-            display: none;
-          }
-        }
-      }
 
       a {
+        display: inline-block;
+        width: 100%;
+        position: relative;
         text-decoration: none;
-        color: $base-font-color;
+        color: $white;
+
 
         h3 {
+          position: absolute;
+          bottom: 1rem;
+          left: 1rem;
           text-transform: uppercase;
           font-weight: $bold-font-weight;
+          font-size: 1rem;
 
           &:after {
             content: url("../../../images/carousel-arrow.svg");
@@ -111,10 +115,9 @@
 
       &__image {
         width: 100%;
-        height: 30rem;
+        height: 8rem;
         background-size: cover;
         background-position: center;
-        margin-bottom: 1rem;
 
         &--no-photo {
           background-color: $turquoise-light;
@@ -122,6 +125,23 @@
           background-size: contain;
         }
       }
+
+      @media (min-width: $small-screen) {
+        //   grid-template-columns: 1fr 1fr;
+          &__image {
+            height: 15rem;
+          }
+        //   > div {
+        //     &:nth-child(3) {
+        //       grid-column: 3 / 1;
+        //     }
+  
+        //     &:nth-child(n + 4) {
+        //       display: none;
+        //     }
+        //   }
+      }
+  
     }
   }
 }

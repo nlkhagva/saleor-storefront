@@ -1,20 +1,19 @@
-import "./scss/index.scss";
+import './scss/index.scss';
 
-import isEqual from "lodash/isEqual";
-import * as React from "react";
+import isEqual from 'lodash/isEqual';
+import * as React from 'react';
 
-import { ProductVariantPicker } from "@components/organisms";
+import { ProductVariantPicker } from '@components/organisms';
 import {
-  ProductDetails_product_pricing,
-  ProductDetails_product_variants,
-  ProductDetails_product_variants_pricing,
-} from "@sdk/queries/gqlTypes/ProductDetails";
-import { IProductVariantsAttributesSelectedValues, ITaxedMoney } from "@types";
+    ProductDetails_product_pricing, ProductDetails_product_variants,
+    ProductDetails_product_variants_pricing
+} from '@sdk/queries/gqlTypes/ProductDetails';
+import { ICheckoutModelLine } from '@sdk/repository';
+import { IProductVariantsAttributesSelectedValues, ITaxedMoney } from '@types';
 
-import { ICheckoutModelLine } from "@sdk/repository";
-import { TaxedMoney } from "../../@next/components/containers";
-import AddToCart from "./AddToCart";
-import { QuantityTextField } from "./QuantityTextField";
+import { TaxedMoney } from '../../@next/components/containers';
+import AddToCart from './AddToCart';
+import { QuantityTextField } from './QuantityTextField';
 
 const LOW_STOCK_QUANTITY = 5;
 interface ProductDescriptionProps {
@@ -41,7 +40,7 @@ interface ProductDescriptionState {
 class ProductDescription extends React.Component<
   ProductDescriptionProps,
   ProductDescriptionState
-> {
+  > {
   constructor(props: ProductDescriptionProps) {
     super(props);
 
@@ -154,14 +153,15 @@ class ProductDescription extends React.Component<
 
     return (
       <div className="product-description">
-        <h3>{name}</h3>
+        <h4>{name}</h4>
         {isOutOfStock ? (
           this.renderErrorMessage("Out of stock")
         ) : (
-          <h4>{this.getProductPrice()}</h4>
-        )}
+            <h3>{this.getProductPrice()}</h3>
+          )}
         {isLowStock && this.renderErrorMessage("Low stock")}
         {isNoItemsAvailable && this.renderErrorMessage("No items available")}
+        
         <div className="product-description__variant-picker">
           <ProductVariantPicker
             productVariants={this.props.productVariants}

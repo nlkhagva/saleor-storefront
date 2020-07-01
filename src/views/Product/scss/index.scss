@@ -5,8 +5,8 @@
 
   .breadcrumbs {
     background-color: $white;
-    padding: $spacer / 2 $spacer $spacer / 2 $spacer * 1.5;
-    margin-top: $spacer * 2;
+    // padding: $spacer / 2 $spacer $spacer / 2 $spacer * 1.5;
+    // margin-top: $spacer * 2;
   }
 
   &__product {
@@ -87,8 +87,8 @@
 
           &.active {
             span {
-              background-color: $turquoise;
-              border-color: $turquoise;
+              background-color: $black;
+              border-color: $black;
             }
           }
         }

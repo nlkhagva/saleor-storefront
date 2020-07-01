@@ -1,9 +1,7 @@
 import {
-  Checkout_availableShippingMethods,
-  Checkout_lines_variant_attributes,
-  Checkout_lines_variant_pricing,
-  Checkout_lines_variant_product,
-} from "../fragments/gqlTypes/Checkout";
+    Checkout_availableShippingMethods, Checkout_lines_variant_attributes,
+    Checkout_lines_variant_pricing, Checkout_lines_variant_product
+} from '../fragments/gqlTypes/Checkout';
 
 export enum LocalStorageItems {
   JOB_QUEUE_CHECKOUT = "job_queueCheckout",
@@ -32,6 +30,7 @@ export interface ICheckoutModelLine {
   id?: string;
   variant: ICheckoutModelLineVariant;
   totalPrice?: ICheckoutModelLineTotalPrice | null;
+  metadata: JSON | {} | null;
 }
 
 export interface ICheckoutModelPriceValue {

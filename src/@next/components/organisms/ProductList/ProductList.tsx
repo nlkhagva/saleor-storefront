@@ -1,13 +1,12 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-import { Button, Loader } from "@components/atoms";
-import { ProductTile } from "@components/molecules";
+import { Button, Loader } from '@components/atoms';
+import { ProductTile } from '@components/molecules';
 
-import { generateProductUrl } from "../../../../core/utils";
-
-import * as S from "./styles";
-import { IProps } from "./types";
+import { generateProductUrl } from '../../../../core/utils';
+import * as S from './styles';
+import { IProps } from './types';
 
 export const ProductList: React.FC<IProps> = ({
   products,
@@ -31,16 +30,16 @@ export const ProductList: React.FC<IProps> = ({
         {loading ? (
           <Loader />
         ) : (
-          canLoadMore && (
-            <Button
-              data-cy="load-more_button"
-              color="secondary"
-              onClick={onLoadMore}
-            >
-              More +
-            </Button>
-          )
-        )}
+            canLoadMore && (
+              <Button
+                data-cy="load-more_button"
+                color="secondary"
+                onClick={onLoadMore}
+              >
+                Өшөө +
+              </Button>
+            )
+          )}
       </S.Loader>
     </>
   );

@@ -177,6 +177,15 @@ export interface OrderDetail_lines_variant_attributes {
   values: (OrderDetail_lines_variant_attributes_values | null)[];
 }
 
+export interface OrderDetail_lines_variant_product_ushop {
+  __typename: "Ushop";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+}
+
 export interface OrderDetail_lines_variant_product_thumbnail {
   __typename: "Image";
   /**
@@ -209,6 +218,7 @@ export interface OrderDetail_lines_variant_product {
    */
   id: string;
   name: string;
+  ushop: OrderDetail_lines_variant_product_ushop | null;
   /**
    * The main thumbnail for a product.
    */

@@ -1,18 +1,23 @@
-import "../globalStyles/scss/index.scss";
+import '../globalStyles/scss/index.scss';
 
-import React from "react";
+import React from 'react';
 
-import { Footer, MainMenu, MetaConsumer, OverlayManager } from "../components";
-import { Routes } from "./routes";
+import {
+    Footer, FooterMainMenu, MainMenu, MetaConsumer, OverlayManager, Topbar
+} from '../components';
+import { Routes } from './routes';
 
 const App: React.FC = () => {
   return (
     <>
       <MetaConsumer />
       <header>
+        <Topbar />
         <MainMenu />
       </header>
       <Routes />
+
+      <FooterMainMenu />
       <Footer />
       <OverlayManager />
     </>

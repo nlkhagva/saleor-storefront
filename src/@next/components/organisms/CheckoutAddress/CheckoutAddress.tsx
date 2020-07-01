@@ -1,12 +1,11 @@
-import React from "react";
+import React from 'react';
 
-import { filterNotEmptyArrayItems } from "@utils/misc";
+import { filterNotEmptyArrayItems } from '@utils/misc';
 
-import { AddressForm } from "../AddressForm";
-import { AddressGridSelector } from "../AddressGridSelector";
-
-import * as S from "./styles";
-import { IProps } from "./types";
+import { AddressForm } from '../AddressForm';
+import { AddressGridSelector } from '../AddressGridSelector';
+// import * as S from './styles';
+import { IProps } from './types';
 
 /**
  * Address form used in checkout.
@@ -26,7 +25,11 @@ const CheckoutAddress: React.FC<IProps> = ({
 }: IProps) => {
   return (
     <section>
-      <S.Title data-cy="checkoutPageSubtitle">SHIPPING ADDRESS</S.Title>
+      {/* <S.Title data-cy="checkoutPageSubtitle">SHIPPING ADDRESS</S.Title> */}
+      <div className="ushop-title">
+        <h4>Хүлээн авах</h4>
+        <h3>Хаяг сонгох</h3>
+      </div>
       {userAddresses ? (
         <AddressGridSelector
           formId={formId}
@@ -40,19 +43,19 @@ const CheckoutAddress: React.FC<IProps> = ({
           newAddressFormId={newAddressFormId}
         />
       ) : (
-        <AddressForm
-          formId={formId}
-          formRef={formRef}
-          countriesOptions={countries?.filter(filterNotEmptyArrayItems)}
-          address={{
-            ...checkoutAddress,
-            email,
-          }}
-          handleSubmit={address => setShippingAddress(address, address?.email)}
-          includeEmail={true}
-          errors={errors}
-        />
-      )}
+          <AddressForm
+            formId={formId}
+            formRef={formRef}
+            countriesOptions={countries?.filter(filterNotEmptyArrayItems)}
+            address={{
+              ...checkoutAddress,
+              email,
+            }}
+            handleSubmit={address => setShippingAddress(address, address?.email)}
+            includeEmail={true}
+            errors={errors}
+          />
+        )}
     </section>
   );
 };

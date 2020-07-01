@@ -1,42 +1,29 @@
-import { hot } from "react-hot-loader";
-import { ThemeProvider } from "styled-components";
-
-import { NotificationTemplate } from "@components/atoms";
 import {
-  ServiceWorkerContext,
-  ServiceWorkerProvider,
-} from "@components/containers";
-import { SaleorProvider, useAuth } from "@sdk/react";
-import { defaultTheme, GlobalStyle } from "@styles";
+    defaultDataIdFromObject, InMemoryCache, NormalizedCacheObject
+} from 'apollo-cache-inmemory';
+import { persistCache } from 'apollo-cache-persist';
+import { ApolloClient } from 'apollo-client';
+import * as React from 'react';
+import { positions, Provider as AlertProvider, useAlert } from 'react-alert';
+import { ApolloProvider } from 'react-apollo';
+import { render } from 'react-dom';
+import { hot } from 'react-hot-loader';
+import { Route, Router } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
+import { QueryParamProvider } from 'use-query-params';
 
-import {
-  defaultDataIdFromObject,
-  InMemoryCache,
-  NormalizedCacheObject,
-} from "apollo-cache-inmemory";
-import { persistCache } from "apollo-cache-persist";
-import { ApolloClient } from "apollo-client";
-import * as React from "react";
-import { positions, Provider as AlertProvider, useAlert } from "react-alert";
-import { ApolloProvider } from "react-apollo";
-import { render } from "react-dom";
-import { Route, Router } from "react-router-dom";
-import { QueryParamProvider } from "use-query-params";
+import { NotificationTemplate } from '@components/atoms';
+import { ServiceWorkerContext, ServiceWorkerProvider } from '@components/containers';
+import { SaleorProvider, useAuth } from '@sdk/react';
+import { defaultTheme, GlobalStyle } from '@styles';
 
-import { App } from "./app";
-import { apiUrl, serviceWorkerTimeout } from "./constants";
-import { history } from "./history";
-
-import { OverlayProvider } from "./components";
-
-import ShopProvider from "./components/ShopProvider";
-
-import { createSaleorClient } from "./@sdk";
-import {
-  authLink,
-  fireSignOut,
-  invalidTokenLinkWithTokenHandler,
-} from "./@sdk/auth";
+import { createSaleorClient } from './@sdk';
+import { authLink, fireSignOut, invalidTokenLinkWithTokenHandler } from './@sdk/auth';
+import { App } from './app';
+import { OverlayProvider } from './components';
+import ShopProvider from './components/ShopProvider';
+import { apiUrl, serviceWorkerTimeout } from './constants';
+import { history } from './history';
 
 const cache = new InMemoryCache({
   dataIdFromObject: obj => {
@@ -109,14 +96,14 @@ const startApp = async () => {
         if (authenticated) {
           alert.show(
             {
-              title: "You are now logged in",
+              title: "Та одоо нэвтэрсэн байна.",
             },
             { type: "success" }
           );
         } else {
           alert.show(
             {
-              title: "You are now logged out",
+              title: "Та одоо гарсан байна.",
             },
             { type: "success" }
           );

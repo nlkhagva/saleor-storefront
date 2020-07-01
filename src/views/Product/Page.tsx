@@ -1,22 +1,20 @@
-import { smallScreen } from "../../globalStyles/scss/variables.scss";
+import classNames from 'classnames';
+import * as React from 'react';
+import Media from 'react-media';
 
-import classNames from "classnames";
-import * as React from "react";
-import Media from "react-media";
+import { CachedImage, Thumbnail } from '@components/molecules';
+import { ICheckoutModelLine } from '@sdk/repository';
 
-import { CachedImage, Thumbnail } from "@components/molecules";
-
-import { Breadcrumbs, ProductDescription } from "../../components";
-import { generateCategoryUrl, generateProductUrl } from "../../core/utils";
-import GalleryCarousel from "./GalleryCarousel";
-import { ProductDetails_product } from "./gqlTypes/ProductDetails";
-import OtherProducts from "./Other";
-
-import { ICheckoutModelLine } from "@sdk/repository";
-import { ProductDescription as NewProductDescription } from "../../@next/components/molecules";
-import { ProductGallery } from "../../@next/components/organisms/";
-
-import { structuredData } from "../../core/SEO/Product/structuredData";
+import { ProductDescription as NewProductDescription } from '../../@next/components/molecules';
+import { ProductGallery } from '../../@next/components/organisms/';
+import { Breadcrumbs, ProductDescription } from '../../components';
+import { structuredData } from '../../core/SEO/Product/structuredData';
+import { generateCategoryUrl, generateProductUrl } from '../../core/utils';
+import { smallScreen } from '../../globalStyles/scss/variables.scss';
+import ZaraLogo from '../../images/unurshop/xd/zara.jpg';
+import GalleryCarousel from './GalleryCarousel';
+import { ProductDetails_product } from './gqlTypes/ProductDetails';
+import OtherProducts from './Other';
 
 class Page extends React.PureComponent<
   {
@@ -25,7 +23,7 @@ class Page extends React.PureComponent<
     items: ICheckoutModelLine[];
   },
   { variantId: string }
-> {
+  > {
   fixedElement: React.RefObject<HTMLDivElement> = React.createRef();
   productGallery: React.RefObject<HTMLDivElement> = React.createRef();
 
@@ -105,7 +103,7 @@ class Page extends React.PureComponent<
           <Breadcrumbs breadcrumbs={this.populateBreadcrumbs(product)} />
         </div>
         <div className="container">
-          <div className="product-page__product">
+          <div className="product-page__product" style={{ position: 'relative' }}>
             {/* Add script here */}
             <script className="structured-data-list" type="application/ld+json">
               {structuredData(product)}
@@ -116,30 +114,32 @@ class Page extends React.PureComponent<
               {matches =>
                 matches ? (
                   <>
+                    <img src={ZaraLogo} alt="Zara" style={{ position: "absolute", top: '1rem', left: '1rem', height: '60px', width: '60px', zIndex: 2, borderRadius: '100%', boxShadow: '1px 1px 5px rgba(0,0,0,.3)' }} />
+
                     <GalleryCarousel images={this.getImages()} />
                     <div className="product-page__product__info">
                       {productDescription}
                     </div>
                   </>
                 ) : (
-                  <>
-                    <div
-                      className="product-page__product__gallery"
-                      ref={this.productGallery}
-                    >
-                      <ProductGallery images={this.getImages()} />
-                    </div>
-                    <div className="product-page__product__info">
+                    <>
                       <div
-                        className={classNames(
-                          "product-page__product__info--fixed"
-                        )}
+                        className="product-page__product__gallery"
+                        ref={this.productGallery}
                       >
-                        {productDescription}
+                        <ProductGallery images={this.getImages()} />
                       </div>
-                    </div>
-                  </>
-                )
+                      <div className="product-page__product__info">
+                        <div
+                          className={classNames(
+                            "product-page__product__info--fixed"
+                          )}
+                        >
+                          {productDescription}
+                        </div>
+                      </div>
+                    </>
+                  )
               }
             </Media>
           </div>

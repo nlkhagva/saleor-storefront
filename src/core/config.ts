@@ -1,4 +1,4 @@
-import { generatePageUrl } from "./utils";
+import { generatePageUrl } from './utils';
 
 export const BASE_URL = "/";
 export const PRODUCTS_PER_PAGE = 6;
@@ -48,7 +48,7 @@ export const META_DEFAULTS = {
   description:
     "Open-source PWA storefront built with Saleor's e-commerce GraphQL API. Written with React and TypeScript.",
   image: `${window.location.origin}${require("../images/logo.svg")}`,
-  title: "Demo PWA Storefront – Saleor Commerce",
+  title: "Англи бараа захиалга – UNURSHOP",
   type: "website",
   url: window.location.origin,
 };
@@ -62,8 +62,8 @@ export const CHECKOUT_STEPS = [
   {
     index: 0,
     link: "/checkout/address",
-    name: "Address",
-    nextActionName: "Continue to Shipping",
+    name: "Хаяг",
+    nextActionName: "Үргэлжлүүлэх",
     nextStepLink: "/checkout/shipping",
     onlyIfShippingRequired: true,
     step: CheckoutStep.Address,
@@ -80,7 +80,7 @@ export const CHECKOUT_STEPS = [
   {
     index: 2,
     link: "/checkout/payment",
-    name: "Payment",
+    name: "Төлбөр",
     nextActionName: "Continue to Review",
     nextStepLink: "/checkout/review",
     onlyIfShippingRequired: false,

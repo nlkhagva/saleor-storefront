@@ -1,10 +1,10 @@
-import "./scss/index.scss";
+import './scss/index.scss';
 
-import * as React from "react";
+import * as React from 'react';
 
-import { MetaWrapper } from "../../components";
-import Page from "./Page";
-import { TypedHomePageQuery } from "./queries";
+import { MetaWrapper } from '../../components';
+import Page from './Page';
+import { TypedHomePageQuery } from './queries';
 
 const View: React.FC = () => (
   <div className="home-page">

@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
-import { Icon } from "../Icon";
-import { Tile } from "../Tile";
-import * as S from "./styles";
-import { IProps } from "./types";
+import { Icon } from '../Icon';
+import { Tile } from '../Tile';
+import * as S from './styles';
+import { IProps } from './types';
 
 export const AddNewTile: React.FC<IProps> = ({ type, ...props }: IProps) => {
   return (
@@ -12,7 +12,7 @@ export const AddNewTile: React.FC<IProps> = ({ type, ...props }: IProps) => {
         <p>
           <Icon size={24} name="plus" />
         </p>
-        <p>Add new {type}</p>
+        <p>{type} нэмэх</p>
       </S.Content>
     </Tile>
   );

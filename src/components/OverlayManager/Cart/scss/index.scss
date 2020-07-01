@@ -11,11 +11,28 @@
       margin-left: auto;
     }
   }
+  .overlay__cart-icon {
+    display: inline-block;
+    position: relative;
+
+    &__svg{
+
+    }
+    &__quantity{
+      position: absolute;
+      top: -$spacer/4;
+      right: -$spacer/2; 
+      background-color: $ushop-red;
+      color: $white;
+      border-radius: 100%;
+      padding: 0 $small-font-size/2;
+      font-size: $small-font-size;
+    }
+  }
 
   &__list {
     padding: 0 $spacer;
     height: calc(100vh - 17.5rem);
-    overflow: auto;
 
     &__item {
       padding: $spacer 0;
@@ -78,7 +95,8 @@
     padding: $spacer;
     position: absolute;
     bottom: 0;
-    width: 25rem;
+    max-width: 25rem;
+    width: 100%;
 
     &__price {
       display: flex;

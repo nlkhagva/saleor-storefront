@@ -5,20 +5,42 @@
   max-width: calc(100vw - 5rem);
   width: 30rem;
 
+  .dynamic-nav{
+    background-color: $gray-dark2;
+    padding-bottom: $item-height/2;
+
+
+    .side-nav__menu-item-link {
+      text-transform: uppercase;
+    }
+  }
+
+  .static-nav{
+    margin-left: 2rem; 
+    padding-top: $item-height*.75;
+    list-style-type:disc;
+    color: $white;
+
+    li a {
+      padding-left: 0;
+    }
+  }
+
   &__menu-item {
-    border-bottom: 1px solid $gray-light;
+    border-bottom: 1px solid $gray-dark;
     display: grid;
     height: $item-height;
+
+    &:last-child { border-bottom: none; }
 
     &-link,
     &-back span {
       align-items: center;
-      color: $base-font-color;
+      color: $white;
       display: flex;
-      font-weight: 600;
+      font-weight: normal;
       padding: $spacer;
       text-decoration: none;
-      text-transform: uppercase;
       transition: 0.3s;
 
       svg * {
@@ -31,7 +53,7 @@
       padding: 0.75rem $spacer;
 
       svg {
-        width: 5rem;
+        height: 1.5rem;
       }
     }
 
@@ -42,7 +64,7 @@
       transition: 0.3s;
 
       &:hover {
-        color: $turquoise;
+        color: $ushop-red;
       }
 
       svg * {
@@ -61,6 +83,7 @@
     &-more {
       align-self: center;
       padding: 1.25rem 1.75rem;
+      color: $ushop-red;
     }
 
     &-back {
@@ -83,7 +106,7 @@
       }
 
       &:hover {
-        color: $turquoise;
+        color: $ushop-red;
       }
     }
 

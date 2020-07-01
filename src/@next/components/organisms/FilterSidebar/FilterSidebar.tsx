@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react';
 
-import { IconButton } from "@components/atoms";
-import { AttributeValuesChecklist } from "@components/molecules";
-import { useHandlerWhenClickedOutside } from "@hooks";
+import { IconButton } from '@components/atoms';
+import { AttributeValuesChecklist } from '@components/molecules';
+import { useHandlerWhenClickedOutside } from '@hooks';
 
-import { Overlay } from "../";
-import { IFilters, ISingleFilterAttribute } from "../../../types";
-import * as S from "./styles";
-import { IProps } from "./types";
+import { Overlay } from '../';
+import { IFilters, ISingleFilterAttribute } from '../../../types';
+import * as S from './styles';
+import { IProps } from './types';
 
 const checkIfAttributeIsChecked = (
   filters: IFilters,
@@ -47,7 +47,7 @@ export const FilterSidebar: React.FC<IProps> = ({
     >
       <S.Wrapper ref={setElementRef()} data-cy="filter-sidebar">
         <S.Header>
-          <span>FILTERS</span>
+          <span>ШҮҮХ</span>
           <IconButton onClick={hide} name="x" size={18} color="000" />
         </S.Header>
         {attributes.map(({ id, name, slug, values }) => {

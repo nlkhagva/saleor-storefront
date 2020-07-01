@@ -190,6 +190,15 @@ export interface CompleteCheckout_checkoutComplete_order_lines_variant_attribute
   values: (CompleteCheckout_checkoutComplete_order_lines_variant_attributes_values | null)[];
 }
 
+export interface CompleteCheckout_checkoutComplete_order_lines_variant_product_ushop {
+  __typename: "Ushop";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+}
+
 export interface CompleteCheckout_checkoutComplete_order_lines_variant_product_thumbnail {
   __typename: "Image";
   /**
@@ -222,6 +231,7 @@ export interface CompleteCheckout_checkoutComplete_order_lines_variant_product {
    */
   id: string;
   name: string;
+  ushop: CompleteCheckout_checkoutComplete_order_lines_variant_product_ushop | null;
   /**
    * The main thumbnail for a product.
    */

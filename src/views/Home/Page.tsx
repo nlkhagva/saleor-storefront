@@ -1,21 +1,17 @@
-import "./scss/index.scss";
+import './scss/index.scss';
 
-import classNames from "classnames";
-import * as React from "react";
-import { Link } from "react-router-dom";
+import classNames from 'classnames';
+import * as React from 'react';
+import { Link } from 'react-router-dom';
 
-import { Button, Loader, ProductsFeatured } from "../../components";
-import { generateCategoryUrl } from "../../core/utils";
-
+import { Loader, UshopFeatured } from '../../components';
+import { structuredData } from '../../core/SEO/Homepage/structuredData';
+import { generateCategoryUrl } from '../../core/utils';
+import noPhotoImg from '../../images/no-photo.svg';
+import ushopBackgroundImage from '../../images/unurshop/xd/homepage-cover.png';
 import {
-  ProductsList_categories,
-  ProductsList_shop,
-  ProductsList_shop_homepageCollection_backgroundImage,
-} from "./gqlTypes/ProductsList";
-
-import { structuredData } from "../../core/SEO/Homepage/structuredData";
-
-import noPhotoImg from "../../images/no-photo.svg";
+  ProductsList_categories, ProductsList_shop, ProductsList_shop_homepageCollection_backgroundImage
+} from './gqlTypes/ProductsList';
 
 const Page: React.FC<{
   loading: boolean;
@@ -36,44 +32,36 @@ const Page: React.FC<{
         className="home-page__hero"
         style={
           backgroundImage
-            ? { backgroundImage: `url(${backgroundImage.url})` }
+            ? { backgroundImage: `url(${ushopBackgroundImage})` }
             : null
         }
       >
-        <div className="home-page__hero-text">
-          <div>
-            <span className="home-page__hero__title">
-              <h1>Final reduction</h1>
-            </span>
-          </div>
-          <div>
-            <span className="home-page__hero__title">
-              <h1>Up to 70% off sale</h1>
-            </span>
-          </div>
-        </div>
-        <div className="home-page__hero-action">
+
+        <div className="home-page__hero-action" style={{ marginTop: 350 }}>
           {loading && !categories ? (
             <Loader />
           ) : (
-            categoriesExist() && (
-              <Link
-                to={generateCategoryUrl(
-                  categories.edges[0].node.id,
-                  categories.edges[0].node.name
-                )}
-              >
-                <Button>Shop sale</Button>
-              </Link>
-            )
-          )}
+              categoriesExist() && (
+                <Link
+
+                  to={generateCategoryUrl(
+                    categories.edges[0].node.id,
+                    categories.edges[0].node.name
+                  )}
+                >
+                  {/* <Button>Shop sale</Button> */}
+                </Link>
+              )
+            )}
         </div>
       </div>
-      <ProductsFeatured />
+      {/* <ProductsFeatured /> */}
+      {<UshopFeatured />}
       {categoriesExist() && (
         <div className="home-page__categories">
           <div className="container">
-            <h3>Shop by category</h3>
+            <h4 className="t-c">Зуны шинэ загварууд</h4>
+            <h3 className="t-c m-b3">Онцлох бараа</h3>
             <div className="home-page__categories__list">
               {categories.edges.map(({ node: category }) => (
                 <div key={category.id}>
@@ -93,7 +81,7 @@ const Page: React.FC<{
                           category.backgroundImage
                             ? category.backgroundImage.url
                             : noPhotoImg
-                        })`,
+                          })`,
                       }}
                     />
                     <h3>{category.name}</h3>

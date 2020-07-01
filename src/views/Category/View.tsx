@@ -1,19 +1,17 @@
-import * as React from "react";
-import { RouteComponentProps } from "react-router";
+import * as React from 'react';
+import { RouteComponentProps } from 'react-router';
+import { StringParam, useQueryParam } from 'use-query-params';
 
-import { IFilters } from "@types";
-import { StringParam, useQueryParam } from "use-query-params";
-import { MetaWrapper, NotFound, OfflinePlaceholder } from "../../components";
-import NetworkStatus from "../../components/NetworkStatus";
-import { PRODUCTS_PER_PAGE } from "../../core/config";
+import { IFilters } from '@types';
+
+import { MetaWrapper, NotFound, OfflinePlaceholder } from '../../components';
+import NetworkStatus from '../../components/NetworkStatus';
+import { PRODUCTS_PER_PAGE } from '../../core/config';
 import {
-  convertSortByFromString,
-  convertToAttributeScalar,
-  getGraphqlIdFromDBId,
-  maybe,
-} from "../../core/utils";
-import Page from "./Page";
-import { TypedCategoryProductsQuery } from "./queries";
+  convertSortByFromString, convertToAttributeScalar, getGraphqlIdFromDBId, maybe
+} from '../../core/utils';
+import Page from './Page';
+import { TypedCategoryProductsQuery } from './queries';
 
 type ViewProps = RouteComponentProps<{
   id: string;
@@ -96,31 +94,31 @@ export const View: React.FC<ViewProps> = ({ match }) => {
 
   const sortOptions = [
     {
-      label: "Clear...",
+      label: "Цэвэрлэх...",
       value: null,
     },
     {
-      label: "Price Low-High",
+      label: "Үнэ өсөхөөр",
       value: "price",
     },
     {
-      label: "Price High-Low",
+      label: "Үнэ буурахаар",
       value: "-price",
     },
     {
-      label: "Name Increasing",
+      label: "Нэр өсөхөөр",
       value: "name",
     },
     {
-      label: "Name Decreasing",
+      label: "Нэр буурахаар",
       value: "-name",
     },
     {
-      label: "Last updated Ascending",
+      label: "Хуучин нь эхэндээ",
       value: "updated_at",
     },
     {
-      label: "Last updated Descending",
+      label: "Шинэ нь эхэндээ",
       value: "-updated_at",
     },
   ];

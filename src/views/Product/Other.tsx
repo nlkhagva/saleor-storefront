@@ -1,20 +1,22 @@
-import * as React from "react";
+import * as React from 'react';
 
-import { ProductList } from "@components/organisms";
+import { ProductList } from '@components/organisms';
 
-import { ProductDetails_product_category_products_edges } from "./gqlTypes/ProductDetails";
+import { ProductDetails_product_category_products_edges } from './gqlTypes/ProductDetails';
 
 const OtherProducts: React.FC<{
   products: ProductDetails_product_category_products_edges[];
 }> = ({ products }) => (
   <div className="product-page__other-products">
     <div className="container">
-      <h4 className="product-page__other-products__title">
-        Other products in this category
-      </h4>
+      <div className="ushop-title">
+        <h4>Танд санал болгох</h4>
+        <h3>Ижил төстэй бараанууд</h3>
+      </div>
+
       <ProductList products={products.map(({ node }) => node)} />
     </div>
-  </div>
+  </div >
 );
 
 export default OtherProducts;

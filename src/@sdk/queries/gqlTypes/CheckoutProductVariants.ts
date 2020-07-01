@@ -134,6 +134,15 @@ export interface CheckoutProductVariants_productVariants_edges_node_attributes {
   values: (CheckoutProductVariants_productVariants_edges_node_attributes_values | null)[];
 }
 
+export interface CheckoutProductVariants_productVariants_edges_node_product_ushop {
+  __typename: "Ushop";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+}
+
 export interface CheckoutProductVariants_productVariants_edges_node_product_thumbnail {
   __typename: "Image";
   /**
@@ -166,6 +175,7 @@ export interface CheckoutProductVariants_productVariants_edges_node_product {
    */
   id: string;
   name: string;
+  ushop: CheckoutProductVariants_productVariants_edges_node_product_ushop | null;
   /**
    * The main thumbnail for a product.
    */

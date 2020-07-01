@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import AddToCartButton from "./AddToCartButton";
+import AddToCartButton from './AddToCartButton';
 
 const AddToCart: React.FC<{
   disabled: boolean;
@@ -14,7 +14,7 @@ const AddToCart: React.FC<{
       }}
       disabled={disabled}
     >
-      Add to basket
+      Сагсанд хийх
     </AddToCartButton>
   );
 };

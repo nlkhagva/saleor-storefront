@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
-import { Chip, DropdownSelect, Icon } from "@components/atoms";
+import { Chip, DropdownSelect, Icon } from '@components/atoms';
 
-import * as S from "./styles";
-import { IProps } from "./types";
+import * as S from './styles';
+import { IProps } from './types';
 
 export const ProductListHeader: React.FC<IProps> = ({
   numberOfProducts = 0,
@@ -23,7 +23,7 @@ export const ProductListHeader: React.FC<IProps> = ({
           <S.FiltersButton onClick={openFiltersMenu} data-cy="filters__button">
             <Icon name="filter" size={24} />
             <S.Filters>
-              FILTERS{" "}
+              ШҮҮХ{" "}
               {activeFilters > 0 && (
                 <>
                   <span>({activeFilters})</span>
@@ -32,14 +32,15 @@ export const ProductListHeader: React.FC<IProps> = ({
             </S.Filters>
           </S.FiltersButton>
           {activeFilters > 0 && (
-            <S.Clear onClick={clearFilters}>CLEAR FILTERS</S.Clear>
+            <S.Clear onClick={clearFilters}>ШҮҮЛТҮҮР ЦЭВЭРЛЭХ</S.Clear>
           )}
         </S.LeftSide>
 
         <S.RightSide>
           <S.Element data-cy="no-of-products-found_label">
-            <S.Label>Products found: </S.Label>
+            <S.Label>Нийт: </S.Label>
             {numberOfProducts}
+            <S.Label> бараа</S.Label>
           </S.Element>
           <S.Element>
             <S.Sort>

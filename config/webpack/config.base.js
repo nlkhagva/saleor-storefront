@@ -5,7 +5,7 @@ const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const webpack = require("webpack");
 
-process.env.API_URI = "http://localhost:8000/graphql/";
+process.env.API_URI = "http://192.168.1.2:8000/graphql/";
 
 if (!process.env.API_URI) {
   throw new Error("Environment variable API_URI not set");
@@ -104,8 +104,8 @@ module.exports = ({ sourceDir, distDir }) => ({
       logo: `${sourceDir}/images/favicon.png`,
       prefix: "images/favicons/",
       favicons: {
-        appName: "Saleor",
-        appDescription: "Storefront for the Saleor e-commerce platform",
+        appName: "UNURSHOP",
+        appDescription: "Англи бараа захиалга, ӨНӨРШОП unurshop.mn",
         display: "standalone",
         developerURL: null, // prevent retrieving from the nearest package.json
         background: "#ddd",

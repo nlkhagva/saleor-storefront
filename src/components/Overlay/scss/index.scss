@@ -9,7 +9,7 @@
   top: 0;
   transition: 300ms;
   width: 100%;
-  z-index: 2;
+  z-index: 20;
 
   &--search,
   &--main-menu-nav {
@@ -30,8 +30,10 @@
   &__left {
     position: fixed;
     min-height: 100%;
-    background-color: $white;
+    // background-color: $white;
+    background-color: $gray-dark;
     animation: sidenavLeftOpen 0.3s;
+    
   }
 
   &__right {
@@ -45,7 +47,6 @@
 
   &__header {
     align-items: center;
-    border-bottom: 1px solid $gray-light;
     display: flex;
     flex: 1;
     font-weight: $bold-font-weight;
@@ -70,7 +71,7 @@
       &:focus {
         svg {
           * {
-            fill: $turquoise;
+            fill: $black;
           }
         }
       }
@@ -86,7 +87,7 @@
         display: flex;
         svg {
           * {
-            fill: $turquoise;
+            fill: $black;
           }
         }
       }

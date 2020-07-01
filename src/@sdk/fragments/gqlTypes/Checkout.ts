@@ -404,6 +404,15 @@ export interface Checkout_lines_variant_attributes {
   values: (Checkout_lines_variant_attributes_values | null)[];
 }
 
+export interface Checkout_lines_variant_product_ushop {
+  __typename: "Ushop";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+}
+
 export interface Checkout_lines_variant_product_thumbnail {
   __typename: "Image";
   /**
@@ -436,6 +445,7 @@ export interface Checkout_lines_variant_product {
    */
   id: string;
   name: string;
+  ushop: Checkout_lines_variant_product_ushop | null;
   /**
    * The main thumbnail for a product.
    */
@@ -456,7 +466,7 @@ export interface Checkout_lines_variant {
   name: string;
   sku: string;
   /**
-   * Quantity of a product available for sale.
+   * Quantity of a product available for sale in one checkout.
    */
   quantityAvailable: number;
   /**

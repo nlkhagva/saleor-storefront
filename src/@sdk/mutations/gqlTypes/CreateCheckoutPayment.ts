@@ -419,6 +419,15 @@ export interface CreateCheckoutPayment_checkoutPaymentCreate_checkout_lines_vari
   values: (CreateCheckoutPayment_checkoutPaymentCreate_checkout_lines_variant_attributes_values | null)[];
 }
 
+export interface CreateCheckoutPayment_checkoutPaymentCreate_checkout_lines_variant_product_ushop {
+  __typename: "Ushop";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+}
+
 export interface CreateCheckoutPayment_checkoutPaymentCreate_checkout_lines_variant_product_thumbnail {
   __typename: "Image";
   /**
@@ -451,6 +460,7 @@ export interface CreateCheckoutPayment_checkoutPaymentCreate_checkout_lines_vari
    */
   id: string;
   name: string;
+  ushop: CreateCheckoutPayment_checkoutPaymentCreate_checkout_lines_variant_product_ushop | null;
   /**
    * The main thumbnail for a product.
    */

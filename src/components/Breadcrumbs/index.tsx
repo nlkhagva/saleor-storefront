@@ -1,14 +1,14 @@
-import { smallScreen } from "../../globalStyles/scss/variables.scss";
-import "./scss/index.scss";
+import './scss/index.scss';
 
-import classNames from "classnames";
-import * as React from "react";
-import Media from "react-media";
-import { Link } from "react-router-dom";
+import classNames from 'classnames';
+import * as React from 'react';
+import Media from 'react-media';
+import { Link } from 'react-router-dom';
 
-import { baseUrl } from "../../app/routes";
-import { getDBIdFromGraphqlId, slugify } from "../../core/utils";
-import { Category_category } from "../../views/Category/gqlTypes/Category";
+import { baseUrl } from '../../app/routes';
+import { getDBIdFromGraphqlId, slugify } from '../../core/utils';
+import { smallScreen } from '../../globalStyles/scss/variables.scss';
+import { Category_category } from '../../views/Category/gqlTypes/Category';
 
 export interface Breadcrumb {
   value: string;
@@ -51,7 +51,7 @@ const Breadcrumbs: React.FC<{
       matches ? (
         <ul className="breadcrumbs">
           <li>
-            <Link to={baseUrl}>Home</Link>
+            <Link to={baseUrl}>Нүүр</Link>
           </li>
           {breadcrumbs.map((breadcrumb, index) => (
             <li
@@ -65,10 +65,10 @@ const Breadcrumbs: React.FC<{
           ))}
         </ul>
       ) : (
-        <div className="breadcrumbs">
-          <Link to={getBackLink(breadcrumbs)}>Back</Link>
-        </div>
-      )
+          <div className="breadcrumbs">
+            <Link to={getBackLink(breadcrumbs)}>Буцах</Link>
+          </div>
+        )
     }
   </Media>
 );
