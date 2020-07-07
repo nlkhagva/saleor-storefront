@@ -1,31 +1,27 @@
-import "./scss/index.scss";
+import './scss/index.scss';
 
-import classNames from "classnames";
-import { stringify } from "query-string";
-import * as React from "react";
-import { RouteComponentProps, withRouter } from "react-router-dom";
-import ReactSVG from "react-svg";
+import classNames from 'classnames';
+import { stringify } from 'query-string';
+import * as React from 'react';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
+import ReactSVG from 'react-svg';
+
+import { BookingProduct } from '@app/components/organisms/BookingProduct';
 
 import {
-  Button,
-  Loader,
-  OfflinePlaceholder,
-  Overlay,
-  OverlayContextInterface,
-  OverlayType,
-} from "../..";
-import { searchUrl } from "../../../app/routes";
-import { maybe } from "../../../core/utils";
-import { DebouncedTextField } from "../../Debounce";
-import { Error } from "../../Error";
-import NetworkStatus from "../../NetworkStatus";
-import { SearchResults } from "./gqlTypes/SearchResults";
-import NothingFound from "./NothingFound";
-import ProductItem from "./ProductItem";
-import { TypedSearchResults } from "./queries";
-
-import searchImg from "../../../images/search.svg";
-import closeImg from "../../../images/x.svg";
+    Button, Loader, OfflinePlaceholder, Overlay, OverlayContextInterface, OverlayType
+} from '../..';
+import { searchUrl } from '../../../app/routes';
+import { maybe } from '../../../core/utils';
+import searchImg from '../../../images/search.svg';
+import closeImg from '../../../images/x.svg';
+import { DebouncedTextField } from '../../Debounce';
+import { Error } from '../../Error';
+import NetworkStatus from '../../NetworkStatus';
+import { SearchResults } from './gqlTypes/SearchResults';
+import NothingFound from './NothingFound';
+import ProductItem from './ProductItem';
+import { TypedSearchResults } from './queries';
 
 interface SearchProps extends RouteComponentProps {
   overlay: OverlayContextInterface;
@@ -42,6 +38,16 @@ class Search extends React.Component<SearchProps, SearchState> {
 
   get hasSearchPhrase() {
     return this.state.search.length > 0;
+  }
+
+  get isProductLink() {
+    const pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
+      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+      '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+      '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+      '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
+    return !!pattern.test(this.state.search);
   }
 
   get redirectTo() {
@@ -81,7 +87,7 @@ class Search extends React.Component<SearchProps, SearchState> {
 
   render() {
     return (
-      <Overlay context={this.props.overlay} className="overlay--no-background">
+      <Overlay context={this.props.overlay}>
         <form
           className={classNames("search", {
             "search--has-results": this.hasSearchPhrase,
@@ -98,7 +104,7 @@ class Search extends React.Component<SearchProps, SearchState> {
               }
               iconRight={<ReactSVG path={searchImg} />}
               autoFocus={true}
-              placeholder="Search"
+              placeholder="Үгээр хайх & Бараа захиалах"
               onBlur={this.handleInputBlur}
             />
           </div>
@@ -110,6 +116,9 @@ class Search extends React.Component<SearchProps, SearchState> {
           >
             <NetworkStatus>
               {isOnline => {
+                if (this.isProductLink) {
+                  return <BookingProduct productUrl={this.state.search} />;
+                }
                 if (this.hasSearchPhrase) {
                   return (
                     <TypedSearchResults
@@ -134,13 +143,13 @@ class Search extends React.Component<SearchProps, SearchState> {
                                 {loading ? (
                                   <Loader />
                                 ) : (
-                                  <Button
-                                    btnRef={this.submitBtnRef}
-                                    type="submit"
-                                  >
-                                    Show all results
-                                  </Button>
-                                )}
+                                    <Button
+                                      btnRef={this.submitBtnRef}
+                                      type="submit"
+                                    >
+                                      Show all results
+                                    </Button>
+                                  )}
                               </div>
                             </>
                           );
@@ -150,8 +159,8 @@ class Search extends React.Component<SearchProps, SearchState> {
                           return isOnline ? (
                             <Error error={error.message} />
                           ) : (
-                            <OfflinePlaceholder />
-                          );
+                              <OfflinePlaceholder />
+                            );
                         }
 
                         return <NothingFound search={this.state.search} />;

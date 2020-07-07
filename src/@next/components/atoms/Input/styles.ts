@@ -1,4 +1,4 @@
-import { DefaultTheme, styled } from "@styles";
+import { DefaultTheme, styled } from '@styles';
 
 type WrapperProps = {
   active: boolean;
@@ -20,28 +20,33 @@ const getEdgeColor = (
   }
 
   if (hovered) {
-    return theme.colors.secondary;
+    return theme.colors.dark;
   }
 
-  return active ? theme.colors.secondary : theme.colors.dark;
+  return active ? theme.colors.dark : theme.colors.primaryLight;
 };
 
 export const Wrapper = styled.div<WrapperProps>`
   display: flex;
   border: 1px solid ${props => getEdgeColor(props)};
+  border-radius: ${props => props.theme.borderRadius.small};
   color: ${props => getEdgeColor(props)};
-  outline: ${props =>
-    props.active ? `1px solid ${getEdgeColor(props)};` : "none"};
   transition: all 0.3s ease;
 
   &:hover {
     color: ${props => getEdgeColor(props, true)};
-    outline-width: ${props => (props.disabled ? 0 : 1)}px;
-    outline-style: solid;
     border-color: ${props => getEdgeColor(props, true)};
-    outline-color: ${props => getEdgeColor(props, true)};
   }
 `;
+
+// outline: ${props =>
+//   props.active ? `1px solid ${getEdgeColor(props)};` : "none"};
+
+
+// outline-color: ${props => getEdgeColor(props, true)};
+// outline-width: ${props => (props.disabled ? 0 : 1)}px;
+// outline-style: solid;
+
 
 export const Content = styled.span`
   display: flex;

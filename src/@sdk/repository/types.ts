@@ -30,7 +30,6 @@ export interface ICheckoutModelLine {
   id?: string;
   variant: ICheckoutModelLineVariant;
   totalPrice?: ICheckoutModelLineTotalPrice | null;
-  metadata: JSON | {} | null;
 }
 
 export interface ICheckoutModelPriceValue {

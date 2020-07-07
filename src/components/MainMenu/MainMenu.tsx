@@ -32,6 +32,7 @@ const MainMenu: React.FC = () => {
   //   signOut();
   // };
 
+
   const cartItemsQuantity =
     (items &&
       items.reduce((prevVal, currVal) => prevVal + currVal.quantity, 0)) ||
@@ -45,6 +46,7 @@ const MainMenu: React.FC = () => {
             <TypedMainMenuQuery renderOnError displayLoader={false}>
               {({ data }) => {
                 const items = maybe(() => data.shop.navigation.main.items, []);
+
 
                 return (
                   <ul>

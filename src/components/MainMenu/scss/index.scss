@@ -197,6 +197,7 @@
   &__cart {
     display: inline-block;
     position: relative;
+    padding: $spacer;
 
     div { display: inline-block;}
 
@@ -310,9 +311,9 @@
     }
 
     &:hover {
-      color: $turquoise;
+      color: $black-dark;
       svg * {
-        fill: $turquoise;
+        fill: $black-dark;
       }
     }
 

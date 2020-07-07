@@ -1,8 +1,13 @@
-import baseStyled, { ThemedStyledInterface } from "styled-components";
+import baseStyled, { ThemedStyledInterface } from 'styled-components';
 
-import * as C from "./constants";
+import * as C from './constants';
 
 export const defaultTheme = {
+  borderRadius: {
+    large: "10",
+    medium: "5px",
+    small: "3px",
+  },
   breakpoints: {
     largeScreen: "992px",
     mediumScreen: "720px",
@@ -134,7 +139,7 @@ export const defaultTheme = {
     /**
      * 30px in default theme
      */
-    fieldSpacer: C.fieldSpacer,
+    fieldSpacer: `${C.spacer}rem`,
     /**
      * 30px in default theme
      */
@@ -149,6 +154,7 @@ export const defaultTheme = {
     divisionLine: C.grayMedium,
     hoverBorder: C.blueDark,
   },
+
   typography: {
     baseFontFamily: C.baseFontFamily,
     /**

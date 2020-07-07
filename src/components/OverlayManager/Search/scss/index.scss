@@ -5,18 +5,23 @@ $drawer-width: 25rem;
 .search {
   width: 100vw;
 
+
   @media (min-width: $medium-screen) {
     width: $drawer-width;
   }
 
   &--has-results {
-    min-height: 100vh;
+    height: 100vh;
   }
 
   &__input {
+    height: 3.75rem;
+
+    .input { margin-bottom: 0; }
     .input__icon-right {
+      background: $white;
       svg * {
-        fill: $turquoise;
+        fill: $black;
       }
     }
 
@@ -27,7 +32,7 @@ $drawer-width: 25rem;
     }
 
     .input__field {
-      background-color: $turquoise-light;
+      background-color: $white;
       border: none;
       box-shadow: none;
       padding-bottom: 1.2rem;
@@ -47,13 +52,12 @@ $drawer-width: 25rem;
   }
 
   &__products {
+    height: calc(100% - 3.75rem);
     background: $white;
     overflow: auto;
-    padding: $spacer / 2 0;
     position: relative;
     right: 0;
     transition: 300ms;
-    height: calc(100vh - 3rem);
 
     @media (min-width: $medium-screen) {
       right: -$drawer-width;

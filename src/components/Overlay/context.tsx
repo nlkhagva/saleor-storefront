@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 
 export enum OverlayType {
   cart = "cart",
@@ -43,8 +43,8 @@ export interface OverlayContextInterface {
 /* tslint:disable:no-empty */
 export const OverlayContext = React.createContext<OverlayContextInterface>({
   context: null,
-  hide: () => {},
-  show: type => {},
+  hide: () => { },
+  show: type => { },
   theme: null,
   type: null,
 });

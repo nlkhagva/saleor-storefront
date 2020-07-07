@@ -1,0 +1,98 @@
+@import "../../../globalStyles/scss/variables.scss";
+
+.topbar{
+  background: rgb(242,242,242);
+  @media (min-width: $medium-screen) {
+      background: linear-gradient(90deg, rgba(242,242,242,1) 0%, rgba(255,255,255,1) 50%, rgba(242,242,242,1) 100%);
+  }
+
+  a { cursor: pointer; }
+
+  ul {
+    text-align: right;
+    li{ 
+      @media (max-width: $medium-screen) {
+        &.phone { float: left; 
+          .svg-icon { 
+            margin-right: 5px;
+          }
+        }
+      }
+      
+
+      display: inline-block; 
+      a { 
+        display: inline-block; 
+        font-size: $small-font-size;
+        padding: 15px 20px;
+
+        &.with-icon {
+          display: inline-block;
+          div { display: inline-block; vertical-align: middle; }
+
+
+          .svg-icon { 
+            margin-right: $spacer*.6;
+
+            &.hide { display: none; }
+
+            svg { 
+              fill: $base-font-color;
+              height: 22px; 
+              max-width: $base-line-height*1.5;
+            } 
+          }
+
+          @media (max-width: $medium-screen){
+            .label-icon { 
+              display: none;
+            }
+
+            .svg-icon { 
+              margin-right: 0px;
+            }
+
+            &{ 
+              padding: 10px $spacer;
+            }
+          }
+        }
+      }
+    }
+
+
+  }
+}
+
+.mobile-menu{
+  ul {
+    text-align: center;
+    li {
+      display: inline-block; 
+
+      &:nth-child(1) a:after{ color: #ED1B24 }
+      &:nth-child(2) a:after{ color: #5381C7 }
+      &:nth-child(3) a:after{ color: #059C2F }
+      &:nth-child(4) a:after{ color: #FFC000 }
+
+      a { display: inline-block; padding: 10px 7px; text-transform: uppercase;  position: relative; text-align: center;
+        @media (max-width: 320px) {
+          font-size: 10px;
+        }
+        &:hover:after, &.active:after{ display: block }
+        &:after{ position: absolute;
+          width: 100%;
+          content: " . . . . . ";
+          display: none;
+          font-size: 1.5em;
+          font-weight: 700;
+          height: 10px;
+          line-height: 0;
+          bottom: 3px;
+          left: 0px;
+        }
+      }
+    }
+  }
+}
+

@@ -1,0 +1,90 @@
+@import "../../../globalStyles/scss/variables.scss";
+// import svgMenuBackground from '../../images/unurshop/icons/menu-background.svg';
+
+.footer-mainmenu {
+  position: fixed;
+  z-index: 10;
+  bottom: 0;
+  // width: 100%;
+  left: 0; 
+  right: 0;
+  height: 70px;
+  // background-color: red;
+  display: flex;
+  flex-wrap: wrap;
+  
+  // & > div { overflow: hidden; }
+  ul{
+    display: inline-grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    top: 10px;
+
+    li {
+      display: inline-block;
+      text-align: center;
+
+      a {
+        display: inline-block;
+        width: 100%;
+
+        span { 
+          font-size: 10px; 
+
+          @media (max-width: 325px) {
+            font-size: 8px;
+          }
+        }
+
+        .uicon {  }
+      }
+    }
+  }
+
+  .fmenu-left { 
+    position: relative;
+    flex-basis: calc(50% - 3.75rem); 
+    background-color: $white; 
+    border-top-left-radius: 15px;
+    box-shadow: 0px 50px 20px 50px rgba(0, 0, 0, 0.15);
+    right: -1px;
+    
+
+    & > ul { right: -15px; position: absolute; z-index: 12; }
+  }
+  .fmenu-right { 
+    position: relative;
+    flex-basis: calc(50% - 3.75rem); 
+    background-color: $white; 
+    border-top-right-radius: 15px;
+    box-shadow: 0px 50px 20px 50px rgba(0, 0, 0, 0.15);
+    left: -1px;
+
+    & > ul { left: -15px; position: absolute; z-index: 12; }
+  }
+  .fmenu-center { 
+    flex-basis: calc(7.5rem);  
+    text-align: center;
+    background: url(../../../images/unurshop/icons/menu-background.svg) no-repeat top center; 
+    z-index: 11;
+
+    a.mobile-ulogo { 
+      display: inline-block; 
+      background: $ushop-red; 
+      border-radius: 100%; 
+      margin-top: -18px; 
+      height: 60px;
+      width: 60px;
+      text-align: center;
+      vertical-align: middle;
+
+      .icon-symbol { margin-top: 18px; }
+      div { display: inline-block; }
+    }
+  }
+
+  // @media (max-width: $medium-screen){
+  //   height: 4rem;
+  //   background-color: $white;
+  // }
+}

@@ -1,17 +1,14 @@
-import * as React from "react";
-import { RouteComponentProps, withRouter } from "react-router";
+import * as React from 'react';
+import { RouteComponentProps, withRouter } from 'react-router';
+
 import {
-  InnerOverlayContextInterface,
-  OverlayContext,
-  OverlayContextInterface,
-  OverlayTheme,
-  OverlayType
-} from "./context";
+    InnerOverlayContextInterface, OverlayContext, OverlayContextInterface, OverlayTheme, OverlayType
+} from './context';
 
 class Provider extends React.Component<
   RouteComponentProps<{}>,
   OverlayContextInterface
-> {
+  > {
   notificationCloseDelay = 2500;
   constructor(props) {
     super(props);

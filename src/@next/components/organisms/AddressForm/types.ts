@@ -1,4 +1,4 @@
-import { IAddressWithEmail } from "@types";
+import { IAddressWithEmail } from '@types';
 
 export interface IFormikProps {
   handleChange?: (e: React.ChangeEvent) => void;

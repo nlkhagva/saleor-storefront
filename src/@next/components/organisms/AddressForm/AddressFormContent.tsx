@@ -1,9 +1,9 @@
-import React, { useCallback } from "react";
+import React, { useCallback } from 'react';
 
-import { InputSelect, TextField } from "@components/molecules";
+import { InputSelect, TextField } from '@components/molecules';
 
-import * as S from "./styles";
-import { PropsWithFormik } from "./types";
+import * as S from './styles';
+import { PropsWithFormik } from './types';
 
 export const AddressFormContent: React.FC<PropsWithFormik> = ({
   formRef,
