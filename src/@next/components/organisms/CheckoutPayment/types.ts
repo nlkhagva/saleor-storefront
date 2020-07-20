@@ -1,11 +1,5 @@
-import { GetShop_shop_countries } from "@sdk/queries/gqlTypes/GetShop";
-import {
-  IAddress,
-  IAddressWithAddressType,
-  ICardData,
-  IFormError,
-  IPaymentGateway,
-} from "@types";
+import { GetShop_shop_countries } from '@saleor/sdk/lib/queries/gqlTypes/GetShop';
+import { IAddress, IAddressWithAddressType, ICardData, IFormError, IPaymentGateway } from '@types';
 
 export interface IPromoCodeDiscount {
   voucherCode?: string | null;

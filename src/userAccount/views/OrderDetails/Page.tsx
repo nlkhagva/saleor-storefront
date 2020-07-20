@@ -1,16 +1,12 @@
-import * as React from "react";
-import { Link } from "react-router-dom";
+import * as React from 'react';
+import { Link } from 'react-router-dom';
 
-import { TaxedMoney } from "@components/containers";
-import {
-  OrderDetail,
-  OrderDetail_lines,
-} from "@sdk/fragments/gqlTypes/OrderDetail";
+import { TaxedMoney } from '@components/containers';
+import { OrderDetail, OrderDetail_lines } from '@saleor/sdk/lib/fragments/gqlTypes/OrderDetail';
 
-import { AddressSummary, CartTable, NotFound } from "../../../components";
-import { ILine } from "../../../components/CartTable/ProductRow";
-
-import { orderHistoryUrl } from "../../../app/routes";
+import { orderHistoryUrl } from '../../../app/routes';
+import { AddressSummary, CartTable, NotFound } from '../../../components';
+import { ILine } from '../../../components/CartTable/ProductRow';
 
 const extractOrderLines = (lines: OrderDetail_lines[]): ILine[] => {
   return lines
@@ -38,36 +34,36 @@ const Page: React.FC<{
   guest: boolean;
   order: OrderDetail;
 }> = ({ guest, order }) =>
-  order ? (
-    <>
-      {!guest && (
-        <Link className="order-details__link" to={orderHistoryUrl}>
-          Go back to Order History
-        </Link>
-      )}
-      <h3>Your order nr: {order.number}</h3>
-      <p className="order-details__status">
-        {order.paymentStatusDisplay} / {order.statusDisplay}
-      </p>
-      <CartTable
-        lines={extractOrderLines(order.lines)}
-        totalCost={<TaxedMoney taxedMoney={order.total} />}
-        deliveryCost={<TaxedMoney taxedMoney={order.shippingPrice} />}
-        subtotal={<TaxedMoney taxedMoney={order.subtotal} />}
-      />
-      <div className="order-details__summary">
-        <div>
-          <h4>Shipping Address</h4>
-          <AddressSummary
-            address={order.shippingAddress}
-            email={order.userEmail}
-            paragraphRef={this.shippingAddressRef}
-          />
+    order ? (
+      <>
+        {!guest && (
+          <Link className="order-details__link" to={orderHistoryUrl}>
+            Go back to Order History
+          </Link>
+        )}
+        <h3>Your order nr: {order.number}</h3>
+        <p className="order-details__status">
+          {order.paymentStatusDisplay} / {order.statusDisplay}
+        </p>
+        <CartTable
+          lines={extractOrderLines(order.lines)}
+          totalCost={<TaxedMoney taxedMoney={order.total} />}
+          deliveryCost={<TaxedMoney taxedMoney={order.shippingPrice} />}
+          subtotal={<TaxedMoney taxedMoney={order.subtotal} />}
+        />
+        <div className="order-details__summary">
+          <div>
+            <h4>Shipping Address</h4>
+            <AddressSummary
+              address={order.shippingAddress}
+              email={order.userEmail}
+              paragraphRef={this.shippingAddressRef}
+            />
+          </div>
         </div>
-      </div>
-    </>
-  ) : (
-    <NotFound />
-  );
+      </>
+    ) : (
+        <NotFound />
+      );
 
 export default Page;

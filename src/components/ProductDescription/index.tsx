@@ -4,11 +4,11 @@ import isEqual from 'lodash/isEqual';
 import * as React from 'react';
 
 import { ProductVariantPicker } from '@components/organisms';
+import { ICheckoutModelLine } from '@saleor/sdk/lib/helpers';
 import {
     ProductDetails_product_pricing, ProductDetails_product_variants,
     ProductDetails_product_variants_pricing
-} from '@sdk/queries/gqlTypes/ProductDetails';
-import { ICheckoutModelLine } from '@sdk/repository';
+} from '@saleor/sdk/lib/queries/gqlTypes/ProductDetails';
 import { IProductVariantsAttributesSelectedValues, ITaxedMoney } from '@types';
 
 import { TaxedMoney } from '../../@next/components/containers';
@@ -22,8 +22,10 @@ interface ProductDescriptionProps {
   name: string;
   pricing: ProductDetails_product_pricing;
   items: ICheckoutModelLine[];
+  queryAttributes: Record<string, string>;
   addToCart(varinatId: string, quantity?: number): void;
   setVariantId(variantId: string);
+  onAttributeChangeHandler(slug: string | null, value: string): void;
 }
 
 interface ProductDescriptionState {
@@ -153,20 +155,21 @@ class ProductDescription extends React.Component<
 
     return (
       <div className="product-description">
-        <h4>{name}</h4>
+        <h3>{name}</h3>
         {isOutOfStock ? (
           this.renderErrorMessage("Out of stock")
         ) : (
-            <h3>{this.getProductPrice()}</h3>
+            <h4>{this.getProductPrice()}</h4>
           )}
         {isLowStock && this.renderErrorMessage("Low stock")}
         {isNoItemsAvailable && this.renderErrorMessage("No items available")}
-
         <div className="product-description__variant-picker">
           <ProductVariantPicker
             productVariants={this.props.productVariants}
             onChange={this.onVariantPickerChange}
             selectSidebar={true}
+            queryAttributes={this.props.queryAttributes}
+            onAttributeChangeHandler={this.props.onAttributeChangeHandler}
           />
         </div>
         <div className="product-description__quantity-input">
@@ -182,7 +185,7 @@ class ProductDescription extends React.Component<
           onSubmit={this.handleSubmit}
           disabled={!this.canAddToCart()}
         />
-      </div>
+      </div >
     );
   }
 }

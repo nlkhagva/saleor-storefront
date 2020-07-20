@@ -1,24 +1,24 @@
-import { History } from "history";
-import React from "react";
-import { useHistory } from "react-router-dom";
+import { History } from 'history';
+import React from 'react';
+import { useHistory } from 'react-router-dom';
 
-import { Button, CartFooter, CartHeader } from "@components/atoms";
-import { TaxedMoney } from "@components/containers";
-import { CartRow } from "@components/organisms";
-import { Cart, CartEmpty } from "@components/templates";
-import { IItems } from "@sdk/api/Cart/types";
-import { UserDetails_me } from "@sdk/queries/gqlTypes/UserDetails";
-import { useCart, useCheckout, useUserDetails } from "@sdk/react";
-import { BASE_URL } from "@temp/core/config";
-import { ITaxedMoney } from "@types";
+import { Button, CartFooter, CartHeader } from '@components/atoms';
+import { TaxedMoney } from '@components/containers';
+import { CartRow } from '@components/organisms';
+import { Cart, CartEmpty } from '@components/templates';
+import { useCart, useCheckout, useUserDetails } from '@saleor/sdk';
+import { IItems } from '@saleor/sdk/lib/api/Cart/types';
+import { UserDetails_me } from '@saleor/sdk/lib/queries/gqlTypes/UserDetails';
+import { BASE_URL } from '@temp/core/config';
+import { ITaxedMoney } from '@types';
 
-import { IProps } from "./types";
+import { IProps } from './types';
 
-const title = <h1 data-cy="cartPageTitle">My Cart</h1>;
+const title = <h1 data-test="cartPageTitle">My Cart</h1>;
 
 const getShoppingButton = (history: History) => (
   <Button
-    data-cy="cartPageBtnContinueShopping"
+    testingContext="cartPageContinueShoppingButton"
     onClick={() => history.push(BASE_URL)}
   >
     CONTINUE SHOPPING
@@ -27,7 +27,7 @@ const getShoppingButton = (history: History) => (
 
 const getCheckoutButton = (history: History, user: UserDetails_me | null) => (
   <Button
-    data-cy="cartPageBtnProceedToCheckout"
+    testingContext="proceedToCheckoutButton"
     onClick={() => history.push(user ? `/checkout/` : `/login/`)}
   >
     PROCEED TO CHECKOUT
@@ -42,33 +42,33 @@ const prepareCartFooter = (
   promoTaxedPrice?: ITaxedMoney | null,
   subtotalPrice?: ITaxedMoney | null
 ) => (
-  <CartFooter
-    subtotalPrice={
-      <TaxedMoney data-cy="cartPageSubtotalPrice" taxedMoney={subtotalPrice} />
-    }
-    totalPrice={
-      <TaxedMoney data-cy="cartPageTotalPrice" taxedMoney={totalPrice} />
-    }
-    shippingPrice={
-      shippingTaxedPrice &&
-      shippingTaxedPrice.gross.amount !== 0 && (
-        <TaxedMoney
-          data-cy="cartPageShippingPrice"
-          taxedMoney={shippingTaxedPrice}
-        />
-      )
-    }
-    discountPrice={
-      promoTaxedPrice &&
-      promoTaxedPrice.gross.amount !== 0 && (
-        <TaxedMoney
-          data-cy="cartPageShippingPrice"
-          taxedMoney={promoTaxedPrice}
-        />
-      )
-    }
-  />
-);
+    <CartFooter
+      subtotalPrice={
+        <TaxedMoney data-test="subtotalPrice" taxedMoney={subtotalPrice} />
+      }
+      totalPrice={
+        <TaxedMoney data-test="totalPrice" taxedMoney={totalPrice} />
+      }
+      shippingPrice={
+        shippingTaxedPrice &&
+        shippingTaxedPrice.gross.amount !== 0 && (
+          <TaxedMoney
+            data-test="shippingPrice"
+            taxedMoney={shippingTaxedPrice}
+          />
+        )
+      }
+      discountPrice={
+        promoTaxedPrice &&
+        promoTaxedPrice.gross.amount !== 0 && (
+          <TaxedMoney
+            data-test="discountPrice"
+            taxedMoney={promoTaxedPrice}
+          />
+        )
+      }
+    />
+  );
 
 const generateCart = (
   items: IItems,
@@ -79,6 +79,7 @@ const generateCart = (
     <CartRow
       key={id ? `id-${id}` : `idx-${index}`}
       index={index}
+      id={variant?.product?.id || ""}
       name={variant?.product?.name || ""}
       maxQuantity={variant.quantityAvailable || quantity}
       quantity={quantity}
@@ -90,13 +91,11 @@ const generateCart = (
       }}
       totalPrice={
         <TaxedMoney
-          data-cy={`cartPageItem${index}TotalPrice`}
           taxedMoney={totalPrice}
         />
       }
       unitPrice={
         <TaxedMoney
-          data-cy={`cartPageItem${index}UnitPrice`}
           taxedMoney={variant?.pricing?.price}
         />
       }
@@ -120,7 +119,7 @@ const generateCart = (
   ));
 };
 
-export const CartPage: React.FC<IProps> = ({}: IProps) => {
+export const CartPage: React.FC<IProps> = ({ }: IProps) => {
   const history = useHistory();
   const { data: user } = useUserDetails();
   const { checkout } = useCheckout();
@@ -138,9 +137,9 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
   const shippingTaxedPrice =
     checkout?.shippingMethod?.id && shippingPrice
       ? {
-          gross: shippingPrice,
-          net: shippingPrice,
-        }
+        gross: shippingPrice,
+        net: shippingPrice,
+      }
       : null;
   const promoTaxedPrice = discount && {
     gross: discount,

@@ -1,12 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import { ProductDetails_product_variants } from "@sdk/queries/gqlTypes/ProductDetails";
-import {
-  IProductVariantsAttributes,
-  IProductVariantsAttributesSelectedValues,
-} from "@types";
+import { ProductDetails_product_variants } from '@saleor/sdk/lib/queries/gqlTypes/ProductDetails';
+import { IProductVariantsAttributes, IProductVariantsAttributesSelectedValues } from '@types';
 
-import { useProductVariantsAttributes } from "./useProductVariantsAttributes";
+import { useProductVariantsAttributes } from './useProductVariantsAttributes';
 
 export const useSelectableProductVariantsAttributeValues = (
   consideredProductVariantsAttributeId: string,
@@ -37,11 +34,11 @@ export const useSelectableProductVariantsAttributeValues = (
           return productVariant.attributes.some(productVariantAttribute => {
             return (
               productVariantAttribute.attribute.id ===
-                selectedValueAttributeId &&
+              selectedValueAttributeId &&
               productVariantAttribute.values[0] ===
-                productVariantsAttributesSelectedValues[
-                  selectedValueAttributeId
-                ]
+              productVariantsAttributesSelectedValues[
+              selectedValueAttributeId
+              ]
             );
           });
         }

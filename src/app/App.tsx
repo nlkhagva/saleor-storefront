@@ -2,6 +2,9 @@ import '../globalStyles/scss/index.scss';
 
 import React from 'react';
 
+import { DemoBanner } from '@components/atoms';
+import { demoMode } from '@temp/constants';
+
 import {
     Footer, FooterMainMenu, MainMenu, MetaConsumer, OverlayManager, Topbar
 } from '../components';
@@ -12,6 +15,7 @@ const App: React.FC = () => {
   return (
     <>
       <MetaConsumer />
+      {demoMode && <DemoBanner />}
       <header>
         <Topbar />
         <MainMenu />

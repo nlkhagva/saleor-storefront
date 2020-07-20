@@ -12,11 +12,12 @@ export const ProductList: React.FC<IProps> = ({
   products,
   canLoadMore = false,
   loading = false,
+  testingContextId,
   onLoadMore = () => null,
 }: IProps) => {
   return (
     <>
-      <S.List>
+      <S.List data-test="productList" data-test-id={testingContextId}>
         {products.map(product => (
           <Link
             to={generateProductUrl(product.id, product.name)}
@@ -32,7 +33,7 @@ export const ProductList: React.FC<IProps> = ({
         ) : (
             canLoadMore && (
               <Button
-                data-cy="load-more_button"
+                testingContext="loadMoreProductsButton"
                 color="secondary"
                 onClick={onLoadMore}
               >

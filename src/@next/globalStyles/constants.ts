@@ -30,6 +30,9 @@ export const blackTransparent = "rgba(0, 0, 0, 0.1)";
 export const white = "#fff";
 export const tabelGray = "#eaeaea";
 export const darkGreen = "#06847B";
+export const secondaryGrey = "#EBF1F6";
+export const secondaryGreyDark = "#9D9FB1";
+export const secondaryBlue = "#036DFF";
 
 export const ushopRed = '#BC1F25';
 
@@ -38,6 +41,9 @@ export const theme = {
   activeMenuOption: blackDark,
   autofill: autofillColor,
   autofillSelected: autofillColorSelected,
+  bannerBackground: secondaryGrey,
+  bannerEdge: secondaryGreyDark,
+  bannerLink: secondaryBlue,
   baseFont: baseFontColor,
   baseFontColorSemiTransparent,
   baseFontColorTransparent,

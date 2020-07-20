@@ -1,5 +1,6 @@
-import { GetShop_shop } from "@temp/@sdk/queries/gqlTypes/GetShop";
-import { createContext } from "react";
+import { createContext } from 'react';
+
+import { GetShop_shop } from '@saleor/sdk/lib/queries/gqlTypes/GetShop';
 
 export const defaultCountry = {
   __typename: "CountryDisplay" as "CountryDisplay",

@@ -4,6 +4,12 @@ All notable, unreleased changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+- Add product hyperlink in cart page - #745 by @konstantinoschristomanos
+- Add Cypress tags to all of the buttons (also speed up tests) - #718 by @krzysztofwolski
+- Automatically choose variant attributes from url in ProductVariantPicker - #708 by @AlicjaSzu
+- Use sdk as a standalone package - #724 by @dominik-zeglen
+- Fix CartRow tests - #749 by @dominik-zeglen
+
 ## 2.10.2
 
 - Fix fetching `quantityAvailable` field - #738 by @AlicjaSzu
@@ -43,6 +49,8 @@ All notable, unreleased changes to this project will be documented in this file.
 - Completely recreate checkout and cart, with new checkout nad cart SDK - #639 by @orzechdev, @mateuszkula
 - Hide payment options - #678 by @orzechdev
 - Fix unhandled JWT token expiration - #696 by @orzechdev
+- Regenerate types - #712 by @dominik-zeglen
+- Replace stockQuantity field with quantityAvailable - #723 by @AlicjaSzu
 
 ## 0.7.0
 

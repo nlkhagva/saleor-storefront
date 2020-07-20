@@ -1,24 +1,27 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 import { Icon, IconButton } from "@components/atoms";
 import { CachedImage, TextField } from "@components/molecules";
+
+import { generateProductUrl } from "../../../../core/utils";
 
 import * as S from "./styles";
 import { IProps } from "./types";
 
 const QuantityButtons = (
   add: () => void,
-  substract: () => void,
+  subtract: () => void,
   index?: number
 ) => (
-  <S.QuantityButtons>
+  <S.QuantityButtons data-test="quantityControls">
     <div
-      onClick={substract}
-      data-cy={`cartPageItem${index}QuantityBtnSubtract`}
+      onClick={subtract}
+      data-test="subtractButton"
     >
       <Icon size={16} name="horizontal_line" />
     </div>
-    <div onClick={add} data-cy={`cartPageItem${index}QuantityBtnAdd`}>
+    <div onClick={add} data-test="increaseButton">
       <Icon size={16} name="plus" />
     </div>
   </S.QuantityButtons>
@@ -39,6 +42,7 @@ export const CartRow: React.FC<IProps> = ({
   thumbnail,
   attributes = [],
   onRemove,
+  id,
 }: IProps) => {
   const [tempQuantity, setTempQuantity] = useState<string>(quantity.toString());
   const [isTooMuch, setIsTooMuch] = useState(false);
@@ -72,7 +76,7 @@ export const CartRow: React.FC<IProps> = ({
     () => quantity < maxQuantity && onQuantityChange(quantity + 1),
     [quantity]
   );
-  const substract = React.useCallback(
+  const subtract = React.useCallback(
     () => quantity > 1 && onQuantityChange(quantity - 1),
     [quantity]
   );
@@ -92,24 +96,30 @@ export const CartRow: React.FC<IProps> = ({
       ]
     : undefined;
 
+  const productUrl = generateProductUrl(id, name);
+
   return (
-    <S.Wrapper>
+    <S.Wrapper data-test="cartRow" data-test-id={sku}>
       <S.Photo>
-        <CachedImage data-cy={`cartPageItem${index}Image`} {...thumbnail} />
+        <Link to={productUrl}>
+          <CachedImage data-test="itemImage" {...thumbnail} />
+        </Link>
       </S.Photo>
       <S.Description>
-        <S.Name data-cy={`cartPageItem${index}Name`}>{name}</S.Name>
+        <Link to={productUrl}>
+          <S.Name data-test="itemName">{name}</S.Name>
+        </Link>
         <S.Sku>
           <S.LightFont>
             SKU:{" "}
-            <span data-cy={`cartPageItem${index}SKU`}>{sku ? sku : "-"}</span>
+            <span data-test="itemSKU">{sku ? sku : "-"}</span>
           </S.LightFont>
         </S.Sku>
-        <S.Attributes data-cy={`cartPageItem${index}Attributes`}>
+        <S.Attributes data-test="itemAttributes">
           {attributes.map(({ attribute, values }, attributeIndex) => (
             <S.SingleAttribute key={attribute.id}>
               <span
-                data-cy={`cartPageItem${index}SingleAttribute${attributeIndex}`}
+                data-test="itemSingleAttribute" data-test-id={attributeIndex}
               >
                 <S.LightFont>{attribute.name}:</S.LightFont>{" "}
                 {values.map(value => value.name).join(", ")}
@@ -120,19 +130,19 @@ export const CartRow: React.FC<IProps> = ({
       </S.Description>
       <S.Quantity>
         <TextField
-          data-cy={`cartPageItem${index}QuantityInput`}
           name="quantity"
           label="Quantity"
           value={tempQuantity}
           onBlur={handleBlurQuantityInput}
           onChange={handleQuantityChange}
-          contentRight={QuantityButtons(add, substract, index)}
+          contentRight={QuantityButtons(add, subtract, index)}
           errors={quantityErrors}
         />
       </S.Quantity>
       <S.Trash>
         <IconButton
-          data-cy={`cartPageItem${index}BtnRemove`}
+          testingContext="removeButton"
+          testingContextId={sku}
           size={22}
           name="trash"
           onClick={onRemove}
@@ -143,13 +153,13 @@ export const CartRow: React.FC<IProps> = ({
         <S.PriceLabel>
           <S.LightFont>Total Price:</S.LightFont>
         </S.PriceLabel>
-        <p>{totalPrice}</p>
+        <p data-test="totalPrice">{totalPrice}</p>
       </S.TotalPrice>
       <S.UnitPrice>
         <S.PriceLabel>
           <S.LightFont>Price:</S.LightFont>
         </S.PriceLabel>
-        <p>{unitPrice}</p>
+        <p data-test="unitPrice">{unitPrice}</p>
       </S.UnitPrice>
     </S.Wrapper>
   );

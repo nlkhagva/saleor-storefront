@@ -2,7 +2,7 @@ import React from "react";
 
 import { Attribute, IconButton, Tile } from "@components/atoms";
 
-import { usePasswordChange } from "@sdk/react";
+import { usePasswordChange } from "@saleor/sdk";
 import { PasswordChangeForm } from "./PasswordChangeForm";
 import * as S from "./styles";
 
@@ -23,6 +23,7 @@ export const PasswordTile: React.FC = () => {
             MY PASSWORD
             {!isEditing && (
               <IconButton
+                testingContext="editPasswordButton"
                 name="edit"
                 size={22}
                 onClick={() => setIsEditing(isEditing => !isEditing)}

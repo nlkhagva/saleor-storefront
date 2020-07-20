@@ -1,8 +1,8 @@
-import { ISelectOption } from "@types";
 import {
-  ProductDetails_product_variants_attributes_attribute,
-  ProductDetails_product_variants_attributes_values,
-} from "../../@sdk/queries/gqlTypes/ProductDetails";
+    ProductDetails_product_variants_attributes_attribute,
+    ProductDetails_product_variants_attributes_values
+} from '@saleor/sdk/lib/queries/gqlTypes/ProductDetails';
+import { ISelectOption } from '@types';
 
 export interface IProductVariantsAttribute {
   attribute: ProductDetails_product_variants_attributes_attribute;

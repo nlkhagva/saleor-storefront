@@ -4,7 +4,7 @@ import ReactSVG from 'react-svg';
 
 import { Money, TaxedMoney } from '@components/containers';
 import { Thumbnail } from '@components/molecules';
-import { ICheckoutModelLine } from '@sdk/repository';
+import { ICheckoutModelLine } from '@saleor/sdk/lib/helpers';
 
 import { generateProductUrl } from '../../../core/utils';
 import removeImg from '../../../images/garbage.svg';

@@ -1,7 +1,7 @@
-import { IAddressWithAddressType } from "@types";
+import { GetShop_shop_countries } from '@saleor/sdk/lib/queries/gqlTypes/GetShop';
+import { IAddressWithAddressType } from '@types';
 
-import { GetShop_shop_countries } from "@temp/@sdk/queries/gqlTypes/GetShop";
-import { Address } from "./types";
+import { Address } from './types';
 
 const formAddress: IAddressWithAddressType = {
   city: "Wroclaw",

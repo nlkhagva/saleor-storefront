@@ -1,4 +1,4 @@
-import { useOrdersByUser } from "@sdk/react/";
+import { useOrdersByUser } from "@saleor/sdk/";
 import React from "react";
 
 import { Button, Loader } from "@components/atoms";
@@ -27,7 +27,7 @@ export const OrdersHistory: React.FC<IProps> = ({ history }: IProps) => {
       {data!.pageInfo.hasNextPage && (
         <S.Wrapper>
           <Button
-            data-testid="load_more__button"
+            testingContext="loadMoreOrdersButton"
             onClick={() => {
               loadMore({
                 after: data!.pageInfo.endCursor,

@@ -1,6 +1,4 @@
 // <reference types="cypress" />
-import { userBuilder } from "../../support/generate";
-
 describe("User login, logout and registration", () => {
   let user = null;
   let polyfill = null;
@@ -28,7 +26,7 @@ describe("User login, logout and registration", () => {
   });
 
   it("should open overlay with a sign in and register form", () => {
-    cy.findByTestId("login-btn")
+    cy.get("[data-test=desktopMenuLoginOverlayLink]")
       .click()
       .get(".overlay")
       .should("exist");
@@ -36,26 +34,32 @@ describe("User login, logout and registration", () => {
 
   describe("Login", () => {
     it("should successfully log in an user", () => {
-      user = { email: "admin@example.com", password: "admin" };
-      cy.loginUser(user)
-        .get("[data-cy=alert]")
+      cy.loginUser("admin@example.com", "admin")
+        .get("[data-test=alert]")
         .should("contain", "You are now logged in");
     });
+
     it("should display an error if user does not exist", () => {
-      const notRegisteredUser = userBuilder();
-      cy.loginUser(notRegisteredUser)
-        .get(".login__content .form-error")
+      cy
+        .get("[data-test=desktopMenuLoginOverlayLink]")
+        .click()
+        .get(".login__content input[name='email']")
+        .type("thisUserIsNotRegistered@example.com")
+        .get(".login__content input[name='password']")
+        .type("thisisnotavalidpassword")
+        .get("[data-test=submit]")
+        .click()
+      .get(".login__content .form-error", {timeoout: 20000})
         .should("contain", "Please, enter valid credentials");
     });
   });
 
   describe("Logout", () => {
     it("should successfully log out an user", () => {
-      user = { email: "admin@example.com", password: "admin" };
-      cy.loginUser(user);
-      cy.wait(15000);
+      cy.loginUser("admin@example.com", "admin");
+      cy.wait(2000);  // wait for reloading UI
       cy.logoutUser()
-        .get("[data-cy=alert]")
+        .get("[data-test=alert]")
         .should("contain", "You are now logged out");
     });
   });

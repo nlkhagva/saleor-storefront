@@ -80,7 +80,7 @@ const MainMenu: React.FC = () => {
                       render={() =>
                         items.map(item => (
                           <li
-                            data-cy="main-menu__item"
+                            data-test="mainMenuItem"
                             className="main-menu__item"
                             key={item.id}
                           >
@@ -233,22 +233,22 @@ const MainMenu: React.FC = () => {
                           }
                           content={
                             <ul className="main-menu__dropdown">
-                              <li data-testid="my_account__link">
+                              <li data-test="desktopMenuMyAccountLink">
                                 <Link to={appPaths.accountUrl}>My Account</Link>
                               </li>
-                              <li data-testid="order_history__link">
+                              <li data-test="desktopMenuOrderHistoryLink">
                                 <Link to={appPaths.orderHistoryUrl}>
                                   Order history
                                 </Link>
                               </li>
-                              <li data-testid="address_book__link">
+                              <li data-test="desktopMenuAddressBookLink">
                                 <Link to={appPaths.addressBookUrl}>
                                   Address book
                                 </Link>
                               </li>
                               <li
                                 onClick={handleSignOut}
-                                data-testid="logout-link"
+                                data-test="desktopMenuLogoutLink"
                               >
                                 Log Out
                               </li>
@@ -273,6 +273,7 @@ const MainMenu: React.FC = () => {
                   )}
                 /> */}
                 <li
+                  data-test="menuCartOverlayLink"
                   className="main-menu__icon main-menu__cart"
                   onClick={() => {
                     overlayContext.show(OverlayType.cart, OverlayTheme.right);
@@ -295,6 +296,7 @@ const MainMenu: React.FC = () => {
                 </li>
               </Offline>
               {/* <li
+                data-test="menuSearchOverlayLink"
                 className="main-menu__search"
                 onClick={() =>
                   overlayContext.show(OverlayType.search, OverlayTheme.right)

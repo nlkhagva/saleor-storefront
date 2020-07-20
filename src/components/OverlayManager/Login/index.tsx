@@ -41,7 +41,7 @@ class Login extends React.Component<
     const { show, hide } = overlay;
 
     return (
-      <Overlay context={overlay}>
+      <Overlay testingContext="loginOverlay" context={overlay}>
         <div className="login">
           <Online>
             <div className="overlay__header">
@@ -54,12 +54,14 @@ class Login extends React.Component<
             </div>
             <div className="login__tabs">
               <span
+                data-test="loginTab"
                 onClick={() => this.changeActiveTab("login")}
                 className={this.state.active === "login" ? "active-tab" : ""}
               >
                 Sign in to account
               </span>
               <span
+                data-test="registerTab"
                 onClick={() => this.changeActiveTab("register")}
                 className={this.state.active === "register" ? "active-tab" : ""}
               >

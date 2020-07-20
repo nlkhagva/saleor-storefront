@@ -10,7 +10,7 @@ import { generateCategoryUrl } from '../../core/utils';
 import noPhotoImg from '../../images/no-photo.svg';
 import ushopBackgroundImage from '../../images/unurshop/xd/homepage-cover.png';
 import {
-  ProductsList_categories, ProductsList_shop, ProductsList_shop_homepageCollection_backgroundImage
+    ProductsList_categories, ProductsList_shop, ProductsList_shop_homepageCollection_backgroundImage
 } from './gqlTypes/ProductsList';
 
 const Page: React.FC<{
