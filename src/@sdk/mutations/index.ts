@@ -1,45 +1,23 @@
+import { ApolloClient, MutationOptions as ApolloMutationOptions } from 'apollo-client';
+
+import * as Address from './address';
+import * as Auth from './auth';
+import { AccountUpdate, AccountUpdateVariables } from './gqlTypes/AccountUpdate';
+import { CreateUserAddress, CreateUserAddressVariables } from './gqlTypes/CreateUserAddress';
+import { DeleteUserAddress, DeleteUserAddressVariables } from './gqlTypes/DeleteUserAddress';
+import { PasswordChange, PasswordChangeVariables } from './gqlTypes/PasswordChange';
+import { ProductCreateVariables } from './gqlTypes/ProductCreate';
 import {
-  ApolloClient,
-  MutationOptions as ApolloMutationOptions,
-} from "apollo-client";
-
-import * as Address from "./address";
-import * as Auth from "./auth";
-import * as User from "./user";
-
+    ProductUpdateMetadata, ProductUpdateMetadataVariables
+} from './gqlTypes/ProductUpdateMetadata';
 import {
-  DeleteUserAddress,
-  DeleteUserAddressVariables,
-} from "./gqlTypes/DeleteUserAddress";
-
-import {
-  CreateUserAddress,
-  CreateUserAddressVariables,
-} from "./gqlTypes/CreateUserAddress";
-
-import {
-  SetCustomerDefaultAddress,
-  SetCustomerDefaultAddressVariables,
-} from "./gqlTypes/SetCustomerDefaultAddress";
-
-import {
-  UpdateUserAddress,
-  UpdateUserAddressVariables,
-} from "./gqlTypes/UpdateUserAddress";
-
-import { SetPassword, SetPasswordVariables } from "./gqlTypes/SetPassword";
-
-import { TokenAuth, TokenAuthVariables } from "./gqlTypes/TokenAuth";
-
-import {
-  PasswordChange,
-  PasswordChangeVariables,
-} from "./gqlTypes/PasswordChange";
-
-import {
-  AccountUpdate,
-  AccountUpdateVariables,
-} from "./gqlTypes/AccountUpdate";
+    SetCustomerDefaultAddress, SetCustomerDefaultAddressVariables
+} from './gqlTypes/SetCustomerDefaultAddress';
+import { SetPassword, SetPasswordVariables } from './gqlTypes/SetPassword';
+import { TokenAuth, TokenAuthVariables } from './gqlTypes/TokenAuth';
+import { UpdateUserAddress, UpdateUserAddressVariables } from './gqlTypes/UpdateUserAddress';
+import * as Product from './product';
+import * as User from './user';
 
 export type MutationOptions<TData, TVariables> = Omit<
   ApolloMutationOptions<TData, TVariables>,
@@ -113,6 +91,25 @@ export const MUTATIONS = {
   ) =>
     client.mutate({
       mutation: Address.updateUserAddress,
+      ...options,
+    }),
+
+  /** custom lk */
+  CreateSimpleProduct: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: MutationOptions<any, ProductCreateVariables>
+  ) =>
+    client.mutate({
+      mutation: Product.createSimpleProduct,
+      ...options,
+    }),
+
+  ProductUpdateMetadata: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: MutationOptions<ProductUpdateMetadata, ProductUpdateMetadataVariables>
+  ) =>
+    client.mutate({
+      mutation: Product.createSimpleProduct,
       ...options,
     }),
 };

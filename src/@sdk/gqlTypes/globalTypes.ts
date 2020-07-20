@@ -48,6 +48,14 @@ export enum AddressTypeEnum {
 /**
  * An enumeration.
  */
+export enum AttributeInputTypeEnum {
+  DROPDOWN = "DROPDOWN",
+  MULTISELECT = "MULTISELECT",
+}
+
+/**
+ * An enumeration.
+ */
 export enum CheckoutErrorCode {
   BILLING_ADDRESS_NOT_SET = "BILLING_ADDRESS_NOT_SET",
   CHECKOUT_NOT_FULLY_PAID = "CHECKOUT_NOT_FULLY_PAID",
@@ -326,6 +334,15 @@ export enum CountryCode {
   ZW = "ZW",
 }
 
+/**
+ * An enumeration.
+ */
+export enum MetadataErrorCode {
+  GRAPHQL_ERROR = "GRAPHQL_ERROR",
+  INVALID = "INVALID",
+  NOT_FOUND = "NOT_FOUND",
+}
+
 export enum OrderDirection {
   ASC = "ASC",
   DESC = "DESC",
@@ -370,6 +387,24 @@ export enum PaymentErrorCode {
   UNIQUE = "UNIQUE",
 }
 
+/**
+ * An enumeration.
+ */
+export enum ProductErrorCode {
+  ALREADY_EXISTS = "ALREADY_EXISTS",
+  ATTRIBUTE_ALREADY_ASSIGNED = "ATTRIBUTE_ALREADY_ASSIGNED",
+  ATTRIBUTE_CANNOT_BE_ASSIGNED = "ATTRIBUTE_CANNOT_BE_ASSIGNED",
+  ATTRIBUTE_VARIANTS_DISABLED = "ATTRIBUTE_VARIANTS_DISABLED",
+  DUPLICATED_INPUT_ITEM = "DUPLICATED_INPUT_ITEM",
+  GRAPHQL_ERROR = "GRAPHQL_ERROR",
+  INVALID = "INVALID",
+  NOT_FOUND = "NOT_FOUND",
+  NOT_PRODUCTS_IMAGE = "NOT_PRODUCTS_IMAGE",
+  REQUIRED = "REQUIRED",
+  UNIQUE = "UNIQUE",
+  VARIANT_NO_DIGITAL_CONTENT = "VARIANT_NO_DIGITAL_CONTENT",
+}
+
 export enum ProductOrderField {
   DATE = "DATE",
   MINIMAL_PRICE = "MINIMAL_PRICE",
@@ -406,6 +441,11 @@ export interface AttributeInput {
   values?: (string | null)[] | null;
 }
 
+export interface AttributeValueInput {
+  id?: string | null;
+  values: (string | null)[];
+}
+
 export interface CheckoutCreateInput {
   lines: (CheckoutLineInput | null)[];
   email?: string | null;
@@ -416,6 +456,12 @@ export interface CheckoutCreateInput {
 export interface CheckoutLineInput {
   quantity: number;
   variantId: string;
+  metadata?: any | null;
+}
+
+export interface MetadataInput {
+  key: string;
+  value: string;
 }
 
 export interface PaymentInput {
@@ -429,6 +475,16 @@ export interface ProductOrder {
   direction: OrderDirection;
   attributeId?: string | null;
   field?: ProductOrderField | null;
+}
+
+export interface SeoInput {
+  title?: string | null;
+  description?: string | null;
+}
+
+export interface StockInput {
+  warehouse: string;
+  quantity?: number | null;
 }
 
 //==============================================================

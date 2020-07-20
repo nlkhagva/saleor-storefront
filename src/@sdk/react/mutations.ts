@@ -1,4 +1,4 @@
-import { mutationFactory } from "./useMutation";
+import { mutationFactory } from './useMutation';
 
 export const useSignIn = mutationFactory("signIn");
 export const useSignOut = mutationFactory("signOut");
@@ -14,3 +14,7 @@ export const usePasswordChange = mutationFactory("setPasswordChange");
 export const useAccountUpdate = mutationFactory("setAccountUpdate");
 
 export const useSetPassword = mutationFactory("setPassword");
+
+// Product create From frontstore
+export const useCreateSimpleProduct = mutationFactory("createSimpleProduct")
+export const useProductUpdateMetaData = mutationFactory("productUpdateMetaData")

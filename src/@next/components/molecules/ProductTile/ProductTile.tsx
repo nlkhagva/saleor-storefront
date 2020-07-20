@@ -3,7 +3,8 @@ import React from 'react';
 import { TaxedMoney } from '@components/containers';
 import { Thumbnail } from '@components/molecules';
 
-import ZaraLogo from '../../../../images/unurshop/xd/zara.jpg';
+// import ZaraLogo from '../../../../images/unurshop/xd/zara.jpg';
+import UshopLogo from '../../../../images/unurshop/logo-v3.png';
 import * as S from './styles';
 import { IProps } from './types';
 
@@ -20,7 +21,7 @@ export const ProductTile: React.FC<IProps> = ({ product }: IProps) => {
       <S.Image>
         <Thumbnail source={product} />
         <S.ShopLogo>
-          <img src={ZaraLogo} alt="Zara" />
+          <img src={UshopLogo} alt="Zara" />
         </S.ShopLogo>
       </S.Image>
       <S.Price>

@@ -496,6 +496,7 @@ export interface Checkout_lines {
    */
   totalPrice: Checkout_lines_totalPrice | null;
   variant: Checkout_lines_variant;
+  metadata: any | null;
 }
 
 export interface Checkout_discount {

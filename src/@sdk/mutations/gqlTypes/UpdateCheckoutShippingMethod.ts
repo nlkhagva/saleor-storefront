@@ -511,6 +511,7 @@ export interface UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_check
    */
   totalPrice: UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_checkout_lines_totalPrice | null;
   variant: UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_checkout_lines_variant;
+  metadata: any | null;
 }
 
 export interface UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_checkout_discount {

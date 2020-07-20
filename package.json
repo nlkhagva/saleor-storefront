@@ -37,6 +37,7 @@
     "isomorphic-fetch": "^2.2.1",
     "js-base64": "^2.4.8",
     "lodash": "^4.17.15",
+    "node-uuid": "^1.4.8",
     "nuka-carousel": "^4.6.0",
     "react": "^16.9.9",
     "react-addons-css-transition-group": "^15.6.2",

@@ -1,13 +1,13 @@
-import * as React from "react";
+import * as React from 'react';
 
-import { Overlay, OverlayContext, OverlayType } from "..";
-import Cart from "./Cart";
-import Login from "./Login";
-import MobileNav from "./MobileNav";
-import Modal from "./Modal";
-import Notification from "./Notification";
-import Password from "./Password";
-import Search from "./Search";
+import { Overlay, OverlayContext, OverlayType } from '../';
+import Cart from './Cart';
+import Login from './Login';
+import MobileNav from './MobileNav';
+import Modal from './Modal';
+import Notification from './Notification';
+import Password from './Password';
+import Search from './Search';
 
 const OverlayManager: React.FC = () => (
   <OverlayContext.Consumer>

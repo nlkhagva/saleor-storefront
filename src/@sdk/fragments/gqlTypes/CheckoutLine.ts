@@ -262,4 +262,5 @@ export interface CheckoutLine {
    */
   totalPrice: CheckoutLine_totalPrice | null;
   variant: CheckoutLine_variant;
+  metadata: any | null;
 }

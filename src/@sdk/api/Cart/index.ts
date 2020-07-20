@@ -1,19 +1,14 @@
-import { ErrorListener } from "@sdk/helpers";
-import { JobsManager } from "@sdk/jobs";
-import { ErrorCartTypes } from "@sdk/jobs/Cart";
-import { NetworkManager } from "@sdk/network";
-import { CheckoutRepositoryManager, ICheckoutModel } from "@sdk/repository";
-import { SaleorState } from "@sdk/state";
-import { ISaleorStateSummeryPrices, StateItems } from "@sdk/state/types";
+import { ErrorListener } from '@sdk/helpers';
+import { JobsManager } from '@sdk/jobs';
+import { ErrorCartTypes } from '@sdk/jobs/Cart';
+import { NetworkManager } from '@sdk/network';
+import { CheckoutRepositoryManager, ICheckoutModel } from '@sdk/repository';
+import { SaleorState } from '@sdk/state';
+import { ISaleorStateSummeryPrices, StateItems } from '@sdk/state/types';
 
 import {
-  IDiscount,
-  IItems,
-  ISaleorCartAPI,
-  IShippingPrice,
-  ISubtotalPrice,
-  ITotalPrice,
-} from "./types";
+    IDiscount, IItems, ISaleorCartAPI, IShippingPrice, ISubtotalPrice, ITotalPrice
+} from './types';
 
 export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
   loaded: boolean;

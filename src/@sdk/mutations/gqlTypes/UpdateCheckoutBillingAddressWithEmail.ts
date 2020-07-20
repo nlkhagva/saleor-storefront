@@ -511,6 +511,7 @@ export interface UpdateCheckoutBillingAddressWithEmail_checkoutBillingAddressUpd
    */
   totalPrice: UpdateCheckoutBillingAddressWithEmail_checkoutBillingAddressUpdate_checkout_lines_totalPrice | null;
   variant: UpdateCheckoutBillingAddressWithEmail_checkoutBillingAddressUpdate_checkout_lines_variant;
+  metadata: any | null;
 }
 
 export interface UpdateCheckoutBillingAddressWithEmail_checkoutBillingAddressUpdate_checkout_discount {
@@ -1071,6 +1072,7 @@ export interface UpdateCheckoutBillingAddressWithEmail_checkoutEmailUpdate_check
    */
   totalPrice: UpdateCheckoutBillingAddressWithEmail_checkoutEmailUpdate_checkout_lines_totalPrice | null;
   variant: UpdateCheckoutBillingAddressWithEmail_checkoutEmailUpdate_checkout_lines_variant;
+  metadata: any | null;
 }
 
 export interface UpdateCheckoutBillingAddressWithEmail_checkoutEmailUpdate_checkout_discount {

@@ -45,7 +45,7 @@ class Search extends React.Component<SearchProps, SearchState> {
       '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
       '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
       '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
-      '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+      '(\\?[;&a-z\\d%_.#~+=-]*)?' + // query string
       '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
     return !!pattern.test(this.state.search);
   }
@@ -88,91 +88,92 @@ class Search extends React.Component<SearchProps, SearchState> {
   render() {
     return (
       <Overlay context={this.props.overlay}>
-        <form
-          className={classNames("search", {
-            "search--has-results": this.hasSearchPhrase,
-          })}
-          onClick={e => e.stopPropagation()}
-          onSubmit={this.handleSubmit}
-        >
-          <div className="search__input">
-            <DebouncedTextField
-              onChange={evt => this.setState({ search: evt.target.value })}
-              value={this.state.search}
-              iconLeft={
-                <ReactSVG path={closeImg} onClick={this.props.overlay.hide} />
-              }
-              iconRight={<ReactSVG path={searchImg} />}
-              autoFocus={true}
-              placeholder="Үгээр хайх & Бараа захиалах"
-              onBlur={this.handleInputBlur}
-            />
-          </div>
-          <div
-            className={classNames({
-              ["search__products"]: true,
-              ["search__products--expanded"]: this.hasSearchPhrase,
-            })}
+        <div className={classNames("search", {
+          "search--has-results": this.hasSearchPhrase,
+        })}>
+
+          <form
+            onClick={e => e.stopPropagation()}
+            onSubmit={this.handleSubmit}
           >
-            <NetworkStatus>
-              {isOnline => {
-                if (this.isProductLink) {
-                  return <BookingProduct productUrl={this.state.search} />;
+            <div className="search__input">
+              <DebouncedTextField
+                onChange={evt => this.setState({ search: evt.target.value })}
+                value={this.state.search}
+                iconLeft={
+                  <ReactSVG path={closeImg} onClick={this.props.overlay.hide} />
                 }
-                if (this.hasSearchPhrase) {
-                  return (
-                    <TypedSearchResults
-                      renderOnError
-                      displayError={false}
-                      errorPolicy="all"
-                      variables={{ query: this.state.search }}
-                    >
-                      {({ data, error, loading }) => {
-                        if (this.hasResults(data)) {
-                          return (
-                            <>
-                              <ul>
-                                {data.products.edges.map(product => (
-                                  <ProductItem
-                                    {...product}
-                                    key={product.node.id}
-                                  />
-                                ))}
-                              </ul>
-                              <div className="search__products__footer">
-                                {loading ? (
-                                  <Loader />
-                                ) : (
-                                    <Button
-                                      btnRef={this.submitBtnRef}
-                                      type="submit"
-                                    >
-                                      Show all results
-                                    </Button>
-                                  )}
-                              </div>
-                            </>
-                          );
-                        }
-
-                        if (error) {
-                          return isOnline ? (
-                            <Error error={error.message} />
-                          ) : (
-                              <OfflinePlaceholder />
+                iconRight={<ReactSVG path={searchImg} />}
+                autoFocus={true}
+                placeholder="Үгээр хайх & Бараа захиалах"
+                onBlur={this.handleInputBlur}
+              />
+            </div>
+            <div
+              className={classNames({
+                ["search__products"]: true,
+                ["search__products--expanded"]: this.hasSearchPhrase,
+              })}
+            >
+              <NetworkStatus>
+                {isOnline => {
+                  if (this.hasSearchPhrase && !this.isProductLink) {
+                    return (
+                      <TypedSearchResults
+                        renderOnError
+                        displayError={false}
+                        errorPolicy="all"
+                        variables={{ query: this.state.search }}
+                      >
+                        {({ data, error, loading }) => {
+                          if (this.hasResults(data)) {
+                            return (
+                              <>
+                                <ul>
+                                  {data.products.edges.map(product => (
+                                    <ProductItem
+                                      {...product}
+                                      key={product.node.id}
+                                    />
+                                  ))}
+                                </ul>
+                                <div className="search__products__footer">
+                                  {loading ? (
+                                    <Loader />
+                                  ) : (
+                                      <Button
+                                        btnRef={this.submitBtnRef}
+                                        type="submit"
+                                      >
+                                        Бүх үр дүнг харах
+                                      </Button>
+                                    )}
+                                </div>
+                              </>
                             );
-                        }
+                          }
 
-                        return <NothingFound search={this.state.search} />;
-                      }}
-                    </TypedSearchResults>
-                  );
-                }
-                return null;
-              }}
-            </NetworkStatus>
-          </div>
-        </form>
+                          if (error) {
+                            return isOnline ? (
+                              <Error error={error.message} />
+                            ) : (
+                                <OfflinePlaceholder />
+                              );
+                          }
+
+                          return <NothingFound search={this.state.search} />;
+                        }}
+                      </TypedSearchResults>
+                    );
+                  }
+                  return null;
+                }}
+              </NetworkStatus>
+            </div>
+          </form>
+          {this.isProductLink && <BookingProduct productUrl={this.state.search} />}
+        </div>
+
       </Overlay>
     );
   }

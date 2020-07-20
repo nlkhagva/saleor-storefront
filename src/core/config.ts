@@ -71,8 +71,8 @@ export const CHECKOUT_STEPS = [
   {
     index: 1,
     link: "/checkout/shipping",
-    name: "Shipping",
-    nextActionName: "Continue to Payment",
+    name: "Тээвэр",
+    nextActionName: "Үргэлжлүүлэх",
     nextStepLink: "/checkout/payment",
     onlyIfShippingRequired: true,
     step: CheckoutStep.Shipping,

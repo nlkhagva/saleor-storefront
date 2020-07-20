@@ -498,6 +498,7 @@ export interface UpdateCheckoutLine_checkoutLinesUpdate_checkout_lines {
    */
   totalPrice: UpdateCheckoutLine_checkoutLinesUpdate_checkout_lines_totalPrice | null;
   variant: UpdateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant;
+  metadata: any | null;
 }
 
 export interface UpdateCheckoutLine_checkoutLinesUpdate_checkout_discount {

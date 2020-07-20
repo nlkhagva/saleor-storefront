@@ -40,3 +40,14 @@
   & > h4 { font-size: 12px; font-weight: normal; }
   & > h3 { font-size: 22px; font-weight: bold; }
 }
+
+.ushop-price-table{
+  margin: 0;
+
+  td { 
+    padding: $spacer*.5 $spacer;
+  }
+  td:last-child { 
+    text-align: right;
+  }
+}

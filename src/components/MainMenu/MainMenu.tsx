@@ -155,15 +155,15 @@ const MainMenu: React.FC = () => {
               query={{ minWidth: mediumScreen }}
               render={() => (
                 <ul className="large-menu">
-                  <li><a href="javascript:void(0)">Захиалга</a></li>
-                  <li><a href="javascript:void(0)">Машин & Сэлбэг</a></li>
+                  <li><Link to={appPaths.baseUrl}>Захиалга</Link></li>
+                  <li><Link to={appPaths.baseUrl}>Машин & Сэлбэг</Link></li>
                   <li>
                     <Link to={appPaths.baseUrl}>
                       <img src={logoImg} alt="Unurshop.mn" />
                     </Link>
                   </li>
-                  <li><a href="javascript:void(0)">Өөрөө авах</a></li>
-                  <li className="cargo"><a href="javascript:void(0)">Карго</a></li>
+                  <li><Link to={appPaths.baseUrl}>Өөрөө авах</Link></li>
+                  <li className="cargo"><Link to={appPaths.baseUrl}>Карго</Link></li>
                 </ul>
               )
               }

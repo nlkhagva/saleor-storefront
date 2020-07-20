@@ -1,73 +1,55 @@
-import ApolloClient from "apollo-client";
+import ApolloClient from 'apollo-client';
 
-import { getAuthToken } from "@sdk/auth";
-import { Checkout } from "@sdk/fragments/gqlTypes/Checkout";
-import { OrderDetail } from "@sdk/fragments/gqlTypes/OrderDetail";
-import { Payment } from "@sdk/fragments/gqlTypes/Payment";
-import { CountryCode } from "@sdk/gqlTypes/globalTypes";
-import * as CheckoutMutations from "@sdk/mutations/checkout";
+import { getAuthToken } from '@sdk/auth';
+import { Checkout } from '@sdk/fragments/gqlTypes/Checkout';
+import { OrderDetail } from '@sdk/fragments/gqlTypes/OrderDetail';
+import { Payment } from '@sdk/fragments/gqlTypes/Payment';
+import { CountryCode } from '@sdk/gqlTypes/globalTypes';
+import * as CheckoutMutations from '@sdk/mutations/checkout';
 import {
-  AddCheckoutPromoCode,
-  AddCheckoutPromoCodeVariables,
-} from "@sdk/mutations/gqlTypes/AddCheckoutPromoCode";
+    AddCheckoutPromoCode, AddCheckoutPromoCodeVariables
+} from '@sdk/mutations/gqlTypes/AddCheckoutPromoCode';
 import {
-  CompleteCheckout,
-  CompleteCheckoutVariables,
-} from "@sdk/mutations/gqlTypes/CompleteCheckout";
+    CompleteCheckout, CompleteCheckoutVariables
+} from '@sdk/mutations/gqlTypes/CompleteCheckout';
+import { CreateCheckout, CreateCheckoutVariables } from '@sdk/mutations/gqlTypes/CreateCheckout';
 import {
-  CreateCheckout,
-  CreateCheckoutVariables,
-} from "@sdk/mutations/gqlTypes/CreateCheckout";
+    CreateCheckoutPayment, CreateCheckoutPaymentVariables
+} from '@sdk/mutations/gqlTypes/CreateCheckoutPayment';
 import {
-  CreateCheckoutPayment,
-  CreateCheckoutPaymentVariables,
-} from "@sdk/mutations/gqlTypes/CreateCheckoutPayment";
+    RemoveCheckoutPromoCode, RemoveCheckoutPromoCodeVariables
+} from '@sdk/mutations/gqlTypes/RemoveCheckoutPromoCode';
 import {
-  RemoveCheckoutPromoCode,
-  RemoveCheckoutPromoCodeVariables,
-} from "@sdk/mutations/gqlTypes/RemoveCheckoutPromoCode";
+    UpdateCheckoutBillingAddress, UpdateCheckoutBillingAddressVariables
+} from '@sdk/mutations/gqlTypes/UpdateCheckoutBillingAddress';
 import {
-  UpdateCheckoutBillingAddress,
-  UpdateCheckoutBillingAddressVariables,
-} from "@sdk/mutations/gqlTypes/UpdateCheckoutBillingAddress";
+    UpdateCheckoutBillingAddressWithEmail, UpdateCheckoutBillingAddressWithEmailVariables
+} from '@sdk/mutations/gqlTypes/UpdateCheckoutBillingAddressWithEmail';
 import {
-  UpdateCheckoutBillingAddressWithEmail,
-  UpdateCheckoutBillingAddressWithEmailVariables,
-} from "@sdk/mutations/gqlTypes/UpdateCheckoutBillingAddressWithEmail";
+    UpdateCheckoutLine, UpdateCheckoutLineVariables
+} from '@sdk/mutations/gqlTypes/UpdateCheckoutLine';
 import {
-  UpdateCheckoutLine,
-  UpdateCheckoutLineVariables,
-} from "@sdk/mutations/gqlTypes/UpdateCheckoutLine";
+    UpdateCheckoutShippingAddress, UpdateCheckoutShippingAddressVariables
+} from '@sdk/mutations/gqlTypes/UpdateCheckoutShippingAddress';
 import {
-  UpdateCheckoutShippingAddress,
-  UpdateCheckoutShippingAddressVariables,
-} from "@sdk/mutations/gqlTypes/UpdateCheckoutShippingAddress";
+    UpdateCheckoutShippingMethod, UpdateCheckoutShippingMethodVariables
+} from '@sdk/mutations/gqlTypes/UpdateCheckoutShippingMethod';
+import * as CheckoutQueries from '@sdk/queries/checkout';
+import { CheckoutDetails } from '@sdk/queries/gqlTypes/CheckoutDetails';
 import {
-  UpdateCheckoutShippingMethod,
-  UpdateCheckoutShippingMethodVariables,
-} from "@sdk/mutations/gqlTypes/UpdateCheckoutShippingMethod";
-import * as CheckoutQueries from "@sdk/queries/checkout";
-import { CheckoutDetails } from "@sdk/queries/gqlTypes/CheckoutDetails";
+    CheckoutProductVariants, CheckoutProductVariants_productVariants
+} from '@sdk/queries/gqlTypes/CheckoutProductVariants';
 import {
-  CheckoutProductVariants,
-  CheckoutProductVariants_productVariants,
-} from "@sdk/queries/gqlTypes/CheckoutProductVariants";
+    GetShopPaymentGateways, GetShopPaymentGateways_shop_availablePaymentGateways
+} from '@sdk/queries/gqlTypes/GetShopPaymentGateways';
+import { UserCheckoutDetails } from '@sdk/queries/gqlTypes/UserCheckoutDetails';
+import * as ShopQueries from '@sdk/queries/shop';
 import {
-  GetShopPaymentGateways,
-  GetShopPaymentGateways_shop_availablePaymentGateways,
-} from "@sdk/queries/gqlTypes/GetShopPaymentGateways";
-import { UserCheckoutDetails } from "@sdk/queries/gqlTypes/UserCheckoutDetails";
-import * as ShopQueries from "@sdk/queries/shop";
-import {
-  ICheckoutAddress,
-  ICheckoutModel,
-  ICheckoutModelLine,
-  IOrderModel,
-  IPaymentModel,
-} from "@sdk/repository";
-import { filterNotEmptyArrayItems } from "@sdk/utils";
+    ICheckoutAddress, ICheckoutModel, ICheckoutModelLine, IOrderModel, IPaymentModel
+} from '@sdk/repository';
+import { filterNotEmptyArrayItems } from '@sdk/utils';
 
-import { INetworkManager } from "./types";
+import { INetworkManager } from './types';
 
 export class NetworkManager implements INetworkManager {
   private client: ApolloClient<any>;
@@ -172,6 +154,7 @@ export class NetworkManager implements INetworkManager {
             }
           );
         });
+
       } catch (error) {
         return {
           error,
@@ -181,56 +164,56 @@ export class NetworkManager implements INetworkManager {
 
     const linesWithMissingVariantUpdated = variants
       ? variants.edges.map(edge => {
-          const existingLine = checkoutlines?.find(
-            line => line.variant.id === edge.node.id
-          );
-          const variantPricing = edge.node.pricing?.price;
-          const totalPrice = variantPricing
-            ? {
-                gross: {
-                  ...variantPricing.gross,
-                  amount:
-                    variantPricing.gross.amount * (existingLine?.quantity || 0),
-                },
-                net: {
-                  ...variantPricing.net,
-                  amount:
-                    variantPricing.net.amount * (existingLine?.quantity || 0),
-                },
-              }
-            : null;
-
-          return {
-            id: existingLine?.id,
-            quantity: existingLine?.quantity || 0,
-            totalPrice,
-            variant: {
-              attributes: edge.node.attributes,
-              id: edge.node.id,
-              isAvailable: edge.node.isAvailable,
-              name: edge.node.name,
-              pricing: edge.node.pricing,
-              product: edge.node.product,
-              quantityAvailable: edge.node.quantityAvailable,
-              sku: edge.node.sku,
+        const existingLine = checkoutlines?.find(
+          line => line.variant.id === edge.node.id
+        );
+        const variantPricing = edge.node.pricing?.price;
+        const totalPrice = variantPricing
+          ? {
+            gross: {
+              ...variantPricing.gross,
+              amount:
+                variantPricing.gross.amount * (existingLine?.quantity || 0),
             },
-          };
-        })
+            net: {
+              ...variantPricing.net,
+              amount:
+                variantPricing.net.amount * (existingLine?.quantity || 0),
+            },
+          }
+          : null;
+
+        return {
+          id: existingLine?.id,
+          quantity: existingLine?.quantity || 0,
+          totalPrice,
+          variant: {
+            attributes: edge.node.attributes,
+            id: edge.node.id,
+            isAvailable: edge.node.isAvailable,
+            name: edge.node.name,
+            pricing: edge.node.pricing,
+            product: edge.node.product,
+            quantityAvailable: edge.node.quantityAvailable,
+            sku: edge.node.sku,
+          },
+        };
+      })
       : [];
 
     const linesWithProperVariantUpdated = linesWithProperVariant.map(line => {
       const variantPricing = line.variant.pricing?.price;
       const totalPrice = variantPricing
         ? {
-            gross: {
-              ...variantPricing.gross,
-              amount: variantPricing.gross.amount * line.quantity,
-            },
-            net: {
-              ...variantPricing.net,
-              amount: variantPricing.net.amount * line.quantity,
-            },
-          }
+          gross: {
+            ...variantPricing.gross,
+            amount: variantPricing.gross.amount * line.quantity,
+          },
+          net: {
+            ...variantPricing.net,
+            amount: variantPricing.net.amount * line.quantity,
+          },
+        }
         : null;
 
       return {
@@ -301,7 +284,7 @@ export class NetworkManager implements INetworkManager {
             companyName: billingAddress.companyName,
             country:
               CountryCode[
-                billingAddress?.country?.code as keyof typeof CountryCode
+              billingAddress?.country?.code as keyof typeof CountryCode
               ],
             countryArea: billingAddress.countryArea,
             firstName: billingAddress.firstName,
@@ -318,7 +301,7 @@ export class NetworkManager implements INetworkManager {
             companyName: shippingAddress.companyName,
             country:
               CountryCode[
-                shippingAddress?.country?.code as keyof typeof CountryCode
+              shippingAddress?.country?.code as keyof typeof CountryCode
               ],
             countryArea: shippingAddress.countryArea,
             firstName: shippingAddress.firstName,
@@ -419,7 +402,7 @@ export class NetworkManager implements INetworkManager {
           companyName: shippingAddress.companyName,
           country:
             CountryCode[
-              shippingAddress?.country?.code as keyof typeof CountryCode
+            shippingAddress?.country?.code as keyof typeof CountryCode
             ],
           countryArea: shippingAddress.countryArea,
           firstName: shippingAddress.firstName,
@@ -477,7 +460,7 @@ export class NetworkManager implements INetworkManager {
           companyName: billingAddress.companyName,
           country:
             CountryCode[
-              billingAddress?.country?.code as keyof typeof CountryCode
+            billingAddress?.country?.code as keyof typeof CountryCode
             ],
           countryArea: billingAddress.countryArea,
           firstName: billingAddress.firstName,
@@ -533,7 +516,7 @@ export class NetworkManager implements INetworkManager {
           companyName: billingAddress.companyName,
           country:
             CountryCode[
-              billingAddress?.country?.code as keyof typeof CountryCode
+            billingAddress?.country?.code as keyof typeof CountryCode
             ],
           countryArea: billingAddress.countryArea,
           firstName: billingAddress.firstName,
@@ -703,7 +686,7 @@ export class NetworkManager implements INetworkManager {
             companyName: billingAddress.companyName,
             country:
               CountryCode[
-                billingAddress?.country?.code as keyof typeof CountryCode
+              billingAddress?.country?.code as keyof typeof CountryCode
               ],
             countryArea: billingAddress.countryArea,
             firstName: billingAddress.firstName,

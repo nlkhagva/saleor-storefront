@@ -498,6 +498,7 @@ export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines {
    */
   totalPrice: AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_totalPrice | null;
   variant: AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_variant;
+  metadata: any | null;
 }
 
 export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_discount {

@@ -1,5 +1,6 @@
-import { media, styled } from "@styles";
-import { Size } from "./types";
+import { media, styled } from '@styles';
+
+import { Size } from './types';
 
 const padding = {
   md: "0.9rem 3.7rem",
@@ -20,6 +21,7 @@ export const Primary = styled.button<{
     props.theme.button.colors[props.color].background};
   padding: ${props => padding[props.size]};
   border: none;
+  border-radius: 4px;
   transition: 0.3s;
   outline: none;
   cursor: pointer;
@@ -28,13 +30,13 @@ export const Primary = styled.button<{
 
   &:hover {
     background-color: ${props =>
-      props.theme.button.colors[props.color].hoverBackground};
+    props.theme.button.colors[props.color].hoverBackground};
     color: ${props => props.theme.button.colors[props.color].hoverColor};
   }
 
   &:active {
     background-color: ${props =>
-      props.theme.button.colors[props.color].activeBackground};
+    props.theme.button.colors[props.color].activeBackground};
     box-shadow: -3px 3px 14px 0px rgba(129, 67, 67, 0.2);
   }
 
@@ -50,7 +52,7 @@ export const Primary = styled.button<{
   ${media.smallScreen`
     padding:  0.9rem 1rem;
     width: ${(props: { fullWidth: boolean }) =>
-      props.fullWidth ? "100%" : "88%"};
+      props.fullWidth ? "100%" : "100%"};
   `}
 `;
 
@@ -64,11 +66,11 @@ export const Secondary = styled(Primary)`
 export const Text = styled.span<{ size: Size }>`
   display: inline-block;
   font-size: ${({
-    size,
-    theme: {
-      button: { typography },
-    },
-  }) => fontSize(typography.fontSize, typography.smallFontSize)[size]};
+  size,
+  theme: {
+    button: { typography },
+  },
+}) => fontSize(typography.fontSize, typography.smallFontSize)[size]};
   text-transform: uppercase;
   font-weight: ${props => props.theme.typography.boldFontWeight};
   line-height: ${props => props.theme.typography.baseLineHeight};

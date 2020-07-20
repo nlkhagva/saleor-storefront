@@ -161,7 +161,7 @@ class ProductDescription extends React.Component<
           )}
         {isLowStock && this.renderErrorMessage("Low stock")}
         {isNoItemsAvailable && this.renderErrorMessage("No items available")}
-        
+
         <div className="product-description__variant-picker">
           <ProductVariantPicker
             productVariants={this.props.productVariants}

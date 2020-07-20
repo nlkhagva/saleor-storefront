@@ -511,6 +511,7 @@ export interface CreateCheckoutPayment_checkoutPaymentCreate_checkout_lines {
    */
   totalPrice: CreateCheckoutPayment_checkoutPaymentCreate_checkout_lines_totalPrice | null;
   variant: CreateCheckoutPayment_checkoutPaymentCreate_checkout_lines_variant;
+  metadata: any | null;
 }
 
 export interface CreateCheckoutPayment_checkoutPaymentCreate_checkout_discount {

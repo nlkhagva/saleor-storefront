@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 
 import { Checkbox, InputSelect, TextField } from '@components/molecules';
+import { Button } from '@temp/components';
 
 import * as S from './styles';
 import { FormProps } from './types';
@@ -32,34 +33,42 @@ const BookingForm: React.FC<FormProps> = ({
 
     return (
         <S.Wrapper>
+            <S.Form onSubmit={handleSubmit}>
+                <div className="ushop-title">
+                    <h4>Та сонгосон барааныхаа</h4>
+                    <h3>Мэдээллийг оруулна уу!</h3>
+                </div>
 
-            <div className="ushop-title">
-                <h4>Та сонгосон барааныхаа</h4>
-                <h3>Мэдээллийг оруулна уу!</h3>
-            </div>
-
-            <>
                 <S.RowWithOneCell>
+                    <TextField
+                        autoComplete="off"
+                        data-cy="bookingName"
+                        name="name"
+                        label="Барааны нэр"
+                        value={values!.name}
+                        errors={fieldErrors!.name}
+                        {...basicInputProps()}
+                    />
                     {/* <InputSelect
-                    inputProps={{
-                        "data-cy": "addressFormCountry",
-                    }}
-                    defaultValue={defaultValue}
-                    label="Country"
-                    name="country"
-                    options={productTypeOptions}
-                    value={
-                        values!.country &&
-                        countriesOptions &&
-                        countriesOptions!.find(
-                            option => option.code === values!.country!.code
-                        )
-                    }
-                    onChange={(value: any, name: any) => setFieldValue(name, value)}
-                    optionLabelKey="country"
-                    optionValueKey="code"
-                    errors={fieldErrors!.country}
-                /> */}
+                                inputProps={{
+                                    "data-cy": "addressFormCountry",
+                                }}
+                                defaultValue={defaultValue}
+                                label="Country"
+                                name="country"
+                                options={productTypeOptions}
+                                value={
+                                    values!.country &&
+                                    countriesOptions &&
+                                    countriesOptions!.find(
+                                        option => option.code === values!.country!.code
+                                    )
+                                }
+                                onChange={(value: any, name: any) => setFieldValue(name, value)}
+                                optionLabelKey="country"
+                                optionValueKey="code"
+                                errors={fieldErrors!.country}
+                            /> */}
                 </S.RowWithOneCell>
                 <S.RowWithTwoCells>
                     <TextField
@@ -139,12 +148,34 @@ const BookingForm: React.FC<FormProps> = ({
                         {...basicInputProps()}
                     />
                 </S.RowWithOneCell>
-            </>
-            {/* <S.RowWithOneCell>
+                <Checkbox
+                    name="addMore"
+                    type="checkbox"
+                    label="Өөр өнгө, хэмжээгээр дахин захиалах"
+                    value={values!.isRequired}
+                    errors={fieldErrors!.isRequired}
+                    {...basicInputProps()}
+                />
+
+                {/* <S.RowWithOneCell>
+                        <Field name="shippingType" as="select" placeholder="Favorite Color">
+                            <option value="red">Агаар</option>
+                            <option value="green">Газар</option>
+                            <option value="blue">Далай</option>
+                        </Field>
+                    </S.RowWithOneCell> */}
+
+                <S.FormControl>
+                    <Button type="submit">Сагсанд хийх</Button>
+
+                    <Button secondary={true}>Буцах</Button>
+                </S.FormControl>
+
+                {/* <S.RowWithOneCell>
                 <InputSelect
                 />
             </S.RowWithOneCell> */}
-
+            </S.Form>
 
         </S.Wrapper>
     )

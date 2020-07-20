@@ -31,7 +31,7 @@ export const white = "#fff";
 export const tabelGray = "#eaeaea";
 export const darkGreen = "#06847B";
 
-export const ushopRed =  '#BC1F25';
+export const ushopRed = '#BC1F25';
 
 // theme colors
 export const theme = {
@@ -66,6 +66,7 @@ export const theme = {
   tableDivider: tabelGray,
   tabsBorder: baseFontColorTransparent,
   thumbnailBorder: blackDark,
+  ushopRed,
   white,
 };
 

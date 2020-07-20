@@ -1,30 +1,14 @@
-import {
-  ApolloClient,
-  ApolloError,
-  ObservableQuery,
-  WatchQueryOptions,
-} from "apollo-client";
-import { GraphQLError } from "graphql";
+import { ApolloClient, ApolloError, ObservableQuery, WatchQueryOptions } from 'apollo-client';
+import { GraphQLError } from 'graphql';
 
-import { fireSignOut, getAuthToken, setAuthToken } from "../auth";
-import { MUTATIONS } from "../mutations";
-import { TokenAuth } from "../mutations/gqlTypes/TokenAuth";
-import { QUERIES } from "../queries";
-import { UserDetails } from "../queries/gqlTypes/UserDetails";
-import { RequireAtLeastOne } from "../tsHelpers";
-import {
-  InferOptions,
-  MapFn,
-  QueryShape,
-  WatchMapFn,
-  WatchQueryData,
-} from "../types";
-import {
-  getErrorsFromData,
-  getMappedData,
-  isDataEmpty,
-  mergeEdges,
-} from "../utils";
+import { fireSignOut, getAuthToken, setAuthToken } from '../auth';
+import { MUTATIONS } from '../mutations';
+import { TokenAuth } from '../mutations/gqlTypes/TokenAuth';
+import { QUERIES } from '../queries';
+import { UserDetails } from '../queries/gqlTypes/UserDetails';
+import { RequireAtLeastOne } from '../tsHelpers';
+import { InferOptions, MapFn, QueryShape, WatchMapFn, WatchQueryData } from '../types';
+import { getErrorsFromData, getMappedData, isDataEmpty, mergeEdges } from '../utils';
 
 export class APIProxy {
   getAttributes = this.watchQuery(QUERIES.Attributes, data => data.attributes);
@@ -85,6 +69,20 @@ export class APIProxy {
   setPasswordChange = this.fireQuery(MUTATIONS.PasswordChange, data => data);
 
   setPassword = this.fireQuery(MUTATIONS.SetPassword, data => data);
+
+
+  /** create simple product */
+  createSimpleProduct = this.fireQuery(
+    MUTATIONS.CreateSimpleProduct,
+    data => data
+  )
+
+  productUpdateMetaData = this.fireQuery(
+    MUTATIONS.ProductUpdateMetadata,
+    data => data
+  )
+
+
 
   client: ApolloClient<any>;
 
@@ -363,9 +361,9 @@ const handleDataErrors = <T extends QueryShape, TData>(
   const errors =
     apolloErrors || userInputErrors
       ? new ApolloError({
-          extraInfo: userInputErrors,
-          graphQLErrors: apolloErrors,
-        })
+        extraInfo: userInputErrors,
+        graphQLErrors: apolloErrors,
+      })
       : null;
 
   if (errors && isDataEmpty(data)) {

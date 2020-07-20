@@ -11,7 +11,7 @@ export const Checkbox = styled.label`
   position: relative;
   padding-left: calc(${props => props.theme.spacing.gutter}*1.2);
   margin-bottom: calc(${props => props.theme.spacing.fieldSpacer}*1.5);
-  margin-top: calc(${props => props.theme.spacing.fieldSpacer}*.5);
+  margin-top: calc(${props => props.theme.spacing.fieldSpacer}*1.5);
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
