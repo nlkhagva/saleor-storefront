@@ -1,20 +1,39 @@
 @import "../../../globalStyles/scss/variables.scss";
 
 .main-menu {
-  align-items: center;
   align-items: stretch;
   background-color: $white;
   border-bottom: 1px solid $gray-light;
   display: flex;
   flex-direction: row;
-  height: 3.55rem;
+  height: 5.625rem;
   position: relative;
+  
+  transition:transform 0.3s ease-out;
+
+
+  @media (max-width: $medium-screen){
+    height: 4rem;
+    background-color: $white;
+
+    &.ushop-fix {
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 0;
+      box-shadow: 1px 1px 20px rgba(0,0,0,.15); 
+      z-index: 10;
+    }
+  }
+
+  &__top {
+    flex-basis: 100%;
+  }
 
   &__left {
-    flex-basis: calc(50% - 2rem);
 
-    @media (min-width: $small-screen) {
-      flex-basis: calc(50% - 4rem);
+    @media (max-width: $medium-screen) {
+      flex-basis: calc(4rem);
     }
 
     ul {
@@ -27,25 +46,82 @@
   &__right {
     flex-basis: calc(50% - 2rem);
 
-    @media (min-width: $small-screen) {
-      flex-basis: calc(50% - 4rem);
+    @media (max-width: $medium-screen) {
+      flex-basis: calc(4rem);
     }
 
     ul {
       display: flex;
       justify-content: flex-end;
-      align-items: center;
+      align-items: center ;
+      height: 100%;
+      
+      li{ font-size: .9em; }
     }
   }
 
   &__center {
     align-self: center;
-
-    svg {
-      width: 4rem;
+    flex-basis: calc(100% - 10rem);
+    @media (max-width: $medium-screen) {
+      flex-basis: calc(100% - 8rem);
+    }
+    img {
+      display: inline-block;
+      width: 3rem;
+      margin-top: -1rem;
+      vertical-align: middle;
 
       @media (min-width: $small-screen) {
-        width: 6rem;
+        width: 5rem;
+      }
+    }
+
+    ul.large-menu{
+      display: flex;
+      justify-content: center;
+      margin: 0px;
+      padding: 0px;
+      margin-right: calc(-10%);
+
+      li {
+        display: inline-block;
+        height: 5.625rem;
+        line-height: 5.625rem;
+        padding: 0px 1rem;
+        
+        &:nth-child(1) a:after{ color: #ED1B24 }
+        &:nth-child(2) a:after{ color: #5381C7 }
+        &:nth-child(3) a:after{ color: transparent }
+        &:nth-child(4) a:after{ color: #059C2F }
+        &:nth-child(5) a:after{ color: #FFC000 }
+  
+
+        a{
+          display: inline-block;
+          font-family: $base-font-family;
+          font-weight: 600;
+          text-transform: uppercase;
+          position: relative;
+
+          @media (max-width: 1240px) {
+            font-size: .9em;
+          }
+
+          &:hover:after, &.active:after{ display: block }
+          &:after{ position: absolute;
+            width: 100%;
+            content: " . . . . . ";
+            display: none;
+            font-size: 1.5em;
+            font-weight: 700;
+            height: 10px;
+            line-height: 0;
+            bottom: 25px;
+            left: 0px;
+            text-align: center;
+          }
+        }
       }
     }
   }
@@ -68,7 +144,7 @@
   }
 
   &__hamburger {
-    border-right: 1px solid $gray-light;
+    // border-right: 1px solid $gray-light;
     cursor: pointer;
     padding: $spacer;
 
@@ -87,7 +163,7 @@
     }
 
     svg {
-      vertical-align: bottom;
+      vertical-align: middle;
     }
   }
 
@@ -119,13 +195,19 @@
   }
 
   &__cart {
+    display: inline-block;
     position: relative;
+    padding: $spacer;
+
+    div { display: inline-block;}
+
+    & > a { display: inline-block; padding: $spacer; }
 
     &__quantity {
       position: absolute;
-      top: -0.3rem;
+      bottom: 0.6rem;
       right: 0.6rem;
-      background-color: $blue;
+      background-color: $ushop-red;
       border-radius: 1rem;
       padding: 0 0.3rem;
       min-width: 1rem;
@@ -135,6 +217,7 @@
       text-align: center;
       line-height: 1rem;
       transition: 0.3s;
+      // border: 1px solid $white;
     }
   }
 
@@ -173,12 +256,51 @@
       vertical-align: bottom;
     }
   }
+  &__order-button{
+    border: 2px solid #d9230f;
+    border-radius: 20px;
+    padding: 3px 12px 3px 8px;
+    text-transform: uppercase;
+    margin-right: 5px;
+    display: inline-block;
+    margin-left: 18px;
+    vertical-align: middle;
+    cursor: pointer;
+    font-size: 13px;
+    color: #d9230f;
+    
+    &:hover{
+      background-color: #d9230f;
+      color: #fff;
+    }
+
+    @media (max-width: $small-screen) {
+      // padding: 3px;
+      font-size: 12px;
+    }
+
+  }
 
   &__search {
-    padding: $spacer;
     cursor: pointer;
     line-height: 24px;
     transition: 0.3s;
+    font-size: $base-font-size*.75;
+
+    @media (max-width: 325px) {
+      font-size: $base-font-size*.55;
+    }
+
+
+    & > a {    
+      display: inline-block;
+      width: 100%;
+      border-radius: $spacer*2;
+      background: #f1f1f1;
+      padding: $spacer*.5 0 $spacer*.5 $spacer;    
+
+      .search-icon { margin-right: $spacer*.5 ;}
+    }
 
     @media (min-width: $medium-screen) {
       border-left: 1px solid $gray-light;
@@ -189,9 +311,9 @@
     }
 
     &:hover {
-      color: $turquoise;
+      color: $black-dark;
       svg * {
-        fill: $turquoise;
+        fill: $black-dark;
       }
     }
 

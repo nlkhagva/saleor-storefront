@@ -1,13 +1,12 @@
 import React from "react";
-import { FormattedMessage } from "react-intl";
 
-import { checkoutMessages } from "@temp/intl";
+// import { FormattedMessage } from 'react-intl';
+// import { checkoutMessages } from '@temp/intl';
 import { filterNotEmptyArrayItems } from "@utils/misc";
 
 import { AddressForm } from "../AddressForm";
 import { AddressGridSelector } from "../AddressGridSelector";
-
-import * as S from "./styles";
+// import * as S from './styles';
 import { IProps } from "./types";
 
 /**
@@ -28,9 +27,11 @@ const CheckoutAddress: React.FC<IProps> = ({
 }: IProps) => {
   return (
     <section>
-      <S.Title data-test="checkoutPageSubtitle">
-        <FormattedMessage {...checkoutMessages.shippingAddress} />
-      </S.Title>
+      {/* <S.Title data-cy="checkoutPageSubtitle">SHIPPING ADDRESS</S.Title> */}
+      <div className="ushop-title">
+        <h4>Хүлээн авах</h4>
+        <h3>Хаяг сонгох</h3>
+      </div>
       {userAddresses ? (
         <AddressGridSelector
           formId={formId}

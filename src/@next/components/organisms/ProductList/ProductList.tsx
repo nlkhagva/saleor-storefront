@@ -6,7 +6,6 @@ import { Button, Loader } from "@components/atoms";
 import { ProductTile } from "@components/molecules";
 
 import { generateProductUrl } from "../../../../core/utils";
-
 import * as S from "./styles";
 import { IProps } from "./types";
 
@@ -39,7 +38,7 @@ export const ProductList: React.FC<IProps> = ({
               color="secondary"
               onClick={onLoadMore}
             >
-              <FormattedMessage defaultMessage="More +" />
+              <FormattedMessage defaultMessage="Өшөө +" />
             </Button>
           )
         )}

@@ -40,6 +40,7 @@
     "isomorphic-fetch": "^2.2.1",
     "js-base64": "^2.4.8",
     "lodash": "^4.17.19",
+    "node-uuid": "^1.4.8",
     "nuka-carousel": "^4.6.0",
     "query-string": "^6.12.1",
     "react": "^16.9.9",
@@ -196,7 +197,7 @@
   },
   "scripts": {
     "test": "jest --runInBand --config .jest/config.json",
-    "start": "cross-env NODE_ENV=develop webpack-dev-server --history-api-fallback --watch --port 3000 --mode development --hotOnly",
+    "start": "cross-env NODE_ENV=develop webpack-dev-server --history-api-fallback --watch --port 3000 --mode development --hotOnly --host 0.0.0.0",
     "start:worker": "npm run start -- --service-worker",
     "build": "webpack -p",
     "watch": "webpack -d --watch",

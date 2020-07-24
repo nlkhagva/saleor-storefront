@@ -2,21 +2,20 @@ import * as React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import { Link } from "react-router-dom";
 
-import { TaxedMoney } from "@components/containers";
-import {
-  checkoutMessages,
-  translatePaymentStatus,
-  translateOrderStatus,
-} from "@temp/intl";
-import { OrderDetail_lines } from "@saleor/sdk/lib/fragments/gqlTypes/OrderDetail";
 import { DropdownMenu, IconButton } from "@components/atoms";
+import { TaxedMoney } from "@components/containers";
+import { OrderDetail_lines } from "@saleor/sdk/lib/fragments/gqlTypes/OrderDetail";
 import { OrderByToken_orderByToken } from "@saleor/sdk/lib/queries/gqlTypes/OrderByToken";
 import { UserOrderByToken_orderByToken } from "@saleor/sdk/lib/queries/gqlTypes/UserOrderByToken";
-
-import { AddressSummary, CartTable, NotFound } from "../../../components";
-import { ILine } from "../../../components/CartTable/ProductRow";
+import {
+  checkoutMessages,
+  translateOrderStatus,
+  translatePaymentStatus,
+} from "@temp/intl";
 
 import { orderHistoryUrl } from "../../../app/routes";
+import { AddressSummary, CartTable, NotFound } from "../../../components";
+import { ILine } from "../../../components/CartTable/ProductRow";
 
 const extractOrderLines = (lines: OrderDetail_lines[]): ILine[] => {
   return lines

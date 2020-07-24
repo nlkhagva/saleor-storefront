@@ -16,7 +16,7 @@ const AddToCart: React.FC<{
       }}
       disabled={disabled}
     >
-      <FormattedMessage defaultMessage="Add to basket" />
+      <FormattedMessage defaultMessage="Сагсанд хийх" />
     </AddToCartButton>
   );
 };

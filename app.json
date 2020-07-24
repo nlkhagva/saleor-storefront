@@ -1,10 +1,13 @@
 {
-  "name": "saleor-storefront",
-  "description": "A GraphQL-powered, PWA, single-page storefront application for Saleor",
+  "name": "ushop-storefront",
+  "description": "powered by saleor",
   "repository": "https://github.com/mirumee/saleor-storefront",
-  "website": "http://getsaleor.com/",
+  "website": "http://www.unurshop.mn/",
   "logo": "https://mirumee.com/img/opensource_saleor.jpg",
-  "keywords": ["saleor", "e-commerce", "storefront"],
+  "keywords": [
+    "e-commerce",
+    "storefront"
+  ],
   "env": {
     "API_URI": {
       "description": "URI of a running instance of Saleor GraphQL API",

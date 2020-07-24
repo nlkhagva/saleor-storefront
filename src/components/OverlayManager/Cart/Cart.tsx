@@ -1,14 +1,14 @@
 import "./scss/index.scss";
 
 import * as React from "react";
-import { FormattedMessage } from "react-intl";
+// import { FormattedMessage } from 'react-intl';
 import { generatePath, Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
 import { TaxedMoney } from "@components/containers";
-import { commonMessages } from "@temp/intl";
 import { useAuth, useCart, useCheckout } from "@saleor/sdk";
 
+// import { commonMessages } from '@temp/intl';
 import {
   Button,
   Offline,
@@ -18,12 +18,11 @@ import {
   OverlayContextInterface,
 } from "../..";
 import { cartUrl, checkoutLoginUrl, checkoutUrl } from "../../../app/routes";
+import cartImg from "../../../images/cart.svg";
+import closeImg from "../../../images/x.svg";
 import Loader from "../../Loader";
 import Empty from "./Empty";
 import ProductList from "./ProductList";
-
-import cartImg from "../../../images/cart.svg";
-import closeImg from "../../../images/x.svg";
 
 const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
   const { user } = useAuth();
@@ -31,12 +30,11 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
   const {
     items,
     removeItem,
-    subtotalPrice,
+    // subtotalPrice,
     shippingPrice,
     discount,
     totalPrice,
   } = useCart();
-
   const shippingTaxedPrice =
     checkout?.shippingMethod?.id && shippingPrice
       ? {
@@ -58,23 +56,33 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
       <Online>
         <div className="cart">
           <div className="overlay__header">
-            <ReactSVG path={cartImg} className="overlay__header__cart-icon" />
-            <div className="overlay__header-text">
-              <FormattedMessage defaultMessage="My bag," />{" "}
-              <span className="overlay__header-text-items">
-                {items?.reduce(
-                  (prevVal, currVal) => prevVal + currVal.quantity,
-                  0
-                ) || 0}{" "}
-                <FormattedMessage defaultMessage="items" />
-              </span>
-            </div>
             <ReactSVG
               path={closeImg}
               onClick={overlay.hide}
               className="overlay__header__close-icon"
             />
           </div>
+          <div className="ushop-title" style={{ marginTop: "-16px" }}>
+            <div className="overlay__cart-icon">
+              <Link
+                to={generatePath(cartUrl, {
+                  token: null,
+                })}
+              >
+                <ReactSVG path={cartImg} className="overlay__cart-icon__svg" />
+                <span className="overlay__cart-icon__quantity">
+                  {items?.reduce(
+                    (prevVal, currVal) => prevVal + currVal.quantity,
+                    0
+                  ) || 0}{" "}
+                </span>
+              </Link>
+            </div>
+
+            <h4>Таны сагсан дахь</h4>
+            <h3>Барааны жагсаалт</h3>
+          </div>
+
           {items?.length ? (
             <>
               {missingVariants() ? (
@@ -83,24 +91,20 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
                 <>
                   <ProductList lines={items} remove={removeItem} />
                   <div className="cart__footer">
-                    <div className="cart__footer__price">
-                      <span>
-                        <FormattedMessage {...commonMessages.subtotal} />
-                      </span>
+                    {/* <div className="cart__footer__price">
+                      <span>Subtotal</span>
                       <span>
                         <TaxedMoney
                           data-test="subtotalPrice"
                           taxedMoney={subtotalPrice}
                         />
                       </span>
-                    </div>
+                    </div> */}
 
                     {shippingTaxedPrice &&
                       shippingTaxedPrice.gross.amount !== 0 && (
                         <div className="cart__footer__price">
-                          <span>
-                            <FormattedMessage {...commonMessages.shipping} />
-                          </span>
+                          <span>Shipping</span>
                           <span>
                             <TaxedMoney
                               data-test="shippingPrice"
@@ -112,9 +116,7 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
 
                     {promoTaxedPrice && promoTaxedPrice.gross.amount !== 0 && (
                       <div className="cart__footer__price">
-                        <span>
-                          <FormattedMessage {...commonMessages.promoCode} />
-                        </span>
+                        <span>Promo code</span>
                         <span>
                           <TaxedMoney
                             data-test="promoCodePrice"
@@ -125,9 +127,7 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
                     )}
 
                     <div className="cart__footer__price">
-                      <span>
-                        <FormattedMessage {...commonMessages.total} />
-                      </span>
+                      <span>Одоогийн нийт</span>
                       <span>
                         <TaxedMoney
                           data-test="totalPrice"
@@ -143,14 +143,14 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
                         })}
                       >
                         <Button testingContext="gotoBagViewButton" secondary>
-                          <FormattedMessage defaultMessage="Go to my bag" />
+                          Сагс руу очих
                         </Button>
                       </Link>
                     </div>
                     <div className="cart__footer__button">
                       <Link to={user ? checkoutUrl : checkoutLoginUrl}>
                         <Button testingContext="gotoCheckoutButton">
-                          <FormattedMessage {...commonMessages.checkout} />
+                          Захиалга хийх
                         </Button>
                       </Link>
                     </div>

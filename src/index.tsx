@@ -1,11 +1,9 @@
-import { Integrations as ApmIntegrations } from "@sentry/apm";
-import * as Sentry from "@sentry/browser";
 import * as React from "react";
-import { useIntl } from "react-intl";
 import { positions, Provider as AlertProvider, useAlert } from "react-alert";
 import { render } from "react-dom";
 import TagManager from "react-gtm-module";
 import { hot } from "react-hot-loader";
+import { useIntl } from "react-intl";
 import { Route, Router } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import { QueryParamProvider } from "use-query-params";
@@ -17,6 +15,8 @@ import {
 } from "@components/containers";
 import { SaleorProvider, useAuth } from "@saleor/sdk";
 import { ConfigInput } from "@saleor/sdk/lib/types";
+import { Integrations as ApmIntegrations } from "@sentry/apm";
+import * as Sentry from "@sentry/browser";
 import { defaultTheme, GlobalStyle } from "@styles";
 
 import { App } from "./app";

@@ -1,5 +1,4 @@
 import * as React from "react";
-import { FormattedMessage } from "react-intl";
 
 import { ProductList } from "@components/organisms";
 
@@ -10,9 +9,11 @@ const OtherProducts: React.FC<{
 }> = ({ products }) => (
   <div className="product-page__other-products">
     <div className="container">
-      <h4 className="product-page__other-products__title">
-        <FormattedMessage defaultMessage="Other products in this category" />
-      </h4>
+      <div className="ushop-title">
+        <h4>Танд санал болгох</h4>
+        <h3>Ижил төстэй бараанууд</h3>
+      </div>
+
       <ProductList products={products.map(({ node }) => node)} />
     </div>
   </div>

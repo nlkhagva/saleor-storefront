@@ -54,3 +54,7 @@ export {
 export { default as Select } from "./Select";
 export { default as Error } from "./Error";
 export { default as NotificationTemplate } from "./NotificationTemplate";
+
+export { Topbar } from "./Topbar";
+export { FooterMainMenu } from "./FooterMainMenu";
+export { UshopFeatured } from "./UshopFeatured";

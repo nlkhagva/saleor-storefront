@@ -1,4 +1,3 @@
-import { useAuth, useCart, useCheckout } from "@saleor/sdk";
 import { History } from "history";
 import React from "react";
 import { FormattedMessage } from "react-intl";
@@ -8,6 +7,7 @@ import { Button, CartFooter, CartHeader } from "@components/atoms";
 import { TaxedMoney } from "@components/containers";
 import { CartRow } from "@components/organisms";
 import { Cart, CartEmpty } from "@components/templates";
+import { useAuth, useCart, useCheckout } from "@saleor/sdk";
 import { IItems } from "@saleor/sdk/lib/api/Cart/types";
 import { UserDetails_me } from "@saleor/sdk/lib/queries/gqlTypes/UserDetails";
 import { BASE_URL } from "@temp/core/config";

@@ -1,16 +1,16 @@
 import classNames from "classnames";
 import React from "react";
 import Media from "react-media";
-import { smallScreen } from "../../globalStyles/scss/variables.scss";
-
-import { Breadcrumbs, ProductDescription } from "../../components";
-import { generateCategoryUrl, generateProductUrl } from "../../core/utils";
-import GalleryCarousel from "./GalleryCarousel";
-import OtherProducts from "./Other";
 
 import { ProductDescription as NewProductDescription } from "../../@next/components/molecules";
 import { ProductGallery } from "../../@next/components/organisms";
+import { Breadcrumbs, ProductDescription } from "../../components";
 import { structuredData } from "../../core/SEO/Product/structuredData";
+import { generateCategoryUrl, generateProductUrl } from "../../core/utils";
+import { smallScreen } from "../../globalStyles/scss/variables.scss";
+import UshopLogo from "../../images/unurshop/logo-v3.png";
+import GalleryCarousel from "./GalleryCarousel";
+import OtherProducts from "./Other";
 import { IProps } from "./types";
 
 const populateBreadcrumbs = product => [
@@ -78,6 +78,20 @@ const Page: React.FC<
             {matches =>
               matches ? (
                 <>
+                  <img
+                    src={UshopLogo}
+                    alt="Zara"
+                    style={{
+                      position: "absolute",
+                      top: "1rem",
+                      left: "1rem",
+                      height: "60px",
+                      width: "60px",
+                      zIndex: 2,
+                      borderRadius: "100%",
+                      boxShadow: "1px 1px 5px rgba(0,0,0,.3)",
+                    }}
+                  />
                   <GalleryCarousel images={getImages()} />
                   <div className="product-page__product__info">
                     {productDescription}

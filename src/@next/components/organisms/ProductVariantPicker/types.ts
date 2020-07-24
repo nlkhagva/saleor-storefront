@@ -1,5 +1,4 @@
 import { ProductDetails_product_variants } from "@saleor/sdk/lib/queries/gqlTypes/ProductDetails";
-
 import { IProductVariantsAttributesSelectedValues } from "@types";
 
 export interface IProps {

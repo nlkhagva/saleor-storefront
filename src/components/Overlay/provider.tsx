@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { RouteComponentProps, withRouter } from "react-router";
+
 import {
   InnerOverlayContextInterface,
   OverlayContext,

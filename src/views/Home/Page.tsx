@@ -2,21 +2,20 @@ import "./scss/index.scss";
 
 import classNames from "classnames";
 import * as React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+// import { FormattedMessage, useIntl } from 'react-intl';
 import { Link } from "react-router-dom";
 
-import { Button, Loader, ProductsFeatured } from "../../components";
+// import { Button, Loader, ProductsFeatured, UshopFeatured } from '../../components';
+import { Loader, UshopFeatured } from "../../components";
+import { structuredData } from "../../core/SEO/Homepage/structuredData";
 import { generateCategoryUrl } from "../../core/utils";
-
+import noPhotoImg from "../../images/no-photo.svg";
+import ushopBackgroundImage from "../../images/unurshop/xd/homepage-cover.png";
 import {
   ProductsList_categories,
   ProductsList_shop,
   ProductsList_shop_homepageCollection_backgroundImage,
 } from "./gqlTypes/ProductsList";
-
-import { structuredData } from "../../core/SEO/Homepage/structuredData";
-
-import noPhotoImg from "../../images/no-photo.svg";
 
 const Page: React.FC<{
   loading: boolean;
@@ -27,7 +26,7 @@ const Page: React.FC<{
   const categoriesExist = () => {
     return categories && categories.edges && categories.edges.length > 0;
   };
-  const intl = useIntl();
+  // const intl = useIntl();
 
   return (
     <>
@@ -38,27 +37,11 @@ const Page: React.FC<{
         className="home-page__hero"
         style={
           backgroundImage
-            ? { backgroundImage: `url(${backgroundImage.url})` }
+            ? { backgroundImage: `url(${ushopBackgroundImage})` }
             : null
         }
       >
-        <div className="home-page__hero-text">
-          <div>
-            <span className="home-page__hero__title">
-              <h1>
-                <FormattedMessage defaultMessage="Final reduction" />
-              </h1>
-            </span>
-          </div>
-          <div>
-            <span className="home-page__hero__title">
-              <h1>
-                <FormattedMessage defaultMessage="Up to 70% off sale" />
-              </h1>
-            </span>
-          </div>
-        </div>
-        <div className="home-page__hero-action">
+        <div className="home-page__hero-action" style={{ marginTop: 350 }}>
           {loading && !categories ? (
             <Loader />
           ) : (
@@ -69,23 +52,19 @@ const Page: React.FC<{
                   categories.edges[0].node.name
                 )}
               >
-                <Button testingContext="homepageHeroActionButton">
-                  <FormattedMessage defaultMessage="Shop sale" />
-                </Button>
+                {/* <Button>Shop sale</Button> */}
               </Link>
             )
           )}
         </div>
       </div>
-      <ProductsFeatured
-        title={intl.formatMessage({ defaultMessage: "Featured" })}
-      />
+      {/* <ProductsFeatured /> */}
+      <UshopFeatured />
       {categoriesExist() && (
         <div className="home-page__categories">
           <div className="container">
-            <h3>
-              <FormattedMessage defaultMessage="Shop by category" />
-            </h3>
+            <h4 className="t-c">Зуны шинэ загварууд</h4>
+            <h3 className="t-c m-b3">Онцлох бараа</h3>
             <div className="home-page__categories__list">
               {categories.edges.map(({ node: category }) => (
                 <div key={category.id}>

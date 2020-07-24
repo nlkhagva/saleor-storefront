@@ -1,4 +1,5 @@
 import { media, styled } from "@styles";
+
 import { Size } from "./types";
 
 const padding = {
@@ -20,6 +21,7 @@ export const Primary = styled.button<{
     props.theme.button.colors[props.color].background};
   padding: ${props => padding[props.size]};
   border: none;
+  border-radius: 4px;
   transition: 0.3s;
   outline: none;
   cursor: pointer;
@@ -50,7 +52,7 @@ export const Primary = styled.button<{
   ${media.smallScreen`
     padding:  0.9rem 1rem;
     width: ${(props: { fullWidth: boolean }) =>
-      props.fullWidth ? "100%" : "88%"};
+      props.fullWidth ? "100%" : "100%"};
   `}
 `;
 

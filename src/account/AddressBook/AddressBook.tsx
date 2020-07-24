@@ -1,11 +1,13 @@
-import React from "react";
-import { useIntl } from "react-intl";
 import "./scss/index.scss";
 
+import React from "react";
+import { useIntl } from "react-intl";
+
 import { AddressFormModal, AddressGrid } from "@components/organisms";
-import { checkoutMessages, commonMessages } from "@temp/intl";
 import { useDefaultUserAddress, useDeleteUserAddresss } from "@saleor/sdk";
 import { AddressTypeEnum } from "@saleor/sdk/lib/gqlTypes/globalTypes";
+import { checkoutMessages, commonMessages } from "@temp/intl";
+
 import { ShopContext } from "../../components/ShopProvider/context";
 
 const AddressBook: React.FC<{
