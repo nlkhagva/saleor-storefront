@@ -32,7 +32,7 @@ const AddressGridSelector: React.FC<IProps> = ({
     <AddNewTile
       data-test="addressTileAddNew"
       key="newTile"
-      type={intl.formatMessage({ defaultMessage: "address" })}
+      type={intl.formatMessage({ defaultMessage: "Хаяг" })}
       onClick={() => setDisplayNewModal(true)}
     />
   );

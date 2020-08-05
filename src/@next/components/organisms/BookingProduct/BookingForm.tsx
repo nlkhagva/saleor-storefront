@@ -167,9 +167,13 @@ const BookingForm: React.FC<FormProps> = ({
                     </S.RowWithOneCell> */}
 
         <S.FormControl>
-          <Button type="submit">Сагсанд хийх</Button>
+          <Button testingContext="addbasket" type="submit">
+            Сагсанд хийх
+          </Button>
 
-          <Button secondary={true}>Буцах</Button>
+          <Button testingContext="back" secondary>
+            Буцах
+          </Button>
         </S.FormControl>
 
         {/* <S.RowWithOneCell>

@@ -38,8 +38,10 @@
 
     &__title{
       background-color: $gray-light;
-      padding: $spacer*.5 $spacer;
-
+      padding: $spacer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
     &__logo{
       vertical-align: middle; 
@@ -47,10 +49,37 @@
       box-shadow: 1px 1px rgba(0,0,0,.3);
       border-radius: 100%;
       margin-right: $spacer*.5;
+      margin-top: -7px;
+      margin-bottom: -6px;
     }
 
     &__name{
+      color: $black-for-text;
+      font-weight: bold;
+    }
 
+    &__total{
+      float: right;
+      font-weight: bold;
+    }
+
+    .ushop-price-table{
+      margin: 0 1rem; 
+      width: calc(100vw - 2rem);
+      table-layout: fixed;
+      overflow-wrap: break-word;
+      tr { 
+        border-bottom: none; 
+        td:nth-child(2){ font-weight: bold; }
+      }
+      tbody{
+        td{ padding: 0.3*$spacer 0 ; }
+      }
+      tfoot{
+        tr{border-top: 1px solid $gray-light2;
+          td{ padding: 0.5*$spacer 0; }
+        }
+      }
     }
   }
 

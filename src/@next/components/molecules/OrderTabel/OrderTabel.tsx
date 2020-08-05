@@ -15,7 +15,7 @@ import { IProps } from "./types";
 const header = (matches: boolean) => (
   <S.HeaderRow>
     <S.IndexNumber>
-      <FormattedMessage defaultMessage="Index Number" />
+      <FormattedMessage defaultMessage="Захиалгын дугаар" />
     </S.IndexNumber>
     {matches && (
       <>

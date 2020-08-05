@@ -97,6 +97,8 @@ class Search extends React.Component<SearchProps, SearchState> {
   };
 
   render() {
+    const autoFocus = true;
+
     return (
       <Overlay testingContext="searchOverlay" context={this.props.overlay}>
         <div
@@ -113,15 +115,15 @@ class Search extends React.Component<SearchProps, SearchState> {
                   <ReactSVG path={closeImg} onClick={this.props.overlay.hide} />
                 }
                 iconRight={<ReactSVG path={searchImg} />}
-                autoFocus={true}
+                autoFocus={autoFocus}
                 placeholder="Үгээр хайх & Бараа захиалах"
                 onBlur={this.handleInputBlur}
               />
             </div>
             <div
               className={classNames({
-                ["search__products"]: true,
-                ["search__products--expanded"]: this.hasSearchPhrase,
+                search__products: true,
+                "search__products--expanded": this.hasSearchPhrase,
               })}
             >
               <NetworkStatus>

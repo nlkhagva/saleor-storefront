@@ -8,13 +8,7 @@ import ReactSVG from "react-svg";
 import { useCart } from "@saleor/sdk";
 
 // import { useCart, useSignOut, useUserDetails } from '@saleor/sdk';
-import {
-  Offline,
-  Online,
-  OverlayContext,
-  OverlayTheme,
-  OverlayType,
-} from "../";
+import { Offline, Online, OverlayContext, OverlayTheme, OverlayType } from "..";
 // import { MenuDropdown, Offline, Online, OverlayContext, OverlayTheme, OverlayType } from '../';
 import * as appPaths from "../../app/routes";
 import { maybe } from "../../core/utils";
@@ -66,11 +60,11 @@ const MainMenu: React.FC = () => {
                     >
                       <ReactSVG
                         path={hamburgerImg}
-                        className={"main-menu__hamburger--icon"}
+                        className="main-menu__hamburger--icon"
                       />
                       <ReactSVG
                         path={hamburgerHoverImg}
-                        className={"main-menu__hamburger--hover"}
+                        className="main-menu__hamburger--hover"
                       />
                     </li>
                     {/* <Media

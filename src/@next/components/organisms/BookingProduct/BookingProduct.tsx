@@ -1,163 +1,125 @@
-import { Formik } from "formik";
+import React, { useState } from "react";
+
+import { useCart } from "@saleor/sdk";
 import UUID from "node-uuid";
-import React from "react";
+import { useAlert } from "react-alert";
 
-import {
-  useCart,
-  useCreateSimpleProduct,
-  useProductUpdateMetaData,
-} from "@saleor/sdk";
-
-import { BookingForm } from "./BookingForm";
 import { TypedUshopByLinkQuery } from "./queries";
-// import { InputSelect, TextField } from '@components/molecules';
-// import * as S from './styles';
+import { MyFormik } from "./MyFormik";
 import { IProps } from "./types";
+import { TypedCreateSimpleProduct, TypedUpdateMetadata } from "./mutations";
+import { ProductCreate } from "./gqlTypes/ProductCreate";
 
 const BookingProduct: React.FC<IProps> = ({ productUrl }: IProps) => {
-  const [createSimpleProduct] = useCreateSimpleProduct();
-  const [updateMetadata] = useProductUpdateMetaData();
+  const { addItem } = useCart();
+  const alert = useAlert();
+
+  const [formValues, setFormValues] = useState({
+    code: "",
+    color: "",
+    description: "",
+    isRequired: "",
+    shippingType: "",
+    size: "",
+    url: "",
+    quantity: 1,
+  });
 
   const variables = {
     link: productUrl,
   };
 
-  const productTypeOptions = {};
-
-  const handleSubmit = async (values: any) => {
-    const _productType = "UHJvZHVjdFR5cGU6MTU=";
-    const _productCategory = "Q2F0ZWdvcnk6MjQ==";
-    const _productWarehouse =
-      "V2FyZWhvdXNlOmZkMTI1NjNjLTA3ZTgtNDE4ZS05YzllLTgyYzhkNWJhOGJjNg==";
-
-    if (!values.name) {
-      alert("Нэр өгнө үү");
-      return false;
-    }
-    if (!values.price) {
-      alert("Үнэ бичнэ үү");
-      return false;
-    }
-
-    const product = await createSimpleProduct({
-      attributes: [],
-      basePrice: values.price,
-      category: _productCategory,
-      chargeTaxes: false,
-      collections: [],
-      descriptionJson: "{}",
-      isPublished: true,
-      name: values.name,
-      productType: _productType,
-      publicationDate: null,
-      seo: {
-        description: "",
-        title: "",
-      },
-      sku: "ushop-" + UUID.v4(),
-      stocks: [
-        {
-          quantity: 100,
-          warehouse: _productWarehouse,
-        },
-      ],
-      trackInventory: false,
-      ushop: values.ushopId,
-    });
-
-    console.log(product);
-
-    if (product?.data.productCreate.product.id) {
-      console.log("product ID: " + product?.data.productCreate.product);
-      // const productId = product?.data.productCreate.product.id;
-      // const variantId = product?.data.productCreate.product.variants[0].id;
-      // addItem(variantId, values.quantity)
-
-      // await updateMetadata({
-      //   id: productId,
-      //   input: [
-      //     { key: "code", value: values.code },
-      //     { key: "color", value: values.color },
-      //     { key: "description", value: values.description },
-      //     { key: "isRequired", value: values.isRequired },
-      //     { key: "shippingType", value: values.shippingType },
-      //     { key: "size", value: values.size },
-      //     { key: "url", value: values.url },
-      //   ],
-      // })
-    }
-
-    return false;
-  };
-
-  // React.useEffect(() => {
-  //   console.log("error")
-  //   console.log(createProductError)
-  //   if (createdProduct && !createProductError) {
-  //     console.log(createdProduct)
-  //   }
-  // }, [createdProduct, createProductError]);
-
   return (
     <TypedUshopByLinkQuery variables={variables}>
-      {({ loading, data }) => {
-        if (loading) {
-          return "Loading...";
-        }
-        const ushopId = data?.ushopByLink?.id || null;
+      {({ loading, data }) => (
+        <TypedUpdateMetadata>
+          {(updateMetadata, updateMetadataOpts) => {
+            const onCompleted = async (data: ProductCreate) => {
+              if (data) {
+                const productId = data.productCreate?.product?.id;
+                if (productId) {
+                  updateMetadata({
+                    variables: {
+                      id: productId,
+                      input: [
+                        { key: "code", value: formValues.code },
+                        { key: "color", value: formValues.color },
+                        { key: "description", value: formValues.description },
+                        { key: "isRequired", value: formValues.isRequired },
+                        { key: "shippingType", value: formValues.shippingType },
+                        { key: "size", value: formValues.size },
+                        { key: "url", value: formValues.url },
+                      ],
+                    },
+                  });
 
-        const fInitialValues = {
-          addMore: false,
-          code: "",
-          color: "",
-          description: "",
-          isRequired: false,
-          name: "",
-          price: "",
-          quantity: 1,
-          shippingType: "",
-          size: "",
-          url: productUrl,
-          ushopId: ushopId,
-        };
+                  const variant = data.productCreate?.product?.variants
+                    ? data.productCreate?.product?.variants![0]
+                    : null;
 
-        return (
-          <Formik
-            initialValues={fInitialValues}
-            enableReinitialize={true}
-            onSubmit={(values, { setSubmitting }) => {
-              if (handleSubmit) {
-                handleSubmit(values);
+                  if (variant) {
+                    addItem(variant.id, formValues.quantity);
+
+                    alert.show(
+                      {
+                        title: "Сагсанд бараа нэмэгдлээ",
+                      },
+                      { type: "success" }
+                    );
+                  }
+                }
               }
-              setSubmitting(false);
-            }}
-          >
-            {({
-              handleChange,
-              handleSubmit,
-              handleBlur,
-              values,
-              setFieldValue,
-              setFieldTouched,
-            }) => {
-              return (
-                <BookingForm
-                  ushopId={ushopId}
-                  productTypeOptions={productTypeOptions}
-                  {...{
-                    handleBlur,
-                    handleChange,
-                    handleSubmit,
-                    setFieldTouched,
-                    setFieldValue,
-                    values,
-                  }}
-                />
-              );
-            }}
-          </Formik>
-        );
-      }}
+            };
+
+            return (
+              <TypedCreateSimpleProduct onCompleted={onCompleted}>
+                {(productCreate, productCreateOpts) => (
+                  <MyFormik
+                    handleSubmit={values => {
+                      setFormValues(values);
+                      productCreate({
+                        variables: {
+                          attributes: [],
+                          basePrice: values.price,
+                          category: "Q2F0ZWdvcnk6MjQ==",
+                          chargeTaxes: false,
+                          collections: [],
+                          descriptionJson: "{}",
+                          isPublished: true,
+                          name: values.name,
+                          productType: "UHJvZHVjdFR5cGU6MTU=",
+                          publicationDate: null,
+                          seo: {
+                            description: "",
+                            title: "",
+                          },
+                          sku: `ushop-${UUID.v4()}`,
+                          stocks: [
+                            {
+                              quantity: 100,
+                              warehouse:
+                                "V2FyZWhvdXNlOmZkMTI1NjNjLTA3ZTgtNDE4ZS05YzllLTgyYzhkNWJhOGJjNg==",
+                            },
+                          ],
+                          trackInventory: false,
+                          ushop: values.ushopId,
+                        },
+                      });
+                    }}
+                    loading={
+                      productCreateOpts.loading ||
+                      updateMetadataOpts.loading ||
+                      loading
+                    }
+                    productUrl={productUrl}
+                    ushopId={data?.ushopByLink?.id || null}
+                  />
+                )}
+              </TypedCreateSimpleProduct>
+            );
+          }}
+        </TypedUpdateMetadata>
+      )}
     </TypedUshopByLinkQuery>
   );
 };

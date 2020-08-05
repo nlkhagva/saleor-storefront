@@ -4,12 +4,12 @@ import { FormattedMessage } from "react-intl";
 import { Button } from "../..";
 
 const Empty: React.FC<{ overlayHide(): void }> = ({ overlayHide }) => (
-  <div className="cart__empty">
+  <div className="cart__empty" style={{ textAlign: "center" }}>
     <h4>
-      <FormattedMessage defaultMessage="Your bag is empty" />
+      <FormattedMessage defaultMessage="Таны сагс хоосон байна" />
     </h4>
     <p>
-      <FormattedMessage defaultMessage="You haven’t added anything to your bag. We’re sure you’ll find something in our store" />
+      <FormattedMessage defaultMessage="Та сагсанд бараа нэмээгүй байна. Бид таныг манай дэлгүүрээс хүссэн бараагаа олно гэдэгт итгэлтэй байна" />
     </p>
     <div className="cart__empty__action">
       <Button
@@ -17,7 +17,7 @@ const Empty: React.FC<{ overlayHide(): void }> = ({ overlayHide }) => (
         secondary
         onClick={overlayHide}
       >
-        <FormattedMessage defaultMessage="Continue Shopping" />
+        <FormattedMessage defaultMessage="Нүүр рүү очих" />
       </Button>
     </div>
   </div>
