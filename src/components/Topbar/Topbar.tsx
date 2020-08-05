@@ -83,10 +83,10 @@ const Topbar: React.FC = () => {
                       overlayContext.show(OverlayType.login, OverlayTheme.right)
                     }
                   >
-                    <span className="with-icon">
+                    <a className="with-icon">
                       <ReactSVG path={iconUser} className="svg-icon" />
-                      <span className="label-icon">Нэвтрэх</span>
-                    </span>
+                      {/* <span className="label-icon">Нэвтрэх</span> */}
+                    </a>
                   </li>
                 )}
               </>

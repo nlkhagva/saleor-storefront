@@ -4,7 +4,7 @@ import { generatePageUrl } from "./utils";
 
 export const BASE_URL = "/";
 export const PRODUCTS_PER_PAGE = 6;
-export const SUPPORT_EMAIL = "support@example.com";
+export const SUPPORT_EMAIL = "lkhagva.w8@gmail.com";
 export const PROVIDERS = {
   BRAINTREE: {
     label: "Braintree",
@@ -47,8 +47,7 @@ export const SOCIAL_MEDIA = [
 ];
 export const META_DEFAULTS = {
   custom: [],
-  description:
-    "Open-source PWA storefront built with Saleor's e-commerce GraphQL API. Written with React and TypeScript.",
+  description: "Unurshop Англи бараа захиалга",
   image: `${window.location.origin}${require("../images/logo.svg")}`,
   title: "Англи бараа захиалга – UNURSHOP",
   type: "website",

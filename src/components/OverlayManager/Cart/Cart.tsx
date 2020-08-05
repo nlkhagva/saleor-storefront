@@ -29,6 +29,7 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
   const { checkout } = useCheckout();
   const {
     items,
+    addItem,
     removeItem,
     // subtotalPrice,
     shippingPrice,
@@ -89,7 +90,11 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
                 <Loader full />
               ) : (
                 <>
-                  <ProductList lines={items} remove={removeItem} />
+                  <ProductList
+                    lines={items}
+                    add={addItem}
+                    remove={removeItem}
+                  />
                   <div className="cart__footer">
                     {/* <div className="cart__footer__price">
                       <span>Subtotal</span>

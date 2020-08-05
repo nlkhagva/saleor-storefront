@@ -2,13 +2,13 @@ import { defineMessages, IntlShape } from "react-intl";
 
 export const commonMessages = defineMessages({
   search: {
-    defaultMessage: "search",
+    defaultMessage: "Хайлт",
   },
   outOfStock: {
-    defaultMessage: "Out of stock",
+    defaultMessage: "Дууссан",
   },
   lowStock: {
-    defaultMessage: "Low stock",
+    defaultMessage: "Цөөн үлдсэн",
   },
   noItemsAvailable: {
     defaultMessage: "No items available",
@@ -17,10 +17,10 @@ export const commonMessages = defineMessages({
     defaultMessage: "You might like",
   },
   choosePaymentMethod: {
-    defaultMessage: "Please choose payment method.",
+    defaultMessage: "Төлбөрийн нөхцөлөө сонгоно уу",
   },
   provideEmailAddress: {
-    defaultMessage: "Please provide email address.",
+    defaultMessage: "И-мэйл хаягаа оруулна уу",
   },
   account: {
     defaultMessage: "Account",
@@ -29,94 +29,94 @@ export const commonMessages = defineMessages({
     defaultMessage: "My Account",
   },
   orderHistory: {
-    defaultMessage: "Order history",
+    defaultMessage: "Захиалгын түүх",
   },
   addressBook: {
-    defaultMessage: "Address book",
+    defaultMessage: "Хаягууд",
   },
   logOut: {
-    defaultMessage: "Log Out",
+    defaultMessage: "Гарах",
   },
   firstName: {
-    defaultMessage: "First Name",
+    defaultMessage: "Нэр",
   },
   lastName: {
-    defaultMessage: "Last Name",
+    defaultMessage: "Овог",
   },
   password: {
-    defaultMessage: "Password",
+    defaultMessage: "Нууц үг",
   },
   quantity: {
-    defaultMessage: "Quantity",
+    defaultMessage: "Тоо",
   },
   sku: {
     defaultMessage: "SKU",
   },
   maxQtyIs: {
-    defaultMessage: "Maximum quantity is {maxQuantity}",
+    defaultMessage: "Хамгийн дээд хэмжээ нь {maxQuantity}",
   },
   qty: {
-    defaultMessage: "Quantity",
+    defaultMessage: "Тоо",
   },
   subtotal: {
     defaultMessage: "Subtotal",
   },
   shipping: {
-    defaultMessage: "Shipping",
+    defaultMessage: "Тээвэр",
   },
   promoCode: {
     defaultMessage: "Promo code",
   },
   total: {
-    defaultMessage: "Total",
+    defaultMessage: "Нийт",
   },
   totalPrice: {
-    defaultMessage: "Total Price",
+    defaultMessage: "Нийт үнэ",
   },
   checkout: {
-    defaultMessage: "Checkout",
+    defaultMessage: "Худалдан авах",
   },
   eMail: {
-    defaultMessage: "Email Address",
+    defaultMessage: "И-мэйл хаяг",
   },
   shortEmail: {
-    defaultMessage: "Email",
+    defaultMessage: "И-мэйл",
   },
   loading: {
     defaultMessage: "Loading",
   },
   products: {
-    defaultMessage: "Products",
+    defaultMessage: "Бараанууд",
   },
   price: {
-    defaultMessage: "Price",
+    defaultMessage: "Үнэ",
   },
   variant: {
     defaultMessage: "Variant",
   },
   phone: {
-    defaultMessage: "Phone",
+    defaultMessage: "Утас",
   },
   phoneNumber: {
-    defaultMessage: "Phone number: {phone}",
+    defaultMessage: "Утасны дугаар: {phone}",
   },
   showEmail: {
-    defaultMessage: "Email: {email}",
+    defaultMessage: "И-мэйл: {email}",
   },
   save: {
-    defaultMessage: "Save",
+    defaultMessage: "Хадгалах",
   },
   add: {
-    defaultMessage: "Add",
+    defaultMessage: "Нэмэх",
   },
   filterHeader: {
-    defaultMessage: "FILTERS",
+    defaultMessage: "ШҮҮХ",
   },
   clearFilterHeader: {
-    defaultMessage: "CLEAR FILTERS",
+    defaultMessage: "ШҮҮЛТ ЦЭВЭРЛЭХ",
   },
   status: {
-    defaultMessage: "Status",
+    defaultMessage: "Төлөв",
   },
   cancel: {
     defaultMessage: "Cancel",
@@ -167,7 +167,7 @@ export const checkoutMessages = defineMessages({
     defaultMessage: "Shipping Address",
   },
   continueShopping: {
-    defaultMessage: "CONTINUE SHOPPING",
+    defaultMessage: "Нүүр хуудас",
   },
 });
 

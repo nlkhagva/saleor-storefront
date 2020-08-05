@@ -12,3 +12,12 @@ export interface FormProps {
   ushopId: any;
   productTypeOptions?: any;
 }
+
+export interface MyFormikProps {
+  productUrl?: string;
+  ushopId?: string | null;
+  handleSubmit?: (e: any) => void;
+  productCreate?: any;
+  updateMetadata?: any;
+  loading?: boolean;
+}
