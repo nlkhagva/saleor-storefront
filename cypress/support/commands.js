@@ -3,6 +3,8 @@
 import "./user";
 import "./category";
 import "./cart";
+import "./checkout";
+import "./product";
 
 import { HEADER_SELECTORS } from "../elements/main-header/header-selectors";
 import { LOGIN_SELECTORS } from "../elements/saleor-account/login-selectors";
@@ -10,16 +12,6 @@ import { CHECKOUT_SELECTORS } from "../elements/products/checkout-selectors";
 
 Cypress.on("uncaught:exception", () => {
   return false;
-});
-
-Cypress.Commands.add("setup", polyfill => {
-  return cy.visit("/", {
-    onBeforeLoad(win) {
-      delete win.fetch;
-      win.eval(polyfill);
-      win.fetch = win.unfetch;
-    },
-  });
 });
 
 Cypress.Commands.add("addNewAddress", address => {
