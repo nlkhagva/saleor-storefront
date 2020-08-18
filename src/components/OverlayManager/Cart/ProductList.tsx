@@ -7,8 +7,8 @@ import { TypedProductVariants } from "./queries";
 
 const ProductList: React.SFC<{
   lines: ICheckoutModelLine[];
-  add(variantId: string, quantity: number): void;
-  remove(variantId: string): void;
+  add?(variantId: string, quantity: number): void;
+  remove?(variantId: string): void;
 }> = ({ lines, add, remove }) => {
   const variables = { ids: lines.map(line => line.variant.id) };
 

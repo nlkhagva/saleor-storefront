@@ -20,13 +20,13 @@ const header = (matches: boolean) => (
     {matches && (
       <>
         <S.ProductsOrdered>
-          <FormattedMessage defaultMessage="Products Ordered" />
+          <FormattedMessage defaultMessage="Захиалсан бараа" />
         </S.ProductsOrdered>
         <S.DateOfOrder>
-          <FormattedMessage defaultMessage="Date of Order" />
+          <FormattedMessage defaultMessage="Огноо" />
         </S.DateOfOrder>
         <S.Value>
-          <FormattedMessage defaultMessage="Value" />
+          <FormattedMessage defaultMessage="Нийт" />
         </S.Value>
       </>
     )}

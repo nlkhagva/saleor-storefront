@@ -14,10 +14,12 @@ import {
 } from "@temp/intl";
 
 import { orderHistoryUrl } from "../../../app/routes";
-import { AddressSummary, CartTable, NotFound } from "../../../components";
-import { ILine } from "../../../components/CartTable/ProductRow";
+import { AddressSummary, NotFound } from "../../../components";
+// import { AddressSummary, CartTable, NotFound } from "../../../components";
+// import { ILine } from "../../../components/CartTable/ProductRow";
+import ProductList from "../../../components/OverlayManager/Cart/ProductList";
 
-const extractOrderLines = (lines: OrderDetail_lines[]): ILine[] => {
+const extractOrderLines = (lines: OrderDetail_lines[]): any[] => {
   return lines
     .map(line => ({
       quantity: line.quantity,
@@ -33,10 +35,12 @@ const extractOrderLines = (lines: OrderDetail_lines[]): ILine[] => {
           ...line.unitPrice.net,
         },
       },
-      ...line.variant,
+      variant: line.variant,
       name: line.productName,
     }))
-    .sort((a, b) => b.id.toLowerCase().localeCompare(a.id.toLowerCase()));
+    .sort((a, b) =>
+      b.variant.id.toLowerCase().localeCompare(a.variant.id.toLowerCase())
+    );
 };
 
 const Page: React.FC<{
@@ -49,14 +53,14 @@ const Page: React.FC<{
     <>
       {!guest && (
         <Link className="order-details__link" to={orderHistoryUrl}>
-          <FormattedMessage defaultMessage="Go back to Order History" />
+          <FormattedMessage defaultMessage="Захиалгын түүх руу очих" />
         </Link>
       )}
       <div className="order-details__header">
-        <div>
+        <div className="">
           <h3>
             <FormattedMessage
-              defaultMessage="Your order no.: {orderNum}"
+              defaultMessage="Захиалгын дугаар: {orderNum}"
               values={{ orderNum: order.number }}
             />
           </h3>
@@ -93,12 +97,42 @@ const Page: React.FC<{
           </div>
         )}
       </div>
-      <CartTable
+      <div className="order-details__body">
+        <ProductList lines={extractOrderLines(order.lines)} />
+      </div>
+      {/* <CartTable
         lines={extractOrderLines(order.lines)}
         totalCost={<TaxedMoney taxedMoney={order.total} />}
         deliveryCost={<TaxedMoney taxedMoney={order.shippingPrice} />}
-        subtotal={<TaxedMoney taxedMoney={order.subtotal} />}
-      />
+        subtotal={}
+      /> */}
+
+      <table className="ushop-price-table" style={{ fontSize: "1rem" }}>
+        <tbody>
+          <tr>
+            <td>Барааны нийт</td>
+            <td>
+              <TaxedMoney taxedMoney={order.subtotal} />
+            </td>
+          </tr>
+          {order.shippingPrice && (
+            <tr>
+              <td>Хүргэлт</td>
+              <td>
+                <TaxedMoney taxedMoney={order.shippingPrice} />
+              </td>
+            </tr>
+          )}
+          {order.total && (
+            <tr>
+              <td>Захиалгын нийт</td>
+              <td>
+                <TaxedMoney taxedMoney={order.total} />
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </table>
       <div className="order-details__summary">
         <div>
           <h4>

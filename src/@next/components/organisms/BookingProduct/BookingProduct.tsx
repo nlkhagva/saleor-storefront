@@ -3,6 +3,11 @@ import React, { useState } from "react";
 import { useCart } from "@saleor/sdk";
 import UUID from "node-uuid";
 import { useAlert } from "react-alert";
+import {
+  PRODUCT_CATEGORY_ONLINE_ZAHIALGA,
+  PRODUCT_TYPE_ONLINE_ZAHIALGA,
+  WAREHOUSE_ASIA,
+} from "@app/custom/constants";
 
 import { TypedUshopByLinkQuery } from "./queries";
 import { MyFormik } from "./MyFormik";
@@ -81,13 +86,13 @@ const BookingProduct: React.FC<IProps> = ({ productUrl }: IProps) => {
                         variables: {
                           attributes: [],
                           basePrice: values.price,
-                          category: "Q2F0ZWdvcnk6MjQ==",
+                          category: PRODUCT_CATEGORY_ONLINE_ZAHIALGA,
                           chargeTaxes: false,
                           collections: [],
                           descriptionJson: "{}",
                           isPublished: true,
                           name: values.name,
-                          productType: "UHJvZHVjdFR5cGU6MTU=",
+                          productType: PRODUCT_TYPE_ONLINE_ZAHIALGA,
                           publicationDate: null,
                           seo: {
                             description: "",
@@ -97,8 +102,7 @@ const BookingProduct: React.FC<IProps> = ({ productUrl }: IProps) => {
                           stocks: [
                             {
                               quantity: 100,
-                              warehouse:
-                                "V2FyZWhvdXNlOmZkMTI1NjNjLTA3ZTgtNDE4ZS05YzllLTgyYzhkNWJhOGJjNg==",
+                              warehouse: WAREHOUSE_ASIA,
                             },
                           ],
                           trackInventory: false,

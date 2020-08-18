@@ -27,6 +27,10 @@
       align-items: center;
     }
   }
+  &__body{
+
+    margin: 1rem -1rem;
+  }
 
   &__status {
     color: $gray-dark;

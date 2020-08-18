@@ -18,9 +18,9 @@
     display: inline-block;
     position: relative;
 
-    &__svg{
+    // &__svg{
 
-    }
+    // }
     &__quantity{
       position: absolute;
       top: -$spacer/4;
@@ -65,21 +65,7 @@
 
     .ushop-price-table{
       margin: 0 1rem; 
-      width: calc(100vw - 2rem);
-      table-layout: fixed;
-      overflow-wrap: break-word;
-      tr { 
-        border-bottom: none; 
-        td:nth-child(2){ font-weight: bold; }
-      }
-      tbody{
-        td{ padding: 0.3*$spacer 0 ; }
-      }
-      tfoot{
-        tr{border-top: 1px solid $gray-light2;
-          td{ padding: 0.5*$spacer 0; }
-        }
-      }
+      width: calc(100% - 2rem);
     }
   }
 

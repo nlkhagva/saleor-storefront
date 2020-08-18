@@ -16,6 +16,7 @@ export type ILine = Omit<
   quantity: number;
   totalPrice: OrderByToken_orderByToken_lines_unitPrice;
   quantityAvailable?: number;
+  variant?: any;
 };
 
 interface ReadProductRowProps {

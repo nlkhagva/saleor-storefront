@@ -92,7 +92,7 @@ export const commonMessages = defineMessages({
     defaultMessage: "Үнэ",
   },
   variant: {
-    defaultMessage: "Variant",
+    defaultMessage: "Сонголт",
   },
   phone: {
     defaultMessage: "Утас",
@@ -164,7 +164,7 @@ export const checkoutMessages = defineMessages({
     defaultMessage: "REVIEW ORDER",
   },
   shippingAddress: {
-    defaultMessage: "Shipping Address",
+    defaultMessage: "Хүлээн авах хаяг",
   },
   continueShopping: {
     defaultMessage: "Нүүр хуудас",

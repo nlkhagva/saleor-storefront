@@ -41,13 +41,26 @@
   & > h3 { font-size: 22px; font-weight: bold; }
 }
 
-.ushop-price-table{
-  margin: 0;
 
+.ushop-price-table{
+  table-layout: fixed;
+  overflow-wrap: break-word;
+  tr { 
+    border-bottom: none; 
+    td:nth-child(2){ font-weight: bold; }
+  }
   td { 
     padding: $spacer*.5 $spacer;
   }
   td:last-child { 
     text-align: right;
+  }
+  tbody{
+    td{ padding: 0.3*$spacer 0 ; }
+  }
+  tfoot{
+    tr{border-top: 1px solid $gray-light2;
+      td{ padding: 0.5*$spacer 0; }
+    }
   }
 }

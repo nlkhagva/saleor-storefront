@@ -3,23 +3,24 @@ import { ICheckoutModelLine } from "@saleor/sdk/lib/helpers";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
+import { PRODUCT_TYPE_SHIPPING } from "@app/custom/constants";
 import { Money, TaxedMoney } from "@components/containers";
 import { Thumbnail } from "@components/molecules";
 import { generateProductUrl } from "../../../core/utils";
 import removeImg from "../../../images/garbage.svg";
 import UshopLogo from "../../../images/unurshop/logo-v3.png";
+
 // import ZaraLogo from "../../../images/unurshop/xd/zara.jpg";
 
 const CustomList: React.SFC<{
   lines: ICheckoutModelLine[];
   data: any;
-  add(variantId: string, quantity: number): void;
-  remove(variantId: string): void;
+  add?(variantId: string, quantity: number): void;
+  remove?(variantId: string): void;
 }> = ({ lines, data, add, remove }) => {
-  const ptShippingId = "UHJvZHVjdFR5cGU6MTc=";
+  const ptShippingId = PRODUCT_TYPE_SHIPPING;
 
   const ushops = [];
-  const addIds = [];
   const removeIds = [];
 
   const variants = data.productVariants.edges.map(tmp => tmp.node);
@@ -53,30 +54,33 @@ const CustomList: React.SFC<{
     }
   });
 
-  console.log(ushops);
-  ushops
-    .filter(
-      ushop =>
-        ushop.shippingVariantId === undefined && ushop.shippingProduct !== null
-    )
-    .map(ushop => {
-      const max_variant = ushop.shippingProduct.variants.reduce((p, v) =>
-        p.pricing.price.gross.amount > v.pricing.price.gross.amount ? p : v
-      );
-      addIds.push(max_variant.id);
-    });
+  if (add) {
+    const addIds = [];
 
-  //   console.log("====================================");
-  //   console.log(variants);
-  //   console.log(ushops);
-  //   console.log(removeIds);
-  //   console.log(addIds);
-  addIds.map(id => {
-    add(id, 1);
-  });
-  removeIds.map(id => {
-    remove(id);
-  });
+    ushops
+      .filter(
+        ushop =>
+          ushop.shippingVariantId === undefined &&
+          ushop.shippingProduct !== null &&
+          ushop.shippingProduct.variants.length > 0
+      )
+      .map(ushop => {
+        const max_variant = ushop.shippingProduct.variants.reduce((p, v) =>
+          p.pricing.price.gross.amount > v.pricing.price.gross.amount ? p : v
+        );
+        addIds.push(max_variant.id);
+      });
+
+    addIds.map(id => {
+      add(id, 1);
+    });
+  }
+
+  if (remove) {
+    removeIds.map(id => {
+      remove(id);
+    });
+  }
 
   return (
     <>
@@ -142,11 +146,14 @@ const CustomList: React.SFC<{
                           <span>{line.variant.name}</span>
                           <span>{`Тоо: ${line.quantity}`}</span>
                         </span>
-                        <ReactSVG
-                          path={removeImg}
-                          className="cart__list__item__details__delete-icon"
-                          onClick={() => remove(line.variant.id)}
-                        />
+
+                        {remove && (
+                          <ReactSVG
+                            path={removeImg}
+                            className="cart__list__item__details__delete-icon"
+                            onClick={() => remove(line.variant.id)}
+                          />
+                        )}
                       </div>
                     </li>
                   );
@@ -177,7 +184,16 @@ const CustomList: React.SFC<{
                   <tr>
                     <td>{`Нийт (${_shop.name})`}</td>
                     <td>
-                      <Money money={{ ...priceFormat, amount: shopTotal }} />
+                      <Money
+                        money={{
+                          ...priceFormat,
+                          amount:
+                            shopTotal +
+                            (selectedShipping
+                              ? selectedShipping.pricing.price.gross.amount
+                              : 0),
+                        }}
+                      />
                     </td>
                   </tr>
                 </tfoot>
