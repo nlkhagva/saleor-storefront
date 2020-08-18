@@ -1,16 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useIntl } from "react-intl";
-import { Redirect, useLocation } from "react-router-dom";
+import { Redirect, useLocation, useHistory } from "react-router-dom";
 
 import { Button, Loader } from "@components/atoms";
 import { CheckoutProgressBar } from "@components/molecules";
-import { CartSummary } from "@components/organisms";
+import { CartSummary, PaymentGatewaysList } from "@components/organisms";
 import { Checkout } from "@components/templates";
 import { useCart, useCheckout } from "@saleor/sdk";
 import { IItems } from "@saleor/sdk/lib/api/Cart/types";
 import { CHECKOUT_STEPS } from "@temp/core/config";
 import { checkoutMessages } from "@temp/intl";
-import { ITaxedMoney } from "@types";
+import { ITaxedMoney, ICheckoutStep, ICardData, IFormError } from "@types";
 
 import { CheckoutRouter } from "./CheckoutRouter";
 import {
@@ -68,14 +68,8 @@ const prepareCartSummary = (
 const getCheckoutProgress = (
   loaded: boolean,
   activeStepIndex: number,
-  isShippingRequired: boolean
+  steps: ICheckoutStep[]
 ) => {
-  const steps = isShippingRequired
-    ? CHECKOUT_STEPS
-    : CHECKOUT_STEPS.filter(
-        ({ onlyIfShippingRequired }) => !onlyIfShippingRequired
-      );
-
   return loaded ? (
     <CheckoutProgressBar steps={steps} activeStep={activeStepIndex} />
   ) : null;
@@ -98,6 +92,7 @@ const getButton = (text: string, onClick: () => void) => {
 
 const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   const { pathname } = useLocation();
+  const history = useHistory();
   const {
     loaded: cartLoaded,
     shippingPrice,
@@ -106,7 +101,13 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     totalPrice,
     items,
   } = useCart();
-  const { loaded: checkoutLoaded, checkout, payment } = useCheckout();
+  const {
+    loaded: checkoutLoaded,
+    checkout,
+    payment,
+    availablePaymentGateways,
+    createPayment,
+  } = useCheckout();
   const intl = useIntl();
 
   if (cartLoaded && (!items || !items?.length)) {
@@ -122,6 +123,9 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     selectedPaymentGatewayToken,
     setSelectedPaymentGatewayToken,
   ] = useState<string | undefined>(payment?.token);
+  const [paymentGatewayErrors, setPaymentGatewayErrors] = useState<
+    IFormError[]
+  >([]);
 
   useEffect(() => {
     setSelectedPaymentGateway(payment?.gateway);
@@ -130,11 +134,21 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     setSelectedPaymentGatewayToken(payment?.token);
   }, [payment?.token]);
 
-  const matchingStepIndex = CHECKOUT_STEPS.findIndex(
-    ({ link }) => link === pathname
-  );
-  const activeStepIndex = matchingStepIndex !== -1 ? matchingStepIndex : 3;
-  const activeStep = CHECKOUT_STEPS[activeStepIndex];
+  const isShippingRequiredForProducts =
+    items &&
+    items.some(
+      ({ variant }) => variant.product?.productType.isShippingRequired
+    );
+
+  const steps = isShippingRequiredForProducts
+    ? CHECKOUT_STEPS
+    : CHECKOUT_STEPS.filter(
+        ({ onlyIfShippingRequired }) => !onlyIfShippingRequired
+      );
+  const matchingStepIndex = steps.findIndex(({ link }) => link === pathname);
+  const activeStepIndex =
+    matchingStepIndex !== -1 ? matchingStepIndex : steps.length - 1;
+  const activeStep = steps[activeStepIndex];
 
   const checkoutAddressSubpageRef = useRef<ICheckoutAddressSubpageHandles>(
     null
@@ -146,12 +160,14 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     null
   );
   const checkoutReviewSubpageRef = useRef<ICheckoutReviewSubpageHandles>(null);
+  const checkoutGatewayFormId = "gateway-form";
+  const checkoutGatewayFormRef = useRef<HTMLFormElement>(null);
 
   const handleNextStepClick = () => {
     // Some magic above and below ensures that the activeStepIndex will always
     // be in 0-3 range
     /* eslint-disable default-case */
-    switch (activeStepIndex) {
+    switch (activeStep.index) {
       case 0:
         if (checkoutAddressSubpageRef.current?.submitAddress) {
           checkoutAddressSubpageRef.current?.submitAddress();
@@ -174,6 +190,17 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
         break;
     }
   };
+  const handleStepSubmitSuccess = (data?: object) => {
+    if (activeStepIndex === steps.length - 1) {
+      history.push({
+        pathname: "/order-finalized",
+        state: data,
+      });
+    } else {
+      history.push(steps[activeStepIndex + 1].link);
+    }
+  };
+
   const shippingTaxedPrice =
     checkout?.shippingMethod?.id && shippingPrice
       ? {
@@ -196,6 +223,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
           <CheckoutAddressSubpage
             ref={checkoutAddressSubpageRef}
             changeSubmitProgress={setSubmitInProgress}
+            onSubmitSuccess={handleStepSubmitSuccess}
             {...props}
           />
         )}
@@ -203,16 +231,17 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
           <CheckoutShippingSubpage
             ref={checkoutShippingSubpageRef}
             changeSubmitProgress={setSubmitInProgress}
+            onSubmitSuccess={handleStepSubmitSuccess}
             {...props}
           />
         )}
         renderPayment={props => (
           <CheckoutPaymentSubpage
             ref={checkoutPaymentSubpageRef}
-            selectedPaymentGateway={selectedPaymentGateway}
-            selectedPaymentGatewayToken={selectedPaymentGatewayToken}
+            paymentGatewayFormRef={checkoutGatewayFormRef}
             changeSubmitProgress={setSubmitInProgress}
-            selectPaymentGateway={setSelectedPaymentGateway}
+            onSubmitSuccess={handleStepSubmitSuccess}
+            onPaymentGatewayError={setPaymentGatewayErrors}
             {...props}
           />
         )}
@@ -221,6 +250,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
             ref={checkoutReviewSubpageRef}
             selectedPaymentGatewayToken={selectedPaymentGatewayToken}
             changeSubmitProgress={setSubmitInProgress}
+            onSubmitSuccess={handleStepSubmitSuccess}
             {...props}
           />
         )}
@@ -229,11 +259,38 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       <Loader />
     );
 
-  const isShippingRequiredForProducts =
-    items &&
-    items.some(
-      ({ variant }) => variant.product?.productType.isShippingRequired
-    );
+  const handleProcessPayment = async (
+    gateway: string,
+    token: string,
+    cardData?: ICardData
+  ) => {
+    const { dataError } = await createPayment(gateway, token, cardData);
+    const errors = dataError?.error;
+    setSubmitInProgress(false);
+    if (errors) {
+      setPaymentGatewayErrors(errors);
+    } else {
+      setPaymentGatewayErrors([]);
+      handleStepSubmitSuccess();
+    }
+  };
+  const handlePaymentGatewayError = () => {
+    setSubmitInProgress(false);
+  };
+
+  const paymentGatewaysView = availablePaymentGateways && (
+    <PaymentGatewaysList
+      paymentGateways={availablePaymentGateways}
+      processPayment={handleProcessPayment}
+      formId={checkoutGatewayFormId}
+      formRef={checkoutGatewayFormRef}
+      selectedPaymentGateway={selectedPaymentGateway}
+      selectedPaymentGatewayToken={selectedPaymentGatewayToken}
+      selectPaymentGateway={setSelectedPaymentGateway}
+      onError={handlePaymentGatewayError}
+      errors={paymentGatewayErrors}
+    />
+  );
 
   let buttonText = activeStep.nextActionName;
   /* eslint-disable default-case */
@@ -258,7 +315,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       navigation={getCheckoutProgress(
         cartLoaded && checkoutLoaded,
         activeStepIndex,
-        !!isShippingRequiredForProducts
+        steps
       )}
       cartSummary={prepareCartSummary(
         totalPrice,
@@ -268,6 +325,8 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
         items
       )}
       checkout={checkoutView}
+      paymentGateways={paymentGatewaysView}
+      hidePaymentGateways={steps[activeStepIndex].name !== "Payment"}
       button={getButton(buttonText.toUpperCase(), handleNextStepClick)}
     />
   );

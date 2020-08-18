@@ -34,9 +34,17 @@ describe("Buy a product as a logged user", () => {
           .click()
           .get(CHECKOUT_SELECTORS.CHECKOUT_LINKS.address)
           .click()
+          .get(CHECKOUT_SELECTORS.addNewShippingAddress)
+          .first()
+          .click()
           .addNewAddress(address)
-          .get(CHECKOUT_SELECTORS.ADDRESS_SELECTORS.addressTiles)
+          .get(CHECKOUT_SELECTORS.ADDRESS_SELECTORS.shippingAddressTiles)
           .last()
+          .click()
+          .get(
+            CHECKOUT_SELECTORS.ADDRESS_SELECTORS.sameAsShippingAddressCheckbox
+          )
+          .parent()
           .click()
           .get(CHECKOUT_SELECTORS.nextCheckoutStepBtn)
           .click()
@@ -64,7 +72,7 @@ describe("Buy a product as a logged user", () => {
 
           .get(HEADER_SELECTORS.loggedInMainMenuButton)
           .click()
-          .get(HEADER_SELECTORS.MAINMENUDROPDOWN_SELECTORS.orderHistory)
+          .get(HEADER_SELECTORS.MAIN_MENU_DROPDOWN_SELECTORS.orderHistory)
           .click()
           .get("@totalPrice")
           .then(totalPrice => {

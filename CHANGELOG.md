@@ -19,6 +19,11 @@ All notable, unreleased changes to this project will be documented in this file.
 - Download invoice for order - #790 by @orzechdev
 - Do not throw error if unsupported payment gateway found - #819 by @dominik-zeglen
 - Fix tsconfig aliases - #824 by @orzechdev
+- Set billing address in first checkout step - #822 by @orzechdev
+- Persist payment gateways for the whole checkout - #828 by @orzechdev
+- Add test tags to address book - #847 by @dominik-zeglen
+- Refresh user data if mutation fails - #854 by @dominik-zeglen
+- Fix product list data overfetching - #855 by @dominik-zeglen
 
 ## 2.10.4
 
