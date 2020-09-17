@@ -27,3 +27,4 @@ export * from "./CheckoutPayment";
 export * from "./CheckoutReview";
 export * from "./ThankYou";
 export * from "./BookingProduct";
+export * from "./AdyenPaymentGateway";

@@ -8,6 +8,7 @@ import { useHistory } from "react-router-dom";
 
 import { useCart } from "@saleor/sdk";
 
+import { Loader } from "@components/atoms";
 import { MetaWrapper, NotFound, OfflinePlaceholder } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
 import { getGraphqlIdFromDBId, maybe } from "../../core/utils";
@@ -27,11 +28,11 @@ const canDisplay = (product: ProductDetails_product) =>
 const extractMeta = (product: ProductDetails_product) => ({
   custom: [
     {
-      content: product.pricing.priceRange.start.gross.amount.toString(),
+      content: product.pricing?.priceRange?.start?.gross.amount.toString(),
       property: "product:price:amount",
     },
     {
-      content: product.pricing.priceRange.start.gross.currency,
+      content: product.pricing?.priceRange?.start?.gross.currency,
       property: "product:price:currency",
     },
     {
@@ -39,7 +40,7 @@ const extractMeta = (product: ProductDetails_product) => ({
       property: "product:isAvailable",
     },
     {
-      content: product.category.name,
+      content: product.category?.name,
       property: "product:category",
     },
   ],
@@ -120,7 +121,7 @@ const View: React.FC<RouteComponentProps<{ id: string }>> = ({ match }) => {
       errorPolicy="all"
       key={match.params.id}
     >
-      {({ data }) => (
+      {({ data, loading }) => (
         <NetworkStatus>
           {isOnline => {
             const { product } = data;
@@ -134,6 +135,10 @@ const View: React.FC<RouteComponentProps<{ id: string }>> = ({ match }) => {
                   />
                 </MetaWrapper>
               );
+            }
+
+            if (loading) {
+              return <Loader />;
             }
 
             if (product === null) {

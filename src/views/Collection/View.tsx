@@ -5,6 +5,7 @@ import { RouteComponentProps } from "react-router";
 import { prodListHeaderCommonMsg } from "@temp/intl";
 import { IFilters } from "@types";
 import { StringParam, useQueryParam } from "use-query-params";
+import { Loader } from "@components/atoms";
 import { MetaWrapper, NotFound, OfflinePlaceholder } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
 import { PRODUCTS_PER_PAGE } from "../../core/config";
@@ -142,12 +143,9 @@ export const View: React.FC<ViewProps> = ({ match }) => {
           loaderFull
         >
           {collectionData => {
-            const canDisplayFilters = maybe(
-              () =>
-                !!collectionData.data.attributes.edges &&
-                !!collectionData.data.collection.name,
-              false
-            );
+            if (collectionData.loading) {
+              return <Loader />;
+            }
 
             if (
               collectionData.data &&
@@ -160,26 +158,34 @@ export const View: React.FC<ViewProps> = ({ match }) => {
               return <OfflinePlaceholder />;
             }
 
+            const canDisplayFilters =
+              !!collectionData.data?.attributes?.edges &&
+              !!collectionData.data?.collection?.name;
+
             return (
               <TypedCollectionProductsQuery variables={variables}>
                 {collectionProductsData => {
+                  if (!canDisplayFilters && collectionProductsData.loading) {
+                    return <Loader />;
+                  }
+
                   const handleLoadMore = () =>
                     collectionProductsData.loadMore(
                       (prev, next) => ({
                         ...prev,
                         products: {
-                          ...prev.products,
+                          ...prev.collection.products,
                           edges: [
-                            ...prev.products.edges,
-                            ...next.products.edges,
+                            ...prev.collection.products.edges,
+                            ...next.collection.products.edges,
                           ],
-                          pageInfo: next.products.pageInfo,
+                          pageInfo: next.collection.products.pageInfo,
                         },
                       }),
                       {
                         after:
-                          collectionProductsData.data.products.pageInfo
-                            .endCursor,
+                          collectionProductsData.data.collection.products
+                            .pageInfo.endCursor,
                       }
                     );
                   if (canDisplayFilters) {
@@ -201,14 +207,16 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                           displayLoader={collectionData.loading}
                           hasNextPage={maybe(
                             () =>
-                              collectionProductsData.data.products.pageInfo
-                                .hasNextPage,
+                              collectionProductsData.data.collection.products
+                                .pageInfo.hasNextPage,
                             false
                           )}
                           sortOptions={sortOptions}
                           activeSortOption={filters.sortBy}
                           filters={filters}
-                          products={collectionProductsData.data.products}
+                          products={
+                            collectionProductsData.data.collection.products
+                          }
                           onAttributeFiltersChange={onFiltersChange}
                           onLoadMore={handleLoadMore}
                           activeFilters={
@@ -223,6 +231,8 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                       </MetaWrapper>
                     );
                   }
+
+                  return null;
                 }}
               </TypedCollectionProductsQuery>
             );

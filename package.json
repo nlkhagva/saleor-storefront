@@ -9,7 +9,7 @@
   "dependencies": {
     "@babel/runtime": "^7.5.5",
     "@lhci/cli": "^0.4.1",
-    "@saleor/sdk": "0.1.0-6",
+    "@saleor/sdk": "^0.1.1",
     "@sentry/apm": "^5.15.5",
     "@sentry/browser": "^5.15.5",
     "@stripe/react-stripe-js": "^1.1.2",
@@ -151,7 +151,7 @@
     "jest-svg-transformer": "^1.0.0",
     "lint-staged": "^10.2.9",
     "mini-css-extract-plugin": "^0.4.1",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "node-sass": "^4.14.1",
     "plop": "^2.5.3",
     "postcss": "^7.0.1",
@@ -192,8 +192,7 @@
   "lint-staged": {
     "*.{jsx?,tsx?}": [
       "eslint --fix",
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ]
   },
   "scripts": {

@@ -2,34 +2,42 @@ import "../globalStyles/scss/index.scss";
 
 import React from "react";
 
-import { DemoBanner } from "@components/atoms";
+import { useAuth } from "@saleor/sdk";
+import { DemoBanner, Loader } from "@components/atoms";
 import { demoMode } from "@temp/constants";
-
 import {
   Footer,
-  FooterMainMenu,
   MainMenu,
   MetaConsumer,
   OverlayManager,
-  Topbar,
+  OverlayProvider,
 } from "../components";
+import ShopProvider from "../components/ShopProvider";
+import "../globalStyles/scss/index.scss";
 import { Routes } from "./routes";
+import Notifications from "./Notifications";
 
 const App: React.FC = () => {
-  return (
-    <>
-      <MetaConsumer />
-      {demoMode && <DemoBanner />}
-      <header>
-        <Topbar />
-        <MainMenu />
-      </header>
-      <Routes />
+  const { tokenRefreshing, tokenVerifying } = useAuth();
 
-      <FooterMainMenu />
-      <Footer />
-      <OverlayManager />
-    </>
+  if (tokenRefreshing || tokenVerifying) {
+    return <Loader />;
+  }
+
+  return (
+    <ShopProvider>
+      <OverlayProvider>
+        <MetaConsumer />
+        {demoMode && <DemoBanner />}
+        <header>
+          <MainMenu />
+        </header>
+        <Routes />
+        <Footer />
+        <OverlayManager />
+        <Notifications />
+      </OverlayProvider>
+    </ShopProvider>
   );
 };
 
