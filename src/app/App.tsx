@@ -13,7 +13,6 @@ import {
   OverlayProvider,
 } from "../components";
 import ShopProvider from "../components/ShopProvider";
-import "../globalStyles/scss/index.scss";
 import { Routes } from "./routes";
 import Notifications from "./Notifications";
 
