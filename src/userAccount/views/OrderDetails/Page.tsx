@@ -19,18 +19,18 @@ import { AddressSummary, NotFound } from "../../../components";
 // import { ILine } from "../../../components/CartTable/ProductRow";
 import ProductList from "../../../components/OverlayManager/Cart/ProductList";
 
-const extractOrderLines = (lines: any[]): any[] => {
-  return lines
-    .map(line => ({
-      quantity: line.quantity,
-      totalPrice: line.totalPrice,
-      ...line.variant,
-      name: line.productName,
-    }))
-    .sort((a, b) =>
-      b.variant.id.toLowerCase().localeCompare(a.variant.id.toLowerCase())
-    );
-};
+// const extractOrderLines = (lines: any[]): any[] => {
+//   return lines
+//     .map(line => ({
+//       quantity: line.quantity,
+//       totalPrice: line.totalPrice,
+//       ...line.variant,
+//       name: line.productName,
+//     }))
+//     .sort((a, b) =>
+//       b.variant.id.toLowerCase().localeCompare(a.variant.id.toLowerCase())
+//     );
+// };
 
 const Page: React.FC<{
   guest: boolean;
@@ -87,7 +87,7 @@ const Page: React.FC<{
         )}
       </div>
       <div className="order-details__body">
-        <ProductList lines={extractOrderLines(order.lines)} />
+        <ProductList lines={order.lines} />
       </div>
       {/* <CartTable
         lines={extractOrderLines(order.lines)}

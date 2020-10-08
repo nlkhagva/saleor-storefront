@@ -11,6 +11,7 @@ import {
   MetaConsumer,
   OverlayManager,
   OverlayProvider,
+  Topbar,
 } from "../components";
 import ShopProvider from "../components/ShopProvider";
 import { Routes } from "./routes";
@@ -29,6 +30,7 @@ const App: React.FC = () => {
         <MetaConsumer />
         {demoMode && <DemoBanner />}
         <header>
+          <Topbar />
           <MainMenu />
         </header>
         <Routes />
