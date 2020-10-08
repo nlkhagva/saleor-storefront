@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import { DropdownMenu, IconButton } from "@components/atoms";
 import { TaxedMoney } from "@components/containers";
-import { OrderDetail_lines } from "@saleor/sdk/lib/fragments/gqlTypes/OrderDetail";
+// import { OrderDetail_lines } from "@saleor/sdk/lib/fragments/gqlTypes/OrderDetail";
 import { OrderByToken_orderByToken } from "@saleor/sdk/lib/queries/gqlTypes/OrderByToken";
 import { UserOrderByToken_orderByToken } from "@saleor/sdk/lib/queries/gqlTypes/UserOrderByToken";
 import {
@@ -19,7 +19,7 @@ import { AddressSummary, NotFound } from "../../../components";
 // import { ILine } from "../../../components/CartTable/ProductRow";
 import ProductList from "../../../components/OverlayManager/Cart/ProductList";
 
-const extractOrderLines = (lines: OrderDetail_lines[]): any[] => {
+const extractOrderLines = (lines: any[]): any[] => {
   return lines
     .map(line => ({
       quantity: line.quantity,

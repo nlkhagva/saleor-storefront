@@ -190,10 +190,10 @@ const MainMenu: React.FC = () => {
                       query={{ minWidth: mediumScreen }}
                       render={() => <span>Search</span>}
                     />
-                    <a>
+                    <span>
                       <ReactSVG path={searchImg} className="search-icon" />
                       Үгээр хайх & Бараа захиалах
-                    </a>
+                    </span>
                   </li>
                   {/* <li
                     className="main-menu__order-button"
@@ -311,7 +311,8 @@ const MainMenu: React.FC = () => {
                     query={{ minWidth: mediumScreen }}
                     render={() => (
                       <span>
-                        <FormattedMessage defaultMessage="Offline" />
+                        Offline
+                        {/* <FormattedMessage defaultMessage="Offline" /> */}
                       </span>
                     )}
                   />

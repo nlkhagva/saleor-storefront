@@ -47,14 +47,14 @@ const Topbar: React.FC = () => {
                 </a>
               </li>
               <li>
-                <a className="with-icon">
+                <a className="with-icon" href="https://www.unurshop.mn">
                   <ReactSVG path={iconTugrug} className="svg-icon hide" />
                   <ReactSVG path={iconPound} className="svg-icon " />
                   <span className="label-icon">Төгрөг</span>
                 </a>
               </li>
               <li>
-                <a className="with-icon">
+                <a className="with-icon" href="https://www.unurshop.mn">
                   <ReactSVG path={iconUk} className="svg-icon" />
                   <ReactSVG path={iconMn} className="svg-icon hide" />
                   <span className="label-icon">Eng</span>
@@ -83,7 +83,7 @@ const Topbar: React.FC = () => {
                       overlayContext.show(OverlayType.login, OverlayTheme.right)
                     }
                   >
-                    <a className="with-icon">
+                    <a className="with-icon" href="https://www.unurshop.mn">
                       <ReactSVG path={iconUser} className="svg-icon" />
                       {/* <span className="label-icon">Нэвтрэх</span> */}
                     </a>
