@@ -28,3 +28,4 @@ export * from "./CheckoutReview";
 export * from "./ThankYou";
 export * from "./BookingProduct";
 export * from "./AdyenPaymentGateway";
+export * from "./AddToCartSection";

@@ -7,6 +7,7 @@ import { DemoBanner, Loader } from "@components/atoms";
 import { demoMode } from "@temp/constants";
 import {
   Footer,
+  FooterMainMenu,
   MainMenu,
   MetaConsumer,
   OverlayManager,
@@ -35,6 +36,7 @@ const App: React.FC = () => {
         </header>
         <Routes />
         <Footer />
+        <FooterMainMenu />
         <OverlayManager />
         <Notifications />
       </OverlayProvider>

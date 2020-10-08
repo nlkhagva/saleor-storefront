@@ -1,7 +1,7 @@
 import "./scss/index.scss";
 
 import * as React from "react";
-// import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from "react-intl";
 import { generatePath, Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
@@ -52,11 +52,27 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
     return items.find(item => !item.variant || !item.totalPrice);
   };
 
+  const itemsQuantity =
+    items?.reduce((prevVal, currVal) => prevVal + currVal.quantity, 0) || 0;
+
   return (
     <Overlay testingContext="cartOverlay" context={overlay}>
       <Online>
         <div className="cart">
           <div className="overlay__header">
+            <ReactSVG path={cartImg} className="overlay__header__cart-icon" />
+            <div className="overlay__header-text">
+              <FormattedMessage defaultMessage="My bag," />{" "}
+              <span className="overlay__header-text-items">
+                <FormattedMessage
+                  defaultMessage="{itemsQuantity,plural,one{{itemsQuantity} item} other{{itemsQuantity} items}}"
+                  description="items quantity in cart"
+                  values={{
+                    itemsQuantity,
+                  }}
+                />
+              </span>
+            </div>
             <ReactSVG
               path={closeImg}
               onClick={overlay.hide}

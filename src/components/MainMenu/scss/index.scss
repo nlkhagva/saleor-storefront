@@ -287,8 +287,8 @@
     transition: 0.3s;
     font-size: $base-font-size*.75;
 
-    @media (max-width: 325px) {
-      font-size: $base-font-size*.55;
+    @media (max-width: 625px) {
+      font-size: $base-font-size*.65;
     }
 
 

@@ -22,6 +22,8 @@ workbox.routing.registerNavigationRoute(
       new RegExp("/dashboard"),
       new RegExp("/media/export_files"),
       new RegExp("/plugins"),
+      new RegExp("/storybook"),
+      new RegExp("/__"), // used by cypress tests runner
     ],
   }
 );
