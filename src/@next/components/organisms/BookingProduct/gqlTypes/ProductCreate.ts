@@ -2,7 +2,7 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { AttributeValueInput, SeoInput, StockInput, ProductErrorCode } from "./../../../../../../gqlTypes/globalTypes";
+import { ProductCreateInput, ProductErrorCode } from "./../../../../../../gqlTypes/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: ProductCreate
@@ -55,19 +55,5 @@ export interface ProductCreate {
 }
 
 export interface ProductCreateVariables {
-  attributes?: (AttributeValueInput | null)[] | null;
-  publicationDate?: any | null;
-  category: string;
-  chargeTaxes: boolean;
-  collections?: (string | null)[] | null;
-  descriptionJson?: any | null;
-  isPublished: boolean;
-  name: string;
-  basePrice?: any | null;
-  productType: string;
-  sku?: string | null;
-  seo?: SeoInput | null;
-  stocks: StockInput[];
-  trackInventory: boolean;
-  ushop: string;
+  input: ProductCreateInput;
 }

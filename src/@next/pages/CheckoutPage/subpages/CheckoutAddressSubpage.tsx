@@ -74,15 +74,15 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
 
   useImperativeHandle(ref, () => ({
     submitAddress: () => {
-      if (isShippingRequiredForProducts) {
-        checkoutShippingAddressFormRef.current?.dispatchEvent(
-          new Event("submit", { cancelable: true })
-        );
-      } else {
-        checkoutBillingAddressFormRef.current?.dispatchEvent(
-          new Event("submit", { cancelable: true })
-        );
-      }
+      // if (isShippingRequiredForProducts) {
+      checkoutShippingAddressFormRef.current?.dispatchEvent(
+        new Event("submit", { cancelable: true })
+      );
+      // } else {
+      //   checkoutBillingAddressFormRef.current?.dispatchEvent(
+      //     new Event("submit", { cancelable: true })
+      //   );
+      // }
     },
   }));
 
@@ -179,7 +179,8 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
 
     let errors;
     changeSubmitProgress(true);
-    if (billingAsShippingState && isShippingRequiredForProducts) {
+    if (billingAsShippingState) {
+      // if (billingAsShippingState && isShippingRequiredForProducts) {
       const { dataError } = await setBillingAsShippingAddress();
       errors = dataError?.error;
     } else {
@@ -233,7 +234,8 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
       countries={countries}
       userId={user?.id}
       newAddressFormId={checkoutNewAddressFormId}
-      shippingAddressRequired={!!isShippingRequiredForProducts}
+      // shippingAddressRequired={!!isShippingRequiredForProducts}
+      shippingAddressRequired={!isShippingRequiredForProducts}
       setShippingAddress={handleSetShippingAddress}
       setBillingAddress={handleSetBillingAddress}
       setBillingAsShippingAddress={setBillingAsShippingState}

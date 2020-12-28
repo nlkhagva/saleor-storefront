@@ -8,17 +8,17 @@ import { MetadataInput, MetadataErrorCode } from "./../../../../../../gqlTypes/g
 // GraphQL mutation operation: ProductUpdateMetadata
 // ====================================================
 
-export interface ProductUpdateMetadata_updateMetadata_metadataErrors {
+export interface ProductUpdateMetadata_updateMetadata_errors {
   __typename: "MetadataError";
+  /**
+   * The error code.
+   */
+  code: MetadataErrorCode;
   /**
    * Name of a field that caused the error. A value of `null` indicates that the
    * error isn't associated with a particular field.
    */
   field: string | null;
-  /**
-   * The error code.
-   */
-  code: MetadataErrorCode;
 }
 
 export interface ProductUpdateMetadata_updateMetadata_item_metadata {
@@ -34,7 +34,7 @@ export interface ProductUpdateMetadata_updateMetadata_item_metadata {
 }
 
 export interface ProductUpdateMetadata_updateMetadata_item {
-  __typename: "User" | "Checkout" | "ProductVariant" | "Product" | "ProductType" | "Attribute" | "Category" | "Collection" | "DigitalContent" | "Order" | "Fulfillment" | "Invoice" | "ServiceAccount" | "App";
+  __typename: "Product" | "ProductType" | "Attribute" | "Category" | "ProductVariant" | "DigitalContent" | "Collection" | "User" | "Checkout" | "Order" | "Fulfillment" | "Invoice" | "ServiceAccount" | "App";
   /**
    * List of public metadata items. Can be accessed without permissions.
    */
@@ -43,7 +43,7 @@ export interface ProductUpdateMetadata_updateMetadata_item {
 
 export interface ProductUpdateMetadata_updateMetadata {
   __typename: "UpdateMetadata";
-  metadataErrors: ProductUpdateMetadata_updateMetadata_metadataErrors[];
+  errors: ProductUpdateMetadata_updateMetadata_errors[];
   item: ProductUpdateMetadata_updateMetadata_item | null;
 }
 

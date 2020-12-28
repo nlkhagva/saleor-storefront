@@ -269,6 +269,7 @@ export enum MetadataErrorCode {
   GRAPHQL_ERROR = "GRAPHQL_ERROR",
   INVALID = "INVALID",
   NOT_FOUND = "NOT_FOUND",
+  REQUIRED = "REQUIRED",
 }
 
 export enum OrderDirection {
@@ -289,6 +290,7 @@ export enum ProductErrorCode {
   INVALID = "INVALID",
   NOT_FOUND = "NOT_FOUND",
   NOT_PRODUCTS_IMAGE = "NOT_PRODUCTS_IMAGE",
+  NOT_PRODUCTS_VARIANT = "NOT_PRODUCTS_VARIANT",
   REQUIRED = "REQUIRED",
   UNIQUE = "UNIQUE",
   VARIANT_NO_DIGITAL_CONTENT = "VARIANT_NO_DIGITAL_CONTENT",
@@ -317,6 +319,29 @@ export interface AttributeValueInput {
 export interface MetadataInput {
   key: string;
   value: string;
+}
+
+export interface ProductCreateInput {
+  attributes?: (AttributeValueInput | null)[] | null;
+  publicationDate?: any | null;
+  category?: string | null;
+  chargeTaxes?: boolean | null;
+  collections?: (string | null)[] | null;
+  description?: string | null;
+  descriptionJson?: any | null;
+  isPublished?: boolean | null;
+  name?: string | null;
+  slug?: string | null;
+  taxCode?: string | null;
+  seo?: SeoInput | null;
+  weight?: any | null;
+  sku?: string | null;
+  trackInventory?: boolean | null;
+  basePrice?: any | null;
+  ushop?: string | null;
+  visibleInListings?: boolean | null;
+  productType: string;
+  stocks?: StockInput[] | null;
 }
 
 export interface ProductOrder {

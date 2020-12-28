@@ -1,7 +1,8 @@
 import "./scss/index.scss";
+import { PRODUCT_TYPE_SHIPPING } from "@app/custom/constants";
 
 import * as React from "react";
-import { FormattedMessage } from "react-intl";
+// import { FormattedMessage } from "react-intl";
 import { generatePath, Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
@@ -53,14 +54,22 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
   };
 
   const itemsQuantity =
-    items?.reduce((prevVal, currVal) => prevVal + currVal.quantity, 0) || 0;
+    items
+      ?.filter(item => {
+        if (item.variant.product) {
+          return item.variant.product.productType.id !== PRODUCT_TYPE_SHIPPING;
+        }
+
+        return true;
+      })
+      .reduce((prevVal, currVal) => prevVal + currVal.quantity, 0) || 0;
 
   return (
     <Overlay testingContext="cartOverlay" context={overlay}>
       <Online>
         <div className="cart">
           <div className="overlay__header">
-            <ReactSVG path={cartImg} className="overlay__header__cart-icon" />
+            {/* <ReactSVG path={cartImg} className="overlay__header__cart-icon" />
             <div className="overlay__header-text">
               <FormattedMessage defaultMessage="My bag," />{" "}
               <span className="overlay__header-text-items">
@@ -72,7 +81,7 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
                   }}
                 />
               </span>
-            </div>
+            </div> */}
             <ReactSVG
               path={closeImg}
               onClick={overlay.hide}
@@ -88,10 +97,7 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
               >
                 <ReactSVG path={cartImg} className="overlay__cart-icon__svg" />
                 <span className="overlay__cart-icon__quantity">
-                  {items?.reduce(
-                    (prevVal, currVal) => prevVal + currVal.quantity,
-                    0
-                  ) || 0}{" "}
+                  {itemsQuantity}{" "}
                 </span>
               </Link>
             </div>

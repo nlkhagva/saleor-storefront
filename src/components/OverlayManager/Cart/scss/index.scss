@@ -12,7 +12,7 @@
   max-width: 100vw;
   height: 100vh;
   overflow: auto;
-  padding-bottom: $spacer*17;
+  padding-bottom: $spacer * 17;
 
   .overlay__header {
     grid-area: header;
@@ -29,10 +29,10 @@
     // &__svg{
 
     // }
-    &__quantity{
+    &__quantity {
       position: absolute;
       top: -$spacer/4;
-      right: -$spacer/2; 
+      right: -$spacer/2;
       background-color: $ushop-red;
       color: $white;
       border-radius: 100%;
@@ -41,38 +41,39 @@
     }
   }
 
-  &__shop{
+  &__shop {
     margin-bottom: $spacer;
 
-    &__title{
+    &__title {
       background-color: $gray-light;
       padding: $spacer;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
-    &__logo{
-      vertical-align: middle; 
-      height: 30px; width: 30px;
-      box-shadow: 1px 1px rgba(0,0,0,.3);
+    &__logo {
+      vertical-align: middle;
+      height: 30px;
+      width: 30px;
+      box-shadow: 1px 1px rgba(0, 0, 0, 0.3);
       border-radius: 100%;
-      margin-right: $spacer*.5;
+      margin-right: $spacer * 0.5;
       margin-top: -7px;
       margin-bottom: -6px;
     }
 
-    &__name{
+    &__name {
       color: $black-for-text;
       font-weight: bold;
     }
 
-    &__total{
+    &__total {
       float: right;
       font-weight: bold;
     }
 
-    .ushop-price-table{
-      margin: 0 1rem; 
+    .ushop-price-table {
+      margin: 0 1rem;
       width: calc(100% - 2rem);
     }
   }
@@ -139,7 +140,7 @@
   }
 
   &__footer {
-    grid-area: footer;
+    // grid-area: footer;
     background-color: $gray-light;
     padding: $spacer;
     bottom: 0;

@@ -10,42 +10,8 @@ import {
 } from "./gqlTypes/ProductUpdateMetadata";
 
 export const createSimpleProduct = gql`
-  mutation ProductCreate(
-    $attributes: [AttributeValueInput]
-    $publicationDate: Date
-    $category: ID!
-    $chargeTaxes: Boolean!
-    $collections: [ID]
-    $descriptionJson: JSONString
-    $isPublished: Boolean!
-    $name: String!
-    $basePrice: Decimal
-    $productType: ID!
-    $sku: String
-    $seo: SeoInput
-    $stocks: [StockInput!]!
-    $trackInventory: Boolean!
-    $ushop: ID!
-  ) {
-    productCreate(
-      input: {
-        attributes: $attributes
-        publicationDate: $publicationDate
-        category: $category
-        chargeTaxes: $chargeTaxes
-        collections: $collections
-        descriptionJson: $descriptionJson
-        isPublished: $isPublished
-        name: $name
-        basePrice: $basePrice
-        productType: $productType
-        sku: $sku
-        seo: $seo
-        stocks: $stocks
-        trackInventory: $trackInventory
-        ushop: $ushop
-      }
-    ) {
+  mutation ProductCreate($input: ProductCreateInput!) {
+    productCreate(input: $input) {
       errors: productErrors {
         code
         field
@@ -66,9 +32,10 @@ export const createSimpleProduct = gql`
 export const updateMetadata = gql`
   mutation ProductUpdateMetadata($id: ID!, $input: [MetadataInput!]!) {
     updateMetadata(id: $id, input: $input) {
-      metadataErrors {
-        field
+      errors: metadataErrors {
         code
+        field
+        __typename
       }
       item {
         metadata {
@@ -76,6 +43,7 @@ export const updateMetadata = gql`
           value
         }
       }
+      __typename
     }
   }
 `;

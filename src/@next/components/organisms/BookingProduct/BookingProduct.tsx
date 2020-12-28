@@ -2,12 +2,12 @@ import React, { useState } from "react";
 
 import { useCart } from "@saleor/sdk";
 import UUID from "node-uuid";
-import { useAlert } from "react-alert";
 import {
   PRODUCT_CATEGORY_ONLINE_ZAHIALGA,
   PRODUCT_TYPE_ONLINE_ZAHIALGA,
   WAREHOUSE_ASIA,
 } from "@app/custom/constants";
+import { OverlayContext, OverlayTheme, OverlayType } from "@temp/components";
 
 import { TypedUshopByLinkQuery } from "./queries";
 import { MyFormik } from "./MyFormik";
@@ -17,7 +17,7 @@ import { ProductCreate } from "./gqlTypes/ProductCreate";
 
 const BookingProduct: React.FC<IProps> = ({ productUrl }: IProps) => {
   const { addItem } = useCart();
-  const alert = useAlert();
+  const overlayContext = React.useContext(OverlayContext);
 
   const [formValues, setFormValues] = useState({
     code: "",
@@ -64,13 +64,7 @@ const BookingProduct: React.FC<IProps> = ({ productUrl }: IProps) => {
 
                   if (variant) {
                     addItem(variant.id, formValues.quantity);
-
-                    alert.show(
-                      {
-                        title: "Сагсанд бараа нэмэгдлээ",
-                      },
-                      { type: "success" }
-                    );
+                    overlayContext.show(OverlayType.cart, OverlayTheme.right);
                   }
                 }
               }
@@ -84,29 +78,33 @@ const BookingProduct: React.FC<IProps> = ({ productUrl }: IProps) => {
                       setFormValues(values);
                       productCreate({
                         variables: {
-                          attributes: [],
-                          basePrice: values.price,
-                          category: PRODUCT_CATEGORY_ONLINE_ZAHIALGA,
-                          chargeTaxes: false,
-                          collections: [],
-                          descriptionJson: "{}",
-                          isPublished: true,
-                          name: values.name,
-                          productType: PRODUCT_TYPE_ONLINE_ZAHIALGA,
-                          publicationDate: null,
-                          seo: {
-                            description: "",
-                            title: "",
-                          },
-                          sku: `ushop-${UUID.v4()}`,
-                          stocks: [
-                            {
-                              quantity: 100,
-                              warehouse: WAREHOUSE_ASIA,
+                          input: {
+                            attributes: [],
+                            basePrice: values.price,
+                            category: PRODUCT_CATEGORY_ONLINE_ZAHIALGA,
+                            chargeTaxes: false,
+                            collections: [],
+                            descriptionJson: "{}",
+                            isPublished: true,
+                            name: values.name,
+                            productType: PRODUCT_TYPE_ONLINE_ZAHIALGA,
+                            publicationDate: null,
+                            seo: {
+                              description: "",
+                              title: "",
                             },
-                          ],
-                          trackInventory: false,
-                          ushop: values.ushopId,
+                            sku: `ushop-${UUID.v4()}`,
+                            stocks: [
+                              {
+                                quantity: 100,
+                                warehouse: WAREHOUSE_ASIA,
+                              },
+                            ],
+                            trackInventory: false,
+                            ushop: values.ushopId,
+                            visibleInListings: true,
+                            weight: 1,
+                          },
                         },
                       });
                     }}

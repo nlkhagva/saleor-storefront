@@ -9,6 +9,7 @@ export const Modal = styled.div`
 `;
 
 export const Content = styled.div`
+  overflow: auto;
   padding: ${({ theme: { spacing } }) =>
     `1rem ${spacing.gutter} 1.8rem ${spacing.gutter}`};
 `;

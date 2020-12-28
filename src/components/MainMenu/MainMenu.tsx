@@ -1,4 +1,5 @@
 import "./scss/index.scss";
+import { PRODUCT_TYPE_SHIPPING } from "@app/custom/constants";
 
 import React from "react";
 import Media from "react-media";
@@ -34,7 +35,17 @@ const MainMenu: React.FC = () => {
 
   const cartItemsQuantity =
     (items &&
-      items.reduce((prevVal, currVal) => prevVal + currVal.quantity, 0)) ||
+      items
+        .filter(item => {
+          if (item.variant.product) {
+            return (
+              item.variant.product.productType.id !== PRODUCT_TYPE_SHIPPING
+            );
+          }
+
+          return true;
+        })
+        .reduce((prevVal, currVal) => prevVal + currVal.quantity, 0)) ||
     0;
 
   return (
