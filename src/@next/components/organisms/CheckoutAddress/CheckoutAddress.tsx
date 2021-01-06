@@ -40,9 +40,16 @@ const CheckoutAddress: React.FC<IProps> = ({
       {shippingAddressRequired && (
         <>
           <section>
-            <S.Title data-test="checkoutPageSubtitle">
-              <FormattedMessage {...checkoutMessages.shippingAddress} />
-            </S.Title>
+            <div className="ushop-title" style={{ marginTop: "-16px" }}>
+              <h4>Хүлээн авах</h4>
+              <h3>Хаяг сонгох</h3>
+            </div>
+            {false && (
+              <S.Title data-test="checkoutPageSubtitle">
+                <FormattedMessage {...checkoutMessages.shippingAddress} />
+              </S.Title>
+            )}
+
             {userAddresses ? (
               <AddressGridSelector
                 testingContext="shipping"
@@ -92,7 +99,7 @@ const CheckoutAddress: React.FC<IProps> = ({
               setBillingAsShippingAddress(!billingAsShippingAddress)
             }
           >
-            <FormattedMessage defaultMessage="Same as shipping address" />
+            <FormattedMessage defaultMessage="Хүргэлтийн хаягтай ижил" />
           </Checkbox>
         )}
         {!billingAsShippingAddress && (

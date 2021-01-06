@@ -22,7 +22,7 @@ export const ThankYouHeader = styled.p`
 
   ${media.smallScreen`
     font-size: ${(props: { theme: DefaultTheme }) =>
-      props.theme.typography.h1FontSize};
+      props.theme.typography.h2FontSize};
   `}
 `;
 
@@ -53,4 +53,28 @@ export const Buttons = styled.div`
     width: 100%;
     margin-top: 20px;
   `}
+`;
+
+export const ONum = styled.div`
+  text-align: center;
+  margin-bottom: 3rem;
+
+  span.b {
+    display: inline-block;
+    border: 2px solid #707070;
+    border-radius: 20px;
+    font-size: ${props => props.theme.typography.h3FontSize};
+    text-align: center;
+    padding-bottom: 5px;
+    font-weight: 600;
+    span.t {
+      display: block;
+      font-size: 12px;
+      margin: -11px 12px 0;
+      padding: 0 10px
+      text-transform: uppercase;
+      background: #fff;
+      font-weight: normal;
+    }
+  }
 `;

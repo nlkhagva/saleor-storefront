@@ -8,11 +8,10 @@
   flex-direction: row;
   height: 5.625rem;
   position: relative;
-  
-  transition:transform 0.3s ease-out;
 
+  transition: transform 0.3s ease-out;
 
-  @media (max-width: $medium-screen){
+  @media (max-width: $medium-screen) {
     height: 4rem;
     background-color: $white;
 
@@ -21,7 +20,7 @@
       left: 0;
       right: 0;
       top: 0;
-      box-shadow: 1px 1px 20px rgba(0,0,0,.15); 
+      box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.15);
       z-index: 10;
     }
   }
@@ -31,7 +30,6 @@
   }
 
   &__left {
-
     @media (max-width: $medium-screen) {
       flex-basis: calc(4rem);
     }
@@ -53,10 +51,12 @@
     ul {
       display: flex;
       justify-content: flex-end;
-      align-items: center ;
+      align-items: center;
       height: 100%;
-      
-      li{ font-size: .9em; }
+
+      li {
+        font-size: 0.9em;
+      }
     }
   }
 
@@ -77,7 +77,7 @@
       }
     }
 
-    ul.large-menu{
+    ul.large-menu {
       display: flex;
       justify-content: center;
       margin: 0px;
@@ -89,15 +89,24 @@
         height: 5.625rem;
         line-height: 5.625rem;
         padding: 0px 1rem;
-        
-        &:nth-child(1) a:after{ color: #ED1B24 }
-        &:nth-child(2) a:after{ color: #5381C7 }
-        &:nth-child(3) a:after{ color: transparent }
-        &:nth-child(4) a:after{ color: #059C2F }
-        &:nth-child(5) a:after{ color: #FFC000 }
-  
 
-        a{
+        &:nth-child(1) a:after {
+          color: #ed1b24;
+        }
+        &:nth-child(2) a:after {
+          color: #5381c7;
+        }
+        &:nth-child(3) a:after {
+          color: transparent;
+        }
+        &:nth-child(4) a:after {
+          color: #059c2f;
+        }
+        &:nth-child(5) a:after {
+          color: #ffc000;
+        }
+
+        a {
           display: inline-block;
           font-family: $base-font-family;
           font-weight: 600;
@@ -105,11 +114,15 @@
           position: relative;
 
           @media (max-width: 1240px) {
-            font-size: .9em;
+            font-size: 0.9em;
           }
 
-          &:hover:after, &.active:after{ display: block }
-          &:after{ position: absolute;
+          &:hover:after,
+          &.active:after {
+            display: block;
+          }
+          &:after {
+            position: absolute;
             width: 100%;
             content: " . . . . . ";
             display: none;
@@ -199,9 +212,14 @@
     position: relative;
     padding: $spacer;
 
-    div { display: inline-block;}
+    div {
+      display: inline-block;
+    }
 
-    & > a { display: inline-block; padding: $spacer; }
+    & > a {
+      display: inline-block;
+      padding: $spacer;
+    }
 
     &__quantity {
       position: absolute;
@@ -256,7 +274,7 @@
       vertical-align: bottom;
     }
   }
-  &__order-button{
+  &__order-button {
     border: 2px solid #d9230f;
     border-radius: 20px;
     padding: 3px 12px 3px 8px;
@@ -268,8 +286,8 @@
     cursor: pointer;
     font-size: 13px;
     color: #d9230f;
-    
-    &:hover{
+
+    &:hover {
       background-color: #d9230f;
       color: #fff;
     }
@@ -278,28 +296,27 @@
       // padding: 3px;
       font-size: 12px;
     }
-
   }
 
   &__search {
     cursor: pointer;
     line-height: 24px;
     transition: 0.3s;
-    font-size: $base-font-size*.75;
+    font-size: $base-font-size * 0.75;
 
     @media (max-width: 625px) {
-      font-size: $base-font-size*.65;
+      font-size: $base-font-size * 0.6;
     }
 
-
-    & > a {    
+    & > a {
       display: inline-block;
       width: 100%;
-      border-radius: $spacer*2;
+      border-radius: $spacer * 2;
       background: #f1f1f1;
-      padding: $spacer*.5 0 $spacer*.5 $spacer;    
-
-      .search-icon { margin-right: $spacer*.5 ;}
+      padding: $spacer * 0.5 0 $spacer * 0.5 $spacer;
+    }
+    .search-icon {
+      margin-right: $spacer * 0.5;
     }
 
     @media (min-width: $medium-screen) {

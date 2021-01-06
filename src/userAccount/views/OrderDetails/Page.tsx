@@ -47,12 +47,12 @@ const Page: React.FC<{
       )}
       <div className="order-details__header">
         <div className="">
-          <h3>
+          <h4>
             <FormattedMessage
-              defaultMessage="Захиалгын дугаар: {orderNum}"
+              defaultMessage="Захиалгын дугаар: #{orderNum}"
               values={{ orderNum: order.number }}
             />
-          </h3>
+          </h4>
           <p className="order-details__status">
             {translatePaymentStatus(order.paymentStatusDisplay, intl)} /{" "}
             {translateOrderStatus(order.statusDisplay, intl)}

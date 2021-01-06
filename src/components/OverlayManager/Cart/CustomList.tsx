@@ -86,7 +86,7 @@ const CustomList: React.SFC<{
     <>
       {ushops.map((_shop, index) => {
         const shopTotal = _shop.lines
-          .map(line => line.totalPrice.gross.amount * line.quantity)
+          .map(line => line.totalPrice.gross.amount)
           .reduce((a, c) => a + c);
 
         let priceFormat = null;

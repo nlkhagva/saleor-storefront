@@ -146,16 +146,16 @@ export const checkoutMessages = defineMessages({
     defaultMessage: "Review",
   },
   addressNextActionName: {
-    defaultMessage: "Continue to Shipping",
+    defaultMessage: "Үргэлжлүүлэх",
   },
   shippingNextActionName: {
     defaultMessage: "Continue to Payment",
   },
   paymentNextActionName: {
-    defaultMessage: "Continue to Review",
+    defaultMessage: "Үргэлжлүүлэх",
   },
   reviewNextActionName: {
-    defaultMessage: "Place order",
+    defaultMessage: "Захиалга өгөх",
   },
   addNewAddress: {
     defaultMessage: "Add new address",
@@ -164,13 +164,13 @@ export const checkoutMessages = defineMessages({
     defaultMessage: "SHIPPING METHOD",
   },
   billingAddress: {
-    defaultMessage: "BILLING ADDRESS",
+    defaultMessage: "Тооцооны хаяг",
   },
   paymentMethod: {
-    defaultMessage: "PAYMENT METHOD",
+    defaultMessage: "Төлбөрийн нөхцөл",
   },
   reviewOrder: {
-    defaultMessage: "REVIEW ORDER",
+    defaultMessage: "Захиалга хянах",
   },
   shippingAddress: {
     defaultMessage: "Хүлээн авах хаяг",
@@ -206,19 +206,19 @@ export const prodListHeaderCommonMsg = defineMessages({
 
 export const paymentStatusMessages = defineMessages({
   notCharged: {
-    defaultMessage: "Not charged",
+    defaultMessage: "Төлөөгүй",
   },
   partiallyCharged: {
-    defaultMessage: "Partially charged",
+    defaultMessage: "Төлбөрийн үлдэлдэлтэй",
   },
   fullyCharged: {
-    defaultMessage: "Fully charged",
+    defaultMessage: "Бүрэн төлсөн",
   },
   partiallyRefunded: {
-    defaultMessage: "Partially refunded",
+    defaultMessage: "Хэсэгчлэн буцаалттай",
   },
   fullyRefunded: {
-    defaultMessage: "Fully refunded",
+    defaultMessage: "Бүгдийн буцаасан",
   },
 });
 
@@ -227,16 +227,16 @@ export const orderStatusMessages = defineMessages({
     defaultMessage: "Draft",
   },
   unfulfilled: {
-    defaultMessage: "Unfulfilled",
+    defaultMessage: "Биелээгүй",
   },
   partiallyFulfilled: {
-    defaultMessage: "Partially fulfilled",
+    defaultMessage: "Хэсэгчлэн биелсэн",
   },
   fulfilled: {
-    defaultMessage: "Fulfilled",
+    defaultMessage: "Биелсэн",
   },
   canceled: {
-    defaultMessage: "Canceled",
+    defaultMessage: "Цуцалсан",
   },
 });
 

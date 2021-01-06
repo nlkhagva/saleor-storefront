@@ -43,6 +43,9 @@
 
   &__shop {
     margin-bottom: $spacer;
+    b {
+      font-weight: 600;
+    }
 
     &__title {
       background-color: $gray-light;
@@ -64,12 +67,12 @@
 
     &__name {
       color: $black-for-text;
-      font-weight: bold;
+      font-weight: 600;
     }
 
     &__total {
       float: right;
-      font-weight: bold;
+      font-weight: 600;
     }
 
     .ushop-price-table {

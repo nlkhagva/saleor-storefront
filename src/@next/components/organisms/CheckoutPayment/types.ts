@@ -12,4 +12,7 @@ export interface IProps {
   addPromoCode: (promoCode: string) => void;
   removeVoucherCode: (voucherCode: string) => void;
   submitUnchangedDiscount: () => void;
+  is30: boolean;
+  setIs30: (b: boolean) => void;
+  totalPrice: any;
 }

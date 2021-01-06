@@ -17,6 +17,9 @@ export interface ICheckoutPaymentSubpageHandles {
   submitPayment: () => void;
 }
 interface IProps extends RouteComponentProps<any> {
+  is30: boolean;
+  setIs30: (v: boolean) => void;
+  totalPrice: any;
   paymentGatewayFormRef: React.RefObject<HTMLFormElement>;
   changeSubmitProgress: (submitInProgress: boolean) => void;
   onSubmitSuccess: () => void;

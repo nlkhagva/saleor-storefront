@@ -191,6 +191,7 @@ export const defaultTheme = {
      * 14px in default theme
      */
     smallFontSize: C.smallFontSize,
+    smallFont2Size: C.labelFontSize,
     /**
      * 96px in default theme
      */

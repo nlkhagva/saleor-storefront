@@ -1,8 +1,9 @@
 @import "../../../../globalStyles/scss/variables.scss";
 
 .order-details {
-  h3 {
+  h4 {
     font-weight: $bold-font-weight;
+    text-transform: uppercase;
     margin: ($spacer * 2.5) 0 ($spacer * 0.5);
   }
 
@@ -27,8 +28,7 @@
       align-items: center;
     }
   }
-  &__body{
-
+  &__body {
     margin: 1rem -1rem;
   }
 

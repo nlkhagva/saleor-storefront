@@ -151,6 +151,7 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
     userAddressId?: string
   ) => {
     if (!address && !billingAsShippingState) {
+      changeSubmitProgress(false);
       setBillingErrors([
         {
           message: intl.formatMessage({

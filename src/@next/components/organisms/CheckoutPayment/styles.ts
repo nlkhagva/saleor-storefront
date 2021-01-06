@@ -31,3 +31,50 @@ export const Tile = styled.label<{ checked: boolean }>`
   font-size: ${props => props.theme.typography.smallFontSize};
   cursor: pointer;
 `;
+
+export const TileRow = styled.label<{ checked: boolean }>`
+  display: block;
+  position: relative;
+  float: left;
+  width: 48%;
+  text-align: center;
+  background-color: ${props => props.theme.colors.light};
+  border: 2px solid ${props => props.theme.colors.light};
+  
+  padding: 20px;
+  ${props => props.checked && `border: 2px solid #21125E;`}
+  font-size: ${props => props.theme.typography.smallFontSize};
+  cursor: pointer;
+  
+  h6 { font-size: ${props => props.theme.typography.smallFont2Size}; }
+  h3 { ${props => (props.checked ? `color: #21125E;` : `color: #323232;`)} }
+
+  &.right{float: right;}
+  b { font-weight: bold; }
+  &:after{
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    content: "Сонгох";
+    border: 1px solid #323232;
+    background-color: ${props => props.theme.colors.light};
+    padding: 3px 10px;
+    border-radius: 4px;
+  }
+
+  ${props =>
+    props.checked &&
+    `
+    &:after{
+      content: "Сонгосон";
+      color: #fff;
+      border: 1px solid #21125E;
+      background-color: #21125E;
+    }
+  `}
+`;
+
+export const Clearbox = styled.div`
+  clear: both;
+`;

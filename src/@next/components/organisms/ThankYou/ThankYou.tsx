@@ -1,9 +1,13 @@
+import ReactSVG from "react-svg";
 import React from "react";
 import { FormattedMessage } from "react-intl";
 
 import { Button } from "@components/atoms";
 import { Container } from "@components/templates";
 import { checkoutMessages } from "@temp/intl";
+import svgOk from "images/unurshop/thankyou-ok.svg";
+// import svgBg from "images/unurshop/thankyou-bg.svg";
+import pngBg from "images/unurshop/thankyou-bg.png";
 
 import * as S from "./styles";
 import { IProps } from "./types";
@@ -19,20 +23,31 @@ const ThankYou: React.FC<IProps> = ({
   return (
     <Container data-test="thankYouView">
       <S.Wrapper>
-        <S.ThankYouHeader>
-          <FormattedMessage defaultMessage="Thank you" />
+        <div className="ushop-title">
+          <ReactSVG path={svgOk} />
           <br />
-          <span>
-            <FormattedMessage defaultMessage="for your order!" />
+
+          <h4>Төлбөр амжилттай хийгдлээ !</h4>
+          <h3>Танд баярлалаа</h3>
+        </div>
+
+        <S.ONum>
+          <span onClick={orderDetails}>
+            <span className="b">
+              <span className="t">Таны захиалгын дугаар</span>#{orderNumber}
+            </span>
           </span>
-        </S.ThankYouHeader>
-        <S.Paragraph>
-          <FormattedMessage defaultMessage="Your order number is" />{" "}
-          <span>{orderNumber}</span>
+        </S.ONum>
+        <div>
+          <img src={pngBg} alt="thank you bg" style={{ width: "100%" }} />
+        </div>
+
+        {/* <S.Paragraph>
+          <FormattedMessage defaultMessage="Таны захиалгын дугаар" />{" "}
         </S.Paragraph>
         <S.Paragraph>
-          <FormattedMessage defaultMessage="We’ve emailed you an order confirmation, and we’ll notify you when the order has been shipped." />
-        </S.Paragraph>
+          <FormattedMessage defaultMessage="Бид захиалгын баталгаажуулалтыг имэйлээр илгээсэн бөгөөд захиалга монголд ирсэн үед танд мэдэгдэх болно." />
+        </S.Paragraph> */}
         <S.Buttons>
           <Button
             testingContext="continueShoppingButton"
@@ -47,7 +62,7 @@ const ThankYou: React.FC<IProps> = ({
             onClick={orderDetails}
             fullWidth
           >
-            <FormattedMessage defaultMessage="ORDER DETAILS" />
+            <FormattedMessage defaultMessage="Захиалгын дэлгэрэнгүй" />
           </Button>
         </S.Buttons>
       </S.Wrapper>

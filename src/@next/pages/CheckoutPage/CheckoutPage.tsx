@@ -126,6 +126,8 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   const [submitInProgress, setSubmitInProgress] = useState(false);
   const [paymentConfirmation, setPaymentConfirmation] = useState(false);
 
+  const [is30, setIs30] = useState(false);
+
   const [selectedPaymentGateway, setSelectedPaymentGateway] = useState<
     string | undefined
   >(payment?.gateway);
@@ -271,6 +273,9 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
               handleStepSubmitSuccess(CheckoutStep.Payment)
             }
             onPaymentGatewayError={setPaymentGatewayErrors}
+            is30={is30}
+            setIs30={setIs30}
+            totalPrice={totalPrice}
             {...props}
           />
         )}
@@ -296,6 +301,9 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     token?: string,
     cardData?: ICardData
   ) => {
+    setSubmitInProgress(true);
+    const amount = is30 ? (totalPrice?.gross.amount || 0) * 0.3 : 0;
+
     const paymentConfirmStepLink = CHECKOUT_STEPS.find(
       step => step.step === CheckoutStep.PaymentConfirm
     )?.link;
@@ -304,8 +312,10 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       token,
       creditCard: cardData,
       returnUrl: `${window.location.origin}${paymentConfirmStepLink}`,
+      amount,
     });
     const errors = dataError?.error;
+
     setSubmitInProgress(false);
     if (errors) {
       setPaymentGatewayErrors(errors);

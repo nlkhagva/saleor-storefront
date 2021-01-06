@@ -42,6 +42,7 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
   ref
 ) => {
   const { checkout, payment, completeCheckout } = useCheckout();
+  console.log("review subpage loaded");
 
   const [errors, setErrors] = useState<IFormError[]>([]);
 
@@ -71,7 +72,7 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
       return `Adyen payments`;
     }
     if (payment?.creditCard) {
-      return `Ending in ${payment?.creditCard.lastDigits}`;
+      return `**** **** **** ${payment?.creditCard.lastDigits}`;
     }
     return ``;
   };
