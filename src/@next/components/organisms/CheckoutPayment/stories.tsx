@@ -25,6 +25,9 @@ storiesOf("@components/organisms/CheckoutPayment", module)
     <IntlProvider locale="en">
       <CheckoutPayment
         {...PROPS}
+        is30
+        setIs30={() => {}}
+        totalPrice=""
         addPromoCode={addPromoCode}
         removeVoucherCode={removeVoucherCode}
         submitUnchangedDiscount={submitUnchangedDiscount}

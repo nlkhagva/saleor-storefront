@@ -1,4 +1,6 @@
 import * as React from "react";
+import { useAlert } from "react-alert";
+
 import { FormattedMessage, useIntl } from "react-intl";
 import { Link } from "react-router-dom";
 
@@ -18,6 +20,9 @@ import { AddressSummary, NotFound } from "../../../components";
 // import { AddressSummary, CartTable, NotFound } from "../../../components";
 // import { ILine } from "../../../components/CartTable/ProductRow";
 import ProductList from "../../../components/OverlayManager/Cart/ProductList";
+import { OrderPayment } from "./OrderPayment";
+import { OrderNote } from "./OrderNote";
+import { TypedPaymentOrderRemain } from "./query";
 
 // const extractOrderLines = (lines: any[]): any[] => {
 //   return lines
@@ -35,9 +40,18 @@ import ProductList from "../../../components/OverlayManager/Cart/ProductList";
 const Page: React.FC<{
   guest: boolean;
   order: OrderByToken_orderByToken | UserOrderByToken_orderByToken;
+  refetchOrder: any;
   downloadInvoice: () => void;
-}> = ({ guest, order, downloadInvoice }) => {
+}> = ({ guest, order, refetchOrder, downloadInvoice }) => {
   const intl = useIntl();
+  const alert = useAlert();
+
+  const onCompletedPayment = () => {
+    // console.log("complete payment");
+    alert.show({ title: "Төлбөр амжилттай төлөгдлөө" }, { type: "success" });
+    refetchOrder();
+  };
+
   return order ? (
     <>
       {!guest && (
@@ -86,6 +100,15 @@ const Page: React.FC<{
           </div>
         )}
       </div>
+      <div className="">
+        {Math.abs(order.totalBalance.amount) > 0 && (
+          <TypedPaymentOrderRemain onCompleted={onCompletedPayment}>
+            {paymentOrderRemain => (
+              <OrderPayment order={order} mutation={paymentOrderRemain} />
+            )}
+          </TypedPaymentOrderRemain>
+        )}
+      </div>
       <div className="order-details__body">
         <ProductList lines={order.lines} />
       </div>
@@ -130,10 +153,15 @@ const Page: React.FC<{
           <AddressSummary
             address={order.shippingAddress}
             email={order.userEmail}
-            paragraphRef={this.shippingAddressRef}
+            // paragraphRef={this.shippingAddressRef}
           />
         </div>
       </div>
+      {!guest && (
+        <div>
+          <OrderNote order={order} />
+        </div>
+      )}
     </>
   ) : (
     <NotFound />

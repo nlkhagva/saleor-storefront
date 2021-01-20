@@ -2,10 +2,10 @@ import { media, styled } from "@styles";
 
 import { Size } from "./types";
 
-const padding = {
-  md: "0.9rem 3.7rem",
-  sm: "0.1rem 2rem",
-};
+// const padding = {
+//   md: "0.9rem 3.7rem",
+//   sm: "0.1rem 2rem",
+// };
 
 const fontSize = (fontSize: string, smallFontSize: string) => ({
   md: fontSize,
@@ -19,7 +19,7 @@ export const Primary = styled.button<{
 }>`
   background-color: ${props =>
     props.theme.button.colors[props.color].background};
-  padding: ${props => padding[props.size]};
+  padding: 0.9rem 3.7rem;
   border: none;
   border-radius: 4px;
   transition: 0.3s;

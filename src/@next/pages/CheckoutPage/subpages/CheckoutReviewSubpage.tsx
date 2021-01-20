@@ -42,7 +42,6 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
   ref
 ) => {
   const { checkout, payment, completeCheckout } = useCheckout();
-  console.log("review subpage loaded");
 
   const [errors, setErrors] = useState<IFormError[]>([]);
 

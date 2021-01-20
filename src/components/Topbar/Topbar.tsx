@@ -47,18 +47,18 @@ const Topbar: React.FC = () => {
                 </a>
               </li>
               <li>
-                <a href className="with-icon">
+                <span className="with-icon">
                   <ReactSVG path={iconTugrug} className="svg-icon hide" />
                   <ReactSVG path={iconPound} className="svg-icon " />
-                  <span className="label-icon">Төгрөг</span>
-                </a>
+                  <em className="label-icon">Төгрөг</em>
+                </span>
               </li>
               <li>
-                <a href className="with-icon">
+                <span className="with-icon">
                   <ReactSVG path={iconUk} className="svg-icon" />
                   <ReactSVG path={iconMn} className="svg-icon hide" />
-                  <span className="label-icon">Eng</span>
-                </a>
+                  <em className="label-icon">Eng</em>
+                </span>
               </li>
 
               <>
@@ -67,7 +67,7 @@ const Topbar: React.FC = () => {
                     <li>
                       <Link to={appPaths.accountUrl} className="with-icon">
                         <ReactSVG path={iconUser} className="svg-icon" />
-                        <span className="label-icon">Хувийн тохиргоо</span>
+                        <em className="label-icon">Хувийн тохиргоо</em>
                       </Link>
                     </li>
                     {/* <li>
@@ -83,10 +83,10 @@ const Topbar: React.FC = () => {
                       overlayContext.show(OverlayType.login, OverlayTheme.right)
                     }
                   >
-                    <a href className="with-icon">
+                    <span className="with-icon">
                       <ReactSVG path={iconUser} className="svg-icon" />
                       {/* <span className="label-icon">Нэвтрэх</span> */}
-                    </a>
+                    </span>
                   </li>
                 )}
               </>

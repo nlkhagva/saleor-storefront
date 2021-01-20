@@ -13,7 +13,7 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
     params: { token },
   },
 }) => {
-  const { data: order, loading } = useOrderDetails(
+  const { data: order, loading, refetch } = useOrderDetails(
     { token },
     { fetchPolicy: "cache-and-network" }
   );
@@ -42,6 +42,7 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
       <Page
         guest={guest}
         order={order}
+        refetchOrder={refetch}
         downloadInvoice={handleDownloadInvoice}
       />
     </div>

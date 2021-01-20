@@ -28,44 +28,41 @@
       }
 
       display: inline-block;
-      a {
+
+      .with-icon {
         display: inline-block;
         font-size: $small-font-size;
         padding: 15px 20px;
-
-        &.with-icon {
+        div {
           display: inline-block;
-          div {
-            display: inline-block;
-            vertical-align: middle;
+          vertical-align: middle;
+        }
+
+        .svg-icon {
+          margin-right: $spacer * 0.6;
+
+          &.hide {
+            display: none;
+          }
+
+          svg {
+            fill: $base-font-color;
+            height: 22px;
+            max-width: $base-line-height * 1.5;
+          }
+        }
+
+        @media (max-width: $medium-screen) {
+          .label-icon {
+            display: none;
           }
 
           .svg-icon {
-            margin-right: $spacer * 0.6;
-
-            &.hide {
-              display: none;
-            }
-
-            svg {
-              fill: $base-font-color;
-              height: 22px;
-              max-width: $base-line-height * 1.5;
-            }
+            margin-right: 0px;
           }
 
-          @media (max-width: $medium-screen) {
-            .label-icon {
-              display: none;
-            }
-
-            .svg-icon {
-              margin-right: 0px;
-            }
-
-            & {
-              padding: 10px $spacer;
-            }
+          & {
+            padding: 10px $spacer;
           }
         }
       }

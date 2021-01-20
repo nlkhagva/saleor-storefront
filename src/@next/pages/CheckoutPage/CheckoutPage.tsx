@@ -5,17 +5,18 @@ import { Redirect, useLocation, useHistory } from "react-router-dom";
 import { Button, Loader } from "@components/atoms";
 import { CheckoutProgressBar } from "@components/molecules";
 import {
-  CartSummary,
+  // CartSummary,
   PaymentGatewaysList,
   translateAdyenConfirmationError,
   adyenNotNegativeConfirmationStatusCodes,
 } from "@components/organisms";
 import { Checkout } from "@components/templates";
 import { useCart, useCheckout } from "@saleor/sdk";
-import { IItems } from "@saleor/sdk/lib/api/Cart/types";
+// import { IItems } from "@saleor/sdk/lib/api/Cart/types";
 import { CHECKOUT_STEPS, CheckoutStep } from "@temp/core/config";
 import { checkoutMessages } from "@temp/intl";
-import { ITaxedMoney, ICheckoutStep, ICardData, IFormError } from "@types";
+// import { ITaxedMoney, ICheckoutStep, ICardData, IFormError } from "@types";
+import { ICheckoutStep, ICardData, IFormError } from "@types";
 import { parseQueryString } from "@temp/core/utils";
 import { CompleteCheckout_checkoutComplete_order } from "@saleor/sdk/lib/mutations/gqlTypes/CompleteCheckout";
 
@@ -32,45 +33,45 @@ import {
 } from "./subpages";
 import { IProps } from "./types";
 
-const prepareCartSummary = (
-  totalPrice?: ITaxedMoney | null,
-  subtotalPrice?: ITaxedMoney | null,
-  shippingTaxedPrice?: ITaxedMoney | null,
-  promoTaxedPrice?: ITaxedMoney | null,
-  items?: IItems
-) => {
-  const products = items?.map(({ id, variant, totalPrice, quantity }) => ({
-    id: id || "",
-    name: variant.name || "",
-    price: {
-      gross: {
-        amount: totalPrice?.gross.amount || 0,
-        currency: totalPrice?.gross.currency || "",
-      },
-      net: {
-        amount: totalPrice?.net.amount || 0,
-        currency: totalPrice?.net.currency || "",
-      },
-    },
-    quantity,
-    sku: variant.sku || "",
-    thumbnail: {
-      alt: variant.product?.thumbnail?.alt || undefined,
-      url: variant.product?.thumbnail?.url,
-      url2x: variant.product?.thumbnail2x?.url,
-    },
-  }));
+// const prepareCartSummary = (
+//   totalPrice?: ITaxedMoney | null,
+//   subtotalPrice?: ITaxedMoney | null,
+//   shippingTaxedPrice?: ITaxedMoney | null,
+//   promoTaxedPrice?: ITaxedMoney | null,
+//   items?: IItems
+// ) => {
+//   const products = items?.map(({ id, variant, totalPrice, quantity }) => ({
+//     id: id || "",
+//     name: variant.name || "",
+//     price: {
+//       gross: {
+//         amount: totalPrice?.gross.amount || 0,
+//         currency: totalPrice?.gross.currency || "",
+//       },
+//       net: {
+//         amount: totalPrice?.net.amount || 0,
+//         currency: totalPrice?.net.currency || "",
+//       },
+//     },
+//     quantity,
+//     sku: variant.sku || "",
+//     thumbnail: {
+//       alt: variant.product?.thumbnail?.alt || undefined,
+//       url: variant.product?.thumbnail?.url,
+//       url2x: variant.product?.thumbnail2x?.url,
+//     },
+//   }));
 
-  return (
-    <CartSummary
-      shipping={shippingTaxedPrice}
-      subtotal={subtotalPrice}
-      promoCode={promoTaxedPrice}
-      total={totalPrice}
-      products={products}
-    />
-  );
-};
+//   return (
+//     <CartSummary
+//       shipping={shippingTaxedPrice}
+//       subtotal={subtotalPrice}
+//       promoCode={promoTaxedPrice}
+//       total={totalPrice}
+//       products={products}
+//     />
+//   );
+// };
 
 const getCheckoutProgress = (
   loaded: boolean,
@@ -103,9 +104,9 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   const querystring = parseQueryString(location);
   const {
     loaded: cartLoaded,
-    shippingPrice,
-    discount,
-    subtotalPrice,
+    // shippingPrice,
+    // discount,
+    // subtotalPrice,
     totalPrice,
     items,
   } = useCart();
@@ -225,17 +226,17 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     }
   };
 
-  const shippingTaxedPrice =
-    checkout?.shippingMethod?.id && shippingPrice
-      ? {
-          gross: shippingPrice,
-          net: shippingPrice,
-        }
-      : null;
-  const promoTaxedPrice = discount && {
-    gross: discount,
-    net: discount,
-  };
+  // const shippingTaxedPrice =
+  //   checkout?.shippingMethod?.id && shippingPrice
+  //     ? {
+  //         gross: shippingPrice,
+  //         net: shippingPrice,
+  //       }
+  //     : null;
+  // const promoTaxedPrice = discount && {
+  //   gross: discount,
+  //   net: discount,
+  // };
 
   const checkoutView =
     cartLoaded && checkoutLoaded ? (
@@ -418,11 +419,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
 
     setSubmitInProgress(true);
     setPaymentConfirmation(true);
-    /**
-     * Saleor API creates an order for not fully authorised payments, thus we accept all non negative payment result codes,
-     * assuming the payment is completed, what means we can proceed further.
-     * https://docs.adyen.com/checkout/drop-in-web?tab=http_get_1#step-6-present-payment-result
-     */
+
     if (
       adyenNotNegativeConfirmationStatusCodes.includes(querystring.resultCode)
     ) {
@@ -475,13 +472,13 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
         activeStepIndex,
         steps
       )}
-      cartSummary={prepareCartSummary(
-        totalPrice,
-        subtotalPrice,
-        shippingTaxedPrice,
-        promoTaxedPrice,
-        items
-      )}
+      // cartSummary={prepareCartSummary(
+      //   totalPrice,
+      //   subtotalPrice,
+      //   shippingTaxedPrice,
+      //   promoTaxedPrice,
+      //   items
+      // )}
       checkout={checkoutView}
       paymentGateways={paymentGatewaysView}
       hidePaymentGateways={steps[activeStepIndex].step !== CheckoutStep.Payment}
