@@ -10,6 +10,7 @@ import {
 } from "@saleor/sdk/lib/queries/gqlTypes/ProductDetails";
 
 import { IProductVariantsAttributesSelectedValues } from "@types";
+import { getWasPrice } from "@temp/views/Product/utils";
 import QuantityInput from "../../molecules/QuantityInput";
 import AddToCartButton from "../../molecules/AddToCartButton";
 import ProductVariantPicker from "../ProductVariantPicker";
@@ -19,10 +20,12 @@ import {
   getProductPrice,
   canAddToCart,
 } from "./stockHelpers";
+import { Money } from "../../containers";
 
 const LOW_STOCK_QUANTITY: number = 5;
 
 export interface IAddToCartSection {
+  product: any;
   productId: string;
   productVariants: ProductDetails_product_variants[];
   name: string;
@@ -41,6 +44,7 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
   isAvailableForPurchase,
   items,
   name,
+  product,
   productPricing,
   productVariants,
   queryAttributes,
@@ -48,6 +52,8 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
   onAttributeChangeHandler,
 }) => {
   const intl = useIntl();
+
+  const wasPrice = getWasPrice(product);
 
   const [quantity, setQuantity] = useState<number>(1);
   const [variantId, setVariantId] = useState<string>("");
@@ -117,6 +123,23 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
         )
       ) : (
         <S.ProductPricing>
+          {wasPrice && (
+            <>
+              <S.UndiscountedPrice>
+                <span style={{ textDecoration: "line-through" }}>
+                  <Money
+                    money={{
+                      amount: parseFloat(wasPrice),
+                      currency: "GBP",
+                    }}
+                  />
+                </span>
+              </S.UndiscountedPrice>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+            </>
+          )}
+
+          {/* <TaxedMoney taxedMoney={productPricing?.priceRange.start} /> */}
           {getProductPrice(productPricing, variantPricing)}
         </S.ProductPricing>
       )}

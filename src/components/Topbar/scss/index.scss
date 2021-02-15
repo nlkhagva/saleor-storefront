@@ -53,13 +53,13 @@
         }
 
         @media (max-width: $medium-screen) {
-          .label-icon {
-            display: none;
-          }
+          // .label-icon {
+          //   display: none;
+          // }
 
-          .svg-icon {
-            margin-right: 0px;
-          }
+          // .svg-icon {
+          //   margin-right: 0px;
+          // }
 
           & {
             padding: 10px $spacer;

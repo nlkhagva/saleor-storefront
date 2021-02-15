@@ -11,13 +11,14 @@ const ProductList: React.SFC<{
   remove?(variantId: string): void;
 }> = ({ lines, add, remove }) => {
   const variables = { ids: lines.map(line => line.variant.id) };
-
   return (
     <TypedProductVariants variables={variables}>
       {({ loading, data }) => {
         if (loading) {
           return <span>Loading...</span>;
         }
+        // console.log(data);
+        // return <>hello</>;
 
         return (
           <CustomList lines={lines} add={add} remove={remove} data={data} />

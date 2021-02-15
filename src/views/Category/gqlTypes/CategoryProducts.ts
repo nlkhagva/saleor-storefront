@@ -8,6 +8,18 @@ import { AttributeInput, ProductOrder } from "./../../../../gqlTypes/globalTypes
 // GraphQL query operation: CategoryProducts
 // ====================================================
 
+export interface CategoryProducts_products_edges_node_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface CategoryProducts_products_edges_node_thumbnail {
   __typename: "Image";
   /**
@@ -26,6 +38,29 @@ export interface CategoryProducts_products_edges_node_thumbnail2x {
    * The URL of the image.
    */
   url: string;
+}
+
+export interface CategoryProducts_products_edges_node_ushop_logoImage {
+  __typename: "Image";
+  /**
+   * The URL of the image.
+   */
+  url: string;
+  /**
+   * Alt text for an image.
+   */
+  alt: string | null;
+}
+
+export interface CategoryProducts_products_edges_node_ushop {
+  __typename: "Ushop";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+  url: string;
+  logoImage: CategoryProducts_products_edges_node_ushop_logoImage | null;
 }
 
 export interface CategoryProducts_products_edges_node_pricing_priceRangeUndiscounted_start_gross {
@@ -227,6 +262,10 @@ export interface CategoryProducts_products_edges_node {
    * The ID of the object.
    */
   id: string;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (CategoryProducts_products_edges_node_metadata | null)[];
   name: string;
   /**
    * The main thumbnail for a product.
@@ -236,6 +275,7 @@ export interface CategoryProducts_products_edges_node {
    * The main thumbnail for a product.
    */
   thumbnail2x: CategoryProducts_products_edges_node_thumbnail2x | null;
+  ushop: CategoryProducts_products_edges_node_ushop | null;
   /**
    * Lists the storefront product's pricing, the current price and discounts, only meant for displaying.
    */

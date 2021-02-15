@@ -10,12 +10,12 @@ import { useAuth } from "@saleor/sdk";
 // import { useSignOut, useUserDetails } from '@sdk/react';
 import { OverlayContext, OverlayTheme, OverlayType } from "..";
 import * as appPaths from "../../app/routes";
-import iconUk from "../../images/unurshop/icons/flag.svg";
+// import iconUk from "../../images/unurshop/icons/flag.svg";
 // import { mediumScreen } from '../../globalStyles/scss/variables.scss';
-import iconMn from "../../images/unurshop/icons/mn.svg";
+// import iconMn from "../../images/unurshop/icons/mn.svg";
 import iconPhone from "../../images/unurshop/icons/phone.svg";
-import iconPound from "../../images/unurshop/icons/pound.svg";
-import iconTugrug from "../../images/unurshop/icons/tugrug.svg";
+// import iconPound from "../../images/unurshop/icons/pound.svg";
+// import iconTugrug from "../../images/unurshop/icons/tugrug.svg";
 import iconUser from "../../images/unurshop/icons/user.svg";
 
 // import {
@@ -27,8 +27,8 @@ import iconUser from "../../images/unurshop/icons/user.svg";
 // } from "../../routes";
 
 const Topbar: React.FC = () => {
-  const { user } = useAuth();
-  // const { user, signOut } = useAuth();
+  // const { user } = useAuth();
+  const { user, signOut } = useAuth();
 
   return (
     <OverlayContext.Consumer>
@@ -46,7 +46,7 @@ const Topbar: React.FC = () => {
                   7000-0509
                 </a>
               </li>
-              <li>
+              {/* <li>
                 <span className="with-icon">
                   <ReactSVG path={iconTugrug} className="svg-icon hide" />
                   <ReactSVG path={iconPound} className="svg-icon " />
@@ -59,22 +59,26 @@ const Topbar: React.FC = () => {
                   <ReactSVG path={iconMn} className="svg-icon hide" />
                   <em className="label-icon">Eng</em>
                 </span>
-              </li>
+              </li> */}
 
               <>
                 {user ? (
                   <>
                     <li>
-                      <Link to={appPaths.accountUrl} className="with-icon">
+                      <Link to={appPaths.orderHistoryUrl} className="with-icon">
                         <ReactSVG path={iconUser} className="svg-icon" />
-                        <em className="label-icon">Хувийн тохиргоо</em>
+                        <span className="label-icon">Захиалгууд</span>
                       </Link>
                     </li>
-                    {/* <li>
-                      <a onClick={signOut} data-testid="logout-link">
+                    <li>
+                      <span
+                        className="with-icon"
+                        onClick={signOut}
+                        data-testid="logout-link"
+                      >
                         Гарах
-                      </a>
-                    </li> */}
+                      </span>
+                    </li>
                   </>
                 ) : (
                   <li
@@ -85,7 +89,7 @@ const Topbar: React.FC = () => {
                   >
                     <span className="with-icon">
                       <ReactSVG path={iconUser} className="svg-icon" />
-                      {/* <span className="label-icon">Нэвтрэх</span> */}
+                      <span className="label-icon">Нэвтрэх</span>
                     </span>
                   </li>
                 )}

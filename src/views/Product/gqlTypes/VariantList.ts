@@ -153,6 +153,18 @@ export interface VariantList_productVariants_edges_node_attributes {
   values: (VariantList_productVariants_edges_node_attributes_values | null)[];
 }
 
+export interface VariantList_productVariants_edges_node_product_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface VariantList_productVariants_edges_node_product_thumbnail {
   __typename: "Image";
   /**
@@ -173,12 +185,39 @@ export interface VariantList_productVariants_edges_node_product_thumbnail2x {
   url: string;
 }
 
+export interface VariantList_productVariants_edges_node_product_ushop_logoImage {
+  __typename: "Image";
+  /**
+   * The URL of the image.
+   */
+  url: string;
+  /**
+   * Alt text for an image.
+   */
+  alt: string | null;
+}
+
+export interface VariantList_productVariants_edges_node_product_ushop {
+  __typename: "Ushop";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+  url: string;
+  logoImage: VariantList_productVariants_edges_node_product_ushop_logoImage | null;
+}
+
 export interface VariantList_productVariants_edges_node_product {
   __typename: "Product";
   /**
    * The ID of the object.
    */
   id: string;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (VariantList_productVariants_edges_node_product_metadata | null)[];
   name: string;
   /**
    * The main thumbnail for a product.
@@ -188,6 +227,7 @@ export interface VariantList_productVariants_edges_node_product {
    * The main thumbnail for a product.
    */
   thumbnail2x: VariantList_productVariants_edges_node_product_thumbnail2x | null;
+  ushop: VariantList_productVariants_edges_node_product_ushop | null;
 }
 
 export interface VariantList_productVariants_edges_node {

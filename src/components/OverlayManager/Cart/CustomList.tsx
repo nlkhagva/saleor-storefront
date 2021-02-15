@@ -70,7 +70,6 @@ const CustomList: React.SFC<{
         );
         addIds.push(max_variant.id);
       });
-
     addIds.map(id => {
       add(id, 1);
     });
@@ -81,6 +80,7 @@ const CustomList: React.SFC<{
       remove(id);
     });
   }
+  // console.log(ushops);
 
   return (
     <>

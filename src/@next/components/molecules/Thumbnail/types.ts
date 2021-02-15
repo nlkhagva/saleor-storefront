@@ -6,6 +6,7 @@ import {
 interface ISource {
   thumbnail?: ProductDetails_product_thumbnail | null;
   thumbnail2x?: ProductDetails_product_thumbnail2x | null;
+  metadata?: any | null;
 }
 
 export interface IProps {

@@ -15,7 +15,7 @@ export const slugify = (text: string | number): string =>
     .trim()
     .replace(/\s+/g, "-") // Replace spaces with -
     .replace(/&/g, "-and-") // Replace & with 'and'
-    .replace(/[^\w\-]+/g, "") // Remove all non-word chars
+    // .replace(/[^\w\-]+/g, "") // Remove all non-word chars unicode solihiin ynzlah yostoi
     .replace(/\-\-+/g, "-"); // Replace multiple - with single -
 
 export const getDBIdFromGraphqlId = (

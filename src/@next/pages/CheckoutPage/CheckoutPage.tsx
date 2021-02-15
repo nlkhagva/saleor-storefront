@@ -303,7 +303,9 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     cardData?: ICardData
   ) => {
     setSubmitInProgress(true);
-    const amount = is30 ? (totalPrice?.gross.amount || 0) * 0.3 : 0;
+    const amount = parseFloat(
+      (is30 ? (totalPrice?.gross.amount || 0) * 0.3 : 0).toFixed(2)
+    );
 
     const paymentConfirmStepLink = CHECKOUT_STEPS.find(
       step => step.step === CheckoutStep.PaymentConfirm

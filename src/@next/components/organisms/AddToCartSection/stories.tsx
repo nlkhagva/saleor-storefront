@@ -8,6 +8,7 @@ const DEFAULT_PROPS: IAddToCartSection = {
   productId: "42",
   productVariants: [],
   name: "Tribute",
+  product: null,
   productPricing: {
     onSale: false,
     priceRangeUndiscounted: {

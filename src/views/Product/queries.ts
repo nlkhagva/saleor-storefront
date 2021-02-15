@@ -22,6 +22,10 @@ export const priceFragment = gql`
 export const basicProductFragment = gql`
   fragment BasicProductFields on Product {
     id
+    metadata {
+      key
+      value
+    }
     name
     thumbnail {
       url
@@ -29,6 +33,15 @@ export const basicProductFragment = gql`
     }
     thumbnail2x: thumbnail(size: 510) {
       url
+    }
+    ushop {
+      id
+      name
+      url
+      logoImage {
+        url
+        alt
+      }
     }
   }
 `;

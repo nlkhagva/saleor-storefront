@@ -160,7 +160,24 @@ const MainMenu: React.FC = () => {
           </div>
 
           <div className="main-menu__center">
-            <Media
+            <ul>
+              <li
+                className="main-menu__search"
+                onClick={() =>
+                  overlayContext.show(OverlayType.search, OverlayTheme.right)
+                }
+              >
+                {/* <Media
+                  query={{ minWidth: mediumScreen }}
+                  render={() => <span>Search</span>}
+                /> */}
+                <span>
+                  <ReactSVG path={searchImg} className="search-icon" />
+                  Үгээр хайх & Бараа захиалах
+                </span>
+              </li>
+            </ul>
+            {/* <Media
               query={{ minWidth: mediumScreen }}
               render={() => (
                 <ul className="large-menu">
@@ -187,59 +204,13 @@ const MainMenu: React.FC = () => {
             <Media
               query={{ maxWidth: mediumScreen }}
               render={() => (
-                <ul>
-                  <li
-                    className="main-menu__search"
-                    onClick={() =>
-                      overlayContext.show(
-                        OverlayType.search,
-                        OverlayTheme.right
-                      )
-                    }
-                  >
-                    <Media
-                      query={{ minWidth: mediumScreen }}
-                      render={() => <span>Search</span>}
-                    />
-                    <span>
-                      <ReactSVG path={searchImg} className="search-icon" />
-                      Үгээр хайх & Бараа захиалах
-                    </span>
-                  </li>
-                  {/* <li
-                    className="main-menu__order-button"
-                    onClick={() =>
-                      overlayContext.show(
-                        OverlayType.orderProduct,
-                        OverlayTheme.top
-                      )
-                    }>
-                    <b>+</b> Бараа захиалах
-                  </li> */}
-                </ul>
+                
               )}
-            />
+            /> */}
           </div>
 
           <div className="main-menu__right">
             <ul>
-              <Media
-                query={{ minWidth: mediumScreen }}
-                render={() => (
-                  <li
-                    className="main-menu__order-button"
-                    onClick={
-                      () => false
-                      // overlayContext.show(
-                      //   OverlayType.orderProduct,
-                      //   OverlayTheme.top
-                      // )
-                    }
-                  >
-                    <b>+</b> Бараа захиалах
-                  </li>
-                )}
-              />
               <Online>
                 {/* <Media
                   query={{ minWidth: smallScreen }}

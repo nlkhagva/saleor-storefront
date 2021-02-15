@@ -13,12 +13,13 @@ import {
   OverlayType,
 } from "../../components";
 import { generateCategoryUrl, generateProductUrl } from "../../core/utils";
-import UshopLogo from "../../images/unurshop/logo-v3.png";
+// import UshopLogo from "../../images/unurshop/logo-v3.png";
 import GalleryCarousel from "./GalleryCarousel";
 import OtherProducts from "./Other";
 
 import { structuredData } from "../../core/SEO/Product/structuredData";
 import { IProps } from "./types";
+import { getLinkImages } from "./utils";
 
 const populateBreadcrumbs = product => [
   {
@@ -43,6 +44,15 @@ const Page: React.FC<
 
   const [variantId, setVariantId] = React.useState("");
 
+  const crawlerImages = () => {
+    const images = getLinkImages(product);
+
+    return images.map((image, index) => ({
+      id: index,
+      url: image,
+      alt: product.name,
+    }));
+  };
   const getImages = () => {
     if (product.variants && variantId) {
       const variant = product.variants
@@ -53,7 +63,7 @@ const Page: React.FC<
       }
       return product.images;
     }
-    return product.images;
+    return product.images.length ? product.images : crawlerImages();
   };
 
   const handleAddToCart = (variantId, quantity) => {
@@ -64,6 +74,7 @@ const Page: React.FC<
   const addToCartSection = (
     <AddToCartSection
       items={items}
+      product={product}
       productId={product.id}
       name={product.name}
       productVariants={product.variants}
@@ -92,8 +103,8 @@ const Page: React.FC<
               matches ? (
                 <>
                   <img
-                    src={UshopLogo}
-                    alt="Zara"
+                    src={product.ushop.logoImage.url}
+                    alt={product.ushop.name}
                     style={{
                       position: "absolute",
                       top: "1rem",
@@ -112,6 +123,21 @@ const Page: React.FC<
                 </>
               ) : (
                 <>
+                  <img
+                    src={product.ushop.logoImage.url}
+                    alt={product.ushop.name}
+                    style={{
+                      position: "absolute",
+                      top: "1rem",
+                      left: "8rem",
+                      height: "60px",
+                      width: "60px",
+                      zIndex: 2,
+                      borderRadius: "100%",
+                      boxShadow: "1px 1px 5px rgba(0,0,0,.3)",
+                    }}
+                  />
+
                   <div
                     className="product-page__product__gallery"
                     ref={productGallery}

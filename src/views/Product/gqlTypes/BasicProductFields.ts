@@ -6,6 +6,18 @@
 // GraphQL fragment: BasicProductFields
 // ====================================================
 
+export interface BasicProductFields_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface BasicProductFields_thumbnail {
   __typename: "Image";
   /**
@@ -26,12 +38,39 @@ export interface BasicProductFields_thumbnail2x {
   url: string;
 }
 
+export interface BasicProductFields_ushop_logoImage {
+  __typename: "Image";
+  /**
+   * The URL of the image.
+   */
+  url: string;
+  /**
+   * Alt text for an image.
+   */
+  alt: string | null;
+}
+
+export interface BasicProductFields_ushop {
+  __typename: "Ushop";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+  url: string;
+  logoImage: BasicProductFields_ushop_logoImage | null;
+}
+
 export interface BasicProductFields {
   __typename: "Product";
   /**
    * The ID of the object.
    */
   id: string;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (BasicProductFields_metadata | null)[];
   name: string;
   /**
    * The main thumbnail for a product.
@@ -41,4 +80,5 @@ export interface BasicProductFields {
    * The main thumbnail for a product.
    */
   thumbnail2x: BasicProductFields_thumbnail2x | null;
+  ushop: BasicProductFields_ushop | null;
 }

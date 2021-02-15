@@ -35,6 +35,11 @@ export const Price = styled.p`
   ${textProps}
   font-weight: 600;
   margin-top: 0.5rem;
+  > span {
+    &:nth-child(2) {
+      color: #bc1f25;
+    }
+  }
 `;
 
 export const Image = styled.div`
