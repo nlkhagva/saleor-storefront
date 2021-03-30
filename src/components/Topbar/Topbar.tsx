@@ -1,17 +1,17 @@
 import "./scss/index.scss";
 
 import * as React from "react";
-// import Media from 'react-media';
+import Media from "react-media";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
-import { useAuth } from "@saleor/sdk";
+// import { useAuth } from "@saleor/sdk";
 
 // import { useSignOut, useUserDetails } from '@sdk/react';
 import { OverlayContext, OverlayTheme, OverlayType } from "..";
 import * as appPaths from "../../app/routes";
 // import iconUk from "../../images/unurshop/icons/flag.svg";
-// import { mediumScreen } from '../../globalStyles/scss/variables.scss';
+import { mediumScreen } from "../../globalStyles/scss/variables.scss";
 // import iconMn from "../../images/unurshop/icons/mn.svg";
 import iconPhone from "../../images/unurshop/icons/phone.svg";
 // import iconPound from "../../images/unurshop/icons/pound.svg";
@@ -28,87 +28,98 @@ import iconUser from "../../images/unurshop/icons/user.svg";
 
 const Topbar: React.FC = () => {
   // const { user } = useAuth();
-  const { user, signOut } = useAuth();
+  // const { user, signOut } = useAuth();
 
   return (
     <OverlayContext.Consumer>
       {overlayContext => (
         <>
-          <div className="topbar">
-            <ul>
-              <li className="phone">
-                <a href="tel:+97670000509" className="with-icon">
-                  <ReactSVG
-                    path={iconPhone}
-                    className="svg-icon"
-                    style={{ marginRight: "0.6rem" }}
-                  />
-                  7000-0509
-                </a>
-              </li>
-              {/* <li>
-                <span className="with-icon">
-                  <ReactSVG path={iconTugrug} className="svg-icon hide" />
-                  <ReactSVG path={iconPound} className="svg-icon " />
-                  <em className="label-icon">Төгрөг</em>
-                </span>
-              </li>
-              <li>
-                <span className="with-icon">
-                  <ReactSVG path={iconUk} className="svg-icon" />
-                  <ReactSVG path={iconMn} className="svg-icon hide" />
-                  <em className="label-icon">Eng</em>
-                </span>
-              </li> */}
-
-              <>
-                {user ? (
-                  <>
-                    <li>
-                      <Link to={appPaths.orderHistoryUrl} className="with-icon">
-                        <ReactSVG path={iconUser} className="svg-icon" />
-                        <span className="label-icon">Захиалгууд</span>
-                      </Link>
+          <Media
+            query={{ minWidth: mediumScreen }}
+            render={() => (
+              <div className="topbar">
+                <div className="topbar-container">
+                  <ul className="unurshop-type-menu">
+                    <li className="active">
+                      <Link to={appPaths.baseUrl}>Бараа захиалга</Link>
                     </li>
                     <li>
-                      <span
-                        className="with-icon"
-                        onClick={signOut}
-                        data-testid="logout-link"
-                      >
-                        Гарах
+                      <Link to={appPaths.baseUrl}>Машин & Сэлбэг</Link>
+                    </li>
+                    <li>
+                      <Link to={appPaths.baseUrl}>Карго</Link>
+                    </li>
+                  </ul>
+                  <ul className="contact-menu">
+                    <li className="phone">
+                      <a href="tel:+97670000509" className="with-icon">
+                        <ReactSVG
+                          path={iconPhone}
+                          className="svg-icon"
+                          style={{ marginRight: "0.6rem" }}
+                        />
+                        7000-0509
+                      </a>
+                    </li>
+                    {/* <li>
+                      <span className="with-icon">
+                        <ReactSVG path={iconTugrug} className="svg-icon hide" />
+                        <ReactSVG path={iconPound} className="svg-icon " />
+                        <em className="label-icon">Төгрөг</em>
                       </span>
                     </li>
-                  </>
-                ) : (
-                  <li
-                    data-testid="login-btn"
-                    onClick={() =>
-                      overlayContext.show(OverlayType.login, OverlayTheme.right)
-                    }
-                  >
-                    <span className="with-icon">
-                      <ReactSVG path={iconUser} className="svg-icon" />
-                      <span className="label-icon">Нэвтрэх</span>
-                    </span>
-                  </li>
-                )}
-              </>
-            </ul>
-          </div>
-          {/* <Media
-            query={{ maxWidth: mediumScreen }}
-            render={() => (
-              <div className="mobile-menu">
-                <ul>
-                  <li><a className="active" href="javascript:void(0)">Захиалга</a></li>
-                  <li><a href="javascript:void(0)">Машин & Сэлбэг</a></li>
-                  <li><a href="javascript:void(0)">Өөрөө авах</a></li>
-                  <li className="cargo"><a href="javascript:void(0)">Карго</a></li>
-                </ul>
+                    <li>
+                      <span className="with-icon">
+                        <ReactSVG path={iconUk} className="svg-icon" />
+                        <ReactSVG path={iconMn} className="svg-icon hide" />
+                        <em className="label-icon">Eng</em>
+                      </span>
+                    </li> */}
+
+                    {/* <>
+                      {user ? (
+                        <>
+                          <li>
+                            <Link
+                              to={appPaths.orderHistoryUrl}
+                              className="with-icon"
+                            >
+                              <ReactSVG path={iconUser} className="svg-icon" />
+                              <span className="label-icon">Захиалгууд</span>
+                            </Link>
+                          </li>
+                          <li>
+                            <span
+                              className="with-icon"
+                              onClick={signOut}
+                              data-testid="logout-link"
+                            >
+                              Гарах
+                            </span>
+                          </li>
+                        </>
+                      ) : (
+                        <li
+                          data-testid="login-btn"
+                          onClick={() =>
+                            overlayContext.show(
+                              OverlayType.login,
+                              OverlayTheme.right
+                            )
+                          }
+                        >
+                          <span className="with-icon">
+                            <ReactSVG path={iconUser} className="svg-icon" />
+                            <span className="label-icon">Нэвтрэх</span>
+                          </span>
+                        </li>
+                      )}
+                    </> */}
+                  </ul>
+                </div>
               </div>
             )}
-          /> */}
+          />
         </>
       )}
     </OverlayContext.Consumer>

@@ -1,16 +1,39 @@
 @import "../../../globalStyles/scss/variables.scss";
 
 .topbar {
-  background: rgb(242, 242, 242);
-  @media (min-width: $medium-screen) {
-    background: linear-gradient(
-      90deg,
-      rgba(242, 242, 242, 1) 0%,
-      rgba(255, 255, 255, 1) 50%,
-      rgba(242, 242, 242, 1) 100%
-    );
+  // background: rgb(242, 242, 242);
+  // @media (min-width: $medium-screen) {
+  //   background: linear-gradient(
+  //     90deg,
+  //     rgba(242, 242, 242, 1) 0%,
+  //     rgba(255, 255, 255, 1) 50%,
+  //     rgba(242, 242, 242, 1) 100%
+  //   );
+  // }
+  .topbar-container {
+    display: inline-grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
   }
+  .unurshop-type-menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
 
+    li {
+      display: flex;
+      border-bottom: 3px solid transparent;
+      a {
+        padding: $spacer * 0.5 $spacer * 2;
+        font-size: $small-font-size;
+      }
+
+      &.active {
+        border-bottom: 3px solid #ab0b1b;
+      }
+    }
+  }
   a {
     cursor: pointer;
   }
