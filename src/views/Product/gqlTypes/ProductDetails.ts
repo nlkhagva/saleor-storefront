@@ -505,6 +505,9 @@ export interface ProductDetails_product_category_products_edges_node {
    * The main thumbnail for a product.
    */
   thumbnail2x: ProductDetails_product_category_products_edges_node_thumbnail2x | null;
+  slug: string;
+  seoTitle: string | null;
+  seoDescription: string | null;
   ushop: ProductDetails_product_category_products_edges_node_ushop | null;
   /**
    * Lists the storefront product's pricing, the current price and discounts, only meant for displaying.
@@ -781,6 +784,9 @@ export interface ProductDetails_product {
    * The main thumbnail for a product.
    */
   thumbnail2x: ProductDetails_product_thumbnail2x | null;
+  slug: string;
+  seoTitle: string | null;
+  seoDescription: string | null;
   ushop: ProductDetails_product_ushop | null;
   /**
    * Lists the storefront product's pricing, the current price and discounts, only meant for displaying.
@@ -800,8 +806,6 @@ export interface ProductDetails_product {
    * List of variants for the product.
    */
   variants: (ProductDetails_product_variants | null)[] | null;
-  seoDescription: string | null;
-  seoTitle: string | null;
   /**
    * Whether the product is in stock and visible or not.
    */

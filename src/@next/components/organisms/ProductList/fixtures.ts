@@ -5,6 +5,9 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
     __typename: "Product",
     id: "UHJvZHVjdDo3Mg==1",
     name: "Apple Juice",
+    slug: "apple-juice",
+    seoDescription: "Apple juice",
+    seoTitle: "Apple juice",
     pricing: {
       __typename: "ProductPricingInfo",
       onSale: true,
@@ -83,6 +86,10 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
     __typename: "Product",
     id: "UHJvZHVjdDo3Mg==2",
     name: "Apple Juice",
+    slug: "apple-juice",
+    seoDescription: "Apple juice",
+    seoTitle: "Apple juice",
+
     pricing: {
       __typename: "ProductPricingInfo",
       onSale: true,
@@ -161,6 +168,10 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
     __typename: "Product",
     id: "UHJvZHVjdDo3Mg==3",
     name: "Apple Juice",
+    slug: "apple-juice",
+    seoDescription: "Apple juice",
+    seoTitle: "Apple juice",
+
     pricing: {
       __typename: "ProductPricingInfo",
       onSale: true,
@@ -239,6 +250,10 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
     __typename: "Product",
     id: "UHJvZHVjdDo3Mg==4",
     name: "Apple Juice",
+    slug: "apple-juice",
+    seoDescription: "Apple juice",
+    seoTitle: "Apple juice",
+
     pricing: {
       __typename: "ProductPricingInfo",
       onSale: true,
@@ -317,6 +332,10 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
     __typename: "Product",
     id: "UHJvZHVjdDo3Mg==5",
     name: "Apple Juice",
+    slug: "apple-juice",
+    seoDescription: "Apple juice",
+    seoTitle: "Apple juice",
+
     pricing: {
       __typename: "ProductPricingInfo",
       onSale: true,
@@ -395,6 +414,10 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
     __typename: "Product",
     id: "UHJvZHVjdDo3Mg==6",
     name: "Apple Juice",
+    slug: "apple-juice",
+    seoDescription: "Apple juice",
+    seoTitle: "Apple juice",
+
     pricing: {
       __typename: "ProductPricingInfo",
       onSale: true,

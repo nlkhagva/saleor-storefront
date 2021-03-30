@@ -17,6 +17,7 @@ import {
 import RegisterForm from "./RegisterForm";
 
 import closeImg from "../../../images/x.svg";
+import logoImg from "../../../images/unurshop/logo-without-border.svg";
 import ForgottenPassword from "./ForgottenPassword";
 
 class Login extends React.Component<
@@ -48,7 +49,8 @@ class Login extends React.Component<
           <Online>
             <div className="overlay__header">
               <p className="overlay__header-text">
-                <FormattedMessage defaultMessage="UNURSHOP" />
+                <ReactSVG path={logoImg} />
+                {/* <FormattedMessage defaultMessage="UNURSHOP" /> */}
               </p>
               <ReactSVG
                 path={closeImg}

@@ -50,7 +50,7 @@ export const Image = styled.div`
   position: relative;
 
   > img {
-    width: auto;
+    width: 100%;
     height: auto;
     max-width: 100%;
   }

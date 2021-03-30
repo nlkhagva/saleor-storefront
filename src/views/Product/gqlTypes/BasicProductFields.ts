@@ -80,5 +80,8 @@ export interface BasicProductFields {
    * The main thumbnail for a product.
    */
   thumbnail2x: BasicProductFields_thumbnail2x | null;
+  slug: string;
+  seoTitle: string | null;
+  seoDescription: string | null;
   ushop: BasicProductFields_ushop | null;
 }

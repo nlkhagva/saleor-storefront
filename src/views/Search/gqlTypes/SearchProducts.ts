@@ -232,6 +232,9 @@ export interface SearchProducts_products_edges_node {
    */
   id: string;
   name: string;
+  slug: string;
+  seoTitle: string | null;
+  seoDescription: string | null;
   /**
    * The main thumbnail for a product.
    */

@@ -27,7 +27,7 @@
       }
 
       &.active-tab {
-        border-bottom: 1px solid $turquoise;
+        border-bottom: 1px solid $ushop-border;
       }
     }
   }
@@ -41,7 +41,7 @@
 
     &__button {
       margin-top: $spacer * 2;
-      padding: 0 $spacer * 1.5;
+      padding: 0;
       text-align: center;
     }
 

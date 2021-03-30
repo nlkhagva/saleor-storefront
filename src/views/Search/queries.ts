@@ -28,6 +28,9 @@ export const searchProductsQuery = gql`
           ...ProductPricingField
           id
           name
+          slug
+          seoTitle
+          seoDescription
           thumbnail {
             url
             alt

@@ -273,6 +273,9 @@ export interface FeaturedProducts_shop_homepageCollection_products_edges_node {
    * The main thumbnail for a product.
    */
   thumbnail2x: FeaturedProducts_shop_homepageCollection_products_edges_node_thumbnail2x | null;
+  slug: string;
+  seoTitle: string | null;
+  seoDescription: string | null;
   ushop: FeaturedProducts_shop_homepageCollection_products_edges_node_ushop | null;
   /**
    * Lists the storefront product's pricing, the current price and discounts, only meant for displaying.

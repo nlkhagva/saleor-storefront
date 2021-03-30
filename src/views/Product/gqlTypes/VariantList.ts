@@ -227,6 +227,9 @@ export interface VariantList_productVariants_edges_node_product {
    * The main thumbnail for a product.
    */
   thumbnail2x: VariantList_productVariants_edges_node_product_thumbnail2x | null;
+  slug: string;
+  seoTitle: string | null;
+  seoDescription: string | null;
   ushop: VariantList_productVariants_edges_node_product_ushop | null;
 }
 

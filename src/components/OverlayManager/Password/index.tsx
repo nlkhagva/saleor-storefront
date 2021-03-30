@@ -23,7 +23,7 @@ const Password: React.FC<{ overlay: OverlayContextInterface }> = ({
       <Online>
         <div className="overlay__header">
           <p className="overlay__header-text">
-            <FormattedMessage defaultMessage="Reset your password" />
+            <FormattedMessage defaultMessage="Нууц үг сэргээх" />
           </p>
           <ReactSVG
             path={closeImg}

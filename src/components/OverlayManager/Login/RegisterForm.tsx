@@ -70,13 +70,14 @@ const RegisterForm: React.FC<{ hide: () => void }> = ({ hide }) => {
             />
             <div className="login__content__button">
               <Button
+                className="full"
                 testingContext="submitRegisterFormButton"
                 type="submit"
                 {...(loading && { disabled: true })}
               >
                 {loading
                   ? intl.formatMessage(commonMessages.loading)
-                  : intl.formatMessage({ defaultMessage: "Register" })}
+                  : intl.formatMessage({ defaultMessage: "Бүртгүүлэх" })}
               </Button>
             </div>
           </Form>

@@ -17,6 +17,10 @@ button.button {
     width: 100%;
     max-width: 100%;
   }
+  &.full {
+    width: 100%;
+    max-width: 100%;
+  }
 
   > span {
     display: inline-block;

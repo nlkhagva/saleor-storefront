@@ -4,6 +4,9 @@ export const PRODUCT: ProductList_products_edges_node = {
   __typename: "Product",
   id: "UHJvZHVjdDo3Mg==",
   name: "Apple Juice",
+  slug: "apple-juice",
+  seoDescription: "Apple juice",
+  seoTitle: "Apple juice",
   pricing: {
     __typename: "ProductPricingInfo",
     onSale: true,

@@ -43,8 +43,8 @@ const startApp = async () => {
   }
 
   const notificationOptions = {
-    position: positions.BOTTOM_RIGHT,
-    timeout: 2500,
+    position: positions.TOP_CENTER,
+    timeout: 5000,
   };
 
   const Root = hot(module)(() => {

@@ -1,19 +1,20 @@
 import "./scss/index.scss";
 
 import React from "react";
-import { FormattedMessage } from "react-intl";
-import { Link } from "react-router-dom";
+// import { FormattedMessage } from "react-intl";
+// import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
-import { commonMessages } from "@temp/intl";
+// import { commonMessages } from "@temp/intl";
 
-import { MenuDropdown, Offline, Online, OverlayTheme, OverlayType } from "..";
-import * as appPaths from "../../app/routes";
+// import { MenuDropdown, Offline, Online, OverlayTheme, OverlayType } from "..";
+import { Offline, Online, OverlayTheme, OverlayType } from "..";
+// import * as appPaths from "../../app/routes";
 import { maybe } from "../../core/utils";
 import cartImg from "../../images/cart.svg";
 
 import searchImg from "../../images/search.svg";
-import userImg from "../../images/user.svg";
+// import userImg from "../../images/user.svg";
 import { TypedMainMenuQuery } from "./queries";
 import hamburgerHoverImg from "../../images/hamburger-hover.svg";
 import hamburgerImg from "../../images/hamburger.svg";
@@ -26,7 +27,8 @@ interface MobileProps {
 }
 
 const MobileMainMenu: React.FC<MobileProps> = props => {
-  const { overlayContext, user, handleSignOut, cartItemsQuantity } = props;
+  // const { overlayContext, user, handleSignOut, cartItemsQuantity } = props;
+  const { overlayContext, cartItemsQuantity } = props;
 
   return (
     <>

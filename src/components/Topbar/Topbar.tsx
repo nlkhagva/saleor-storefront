@@ -4,11 +4,14 @@ import * as React from "react";
 import Media from "react-media";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
+import { FormattedMessage } from "react-intl";
+import { commonMessages } from "@temp/intl";
 
-// import { useAuth } from "@saleor/sdk";
+import { useAuth } from "@saleor/sdk";
 
 // import { useSignOut, useUserDetails } from '@sdk/react';
-import { OverlayContext, OverlayTheme, OverlayType } from "..";
+// import { OverlayContext } from "..";
+import { OverlayContext, OverlayTheme, OverlayType, MenuDropdown } from "..";
 import * as appPaths from "../../app/routes";
 // import iconUk from "../../images/unurshop/icons/flag.svg";
 import { mediumScreen } from "../../globalStyles/scss/variables.scss";
@@ -28,7 +31,7 @@ import iconUser from "../../images/unurshop/icons/user.svg";
 
 const Topbar: React.FC = () => {
   // const { user } = useAuth();
-  // const { user, signOut } = useAuth();
+  const { user, signOut } = useAuth();
 
   return (
     <OverlayContext.Consumer>
@@ -115,6 +118,105 @@ const Topbar: React.FC = () => {
                         </li>
                       )}
                     </> */}
+                  </ul>
+                </div>
+              </div>
+            )}
+          />
+
+          <Media
+            query={{ maxWidth: mediumScreen }}
+            render={() => (
+              <div className="topbar">
+                <div style={{ backgroundColor: "#f1f3f4" }}>
+                  <ul className="contact-menu">
+                    {/* <li>
+                      <span className="with-icon">
+                        <ReactSVG path={iconTugrug} className="svg-icon hide" />
+                        <ReactSVG path={iconPound} className="svg-icon " />
+                        <em className="label-icon">Төгрөг</em>
+                      </span>
+                    </li>
+                    <li>
+                      <span className="with-icon">
+                        <ReactSVG path={iconUk} className="svg-icon" />
+                        <ReactSVG path={iconMn} className="svg-icon hide" />
+                        <em className="label-icon">Eng</em>
+                      </span>
+                    </li> */}
+
+                    <>
+                      {user ? (
+                        <MenuDropdown
+                          head={
+                            <li
+                              className="main-menu__icon main-menu__user--active"
+                              style={{ display: "flex" }}
+                            >
+                              <ReactSVG path={iconUser} />
+                              <span style={{ paddingLeft: "1rem" }}>
+                                {user.firstName ? user.firstName : user.email}
+                              </span>
+                            </li>
+                          }
+                          content={
+                            <ul className="main-menu__dropdown">
+                              <li data-test="desktopMenuMyAccountLink">
+                                <Link to={appPaths.accountUrl}>
+                                  <FormattedMessage
+                                    {...commonMessages.myAccount}
+                                  />
+                                </Link>
+                              </li>
+                              <li data-test="desktopMenuOrderHistoryLink">
+                                <Link to={appPaths.orderHistoryUrl}>
+                                  <FormattedMessage
+                                    {...commonMessages.orderHistory}
+                                  />
+                                </Link>
+                              </li>
+                              <li data-test="desktopMenuAddressBookLink">
+                                <Link to={appPaths.addressBookUrl}>
+                                  <FormattedMessage
+                                    {...commonMessages.addressBook}
+                                  />
+                                </Link>
+                              </li>
+                              <li
+                                onClick={() => signOut()}
+                                data-test="desktopMenuLogoutLink"
+                              >
+                                <FormattedMessage {...commonMessages.logOut} />
+                              </li>
+                            </ul>
+                          }
+                        />
+                      ) : (
+                        <li
+                          data-test="desktopMenuLoginOverlayLink"
+                          className="main-menu__icon user-icon"
+                          onClick={() =>
+                            overlayContext.show(
+                              OverlayType.login,
+                              OverlayTheme.right
+                            )
+                          }
+                        >
+                          <ReactSVG path={iconUser} />
+                          <span>Нэвтрэх</span>
+                        </li>
+                      )}
+                    </>
+                    <li className="phone">
+                      <a href="tel:+97670000509" className="with-icon">
+                        <ReactSVG
+                          path={iconPhone}
+                          className="svg-icon"
+                          style={{ marginRight: "0.6rem" }}
+                        />
+                        7000-0509
+                      </a>
+                    </li>
                   </ul>
                 </div>
               </div>

@@ -441,6 +441,8 @@ export interface ProductCreateInput {
   weight?: any | null;
   sku?: string | null;
   trackInventory?: boolean | null;
+  wasPrice?: any | null;
+  usale?: any | null;
   basePrice?: any | null;
   ushop?: string | null;
   visibleInListings?: boolean | null;

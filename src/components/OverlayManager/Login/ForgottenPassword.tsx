@@ -7,13 +7,13 @@ const ForgottenPassword: React.FC<{
   <>
     <div className="login__content__password-reminder">
       <p>
-        <FormattedMessage defaultMessage="Have you forgotten your password?" />{" "}
+        <FormattedMessage defaultMessage="Та нууц үгээ мартсан уу?" />{" "}
         <span
           className="u-link"
           onClick={onClick}
           data-test="accountOverlayForgottenPasswordLink"
         >
-          <FormattedMessage defaultMessage="Click Here" />
+          <FormattedMessage defaultMessage="Энд дар" />
         </span>
       </p>
     </div>

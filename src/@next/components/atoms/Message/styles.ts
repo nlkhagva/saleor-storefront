@@ -13,13 +13,23 @@ export const Wrapper = styled.div<{ status: IProps["status"] }>`
   width: ${props => props.theme.message.width};
   padding: ${props => props.theme.message.padding};
   background-color: ${props => props.theme.message.backgroundColor};
-  box-shadow: 0px 6px 15px 3px rgba(0, 0, 0, 0.25);
-  position: fixed;
-  bottom: ${props => props.theme.spacing.spacer};
-  right: ${props => props.theme.spacing.spacer};
+  box-shadow: 0px 6px 60px 60px rgba(0, 0, 0, 0.25);
   border-left: 0.4rem solid;
   border-color: ${props => borderColors(props.theme)[props.status!]};
+  max-width: 100%;
+  margin-top: 3rem;
 `;
+// export const Wrapper = styled.div<{ status: IProps["status"] }>`
+//   width: ${props => props.theme.message.width};
+//   padding: ${props => props.theme.message.padding};
+//   background-color: ${props => props.theme.message.backgroundColor};
+//   box-shadow: 0px 6px 15px 3px rgba(0, 0, 0, 0.25);
+//   position: fixed;
+//   bottom: ${props => props.theme.spacing.spacer};
+//   right: ${props => props.theme.spacing.spacer};
+//   border-left: 0.4rem solid;
+//   border-color: ${props => borderColors(props.theme)[props.status!]};
+// `;
 
 export const TopWrapper = styled.div`
   display: flex;

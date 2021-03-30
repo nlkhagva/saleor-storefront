@@ -61,6 +61,7 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
           <Button
             testingContext="submit"
             type="submit"
+            className="full"
             {...(loading && { disabled: true })}
           >
             {loading

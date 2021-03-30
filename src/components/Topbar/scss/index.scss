@@ -10,6 +10,12 @@
   //     rgba(242, 242, 242, 1) 100%
   //   );
   // }
+  .contact-menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+  }
   .topbar-container {
     display: inline-grid;
     grid-template-columns: 1fr 1fr;

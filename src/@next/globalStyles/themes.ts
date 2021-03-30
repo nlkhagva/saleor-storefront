@@ -121,9 +121,9 @@ export const defaultTheme = {
     letterSpacing: "0.5px",
     padding: "1rem 1.5rem",
     titleMargin: `0 ${C.spacer * 1.5}rem 0 0`,
-    titleTransform: "uppercase",
-    titleWeight: C.extraBoldFontWeight,
-    width: "25rem",
+    titleTransform: "none",
+    titleWeight: C.boldFontWeight,
+    width: "20rem",
   },
   modal: {
     modalMinHeight: 455,

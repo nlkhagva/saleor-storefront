@@ -275,6 +275,9 @@ export interface CollectionProducts_collection_products_edges_node {
    * The main thumbnail for a product.
    */
   thumbnail2x: CollectionProducts_collection_products_edges_node_thumbnail2x | null;
+  slug: string;
+  seoTitle: string | null;
+  seoDescription: string | null;
   ushop: CollectionProducts_collection_products_edges_node_ushop | null;
   /**
    * Lists the storefront product's pricing, the current price and discounts, only meant for displaying.
