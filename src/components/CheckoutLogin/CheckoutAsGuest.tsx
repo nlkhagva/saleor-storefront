@@ -1,5 +1,5 @@
 import React from "react";
-import { FormattedMessage } from "react-intl";
+// import { FormattedMessage } from "react-intl";
 
 // import { Link } from "react-router-dom";
 // import { Button, OverlayTheme, OverlayType } from "..";
@@ -24,13 +24,14 @@ const CheckoutAsGuest: React.FC<{
     </Link> */}
 
     <p>
-      <FormattedMessage defaultMessage="or you can" />{" "}
+      {/* <FormattedMessage defaultMessage="or you can" />{" "} */}
       <span
         data-test="showRegisterOverlay"
         className="u-link"
         onClick={() => overlay.show(OverlayType.register, OverlayTheme.right)}
       >
-        <FormattedMessage defaultMessage="create an account" />
+        {/* <FormattedMessage defaultMessage="create an account" /> */}
+        Шинээр бүртгүүлэх
       </span>
     </p>
   </div>

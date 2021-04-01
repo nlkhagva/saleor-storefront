@@ -265,6 +265,16 @@ export enum CountryCode {
 /**
  * An enumeration.
  */
+export enum JobStatusEnum {
+  DELETED = "DELETED",
+  FAILED = "FAILED",
+  PENDING = "PENDING",
+  SUCCESS = "SUCCESS",
+}
+
+/**
+ * An enumeration.
+ */
 export enum MetadataErrorCode {
   GRAPHQL_ERROR = "GRAPHQL_ERROR",
   INVALID = "INVALID",
@@ -353,6 +363,31 @@ export enum OrderEventsEnum {
   PLACED_FROM_DRAFT = "PLACED_FROM_DRAFT",
   TRACKING_UPDATED = "TRACKING_UPDATED",
   UPDATED_ADDRESS = "UPDATED_ADDRESS",
+}
+
+/**
+ * An enumeration.
+ */
+export enum OrderStatus {
+  CANCELED = "CANCELED",
+  DRAFT = "DRAFT",
+  FULFILLED = "FULFILLED",
+  PARTIALLY_FULFILLED = "PARTIALLY_FULFILLED",
+  UNFULFILLED = "UNFULFILLED",
+}
+
+/**
+ * An enumeration.
+ */
+export enum PaymentChargeStatusEnum {
+  CANCELLED = "CANCELLED",
+  FULLY_CHARGED = "FULLY_CHARGED",
+  FULLY_REFUNDED = "FULLY_REFUNDED",
+  NOT_CHARGED = "NOT_CHARGED",
+  PARTIALLY_CHARGED = "PARTIALLY_CHARGED",
+  PARTIALLY_REFUNDED = "PARTIALLY_REFUNDED",
+  PENDING = "PENDING",
+  REFUSED = "REFUSED",
 }
 
 /**

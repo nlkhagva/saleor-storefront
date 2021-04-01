@@ -6,6 +6,12 @@ import { lkShop } from "./gqlTypes/lkShop";
 import { RemainOrder, RemainOrderVariables } from "./gqlTypes/RemainOrder";
 import { OrderAddNote, OrderAddNoteVariables } from "./gqlTypes/OrderAddNote";
 import { OrderChats, OrderChatsVariables } from "./gqlTypes/OrderChats";
+import { orderDetailFragment, invoiceFragment } from "./fragment/index";
+
+import {
+  UserOrderByToken,
+  UserOrderByTokenVariables,
+} from "./gqlTypes/UserOrderByToken";
 
 export const shopQuery = gql`
   query lkShop {
@@ -98,3 +104,21 @@ export const orderChats = gql`
 export const TypedOrderChatsQuery = TypedQuery<OrderChats, OrderChatsVariables>(
   orderChats
 );
+
+export const userOrderDetailsByTokenQuery = gql`
+  ${orderDetailFragment}
+  ${invoiceFragment}
+  query UserOrderByToken($token: UUID!) {
+    orderByToken(token: $token) {
+      ...OrderDetail
+      invoices {
+        ...InvoiceFragment
+      }
+    }
+  }
+`;
+
+export const TypedUserOrderByToken = TypedQuery<
+  UserOrderByToken,
+  UserOrderByTokenVariables
+>(userOrderDetailsByTokenQuery);

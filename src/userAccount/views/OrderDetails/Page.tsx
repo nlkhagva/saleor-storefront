@@ -7,8 +7,8 @@ import { Link } from "react-router-dom";
 import { DropdownMenu, IconButton } from "@components/atoms";
 import { TaxedMoney } from "@components/containers";
 // import { OrderDetail_lines } from "@saleor/sdk/lib/fragments/gqlTypes/OrderDetail";
-import { OrderByToken_orderByToken } from "@saleor/sdk/lib/queries/gqlTypes/OrderByToken";
-import { UserOrderByToken_orderByToken } from "@saleor/sdk/lib/queries/gqlTypes/UserOrderByToken";
+// import { OrderByToken_orderByToken } from "@saleor/sdk/lib/queries/gqlTypes/OrderByToken";
+// import { UserOrderByToken_orderByToken } from "@saleor/sdk/lib/queries/gqlTypes/UserOrderByToken";
 import {
   checkoutMessages,
   translateOrderStatus,
@@ -23,6 +23,7 @@ import ProductList from "../../../components/OverlayManager/Cart/ProductList";
 import { OrderPayment } from "./OrderPayment";
 import { OrderNote } from "./OrderNote";
 import { TypedPaymentOrderRemain } from "./query";
+import { UserOrderByToken_orderByToken } from "./gqlTypes/UserOrderByToken";
 
 // const extractOrderLines = (lines: any[]): any[] => {
 //   return lines
@@ -39,7 +40,7 @@ import { TypedPaymentOrderRemain } from "./query";
 
 const Page: React.FC<{
   guest: boolean;
-  order: OrderByToken_orderByToken | UserOrderByToken_orderByToken;
+  order: UserOrderByToken_orderByToken;
   refetchOrder: any;
   downloadInvoice: () => void;
 }> = ({ guest, order, refetchOrder, downloadInvoice }) => {

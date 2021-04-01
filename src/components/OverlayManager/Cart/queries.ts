@@ -15,6 +15,10 @@ export const productVariants = gql`
           product {
             id
             name
+            metadata {
+              key
+              value
+            }
             productType {
               id
               name
@@ -22,6 +26,10 @@ export const productVariants = gql`
             ushop {
               id
               name
+              logoImage {
+                url
+                alt
+              }
               shippingProduct {
                 name
                 productType {

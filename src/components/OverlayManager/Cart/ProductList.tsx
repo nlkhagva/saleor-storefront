@@ -15,10 +15,12 @@ const ProductList: React.SFC<{
     <TypedProductVariants variables={variables}>
       {({ loading, data }) => {
         if (loading) {
-          return <span>Loading...</span>;
+          return (
+            <div style={{ textAlign: "center", marginBottom: "1rem" }}>
+              Loading...
+            </div>
+          );
         }
-        // console.log(data);
-        // return <>hello</>;
 
         return (
           <CustomList lines={lines} add={add} remove={remove} data={data} />

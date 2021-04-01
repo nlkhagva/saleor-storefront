@@ -8,7 +8,6 @@ import { Money, TaxedMoney } from "@components/containers";
 import { Thumbnail } from "@components/molecules";
 import { generateProductUrl } from "../../../core/utils";
 import removeImg from "../../../images/garbage.svg";
-import UshopLogo from "../../../images/unurshop/logo-v3.png";
 
 // import ZaraLogo from "../../../images/unurshop/xd/zara.jpg";
 
@@ -34,13 +33,19 @@ const CustomList: React.SFC<{
   /** productuudiig delguurt hargalzuulj bga hesge */
   productVariants.map(variant => {
     const shop = ushops.find(el => el.id === variant.product.ushop.id);
+    const line = lines.find(el => el.variant.id === variant.id);
+
+    if (variant.product.metadata) {
+      line.variant.product["metadata"] = variant.product.metadata;
+    }
+
     if (!shop) {
       ushops.push({
         ...variant.product.ushop,
-        lines: [lines.find(el => el.variant.id === variant.id)],
+        lines: [line],
       });
     } else {
-      shop.lines.push(lines.find(el => el.variant.id === variant.id));
+      shop.lines.push(line);
     }
   });
   /** remove hiih shaardlagtai id bwal olj bga  */
@@ -98,25 +103,21 @@ const CustomList: React.SFC<{
               )
             : null;
 
-        // shopTotal +=
-        //   _shop.shippingProduct !== null
-        //     ? _shop.shippingProduct.variants!.find(
-        //         v => v.id === _shop.shippingVariantId
-        //       ).pricing.price.gross.amount
-        //     : 0;
-
         return (
           <div key={index} className="cart__shop">
             <h5 className="cart__shop__title">
               <span className="cart__shop__name">
-                <img className="cart__shop__logo" src={UshopLogo} alt="Zara" />
+                <img
+                  className="cart__shop__logo"
+                  src={_shop.logoImage.url}
+                  alt={_shop.name}
+                />
                 <span>{_shop.name}</span>
               </span>
               <span className="cart__shop__total">
                 <Money money={{ amount: shopTotal, currency: "GBP" }} />
               </span>
             </h5>
-            {/* {shopToggle[index] && ( */}
             <>
               <ul className="cart__list">
                 {_shop.lines.map((line, index) => {

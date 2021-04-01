@@ -6,6 +6,18 @@
 // GraphQL query operation: ProductVariants
 // ====================================================
 
+export interface ProductVariants_productVariants_edges_node_product_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface ProductVariants_productVariants_edges_node_product_productType {
   __typename: "ProductType";
   /**
@@ -13,6 +25,18 @@ export interface ProductVariants_productVariants_edges_node_product_productType 
    */
   id: string;
   name: string;
+}
+
+export interface ProductVariants_productVariants_edges_node_product_ushop_logoImage {
+  __typename: "Image";
+  /**
+   * The URL of the image.
+   */
+  url: string;
+  /**
+   * Alt text for an image.
+   */
+  alt: string | null;
 }
 
 export interface ProductVariants_productVariants_edges_node_product_ushop_shippingProduct_productType {
@@ -82,6 +106,7 @@ export interface ProductVariants_productVariants_edges_node_product_ushop {
    */
   id: string;
   name: string;
+  logoImage: ProductVariants_productVariants_edges_node_product_ushop_logoImage | null;
   shippingProduct: ProductVariants_productVariants_edges_node_product_ushop_shippingProduct | null;
 }
 
@@ -92,6 +117,10 @@ export interface ProductVariants_productVariants_edges_node_product {
    */
   id: string;
   name: string;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (ProductVariants_productVariants_edges_node_product_metadata | null)[];
   productType: ProductVariants_productVariants_edges_node_product_productType;
   ushop: ProductVariants_productVariants_edges_node_product_ushop | null;
 }

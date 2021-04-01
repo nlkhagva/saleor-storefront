@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
-import { OrderByToken_orderByToken } from "@saleor/sdk/lib/queries/gqlTypes/OrderByToken";
-import { UserOrderByToken_orderByToken } from "@saleor/sdk/lib/queries/gqlTypes/UserOrderByToken";
+// import { OrderByToken_orderByToken } from "@saleor/sdk/lib/queries/gqlTypes/OrderByToken";
+// import { UserOrderByToken_orderByToken } from "@saleor/sdk/lib/queries/gqlTypes/UserOrderByToken";
 import { IFormError } from "@types";
 import { Button } from "@components/atoms";
 import { Money } from "@components/containers";
@@ -9,9 +9,10 @@ import {
   PaymentGatewaysList,
 } from "@components/organisms";
 import { TypedLkShopQuery } from "./query";
+import { UserOrderByToken_orderByToken } from "./gqlTypes/UserOrderByToken";
 
 export interface iProps {
-  order: OrderByToken_orderByToken | UserOrderByToken_orderByToken;
+  order: UserOrderByToken_orderByToken;
   mutation: any;
 }
 
