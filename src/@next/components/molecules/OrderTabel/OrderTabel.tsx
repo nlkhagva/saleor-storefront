@@ -8,6 +8,7 @@ import { commonMessages, translateOrderStatus } from "@temp/intl";
 
 import { Thumbnail } from "..";
 import { generateProductUrl } from "../../../../core/utils";
+import { PRODUCT_TYPE_SHIPPING } from "@app/custom/constants";
 
 import * as S from "./styles";
 import { IProps } from "./types";
@@ -68,6 +69,11 @@ export const OrderTabel: React.FC<IProps> = ({ orders, history }: IProps) => {
                         <>
                           <S.ProductsOrdered>
                             {order.node.lines
+                              .filter(
+                                (line: any) =>
+                                  line.variant.product.productType.id !==
+                                  PRODUCT_TYPE_SHIPPING
+                              )
                               .slice(0, 5)
                               .map((product: any) => (
                                 <span
@@ -82,7 +88,7 @@ export const OrderTabel: React.FC<IProps> = ({ orders, history }: IProps) => {
                                     );
                                   }}
                                 >
-                                  <Thumbnail source={product} />
+                                  <Thumbnail source={product.variant.product} />
                                 </span>
                               ))}
                           </S.ProductsOrdered>

@@ -39,17 +39,14 @@ export const Paragraph = styled.p`
 export const Buttons = styled.div`
   width: 50%;
   margin-top: 40px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-column-gap: 30px;
+  display: flex;
+  justify-content: center;
   button {
     padding-left: 0;
     padding-right: 0;
   }
 
   ${media.smallScreen`
-    grid-template-columns: 1fr;
-    grid-row-gap: 20px;
     width: 100%;
     margin-top: 20px;
   `}
