@@ -29,10 +29,10 @@ export const commonMessages = defineMessages({
     defaultMessage: "И-мэйл хаягаа оруулна уу",
   },
   account: {
-    defaultMessage: "Account",
+    defaultMessage: "Тохиргоо",
   },
   myAccount: {
-    defaultMessage: "My Account",
+    defaultMessage: "Хувийн мэдээлэл",
   },
   orderHistory: {
     defaultMessage: "Захиалгын түүх",
@@ -65,7 +65,7 @@ export const commonMessages = defineMessages({
     defaultMessage: "Тоо",
   },
   subtotal: {
-    defaultMessage: "Subtotal",
+    defaultMessage: "Нийт (дэд)",
   },
   shipping: {
     defaultMessage: "Тээвэр",
@@ -125,10 +125,10 @@ export const commonMessages = defineMessages({
     defaultMessage: "Төлөв",
   },
   cancel: {
-    defaultMessage: "Cancel",
+    defaultMessage: "Буцах",
   },
   home: {
-    defaultMessage: "Home",
+    defaultMessage: "Нүүр",
   },
 });
 

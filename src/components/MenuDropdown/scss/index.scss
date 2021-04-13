@@ -11,13 +11,13 @@
     box-shadow: $message-shadow;
     background-color: $white;
     padding: $spacer;
-    width: 15rem;
+    width: 16rem;
 
-    &__rightdown{
-      right: 0rem!important;
-      left: 1rem!important;
+    &__rightdown {
+      right: 0rem !important;
+      left: 1rem !important;
     }
-    
+
     &--visible {
       display: block;
       z-index: 2;

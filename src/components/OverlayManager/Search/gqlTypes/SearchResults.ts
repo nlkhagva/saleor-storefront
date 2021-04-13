@@ -6,6 +6,18 @@
 // GraphQL query operation: SearchResults
 // ====================================================
 
+export interface SearchResults_products_edges_node_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface SearchResults_products_edges_node_thumbnail {
   __typename: "Image";
   /**
@@ -42,6 +54,10 @@ export interface SearchResults_products_edges_node {
    */
   id: string;
   name: string;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (SearchResults_products_edges_node_metadata | null)[];
   /**
    * The main thumbnail for a product.
    */

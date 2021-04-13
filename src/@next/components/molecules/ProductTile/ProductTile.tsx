@@ -22,27 +22,31 @@ export const ProductTile: React.FC<any> = ({ product }: any) => {
     <S.Wrapper>
       <S.Image data-test="productThumbnail">
         <Thumbnail source={product} />
+      </S.Image>
+      <S.RowLk>
         <S.ShopLogo>
           <img src={product.ushop.logoImage.url} alt="Zara" />
         </S.ShopLogo>
-      </S.Image>
-      <S.Price>
-        {wasPrice && price && (
-          <>
-            <span style={{ textDecoration: "line-through" }}>
-              <Money
-                money={{
-                  amount: parseFloat(wasPrice),
-                  currency: price.gross.currency,
-                }}
-              />
-            </span>
-            &nbsp;&nbsp;&nbsp;&nbsp;
-          </>
-        )}
-        <TaxedMoney taxedMoney={price} />
-      </S.Price>
-      <S.Title>{product.name}</S.Title>
+        <S.TitleAndPrice>
+          <S.Price>
+            {wasPrice && price && (
+              <>
+                <span style={{ textDecoration: "line-through" }}>
+                  <Money
+                    money={{
+                      amount: parseFloat(wasPrice),
+                      currency: price.gross.currency,
+                    }}
+                  />
+                </span>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+              </>
+            )}
+            <TaxedMoney taxedMoney={price} />
+          </S.Price>
+          <S.Title>{product.name}</S.Title>
+        </S.TitleAndPrice>
+      </S.RowLk>
     </S.Wrapper>
   );
 };

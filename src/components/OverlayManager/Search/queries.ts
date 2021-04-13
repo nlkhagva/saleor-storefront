@@ -13,6 +13,10 @@ const searchResultsQuery = gql`
         node {
           id
           name
+          metadata {
+            key
+            value
+          }
           thumbnail {
             url
             alt

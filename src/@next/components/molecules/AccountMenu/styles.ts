@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
 `;
 
 export const MenuHeader = styled.div`
-  font-size: ${props => props.theme.typography.h3FontSize};
+  font-size: ${props => props.theme.typography.h4FontSize};
   font-weight: ${props => props.theme.typography.boldFontWeight};
   text-transform: "uppercase";
   padding-bottom: 2rem;

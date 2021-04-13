@@ -3,7 +3,7 @@ import { css } from "styled-components";
 import { media, styled } from "@styles";
 
 const textProps = css`
-  font-size: ${props => props.theme.typography.baseFontSize};
+  font-size: ${props => props.theme.typography.smallFontSize};
   text-align: left;
 `;
 
@@ -28,6 +28,7 @@ export const Wrapper = styled.div`
 export const Title = styled.h4`
   font-weight: normal;
   margin: 0 0 0.5rem 0;
+  line-height: 14px;
   ${textProps}
 `;
 
@@ -42,6 +43,13 @@ export const Price = styled.p`
   }
 `;
 
+export const RowLk = styled.div`
+  display: grid;
+  grid-gap: 0.5rem;
+  grid-template-columns: 48px 1fr;
+`;
+export const TitleAndPrice = styled.div``;
+
 export const Image = styled.div`
   background: ${props => props.theme.colors.light};
   width: auto;
@@ -53,18 +61,13 @@ export const Image = styled.div`
     width: 100%;
     height: auto;
     max-width: 100%;
+    object-fit: cover;
   }
 `;
 
 export const ShopLogo = styled.div`
-  position: absolute;
-  top: 0.5rem;
-  left: 0.5rem;
-  width: 22.5%;
-  max-width: 60px;
-
+  margin-top: 0.8rem;
   > img {
     width: 100%;
-    border-radius: 100%;
   }
 `;

@@ -22,13 +22,14 @@ export const AttributeValuesChecklist: React.FC<IProps> = ({
       {values &&
         values.map((value, index) => {
           if (!viewAllOptions && index > valuesShowLimitNumber - 1) {
-            return <></>;
+            return <React.Fragment key={index}></React.Fragment>;
           }
           return (
             <Checkbox
               name={name}
               checked={!!value.selected}
               onChange={() => onValueClick(value)}
+              key={index}
             >
               {value && value.name}
             </Checkbox>

@@ -35,29 +35,33 @@ export const PROVIDERS = {
 };
 export const STATIC_PAGES = [
   {
-    label: "About",
+    label: "Бидний тухай",
     url: generatePageUrl("about"),
+  },
+  {
+    label: "Захиалгын журам",
+    url: generatePageUrl("term-condition"),
   },
 ];
 export const SOCIAL_MEDIA = [
   {
     ariaLabel: "facebook",
-    href: "https://www.facebook.com/mirumeelabs/",
+    href: "https://www.facebook.com/unurshop.mn/",
     path: require("../images/facebook-icon.svg"),
   },
   {
     ariaLabel: "instagram",
-    href: "https://www.instagram.com/mirumeelabs/",
+    href: "https://www.instagram.com/unurshop_uk_n01/",
     path: require("../images/instagram-icon.svg"),
   },
   {
     ariaLabel: "twitter",
-    href: "https://twitter.com/getsaleor",
+    href: "https://twitter.com/unurshopmn",
     path: require("../images/twitter-icon.svg"),
   },
   {
     ariaLabel: "youtube",
-    href: "https://www.youtube.com/channel/UCg_ptb-U75e7BprLCGS4s1g/videos",
+    href: "https://www.youtube.com/channel/UCmop8soQqOOUP5h-JFN59RA/videos",
     path: require("../images/youtube-icon.svg"),
   },
 ];

@@ -64,6 +64,9 @@
     img {
       max-width: 100%;
     }
+    p {
+      margin-bottom: $spacer;
+    }
 
     ol,
     ul {
@@ -146,6 +149,7 @@
       font-size: 1.5rem;
       font-weight: 600;
       text-transform: uppercase;
+      margin-bottom: $spacer * 2;
 
       &--active {
         a {
@@ -153,12 +157,12 @@
           position: relative;
 
           &:before {
-            background-color: $turquoise;
+            background-color: $ushop-red;
             content: "";
             height: 7px;
             left: 0;
             position: absolute;
-            top: 6px;
+            top: $spacer * 1.5;
             transform: skew(45deg);
             width: 100%;
             z-index: -1;
