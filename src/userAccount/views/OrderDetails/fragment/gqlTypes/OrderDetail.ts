@@ -230,6 +230,28 @@ export interface OrderDetail_lines_variant_product_metadata {
   value: string;
 }
 
+export interface OrderDetail_lines_variant_product_ushop_logoImage {
+  __typename: "Image";
+  /**
+   * Alt text for an image.
+   */
+  alt: string | null;
+  /**
+   * The URL of the image.
+   */
+  url: string;
+}
+
+export interface OrderDetail_lines_variant_product_ushop {
+  __typename: "Ushop";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+  logoImage: OrderDetail_lines_variant_product_ushop_logoImage | null;
+}
+
 export interface OrderDetail_lines_variant_product {
   __typename: "Product";
   /**
@@ -250,6 +272,7 @@ export interface OrderDetail_lines_variant_product {
    * List of public metadata items. Can be accessed without permissions.
    */
   metadata: (OrderDetail_lines_variant_product_metadata | null)[];
+  ushop: OrderDetail_lines_variant_product_ushop | null;
 }
 
 export interface OrderDetail_lines_variant {

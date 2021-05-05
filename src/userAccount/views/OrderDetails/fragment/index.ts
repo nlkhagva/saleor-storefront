@@ -92,6 +92,14 @@ export const checkoutProductVariantFragment = gql`
         key
         value
       }
+      ushop {
+        id
+        name
+        logoImage {
+          alt
+          url
+        }
+      }
     }
   }
 `;

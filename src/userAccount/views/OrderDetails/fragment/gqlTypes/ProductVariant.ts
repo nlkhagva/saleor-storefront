@@ -175,6 +175,28 @@ export interface ProductVariant_product_metadata {
   value: string;
 }
 
+export interface ProductVariant_product_ushop_logoImage {
+  __typename: "Image";
+  /**
+   * Alt text for an image.
+   */
+  alt: string | null;
+  /**
+   * The URL of the image.
+   */
+  url: string;
+}
+
+export interface ProductVariant_product_ushop {
+  __typename: "Ushop";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+  logoImage: ProductVariant_product_ushop_logoImage | null;
+}
+
 export interface ProductVariant_product {
   __typename: "Product";
   /**
@@ -195,6 +217,7 @@ export interface ProductVariant_product {
    * List of public metadata items. Can be accessed without permissions.
    */
   metadata: (ProductVariant_product_metadata | null)[];
+  ushop: ProductVariant_product_ushop | null;
 }
 
 export interface ProductVariant {
