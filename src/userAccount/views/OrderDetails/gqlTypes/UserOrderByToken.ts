@@ -2,7 +2,7 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { PaymentChargeStatusEnum, OrderStatus, JobStatusEnum } from "./../../../../../gqlTypes/globalTypes";
+import { PaymentChargeStatusEnum, OrderStatus, FulfillmentUstatus, FulfillmentLineUstatus, JobStatusEnum } from "./../../../../../gqlTypes/globalTypes";
 
 // ====================================================
 // GraphQL query operation: UserOrderByToken
@@ -361,6 +361,31 @@ export interface UserOrderByToken_orderByToken_lines {
   totalPrice: UserOrderByToken_orderByToken_lines_totalPrice | null;
 }
 
+export interface UserOrderByToken_orderByToken_fulfillments_lines {
+  __typename: "FulfillmentLine";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  ustatus: FulfillmentLineUstatus;
+  changedDate: any | null;
+  soonDate: any | null;
+}
+
+export interface UserOrderByToken_orderByToken_fulfillments {
+  __typename: "Fulfillment";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  ukDate: any | null;
+  ustatus: FulfillmentUstatus;
+  /**
+   * List of lines for the fulfillment.
+   */
+  lines: (UserOrderByToken_orderByToken_fulfillments_lines | null)[] | null;
+}
+
 export interface UserOrderByToken_orderByToken_subtotal_gross {
   __typename: "Money";
   /**
@@ -527,6 +552,10 @@ export interface UserOrderByToken_orderByToken {
    * List of order lines.
    */
   lines: (UserOrderByToken_orderByToken_lines | null)[];
+  /**
+   * List of shipments for the order.
+   */
+  fulfillments: (UserOrderByToken_orderByToken_fulfillments | null)[];
   /**
    * The sum of line prices not including shipping.
    */

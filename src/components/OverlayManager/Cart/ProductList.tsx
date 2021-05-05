@@ -10,7 +10,7 @@ const ProductList: React.SFC<{
   add?(variantId: string, quantity: number): void;
   remove?(variantId: string): void;
 }> = ({ lines, add, remove }) => {
-  const variables = { ids: lines.map(line => line.variant.id) };
+  const variables = { ids: lines.map((line) => line.variant.id) };
   return (
     <TypedProductVariants variables={variables}>
       {({ loading, data }) => {

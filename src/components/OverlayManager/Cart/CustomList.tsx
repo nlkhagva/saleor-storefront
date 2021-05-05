@@ -22,18 +22,18 @@ const CustomList: React.SFC<{
   const ushops = [];
   const removeIds = [];
 
-  const variants = data.productVariants.edges.map(tmp => tmp.node);
+  const variants = data.productVariants.edges.map((tmp) => tmp.node);
   const productVariants = variants.filter(
-    tmp => tmp.product.productType.id !== ptShippingId
+    (tmp) => tmp.product.productType.id !== ptShippingId
   );
   const shippingVariants = variants.filter(
-    tmp => tmp.product.productType.id === ptShippingId
+    (tmp) => tmp.product.productType.id === ptShippingId
   );
 
   /** productuudiig delguurt hargalzuulj bga hesge */
-  productVariants.map(variant => {
-    const shop = ushops.find(el => el.id === variant.product.ushop.id);
-    const line = lines.find(el => el.variant.id === variant.id);
+  productVariants.map((variant) => {
+    const shop = ushops.find((el) => el.id === variant.product.ushop.id);
+    const line = lines.find((el) => el.variant.id === variant.id);
 
     if (variant.product.metadata) {
       line.variant.product["metadata"] = variant.product.metadata;
@@ -49,8 +49,8 @@ const CustomList: React.SFC<{
     }
   });
   /** remove hiih shaardlagtai id bwal olj bga  */
-  shippingVariants.map(el => {
-    const ushop = ushops.find(shop => shop.id === el.product.ushop.id);
+  shippingVariants.map((el) => {
+    const ushop = ushops.find((shop) => shop.id === el.product.ushop.id);
 
     if (ushop) {
       ushop.shippingVariantId = el.id;
@@ -64,24 +64,24 @@ const CustomList: React.SFC<{
 
     ushops
       .filter(
-        ushop =>
+        (ushop) =>
           ushop.shippingVariantId === undefined &&
           ushop.shippingProduct !== null &&
           ushop.shippingProduct.variants.length > 0
       )
-      .map(ushop => {
+      .map((ushop) => {
         const max_variant = ushop.shippingProduct.variants.reduce((p, v) =>
           p.pricing.price.gross.amount > v.pricing.price.gross.amount ? p : v
         );
         addIds.push(max_variant.id);
       });
-    addIds.map(id => {
+    addIds.map((id) => {
       add(id, 1);
     });
   }
 
   if (remove) {
-    removeIds.map(id => {
+    removeIds.map((id) => {
       remove(id);
     });
   }
@@ -91,7 +91,7 @@ const CustomList: React.SFC<{
     <>
       {ushops.map((_shop, index) => {
         const shopTotal = _shop.lines
-          .map(line => line.totalPrice.gross.amount)
+          .map((line) => line.totalPrice.gross.amount)
           .reduce((a, c) => a + c);
 
         let priceFormat = null;
@@ -99,7 +99,7 @@ const CustomList: React.SFC<{
         const selectedShipping =
           _shop.shippingProduct !== null
             ? _shop.shippingProduct.variants!.find(
-                v => v.id === _shop.shippingVariantId
+                (v) => v.id === _shop.shippingVariantId
               )
             : null;
 

@@ -2,7 +2,7 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { PaymentChargeStatusEnum, OrderStatus } from "./../../../../../../gqlTypes/globalTypes";
+import { PaymentChargeStatusEnum, OrderStatus, FulfillmentUstatus, FulfillmentLineUstatus } from "./../../../../../../gqlTypes/globalTypes";
 
 // ====================================================
 // GraphQL fragment: OrderDetail
@@ -361,6 +361,31 @@ export interface OrderDetail_lines {
   totalPrice: OrderDetail_lines_totalPrice | null;
 }
 
+export interface OrderDetail_fulfillments_lines {
+  __typename: "FulfillmentLine";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  ustatus: FulfillmentLineUstatus;
+  changedDate: any | null;
+  soonDate: any | null;
+}
+
+export interface OrderDetail_fulfillments {
+  __typename: "Fulfillment";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  ukDate: any | null;
+  ustatus: FulfillmentUstatus;
+  /**
+   * List of lines for the fulfillment.
+   */
+  lines: (OrderDetail_fulfillments_lines | null)[] | null;
+}
+
 export interface OrderDetail_subtotal_gross {
   __typename: "Money";
   /**
@@ -506,6 +531,10 @@ export interface OrderDetail {
    * List of order lines.
    */
   lines: (OrderDetail_lines | null)[];
+  /**
+   * List of shipments for the order.
+   */
+  fulfillments: (OrderDetail_fulfillments | null)[];
   /**
    * The sum of line prices not including shipping.
    */
