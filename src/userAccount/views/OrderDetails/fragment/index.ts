@@ -88,6 +88,10 @@ export const checkoutProductVariantFragment = gql`
         id
         isShippingRequired
       }
+      metadata {
+        key
+        value
+      }
     }
   }
 `;

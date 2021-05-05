@@ -35,9 +35,9 @@ const CustomList: React.SFC<{
     const shop = ushops.find(el => el.id === variant.product.ushop.id);
     const line = lines.find(el => el.variant.id === variant.id);
 
-    if (variant.product.metadata) {
-      line.variant.product["metadata"] = variant.product.metadata;
-    }
+    // if (variant.product.metadata) {
+    //   line.variant.product["metadata"] = variant.product.metadata;
+    // }
 
     if (!shop) {
       ushops.push({

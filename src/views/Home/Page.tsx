@@ -5,12 +5,17 @@ import * as React from "react";
 // import { FormattedMessage, useIntl } from 'react-intl';
 import { Link } from "react-router-dom";
 
-// import { Button, Loader, ProductsFeatured, UshopFeatured } from '../../components';
-import { Loader, UshopFeatured } from "../../components";
+import {
+  Button,
+  Loader,
+  // ProductsFeatured,
+  // UshopFeatured,
+} from "../../components";
+// import { Loader, UshopFeatured } from "../../components";
 import { structuredData } from "../../core/SEO/Homepage/structuredData";
 import { generateCategoryUrl } from "../../core/utils";
 import noPhotoImg from "../../images/no-photo.svg";
-import ushopBackgroundImage from "../../images/unurshop/xd/homepage-cover.png";
+// import ushopBackgroundImage from "../../images/unurshop/xd/homepage-cover.png";
 import {
   ProductsList_categories,
   ProductsList_shop,
@@ -37,7 +42,7 @@ const Page: React.FC<{
         className="home-page__hero"
         style={
           backgroundImage
-            ? { backgroundImage: `url(${ushopBackgroundImage})` }
+            ? { backgroundImage: `url(${backgroundImage.url})` }
             : null
         }
       >
@@ -52,18 +57,18 @@ const Page: React.FC<{
                   categories.edges[0].node.name
                 )}
               >
-                {/* <Button>Shop sale</Button> */}
+                <Button testingContext="sale-btn">Бараа захиалах</Button>
               </Link>
             )
           )}
         </div>
       </div>
       {/* <ProductsFeatured /> */}
-      <UshopFeatured />
+      {/* <UshopFeatured /> */}
       {categoriesExist() && (
         <div className="home-page__categories">
           <div className="container">
-            <h4 className="t-c">Зуны шинэ загварууд</h4>
+            <h4 className="t-c">Шинэ загварууд</h4>
             <h3 className="t-c m-b3">Онцлох бараа</h3>
             <div className="home-page__categories__list">
               {categories.edges.map(({ node: category }) => (

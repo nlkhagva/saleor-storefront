@@ -7,7 +7,7 @@
     background-size: cover;
     background-position: center;
     text-align: center;
-    padding: 12rem 0;
+    padding: 4rem 0;
 
     &-text {
       overflow: hidden;
@@ -66,6 +66,7 @@
 
   &__categories {
     margin-bottom: 2rem;
+    margin-top: 2rem;
 
     h3 {
       text-transform: uppercase;
@@ -75,18 +76,24 @@
     &__list {
       display: grid;
       grid-template-areas:
-        'header header '
-        'main1 main2'
-        'footer footer';
+        "header header "
+        "main1 main2"
+        "footer footer";
 
       grid-gap: 1rem;
 
-      div:nth-child(1) { grid-area: header; }
-      div:nth-child(2) { grid-area: main1; }
-      div:nth-child(3) { grid-area: main2; }
-      div:nth-child(4) { grid-area: footer; }
-      
-
+      div:nth-child(1) {
+        grid-area: header;
+      }
+      div:nth-child(2) {
+        grid-area: main1;
+      }
+      div:nth-child(3) {
+        grid-area: main2;
+      }
+      div:nth-child(4) {
+        grid-area: footer;
+      }
 
       a {
         display: inline-block;
@@ -94,7 +101,6 @@
         position: relative;
         text-decoration: none;
         color: $white;
-
 
         h3 {
           position: absolute;
@@ -128,20 +134,19 @@
 
       @media (min-width: $small-screen) {
         //   grid-template-columns: 1fr 1fr;
-          &__image {
-            height: 15rem;
-          }
+        &__image {
+          height: 15rem;
+        }
         //   > div {
         //     &:nth-child(3) {
         //       grid-column: 3 / 1;
         //     }
-  
+
         //     &:nth-child(n + 4) {
         //       display: none;
         //     }
         //   }
       }
-  
     }
   }
 }
