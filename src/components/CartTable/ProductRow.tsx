@@ -31,46 +31,51 @@ export interface EditableProductRowProps {
 const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
   mediumScreen,
   processing,
-  line,
+  line
 }) => {
-  const productUrl = generateProductUrl(line.product.id, line.product.name);
+  const productUrl = generateProductUrl(
+    line.variant.product.id,
+    line.variant.product.name
+  );
 
   return (
     <tr
       className={classNames({
-        "cart-table-row--processing": processing,
+        "cart-table-row--processing": processing
       })}
     >
-      <td className="cart-table__thumbnail">
+      <td className="cart-table__thumbnail ">
         <div>
           {mediumScreen && (
             <Link to={productUrl}>
-              <Thumbnail source={line.product} />
+              <Thumbnail source={line.variant.product} />
             </Link>
           )}
-          <Link to={productUrl}>{line.product.name}</Link>
+          <Link to={productUrl}>{line.variant.product.name}</Link>
         </div>
       </td>
 
       {mediumScreen && (
-        <td>
-          <TaxedMoney taxedMoney={line.pricing.price} />
+        <td className="text-right">
+          <TaxedMoney taxedMoney={line.variant.pricing.price} />
         </td>
       )}
 
       <td>
-        {line.attributes.map(({ attribute, values }, attributeIndex) => (
-          <p key={attribute.id}>
-            {attribute.name}: {values.map(value => value.name).join(", ")}
-          </p>
-        ))}
+        {line.variant.attributes.map(
+          ({ attribute, values }, attributeIndex) => (
+            <p key={attribute.id}>
+              {attribute.name}: {values.map((value) => value.name).join(", ")}
+            </p>
+          )
+        )}
       </td>
 
-      <td className="cart-table__quantity-cell">
+      <td className="cart-table__quantity-cell text-right">
         <p>{line.quantity}</p>
       </td>
 
-      <td colSpan={2}>
+      <td className="money text-right">
         <TaxedMoney taxedMoney={line.totalPrice} />
       </td>
     </tr>
