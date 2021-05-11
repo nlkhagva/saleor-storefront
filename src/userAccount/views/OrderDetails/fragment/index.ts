@@ -139,6 +139,17 @@ export const orderDetailFragment = gql`
         ...OrderPrice
       }
     }
+    fulfillments {
+      id
+      ukDate
+      ustatus
+      lines {
+        id
+        ustatus
+        changedDate
+        soonDate
+      }
+    }
     subtotal {
       ...OrderPrice
     }

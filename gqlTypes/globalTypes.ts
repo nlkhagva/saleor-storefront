@@ -265,6 +265,34 @@ export enum CountryCode {
 /**
  * An enumeration.
  */
+export enum FulfillmentLineUstatus {
+  ATUK = "ATUK",
+  CANCELED = "CANCELED",
+  DELAYED = "DELAYED",
+  DRAFT = "DRAFT",
+  INMONGOLIA = "INMONGOLIA",
+  NEW = "NEW",
+  RECEIVED = "RECEIVED",
+  SHIPPING = "SHIPPING",
+}
+
+/**
+ * An enumeration.
+ */
+export enum FulfillmentUstatus {
+  ATUK = "ATUK",
+  CANCELED = "CANCELED",
+  DELAYED = "DELAYED",
+  DRAFT = "DRAFT",
+  INMONGOLIA = "INMONGOLIA",
+  NEW = "NEW",
+  RECEIVED = "RECEIVED",
+  SHIPPING = "SHIPPING",
+}
+
+/**
+ * An enumeration.
+ */
 export enum JobStatusEnum {
   DELETED = "DELETED",
   FAILED = "FAILED",

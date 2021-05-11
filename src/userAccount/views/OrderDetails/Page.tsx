@@ -16,7 +16,7 @@ import {
 } from "@temp/intl";
 
 import { orderHistoryUrl } from "../../../app/routes";
-import { AddressSummary, NotFound } from "../../../components";
+import { AddressSummary, NotFound, CartTable } from "../../../components";
 // import { AddressSummary, CartTable, NotFound } from "../../../components";
 // import { ILine } from "../../../components/CartTable/ProductRow";
 import ProductList from "../../../components/OverlayManager/Cart/ProductList";
@@ -25,18 +25,23 @@ import { OrderNote } from "./OrderNote";
 import { TypedPaymentOrderRemain } from "./query";
 import { UserOrderByToken_orderByToken } from "./gqlTypes/UserOrderByToken";
 
-// const extractOrderLines = (lines: any[]): any[] => {
-//   return lines
-//     .map(line => ({
-//       quantity: line.quantity,
-//       totalPrice: line.totalPrice,
-//       ...line.variant,
-//       name: line.productName,
-//     }))
-//     .sort((a, b) =>
-//       b.variant.id.toLowerCase().localeCompare(a.variant.id.toLowerCase())
-//     );
-// };
+const extractOrderLines = (lines: any[]): any[] => {
+  console.log(lines);
+  return lines.map((line) => ({
+    quantity: line.quantity,
+    totalPrice: line.totalPrice,
+    ...line.variant,
+    name: line.productName,
+  }));
+  // .sort((a, b) =>
+  //   b.variant.id.toLowerCase().localeCompare(a.variant.id.toLowerCase())
+  // );
+};
+
+const extractOrderLinesUshop = (lines: any[]): any[] => {
+  console.log(lines);
+  return lines;
+};
 
 const Page: React.FC<{
   guest: boolean;
@@ -104,7 +109,7 @@ const Page: React.FC<{
       <div className="">
         {Math.abs(order.totalBalance.amount) > 0 && (
           <TypedPaymentOrderRemain onCompleted={onCompletedPayment}>
-            {paymentOrderRemain => (
+            {(paymentOrderRemain) => (
               <OrderPayment order={order} mutation={paymentOrderRemain} />
             )}
           </TypedPaymentOrderRemain>
@@ -113,12 +118,12 @@ const Page: React.FC<{
       <div className="order-details__body">
         <ProductList lines={order.lines} />
       </div>
-      {/* <CartTable
+      <CartTable
         lines={extractOrderLines(order.lines)}
         totalCost={<TaxedMoney taxedMoney={order.total} />}
         deliveryCost={<TaxedMoney taxedMoney={order.shippingPrice} />}
-        subtotal={}
-      /> */}
+        subtotal={<TaxedMoney taxedMoney={order.subtotal} />}
+      />
 
       <table className="ushop-price-table" style={{ fontSize: "1rem" }}>
         <tbody>
