@@ -27,7 +27,7 @@ import { UserOrderByToken_orderByToken } from "./gqlTypes/UserOrderByToken";
 
 const extractOrderLines = (lines: any[]): any[] => {
   console.log(lines);
-  return lines.map((line) => ({
+  return lines.map(line => ({
     quantity: line.quantity,
     totalPrice: line.totalPrice,
     ...line.variant,
@@ -38,10 +38,10 @@ const extractOrderLines = (lines: any[]): any[] => {
   // );
 };
 
-const extractOrderLinesUshop = (lines: any[]): any[] => {
-  console.log(lines);
-  return lines;
-};
+// const extractOrderLinesUshop = (lines: any[]): any[] => {
+//   console.log(lines);
+//   return lines;
+// };
 
 const Page: React.FC<{
   guest: boolean;
@@ -109,7 +109,7 @@ const Page: React.FC<{
       <div className="">
         {Math.abs(order.totalBalance.amount) > 0 && (
           <TypedPaymentOrderRemain onCompleted={onCompletedPayment}>
-            {(paymentOrderRemain) => (
+            {paymentOrderRemain => (
               <OrderPayment order={order} mutation={paymentOrderRemain} />
             )}
           </TypedPaymentOrderRemain>
