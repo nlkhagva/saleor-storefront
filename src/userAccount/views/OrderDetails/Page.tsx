@@ -26,7 +26,7 @@ import { TypedPaymentOrderRemain } from "./query";
 import { UserOrderByToken_orderByToken } from "./gqlTypes/UserOrderByToken";
 
 const extractOrderLines = (lines: any[]): any[] => {
-  console.log(lines);
+  // console.log(lines);
   return lines.map(line => ({
     quantity: line.quantity,
     totalPrice: line.totalPrice,

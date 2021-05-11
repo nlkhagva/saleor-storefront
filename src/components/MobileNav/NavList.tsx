@@ -63,7 +63,7 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
   render() {
     const { hideOverlay } = this.props;
     const { displayedItems, parent } = this.state;
-    console.log(parent);
+    // console.log(parent);
     return (
       <>
         <ul className="dynamic-nav">
@@ -110,7 +110,7 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
               Бүх {parent.name}
             </Link>
           )}
-          {displayedItems.map((item) => (
+          {displayedItems.map(item => (
             <NavItem
               key={item.id}
               hideOverlay={hideOverlay}
