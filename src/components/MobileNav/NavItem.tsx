@@ -31,14 +31,14 @@ const NavItem: React.FC<NavItemProps> = ({
       })}
     >
       {hasSubNavigation ? (
-        <a
-          href="javascript:void(0)"
+        <span
+          // href="javascript:void(0)"
           className="side-nav__menu-item-link"
           // onClick={hideOverlay}
           onClick={() => showSubItems(item)}
         >
           {item.name}
-        </a>
+        </span>
       ) : (
         <NavLink
           item={item}

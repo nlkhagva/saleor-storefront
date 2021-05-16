@@ -41,7 +41,7 @@ export const ProductList: React.FC<IProps> = ({
               color="secondary"
               onClick={onLoadMore}
             >
-              <FormattedMessage defaultMessage="Өшөө +" />
+              <FormattedMessage defaultMessage="Илүү ихийг" />
             </Button>
           )
         )}

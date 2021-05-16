@@ -8,13 +8,16 @@ const textProps = css`
 `;
 
 export const Wrapper = styled.div`
-  /* background: ${props => props.theme.colors.light}; */
+  background: ${props => props.theme.colors.light};
   padding: 0rem;
   margin: 0px;
   text-align: center;
-  max-height: 30rem;
+  max-height: 30rem; 
   transition: 0.3s;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   :hover {
     /* background-color: ${props => props.theme.colors.light}; */
@@ -47,20 +50,23 @@ export const RowLk = styled.div`
   display: grid;
   grid-gap: 0.5rem;
   grid-template-columns: 48px 1fr;
+  background: ${props => props.theme.colors.white};
 `;
 export const TitleAndPrice = styled.div``;
 
 export const Image = styled.div`
-  background: ${props => props.theme.colors.light};
+  /* background: ${props => props.theme.colors.light}; */
   width: auto;
-  height: auto;
+  height: 100%;
   max-width: 100%;
+  display: flex;
   position: relative;
 
   > img {
     width: 100%;
     height: auto;
     max-width: 100%;
+    max-height: 26rem;
     object-fit: cover;
   }
 `;
@@ -70,4 +76,11 @@ export const ShopLogo = styled.div`
   > img {
     width: 100%;
   }
+`;
+export const Sale = styled.div`
+  position: absolute;
+  bottom: 1rem;
+  padding: 0.2rem 0.3rem;
+  background-color: #eb0037;
+  color: #fff;
 `;

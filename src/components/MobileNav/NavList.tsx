@@ -96,19 +96,24 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
                   className="side-nav__menu-item-link"
                   onClick={hideOverlay}
                 >
-                  Нүүр
+                  НҮҮР
                 </Link>
               </li>
             </>
           )}
           {parent && (
-            <Link
-              to={generateCategoryUrl(parent.category.id, parent.category.name)}
-              className="side-nav__menu-item-link"
-              onClick={hideOverlay}
-            >
-              Бүх {parent.name}
-            </Link>
+            <li className="side-nav__menu-item">
+              <Link
+                to={generateCategoryUrl(
+                  parent.category.id,
+                  parent.category.name
+                )}
+                className="side-nav__menu-item-link"
+                onClick={hideOverlay}
+              >
+                {parent.name} бүгд
+              </Link>
+            </li>
           )}
           {displayedItems.map(item => (
             <NavItem

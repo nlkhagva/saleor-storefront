@@ -5,20 +5,20 @@
   max-width: calc(100vw - 5rem);
   width: 30rem;
 
-  .dynamic-nav{
+  .dynamic-nav {
     background-color: $gray-dark2;
     padding-bottom: $item-height/2;
 
-
     .side-nav__menu-item-link {
-      text-transform: uppercase;
+      // text-transform: uppercase;
+      cursor: pointer;
     }
   }
 
-  .static-nav{
-    margin-left: 2rem; 
-    padding-top: $item-height*.75;
-    list-style-type:disc;
+  .static-nav {
+    margin-left: 2rem;
+    padding-top: $item-height * 0.75;
+    list-style-type: disc;
     color: $white;
 
     li a {
@@ -31,7 +31,9 @@
     display: grid;
     height: $item-height;
 
-    &:last-child { border-bottom: none; }
+    &:last-child {
+      border-bottom: none;
+    }
 
     &-link,
     &-back span {

@@ -14,11 +14,6 @@ export const List = styled.div`
     grid-template-columns: 1fr;
     grid-gap: 1rem;
   `}
-
-  > a {
-    display: inline-block;
-    height: 100%;
-  }
 `;
 
 export const Loader = styled.div`

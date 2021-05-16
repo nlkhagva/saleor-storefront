@@ -18,10 +18,17 @@ export const ProductTile: React.FC<any> = ({ product }: any) => {
       : undefined;
   const wasPrice = getWasPrice(product);
 
+  const getSalePercent = (wasPrice: any, price: any) => {
+    return wasPrice ? `${Math.round(100 - (price * 100) / wasPrice)}%` : false;
+  };
+
   return (
     <S.Wrapper>
       <S.Image data-test="productThumbnail">
         <Thumbnail source={product} />
+        {price && getSalePercent(wasPrice, price.gross.amount) && (
+          <S.Sale>-{getSalePercent(wasPrice, price.gross.amount)}</S.Sale>
+        )}
       </S.Image>
       <S.RowLk>
         <S.ShopLogo>
@@ -29,8 +36,10 @@ export const ProductTile: React.FC<any> = ({ product }: any) => {
         </S.ShopLogo>
         <S.TitleAndPrice>
           <S.Price>
+            <TaxedMoney taxedMoney={price} />
             {wasPrice && price && (
               <>
+                &nbsp;&nbsp;&nbsp;
                 <span style={{ textDecoration: "line-through" }}>
                   <Money
                     money={{
@@ -39,11 +48,10 @@ export const ProductTile: React.FC<any> = ({ product }: any) => {
                     }}
                   />
                 </span>
-                &nbsp;&nbsp;&nbsp;&nbsp;
               </>
             )}
-            <TaxedMoney taxedMoney={price} />
           </S.Price>
+
           <S.Title>{product.name}</S.Title>
         </S.TitleAndPrice>
       </S.RowLk>
