@@ -15,8 +15,6 @@ import {
   translatePaymentStatus,
 } from "@temp/intl";
 
-import { orderHistoryUrl } from "../../../app/routes";
-import { AddressSummary, CartTable, NotFound } from "../../../components";
 // import { ILine } from "../../../components/CartTable/ProductRow";
 import { PRODUCT_TYPE_SHIPPING } from "@app/custom/constants";
 // import ProductList from "../../../components/OverlayManager/Cart/ProductList";
@@ -24,6 +22,9 @@ import { OrderPayment } from "./OrderPayment";
 import { OrderNote } from "./OrderNote";
 import { TypedPaymentOrderRemain } from "./query";
 import { UserOrderByToken_orderByToken } from "./gqlTypes/UserOrderByToken";
+
+import { orderHistoryUrl } from "../../../app/routes";
+import { AddressSummary, CartTable, NotFound } from "../../../components";
 
 const ptShippingId = PRODUCT_TYPE_SHIPPING;
 
@@ -76,8 +77,7 @@ const extractOrderLinesUshop = (lines: any[]): any[] => {
       ushop.shippingVariant = el;
     }
   });
-
-  console.log(ushops);
+  // console.log(ushops);
   return ushops;
 };
 

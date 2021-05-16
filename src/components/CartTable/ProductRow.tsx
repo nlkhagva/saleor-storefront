@@ -31,7 +31,7 @@ export interface EditableProductRowProps {
 const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
   mediumScreen,
   processing,
-  line
+  line,
 }) => {
   const productUrl = generateProductUrl(
     line.variant.product.id,
@@ -41,7 +41,7 @@ const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
   return (
     <tr
       className={classNames({
-        "cart-table-row--processing": processing
+        "cart-table-row--processing": processing,
       })}
     >
       <td className="cart-table__thumbnail ">
@@ -65,7 +65,7 @@ const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
         {line.variant.attributes.map(
           ({ attribute, values }, attributeIndex) => (
             <p key={attribute.id}>
-              {attribute.name}: {values.map((value) => value.name).join(", ")}
+              {attribute.name}: {values.map(value => value.name).join(", ")}
             </p>
           )
         )}

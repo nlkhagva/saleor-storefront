@@ -16,13 +16,13 @@ const ShopRow: React.FC<{
   mediumScreen: boolean;
   line: IShopLine;
 }> = ({ mediumScreen, line }) => {
-  const soonDateStatus = ["shipping"];
-  const isSoonDate = (line) =>
-    soonDateStatus.includes(line.ustatus.toLowerCase())
-      ? line.changedDate
-      : line.soonDate;
-  const ushopStatusRender = (line: any) =>
-    `${line.ustatus} /${isSoonDate(line)}/`;
+  // const soonDateStatus = ["shipping"];
+  // const isSoonDate = line =>
+  //   soonDateStatus.includes(line.ustatus.toLowerCase())
+  //     ? line.changedDate
+  //     : line.soonDate;
+  // const ushopStatusRender = (line: any) =>
+  //   `${line.ustatus} /${isSoonDate(line)}/`;
 
   return (
     <tr>

@@ -1,9 +1,10 @@
 import * as React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import { FormattedMessage } from "react-intl";
+// import { FormattedMessage, useIntl } from "react-intl";
 import Media from "react-media";
 import { commonMessages } from "@temp/intl";
 
-import CostRow from "./CostRow";
+// import CostRow from "./CostRow";
 import ProductRow, { EditableProductRowProps, ILine } from "./ProductRow";
 import ShopRow from "./ShopRow";
 import ShopFooterRow from "./ShopFooterRow";
@@ -42,10 +43,10 @@ const Table: React.FC<TableProps> = ({
   lines,
   ...rowProps
 }) => {
-  const intl = useIntl();
+  // const intl = useIntl();
   return (
     <Media query={{ minWidth: smallScreen }}>
-      {(mediumScreen) => (
+      {mediumScreen => (
         <table className="cart-table">
           <thead>
             <tr>
@@ -72,19 +73,19 @@ const Table: React.FC<TableProps> = ({
               </th>
             </tr>
           </thead>
-          {lines.map((shop) => (
+          {lines.map(shop => (
             <tbody>
               <ShopRow key={shop.id} line={shop} mediumScreen={mediumScreen} />
-              {shop.lines.map((line) => (
+              {shop.lines.map(line => (
                 <ProductRow
-                  key={shop.id + "-" + line.id}
+                  key={`${shop.id}-${line.id}`}
                   line={line}
                   mediumScreen={mediumScreen}
                   {...rowProps}
                 />
               ))}
               <ShopFooterRow
-                key={"footer" + shop.id}
+                key={`footer${shop.id}`}
                 mediumScreen={mediumScreen}
                 heading="Англи дотоод хүргэлт"
                 cost={
