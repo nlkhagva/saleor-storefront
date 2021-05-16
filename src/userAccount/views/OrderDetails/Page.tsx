@@ -16,39 +16,78 @@ import {
 } from "@temp/intl";
 
 import { orderHistoryUrl } from "../../../app/routes";
-import { AddressSummary, NotFound, CartTable } from "../../../components";
-// import { AddressSummary, CartTable, NotFound } from "../../../components";
+import { AddressSummary, CartTable, NotFound } from "../../../components";
 // import { ILine } from "../../../components/CartTable/ProductRow";
-import ProductList from "../../../components/OverlayManager/Cart/ProductList";
+import { PRODUCT_TYPE_SHIPPING } from "@app/custom/constants";
+// import ProductList from "../../../components/OverlayManager/Cart/ProductList";
 import { OrderPayment } from "./OrderPayment";
 import { OrderNote } from "./OrderNote";
 import { TypedPaymentOrderRemain } from "./query";
 import { UserOrderByToken_orderByToken } from "./gqlTypes/UserOrderByToken";
 
-const extractOrderLines = (lines: any[]): any[] => {
-  // console.log(lines);
-  return lines.map(line => ({
-    quantity: line.quantity,
-    totalPrice: line.totalPrice,
-    ...line.variant,
-    name: line.productName,
-  }));
-  // .sort((a, b) =>
-  //   b.variant.id.toLowerCase().localeCompare(a.variant.id.toLowerCase())
-  // );
-};
+const ptShippingId = PRODUCT_TYPE_SHIPPING;
 
-// const extractOrderLinesUshop = (lines: any[]): any[] => {
+// const extractOrderLines = (lines: any[]): any[] => {
 //   console.log(lines);
-//   return lines;
+//   return lines.map((line) => ({
+//     quantity: line.quantity,
+//     totalPrice: line.totalPrice,
+//     ...line.variant,
+//     name: line.productName,
+//   }));
+//   // .sort((a, b) =>
+//   //   b.variant.id.toLowerCase().localeCompare(a.variant.id.toLowerCase())
+//   // );
 // };
+
+const extractOrderLinesUshop = (lines: any[]): any[] => {
+  const ushops = [];
+
+  const variants = lines.map(tmp => tmp.variant);
+  const productVariants = variants.filter(
+    tmp => tmp.product.productType.id !== ptShippingId
+  );
+  const shippingVariants = variants.filter(
+    tmp => tmp.product.productType.id === ptShippingId
+  );
+
+  productVariants.map(variant => {
+    const shop = ushops.find(el => el.id === variant.product.ushop.id);
+    const line = lines.find(el => el.variant.id === variant.id);
+
+    // if (variant.product.metadata) {
+    //   line.variant.product["metadata"] = variant.product.metadata;
+    // }
+
+    if (!shop) {
+      ushops.push({
+        ...variant.product.ushop,
+        lines: [line],
+      });
+    } else {
+      shop.lines.push(line);
+    }
+  });
+
+  shippingVariants.map(el => {
+    const ushop = ushops.find(shop => shop.id === el.product.ushop.id);
+
+    if (ushop) {
+      ushop.shippingVariant = el;
+    }
+  });
+
+  console.log(ushops);
+  return ushops;
+};
 
 const Page: React.FC<{
   guest: boolean;
   order: UserOrderByToken_orderByToken;
   refetchOrder: any;
   downloadInvoice: () => void;
-}> = ({ guest, order, refetchOrder, downloadInvoice }) => {
+}> = props => {
+  const { guest, order, refetchOrder, downloadInvoice } = props;
   const intl = useIntl();
   const alert = useAlert();
 
@@ -115,14 +154,14 @@ const Page: React.FC<{
           </TypedPaymentOrderRemain>
         )}
       </div>
-      <div className="order-details__body">
+      {/* <div className="order-details__body">
         <ProductList lines={order.lines} />
-      </div>
+      </div> */}
       <CartTable
-        lines={extractOrderLines(order.lines)}
+        lines={extractOrderLinesUshop(order.lines)}
         totalCost={<TaxedMoney taxedMoney={order.total} />}
         deliveryCost={<TaxedMoney taxedMoney={order.shippingPrice} />}
-        subtotal={<TaxedMoney taxedMoney={order.subtotal} />}
+        subtotal={order.subtotal}
       />
 
       <table className="ushop-price-table" style={{ fontSize: "1rem" }}>

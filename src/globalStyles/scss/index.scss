@@ -146,6 +146,19 @@ body {
       }
     }
   }
+
+  .no-padding {
+    padding: 0;
+  }
+
+  .text-right {
+    text-align: right;
+  }
+
+  td.money {
+    padding-right: 0;
+    font-weight: 600;
+  }
 }
 
 .form-error {

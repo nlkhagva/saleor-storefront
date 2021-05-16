@@ -9,7 +9,7 @@ const CostRow: React.FC<{
     <td colSpan={mediumScreen ? 4 : 3} className="cart-table__cost">
       {heading}
     </td>
-    <td colSpan={2}>{cost}</td>
+    <td>{cost}</td>
   </tr>
 );
 

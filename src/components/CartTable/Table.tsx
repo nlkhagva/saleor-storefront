@@ -5,12 +5,27 @@ import { commonMessages } from "@temp/intl";
 
 import CostRow from "./CostRow";
 import ProductRow, { EditableProductRowProps, ILine } from "./ProductRow";
+import ShopRow from "./ShopRow";
+import ShopFooterRow from "./ShopFooterRow";
 
 import { smallScreen } from "../../globalStyles/scss/variables.scss";
 import "./scss/index.scss";
 
-interface TableProps extends EditableProductRowProps {
+export interface IShopLogo {
+  alt: string;
+  url: string;
+}
+
+export interface IShopLine {
+  id?: string;
+  name: string;
+  logoImage: IShopLogo;
   lines: ILine[];
+  shippingVariant?: any;
+}
+
+interface TableProps extends EditableProductRowProps {
+  lines: IShopLine[];
   subtotal: React.ReactNode;
   deliveryCost?: React.ReactNode;
   totalCost?: React.ReactNode;
@@ -30,7 +45,7 @@ const Table: React.FC<TableProps> = ({
   const intl = useIntl();
   return (
     <Media query={{ minWidth: smallScreen }}>
-      {mediumScreen => (
+      {(mediumScreen) => (
         <table className="cart-table">
           <thead>
             <tr>
@@ -38,17 +53,17 @@ const Table: React.FC<TableProps> = ({
                 <FormattedMessage {...commonMessages.products} />
               </th>
               {mediumScreen && (
-                <th>
+                <th className="text-right">
                   <FormattedMessage {...commonMessages.price} />
                 </th>
               )}
               <th>
                 <FormattedMessage {...commonMessages.variant} />
               </th>
-              <th className="cart-table__quantity-header">
+              <th className="cart-table__quantity-header text-right">
                 <FormattedMessage {...commonMessages.qty} />
               </th>
-              <th colSpan={2}>
+              <th className="text-right">
                 {mediumScreen ? (
                   <FormattedMessage {...commonMessages.totalPrice} />
                 ) : (
@@ -57,49 +72,29 @@ const Table: React.FC<TableProps> = ({
               </th>
             </tr>
           </thead>
-          <tbody>
-            {lines.map(line => (
-              <ProductRow
-                key={line.id}
-                line={line}
+          {lines.map((shop) => (
+            <tbody>
+              <ShopRow key={shop.id} line={shop} mediumScreen={mediumScreen} />
+              {shop.lines.map((line) => (
+                <ProductRow
+                  key={shop.id + "-" + line.id}
+                  line={line}
+                  mediumScreen={mediumScreen}
+                  {...rowProps}
+                />
+              ))}
+              <ShopFooterRow
+                key={"footer" + shop.id}
                 mediumScreen={mediumScreen}
-                {...rowProps}
+                heading="Англи дотоод хүргэлт"
+                cost={
+                  shop.shippingVariant
+                    ? shop.shippingVariant.pricing.price.gross
+                    : null
+                }
               />
-            ))}
-          </tbody>
-          <tfoot>
-            <CostRow
-              mediumScreen={mediumScreen}
-              heading={intl.formatMessage(commonMessages.subtotal)}
-              cost={subtotal}
-            />
-            {discount && (
-              <CostRow
-                mediumScreen={mediumScreen}
-                heading={intl.formatMessage(
-                  { defaultMessage: "Discount: {discountName}" },
-                  { discountName }
-                )}
-                cost={discount}
-              />
-            )}
-            {deliveryCost && (
-              <CostRow
-                mediumScreen={mediumScreen}
-                heading={intl.formatMessage({
-                  defaultMessage: "Delivery Cost",
-                })}
-                cost={deliveryCost}
-              />
-            )}
-            {totalCost && (
-              <CostRow
-                mediumScreen={mediumScreen}
-                heading={intl.formatMessage({ defaultMessage: "Total Cost" })}
-                cost={totalCost}
-              />
-            )}
-          </tfoot>
+            </tbody>
+          ))}
         </table>
       )}
     </Media>
