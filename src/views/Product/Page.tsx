@@ -20,7 +20,12 @@ import OtherProducts from "./Other";
 
 import { structuredData } from "../../core/SEO/Product/structuredData";
 import { IProps } from "./types";
-import { getWasPrice, getSalePercent, getLinkImages } from "./utils";
+import {
+  getWasPrice,
+  getSalePercent,
+  getLinkImages,
+  getProductLink,
+} from "./utils";
 
 const populateBreadcrumbs = product => [
   {
@@ -133,6 +138,8 @@ const Page: React.FC<
                     {addToCartSection}
                     <div className="product-page__product__description">
                       <ProductDescription
+                        ushop={product.ushop}
+                        productLink={getProductLink(product)}
                         descriptionJson={product.descriptionJson}
                         attributes={product.attributes}
                       />
@@ -179,6 +186,8 @@ const Page: React.FC<
                       {addToCartSection}
                       <div className="product-page__product__description">
                         <ProductDescription
+                          ushop={product.ushop}
+                          productLink={getProductLink(product)}
                           descriptionJson={product.descriptionJson}
                           attributes={product.attributes}
                         />

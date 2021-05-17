@@ -34,3 +34,11 @@ export function getWasPrice(product) {
 export const getSalePercent = (wasPrice: any, price: any) => {
   return wasPrice ? `${Math.round(100 - (price * 100) / wasPrice)}%` : false;
 };
+
+export const getProductLink = product => {
+  const metadata = product?.metadata
+    ? product?.metadata.find(el => el.key === "url")
+    : null;
+
+  return metadata ? metadata.value : null;
+};

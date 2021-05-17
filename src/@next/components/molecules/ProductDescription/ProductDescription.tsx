@@ -15,6 +15,8 @@ export const ProductDescription: React.FC<IProps> = ({
   description = "",
   descriptionJson = "",
   attributes,
+  ushop,
+  productLink,
 }: IProps) => {
   const [activeTab, setActiveTab] = React.useState<TABS>(TABS.DESCRIPTION);
 
@@ -50,7 +52,22 @@ export const ProductDescription: React.FC<IProps> = ({
       </S.Tabs>
       {activeTab === TABS.DESCRIPTION &&
         (descriptionJson ? (
-          <RichTextContent descriptionJson={descriptionJson} />
+          <>
+            {ushop && (
+              <>
+                <a href={ushop.url} target="_blank">
+                  {ushop.name}
+                </a>{" "}
+                <br />
+              </>
+            )}
+            {productLink && (
+              <a href={productLink} target="_blank">
+                Барааны линк
+              </a>
+            )}
+            <RichTextContent descriptionJson={descriptionJson} />
+          </>
         ) : (
           <p>{description}</p>
         ))}

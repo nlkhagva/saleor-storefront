@@ -18,11 +18,12 @@
     @media (max-width: $small-screen) {
       display: block;
       margin-bottom: $spacer * 2;
+      padding-bottom: 0;
     }
 
     &__description {
       width: 100%;
-      min-height: $spacer * 10;
+      min-height: $spacer * 3;
       margin-bottom: $spacer;
       margin-top: $spacer * 3;
     }
