@@ -7,22 +7,30 @@ export const Wrapper = styled.div`
 export const Bar = styled.div`
   height: 5rem;
   background-color: ${props => props.theme.tile.backgroundColor};
-  display: flex;
+  display: grid;
   justify-content: space-between;
   align-items: center;
   padding: 0 2rem;
   font-size: ${props => props.theme.typography.smallFontSize};
   margin-top: 1rem;
   margin-bottom: 1.4rem;
+  grid-template-areas:
+    "filter dropdown"
+    "total total";
 `;
 
 export const LeftSide = styled.div`
   display: flex;
   align-items: center;
+  grid-area: filter;
 `;
 
 export const RightSide = styled.div`
   height: 1.2rem;
+  grid-area: dropdown;
+`;
+export const BottomSide = styled.div`
+  grid-area: total;
 `;
 
 export const FiltersButton = styled.button`
@@ -33,14 +41,12 @@ export const FiltersButton = styled.button`
 `;
 
 export const Clear = styled.button`
-  padding-left: 2rem;
+  padding-left: 1rem;
   cursor: pointer;
   font-size: ${props => props.theme.typography.smallFontSize};
   color: ${props => props.theme.colors.lightFont};
 `;
-export const Element = styled.span`
-  padding-left: 2rem;
-`;
+export const Element = styled.span``;
 
 export const Filters = styled.span`
   font-weight: ${props => props.theme.typography.boldFontWeight};

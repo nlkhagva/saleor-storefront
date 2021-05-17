@@ -41,13 +41,6 @@ export const ProductListHeader: React.FC<IProps> = ({
         </S.LeftSide>
 
         <S.RightSide>
-          <S.Element data-test="productsFoundCounter">
-            <S.Label>
-              <FormattedMessage defaultMessage="Нийт:" />{" "}
-            </S.Label>
-            {numberOfProducts}
-            <S.Label> бараа</S.Label>
-          </S.Element>
           <S.Element>
             <S.Sort>
               <DropdownSelect
@@ -60,6 +53,15 @@ export const ProductListHeader: React.FC<IProps> = ({
             </S.Sort>
           </S.Element>
         </S.RightSide>
+        <S.BottomSide>
+          <S.Element data-test="productsFoundCounter">
+            <S.Label>
+              <FormattedMessage defaultMessage="Нийт:" />{" "}
+            </S.Label>
+            {numberOfProducts}
+            <S.Label> бараа</S.Label>
+          </S.Element>
+        </S.BottomSide>
       </S.Bar>
       <S.FiltersChipsWrapper>
         {activeFiltersAttributes.map(

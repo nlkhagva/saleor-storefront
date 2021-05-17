@@ -55,14 +55,14 @@ export const ProductDescription: React.FC<IProps> = ({
           <>
             {ushop && (
               <>
-                <a href={ushop.url} target="_blank">
+                <a href={ushop.url} target="_blank" rel="noreferrer">
                   {ushop.name}
                 </a>{" "}
                 <br />
               </>
             )}
             {productLink && (
-              <a href={productLink} target="_blank">
+              <a href={productLink} target="_blank" rel="noreferrer">
                 Барааны линк
               </a>
             )}
