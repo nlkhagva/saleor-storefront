@@ -76,6 +76,7 @@ export const defaultTheme = {
   },
   colors: {
     ...C.theme,
+    saleColor: "#eb0037",
   },
   container: {
     width: 1140,

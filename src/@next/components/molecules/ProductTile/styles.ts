@@ -40,8 +40,8 @@ export const Price = styled.p`
   font-weight: 600;
   margin-top: 0.5rem;
   > span {
-    &:nth-child(2) {
-      color: #bc1f25;
+    &:nth-child(1) {
+      color: ${props => props.theme.colors.saleColor};
     }
   }
 `;

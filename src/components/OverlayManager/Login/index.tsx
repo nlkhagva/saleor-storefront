@@ -4,6 +4,8 @@ import * as React from "react";
 import { FormattedMessage } from "react-intl";
 import ReactSVG from "react-svg";
 
+import loginSymbol from "images/unurshop/loginSymbol.svg";
+
 import {
   LoginForm,
   Offline,
@@ -85,8 +87,11 @@ class Login extends React.Component<
                   />
                 </>
               ) : (
-                <RegisterForm hide={hide} />
+                <>
+                  <RegisterForm hide={hide} />
+                </>
               )}
+              <ReactSVG path={loginSymbol} className="login-symbol" />
             </div>
           </Online>
           <Offline>

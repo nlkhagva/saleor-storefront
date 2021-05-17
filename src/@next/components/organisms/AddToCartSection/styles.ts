@@ -1,9 +1,15 @@
-import { styled } from "@styles";
+import { media, styled } from "@styles";
 
 export const AddToCartSelection = styled.div``;
 
 export const ProductNameHeader = styled.h3`
   text-transform: uppercase;
+
+  ${media.smallScreen`
+    font-size: 18px;
+  `}
+
+  
   font-weight: ${props => props.theme.typography.boldFontWeight};
   margin-bottom: ${props => props.theme.spacing.spacer};
 `;
@@ -11,12 +17,17 @@ export const ProductNameHeader = styled.h3`
 export const ProductPricing = styled.h4`
   font-weight: ${props => props.theme.typography.boldFontWeight};
   margin-bottom: ${props => props.theme.spacing.spacer};
+
+  small {
+    color: ${props => props.theme.colors.baseFontColorSemiTransparent};
+    font-size: ${props => props.theme.typography.smallFontSize};
+    font-weight: normal;
+  }
 `;
 
 export const UndiscountedPrice = styled.span`
   text-decoration: line-through;
   color: ${props => props.theme.colors.baseFontColorSemiTransparent};
-  font-size: ${props => props.theme.typography.smallFontSize};
 `;
 
 export const VariantPicker = styled.div`
@@ -32,9 +43,14 @@ export const VariantPicker = styled.div`
 
 export const QuantityInput = styled.div`
   margin-top: 20px;
-  padding-top: 20px;
+  /* padding-top: 20px;*/
 `;
 
 export const ErrorMessage = styled.p`
   color: ${props => props.theme.colors.error};
+`;
+
+export const SalePercent = styled.p`
+  color: ${props => props.theme.colors.saleColor};
+  margin-bottom: 4px;
 `;

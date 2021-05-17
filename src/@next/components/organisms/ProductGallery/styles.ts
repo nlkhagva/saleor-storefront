@@ -5,13 +5,13 @@ export const Wrapper = styled.div`
   grid-template-areas: "sidebar preview";
   height: 100%;
   grid-template-columns: 76px 1fr;
-  grid-column-gap: 40px;
+  grid-column-gap: 20px;
 `;
 
 export const Thumbnail = styled.div<{ activeThumbnail: boolean }>`
   width: 76px;
   display: flex;
-  border-width: 4px;
+  border-width: 2px;
   border-style: solid;
   border-color: ${props =>
     props.activeThumbnail === true
@@ -25,7 +25,7 @@ export const Thumbnail = styled.div<{ activeThumbnail: boolean }>`
     object-fit: contain;
   }
 
-  margin-top: 20px;
+  /* margin-top: 20px; */
   margin-bottom: 20px;
 `;
 
@@ -43,7 +43,6 @@ export const Button = styled.div`
 
 export const TopButton = styled(Button)`
   top: 0%;
-
   transform: rotate(180deg);
 `;
 
@@ -76,7 +75,7 @@ export const ThumbnailList = styled.div`
 export const Preview = styled.div`
   grid-area: preview;
   width: auto;
-  max-height: 560px;
+  /* max-height: 560px; */
   overflow: hidden;
   img {
     width: 100%;

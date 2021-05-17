@@ -2,7 +2,7 @@ import React from "react";
 
 import { TaxedMoney, Money } from "@components/containers";
 import { Thumbnail } from "@components/molecules";
-import { getWasPrice } from "@temp/views/Product/utils";
+import { getWasPrice, getSalePercent } from "@temp/views/Product/utils";
 
 // import ZaraLogo from '../../../../images/unurshop/xd/zara.jpg';
 // import UshopLogo from "../../../../images/unurshop/logo-v3.png";
@@ -17,10 +17,6 @@ export const ProductTile: React.FC<any> = ({ product }: any) => {
       ? product.pricing.priceRange.start
       : undefined;
   const wasPrice = getWasPrice(product);
-
-  const getSalePercent = (wasPrice: any, price: any) => {
-    return wasPrice ? `${Math.round(100 - (price * 100) / wasPrice)}%` : false;
-  };
 
   return (
     <S.Wrapper>

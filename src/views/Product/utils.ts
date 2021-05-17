@@ -30,3 +30,7 @@ export function getWasPrice(product) {
 
   return metadata ? metadata.value : null;
 }
+
+export const getSalePercent = (wasPrice: any, price: any) => {
+  return wasPrice ? `${Math.round(100 - (price * 100) / wasPrice)}%` : false;
+};

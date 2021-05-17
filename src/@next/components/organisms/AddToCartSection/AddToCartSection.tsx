@@ -10,7 +10,7 @@ import {
 } from "@saleor/sdk/lib/queries/gqlTypes/ProductDetails";
 
 import { IProductVariantsAttributesSelectedValues } from "@types";
-import { getWasPrice } from "@temp/views/Product/utils";
+import { getWasPrice, getSalePercent } from "@temp/views/Product/utils";
 import QuantityInput from "../../molecules/QuantityInput";
 import AddToCartButton from "../../molecules/AddToCartButton";
 import ProductVariantPicker from "../ProductVariantPicker";
@@ -116,6 +116,16 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
   return (
     <S.AddToCartSelection>
       <S.ProductNameHeader data-test="productName">{name}</S.ProductNameHeader>
+      {productPricing &&
+        getSalePercent(wasPrice, productPricing.priceRange?.start) && (
+          <S.SalePercent>
+            {getSalePercent(
+              wasPrice,
+              productPricing.priceRange?.start?.gross.amount
+            )}{" "}
+            хямдрал
+          </S.SalePercent>
+        )}
       {isOutOfStock ? (
         renderErrorMessage(
           intl.formatMessage(commonMessages.outOfStock),
@@ -123,6 +133,8 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
         )
       ) : (
         <S.ProductPricing>
+          {getProductPrice(productPricing, variantPricing)}
+          &nbsp;&nbsp;
           {wasPrice && (
             <>
               <S.UndiscountedPrice>
@@ -135,12 +147,12 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
                   />
                 </span>
               </S.UndiscountedPrice>
-              &nbsp;&nbsp;&nbsp;&nbsp;
             </>
           )}
-
           {/* <TaxedMoney taxedMoney={productPricing?.priceRange.start} /> */}
-          {getProductPrice(productPricing, variantPricing)}
+          {/* <small>
+            <br /> тээврийн үнэ ороогүй
+          </small> */}
         </S.ProductPricing>
       )}
       {noPurchaseAvailable &&

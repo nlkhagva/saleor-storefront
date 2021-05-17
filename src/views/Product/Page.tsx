@@ -4,6 +4,7 @@ import Media from "react-media";
 import { ProductDescription } from "@components/molecules";
 import { ProductGallery } from "@components/organisms";
 import AddToCartSection from "@components/organisms/AddToCartSection";
+
 import { smallScreen } from "../../globalStyles/scss/variables.scss";
 
 import {
@@ -19,7 +20,7 @@ import OtherProducts from "./Other";
 
 import { structuredData } from "../../core/SEO/Product/structuredData";
 import { IProps } from "./types";
-import { getLinkImages } from "./utils";
+import { getWasPrice, getSalePercent, getLinkImages } from "./utils";
 
 const populateBreadcrumbs = product => [
   {
@@ -53,6 +54,8 @@ const Page: React.FC<
       alt: product.name,
     }));
   };
+  const wasPrice = getWasPrice(product);
+
   const getImages = () => {
     if (product.variants && variantId) {
       const variant = product.variants
@@ -102,7 +105,7 @@ const Page: React.FC<
             {matches =>
               matches ? (
                 <>
-                  <img
+                  {/* <img
                     src={product.ushop.logoImage.url}
                     alt={product.ushop.name}
                     style={{
@@ -115,15 +118,30 @@ const Page: React.FC<
                       borderRadius: "100%",
                       boxShadow: "1px 1px 5px rgba(0,0,0,.3)",
                     }}
-                  />
+                  /> */}
+                  {product && wasPrice && (
+                    <div className="product-page__product__sale-mobile">
+                      {getSalePercent(
+                        wasPrice,
+                        product.pricing.priceRange?.start?.gross.amount
+                      )}
+                    </div>
+                  )}
+
                   <GalleryCarousel images={getImages()} />
                   <div className="product-page__product__info">
                     {addToCartSection}
+                    <div className="product-page__product__description">
+                      <ProductDescription
+                        descriptionJson={product.descriptionJson}
+                        attributes={product.attributes}
+                      />
+                    </div>
                   </div>
                 </>
               ) : (
                 <>
-                  <img
+                  {/* <img
                     src={product.ushop.logoImage.url}
                     alt={product.ushop.name}
                     style={{
@@ -136,7 +154,15 @@ const Page: React.FC<
                       borderRadius: "100%",
                       boxShadow: "1px 1px 5px rgba(0,0,0,.3)",
                     }}
-                  />
+                  /> */}
+                  {product && wasPrice && (
+                    <div className="product-page__product__sale">
+                      {getSalePercent(
+                        wasPrice,
+                        product.pricing.priceRange?.start?.gross.amount
+                      )}
+                    </div>
+                  )}
 
                   <div
                     className="product-page__product__gallery"
@@ -151,20 +177,18 @@ const Page: React.FC<
                       )}
                     >
                       {addToCartSection}
+                      <div className="product-page__product__description">
+                        <ProductDescription
+                          descriptionJson={product.descriptionJson}
+                          attributes={product.attributes}
+                        />
+                      </div>
                     </div>
                   </div>
                 </>
               )
             }
           </Media>
-        </div>
-      </div>
-      <div className="container">
-        <div className="product-page__product__description">
-          <ProductDescription
-            descriptionJson={product.descriptionJson}
-            attributes={product.attributes}
-          />
         </div>
       </div>
       <OtherProducts products={product.category.products.edges} />

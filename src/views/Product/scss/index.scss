@@ -13,7 +13,7 @@
     display: flex;
     margin-top: $spacer;
     padding-bottom: $spacer * 5;
-    position:relative;
+    position: relative;
 
     @media (max-width: $small-screen) {
       display: block;
@@ -23,7 +23,8 @@
     &__description {
       width: 100%;
       min-height: $spacer * 10;
-      margin-bottom: $spacer * 9; 
+      margin-bottom: $spacer;
+      margin-top: $spacer * 3;
     }
 
     &__info {
@@ -54,6 +55,24 @@
           width: calc(#{$container-width} * 30 / 100);
         }
       }
+    }
+    &__sale {
+      position: absolute;
+      top: 1rem;
+      left: 6rem;
+      padding: 0.3rem 0.5rem;
+      background-color: #eb0037;
+      color: #fff;
+      z-index: 2;
+    }
+    &__sale-mobile {
+      position: absolute;
+      top: 1rem;
+      left: 0rem;
+      padding: 0.3rem 0.5rem;
+      background-color: #eb0037;
+      color: #fff;
+      z-index: 2;
     }
 
     &__gallery {
