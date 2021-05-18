@@ -7,7 +7,7 @@ const CostRow: React.FC<{
   cost: OrderByToken_orderByToken_lines_unitPrice_gross;
 }> = ({ heading, cost }) => (
   <tr>
-    <td colSpan={5}>{heading}</td>
+    <td colSpan={4}>{heading}</td>
     <td className="text-right money">
       {cost ? <Money money={cost} /> : "Тодорхойгүй"}
     </td>

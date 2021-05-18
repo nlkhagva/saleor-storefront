@@ -390,6 +390,7 @@ export interface OrderDetail_lines {
   id: string;
   productName: string;
   quantity: number;
+  quantityFulfilled: number;
   /**
    * A purchased product variant. Note: this field may be null if the variant has been removed from stock at all.
    */
@@ -684,6 +685,50 @@ export interface OrderDetail_fulfillments_lines_orderLine_unitPrice {
    * Amount of money without taxes.
    */
   net: OrderDetail_fulfillments_lines_orderLine_unitPrice_net;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
+export interface OrderDetail_fulfillments_lines_orderLine_totalPrice_gross {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
+export interface OrderDetail_fulfillments_lines_orderLine_totalPrice_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
+export interface OrderDetail_fulfillments_lines_orderLine_totalPrice {
+  __typename: "TaxedMoney";
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Amount of money including taxes.
+   */
+  gross: OrderDetail_fulfillments_lines_orderLine_totalPrice_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: OrderDetail_fulfillments_lines_orderLine_totalPrice_net;
 }
 
 export interface OrderDetail_fulfillments_lines_orderLine_thumbnail {
@@ -713,6 +758,10 @@ export interface OrderDetail_fulfillments_lines_orderLine {
    * Price of the single item in the order line.
    */
   unitPrice: OrderDetail_fulfillments_lines_orderLine_unitPrice | null;
+  /**
+   * Price of the order line.
+   */
+  totalPrice: OrderDetail_fulfillments_lines_orderLine_totalPrice | null;
   /**
    * The main thumbnail for the ordered product.
    */

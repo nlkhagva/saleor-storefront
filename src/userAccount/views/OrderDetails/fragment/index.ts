@@ -144,7 +144,7 @@ export const orderLineFragment = gql`
       url
     }
   }
-`
+`;
 
 export const orderDetailFragment = gql`
   ${orderPriceFragment}
@@ -171,6 +171,7 @@ export const orderDetailFragment = gql`
       id
       productName
       quantity
+      quantityFulfilled
       variant {
         ...ProductVariant
       }
@@ -225,4 +226,3 @@ export const invoiceFragment = gql`
     status
   }
 `;
-
