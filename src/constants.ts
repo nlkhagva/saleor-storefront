@@ -18,5 +18,5 @@ export const SHIPPING_STATUS = [
   { label: "Монголд", value: "INMONGOLIA" },
   { label: "Хүлээн авсан", value: "RECEIVED" },
   { label: "Саатсан", value: "DELAYED" },
-  { label: "Цуцалсан", value: "CANCELED" }
+  { label: "Цуцалсан", value: "CANCELED" },
 ];

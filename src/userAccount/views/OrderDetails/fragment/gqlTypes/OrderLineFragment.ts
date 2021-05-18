@@ -286,6 +286,50 @@ export interface OrderLineFragment_unitPrice {
    * Amount of money without taxes.
    */
   net: OrderLineFragment_unitPrice_net;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
+export interface OrderLineFragment_totalPrice_gross {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
+export interface OrderLineFragment_totalPrice_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
+export interface OrderLineFragment_totalPrice {
+  __typename: "TaxedMoney";
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Amount of money including taxes.
+   */
+  gross: OrderLineFragment_totalPrice_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: OrderLineFragment_totalPrice_net;
 }
 
 export interface OrderLineFragment_thumbnail {
@@ -315,6 +359,10 @@ export interface OrderLineFragment {
    * Price of the single item in the order line.
    */
   unitPrice: OrderLineFragment_unitPrice | null;
+  /**
+   * Price of the order line.
+   */
+  totalPrice: OrderLineFragment_totalPrice | null;
   /**
    * The main thumbnail for the ordered product.
    */

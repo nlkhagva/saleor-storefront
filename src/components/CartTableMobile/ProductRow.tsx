@@ -52,45 +52,47 @@ const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
     SHIPPING_STATUS.filter(l => l.value === value)[0].label;
 
   return (
-    <tr
-      className={classNames({
-        "cart-table-row--processing": processing,
-      })}
-    >
-      <td className="cart-table__thumbnail ">
-        <div>
-          <Link to={productUrl}>
-            <Thumbnail source={line.orderLine.variant.product} />
-          </Link>
+    <React.Fragment>
+      <tr
+        className={classNames({
+          "cart-table-row--processing": processing,
+        })}
+      >
+        <td className="cart-table__thumbnail">
+          <div>
+            <Link to={productUrl}>
+              <Thumbnail source={line.orderLine.variant.product} />
+            </Link>
+          </div>
+        </td>
 
+        <td>
           <Link to={productUrl}>{line.orderLine.variant.product.name}</Link>
-        </div>
-      </td>
 
-      <td>{maybe(() => ushopStatusRender(line)) || ""}</td>
+          {line.orderLine.variant.attributes.map(
+            ({ attribute, values }, attributeIndex) => (
+              <p key={attribute.id}>
+                {attribute.name}: {values.map(value => value.name).join(", ")}
+              </p>
+            )
+          )}
+          <span className="cart-table_status">
+            {maybe(() => ushopStatusRender(line)) || ""}
+          </span>
+        </td>
+        <td className="text-right">
+          <TaxedMoney taxedMoney={line.orderLine.variant.pricing.price} />
+        </td>
 
-      <td>
-        {line.orderLine.variant.attributes.map(
-          ({ attribute, values }, attributeIndex) => (
-            <p key={attribute.id}>
-              {attribute.name}: {values.map(value => value.name).join(", ")}
-            </p>
-          )
-        )}
-      </td>
+        <td className="cart-table__quantity-cell text-right">
+          <p>{line.orderLine.quantity}</p>
+        </td>
 
-      <td className="text-right">
-        <TaxedMoney taxedMoney={line.orderLine.variant.pricing.price} />
-      </td>
-
-      <td className="cart-table__quantity-cell text-right">
-        <p>{line.orderLine.quantity}</p>
-      </td>
-
-      <td className="money text-right">
-        <TaxedMoney taxedMoney={line.orderLine.totalPrice} />
-      </td>
-    </tr>
+        <td className="money text-right">
+          <TaxedMoney taxedMoney={line.orderLine.totalPrice} />
+        </td>
+      </tr>
+    </React.Fragment>
   );
 };
 

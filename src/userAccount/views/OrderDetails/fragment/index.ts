@@ -171,6 +171,7 @@ export const orderDetailFragment = gql`
       id
       productName
       quantity
+      quantityFulfilled
       variant {
         ...ProductVariant
       }

@@ -21,6 +21,9 @@ export { default as SocialMediaIcon } from "./SocialMediaIcon";
 export { default as TextField } from "./TextField";
 export { default as AddressSummary } from "./AddressSummary";
 export { CartTable } from "./CartTable";
+export { CartTableMobile } from "./CartTableMobile";
+export { CartTableUnfulfilled } from "./CartTableUnfulfilled";
+export { CartTableUnfulfilledMobile } from "./CartTableUnfulfilledMobile";
 export { default as ProductsFeatured } from "./ProductsFeatured";
 export { Filters, ProductFilters } from "./ProductFilters";
 export {

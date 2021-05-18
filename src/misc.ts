@@ -26,7 +26,7 @@ export function renderCollection<T>(
     return renderItem(undefined, undefined, collection);
   }
   if (collection.length === 0) {
-    return !!renderEmpty ? renderEmpty(collection) : null;
+    return !renderEmpty ? renderEmpty(collection) : null;
   }
   return collection.map(renderItem);
 }

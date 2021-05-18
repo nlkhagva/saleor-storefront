@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useAlert } from "react-alert";
-
+import Media from "react-responsive";
 import { FormattedMessage, useIntl } from "react-intl";
 import { Link } from "react-router-dom";
 
@@ -14,9 +14,11 @@ import {
   translateOrderStatus,
   translatePaymentStatus,
 } from "@temp/intl";
+import { maybe } from "@temp/misc";
+import { mediumScreen } from "@styles/constants";
 
 // import { ILine } from "../../../components/CartTable/ProductRow";
-import { PRODUCT_TYPE_SHIPPING } from "@app/custom/constants";
+// import { PRODUCT_TYPE_SHIPPING } from "@app/custom/constants";
 // import ProductList from "../../../components/OverlayManager/Cart/ProductList";
 import { OrderPayment } from "./OrderPayment";
 import { OrderNote } from "./OrderNote";
@@ -24,9 +26,14 @@ import { TypedPaymentOrderRemain } from "./query";
 import { UserOrderByToken_orderByToken } from "./gqlTypes/UserOrderByToken";
 
 import { orderHistoryUrl } from "../../../app/routes";
-import { AddressSummary, CartTable, NotFound } from "../../../components";
-
-// const ptShippingId = PRODUCT_TYPE_SHIPPING;
+import {
+  AddressSummary,
+  CartTable,
+  CartTableMobile,
+  NotFound,
+  CartTableUnfulfilled,
+  CartTableUnfulfilledMobile,
+} from "../../../components";
 
 // const extractOrderLines = (lines: any[]): any[] => {
 //   console.log(lines);
@@ -39,46 +46,6 @@ import { AddressSummary, CartTable, NotFound } from "../../../components";
 //   // .sort((a, b) =>
 //   //   b.variant.id.toLowerCase().localeCompare(a.variant.id.toLowerCase())
 //   // );
-// };
-
-// const extractOrderLinesUshop = (lines: any[]): any[] => {
-//   const ushops = [];
-
-//   const variants = lines.map(tmp => tmp.variant);
-//   const productVariants = variants.filter(
-//     tmp => tmp.product.productType.id !== ptShippingId
-//   );
-//   const shippingVariants = variants.filter(
-//     tmp => tmp.product.productType.id === ptShippingId
-//   );
-
-//   productVariants.map(variant => {
-//     const shop = ushops.find(el => el.id === variant.product.ushop.id);
-//     const line = lines.find(el => el.variant.id === variant.id);
-
-//     // if (variant.product.metadata) {
-//     //   line.variant.product["metadata"] = variant.product.metadata;
-//     // }
-
-//     if (!shop) {
-//       ushops.push({
-//         ...variant.product.ushop,
-//         lines: [line],
-//       });
-//     } else {
-//       shop.lines.push(line);
-//     }
-//   });
-
-//   shippingVariants.map(el => {
-//     const ushop = ushops.find(shop => shop.id === el.product.ushop.id);
-
-//     if (ushop) {
-//       ushop.shippingVariant = el;
-//     }
-//   });
-//   // console.log(ushops);
-//   return ushops;
 // };
 
 const Page: React.FC<{
@@ -97,7 +64,9 @@ const Page: React.FC<{
     refetchOrder();
   };
 
-  console.log(order);
+  const unfulfilled = maybe(() => order.lines, []).filter(
+    line => line.quantityFulfilled < line.quantity
+  );
 
   return order ? (
     <>
@@ -159,13 +128,28 @@ const Page: React.FC<{
       {/* <div className="order-details__body">
         <ProductList lines={order.lines} />
       </div> */}
-      {order.fulfillments &&
-        order.fulfillments.map((fulfillment, index) => (
-          <CartTable
-            fulfillment={fulfillment}
-            isHeader={index > 0 ? false : true}
-          />
-        ))}
+
+      {unfulfilled.length > 0 && (
+        <>
+          <Media minWidth={mediumScreen}>
+            <CartTableUnfulfilled lines={unfulfilled} />
+          </Media>
+          <Media maxWidth={mediumScreen}>
+            <CartTableUnfulfilledMobile lines={unfulfilled} />
+          </Media>
+        </>
+      )}
+
+      {order.fulfillments && (
+        <>
+          <Media minWidth={mediumScreen}>
+            <CartTable fulfillments={order.fulfillments} />
+          </Media>
+          <Media maxWidth={mediumScreen}>
+            <CartTableMobile fulfillments={order.fulfillments} />
+          </Media>
+        </>
+      )}
 
       <table className="ushop-price-table" style={{ fontSize: "1rem" }}>
         <tbody>

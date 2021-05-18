@@ -17,7 +17,7 @@ const ShopRow: React.FC<{
 }> = ({ line }) => {
   return (
     <tr>
-      <td className="no-padding" colSpan={6}>
+      <td className="no-padding" colSpan={5}>
         <h5 className="cart__shop__title">
           <span className="cart__shop__name">
             <img
