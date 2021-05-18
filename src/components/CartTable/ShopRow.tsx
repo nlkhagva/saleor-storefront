@@ -24,7 +24,7 @@ const ShopRow: React.FC<{
   // const ushopStatusRender = (line: any) =>
   //   `${line.ustatus} /${isSoonDate(line)}/`;
 
-  console.log(line);
+  // console.log(line);
 
   return (
     <tr>

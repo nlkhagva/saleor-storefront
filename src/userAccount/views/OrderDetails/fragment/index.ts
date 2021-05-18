@@ -144,7 +144,7 @@ export const orderLineFragment = gql`
       url
     }
   }
-`
+`;
 
 export const orderDetailFragment = gql`
   ${orderPriceFragment}
@@ -225,4 +225,3 @@ export const invoiceFragment = gql`
     status
   }
 `;
-

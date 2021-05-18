@@ -170,7 +170,6 @@ const CustomList: React.SFC<{
                       </b>
                     </td>
                   </tr>
-                  q
                   <tr>
                     <td>Англи дотоод хүргэлт</td>
                     <td>

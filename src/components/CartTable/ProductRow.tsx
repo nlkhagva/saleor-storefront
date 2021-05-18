@@ -7,9 +7,9 @@ import { Thumbnail } from "@components/molecules";
 import { ProductVariant } from "@saleor/sdk/lib/fragments/gqlTypes/ProductVariant";
 import { OrderByToken_orderByToken_lines_unitPrice } from "@saleor/sdk/lib/queries/gqlTypes/OrderByToken";
 
-import { generateProductUrl } from "../../core/utils";
 import { maybe } from "@temp/misc";
 import { SHIPPING_STATUS } from "@temp/constants";
+import { generateProductUrl } from "../../core/utils";
 
 export type ILine = Omit<
   ProductVariant,
@@ -41,7 +41,7 @@ const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
   );
 
   const soonDateStatus = ["shipping"];
-  const isSoonDate = (line) =>
+  const isSoonDate = line =>
     soonDateStatus.includes(line.ustatus.toLowerCase())
       ? line.changedDate
       : line.soonDate;
@@ -51,7 +51,7 @@ const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
       : `${statusLabel(line.ustatus)}`;
 
   const statusLabel = (value: string) =>
-    SHIPPING_STATUS.filter((l) => l.value === value)[0].label;
+    SHIPPING_STATUS.filter(l => l.value === value)[0].label;
 
   return (
     <tr
@@ -82,7 +82,7 @@ const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
         {line.orderLine.variant.attributes.map(
           ({ attribute, values }, attributeIndex) => (
             <p key={attribute.id}>
-              {attribute.name}: {values.map((value) => value.name).join(", ")}
+              {attribute.name}: {values.map(value => value.name).join(", ")}
             </p>
           )
         )}

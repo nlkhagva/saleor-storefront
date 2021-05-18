@@ -27,7 +27,7 @@ const showSuccessNotification = (
         title: data.accountRegister.requiresConfirmation
           ? intl.formatMessage({
               defaultMessage:
-                "Please check your e-mail for further instructions",
+                "Та и-мэйл хаягаа шалгалж бүртгэлээ баталгаажуулна уу",
             })
           : intl.formatMessage({ defaultMessage: "New user has been created" }),
       },
