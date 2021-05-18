@@ -44,17 +44,17 @@ const ptShippingId = PRODUCT_TYPE_SHIPPING;
 const extractOrderLinesUshop = (lines: any[]): any[] => {
   const ushops = [];
 
-  const variants = lines.map(tmp => tmp.variant);
+  const variants = lines.map((tmp) => tmp.variant);
   const productVariants = variants.filter(
-    tmp => tmp.product.productType.id !== ptShippingId
+    (tmp) => tmp.product.productType.id !== ptShippingId
   );
   const shippingVariants = variants.filter(
-    tmp => tmp.product.productType.id === ptShippingId
+    (tmp) => tmp.product.productType.id === ptShippingId
   );
 
-  productVariants.map(variant => {
-    const shop = ushops.find(el => el.id === variant.product.ushop.id);
-    const line = lines.find(el => el.variant.id === variant.id);
+  productVariants.map((variant) => {
+    const shop = ushops.find((el) => el.id === variant.product.ushop.id);
+    const line = lines.find((el) => el.variant.id === variant.id);
 
     // if (variant.product.metadata) {
     //   line.variant.product["metadata"] = variant.product.metadata;
@@ -70,8 +70,8 @@ const extractOrderLinesUshop = (lines: any[]): any[] => {
     }
   });
 
-  shippingVariants.map(el => {
-    const ushop = ushops.find(shop => shop.id === el.product.ushop.id);
+  shippingVariants.map((el) => {
+    const ushop = ushops.find((shop) => shop.id === el.product.ushop.id);
 
     if (ushop) {
       ushop.shippingVariant = el;
@@ -86,7 +86,7 @@ const Page: React.FC<{
   order: UserOrderByToken_orderByToken;
   refetchOrder: any;
   downloadInvoice: () => void;
-}> = props => {
+}> = (props) => {
   const { guest, order, refetchOrder, downloadInvoice } = props;
   const intl = useIntl();
   const alert = useAlert();
@@ -96,6 +96,8 @@ const Page: React.FC<{
     alert.show({ title: "Төлбөр амжилттай төлөгдлөө" }, { type: "success" });
     refetchOrder();
   };
+
+  console.log(order);
 
   return order ? (
     <>
@@ -148,7 +150,7 @@ const Page: React.FC<{
       <div className="">
         {Math.abs(order.totalBalance.amount) > 0 && (
           <TypedPaymentOrderRemain onCompleted={onCompletedPayment}>
-            {paymentOrderRemain => (
+            {(paymentOrderRemain) => (
               <OrderPayment order={order} mutation={paymentOrderRemain} />
             )}
           </TypedPaymentOrderRemain>
@@ -157,12 +159,13 @@ const Page: React.FC<{
       {/* <div className="order-details__body">
         <ProductList lines={order.lines} />
       </div> */}
-      <CartTable
-        lines={extractOrderLinesUshop(order.lines)}
-        totalCost={<TaxedMoney taxedMoney={order.total} />}
-        deliveryCost={<TaxedMoney taxedMoney={order.shippingPrice} />}
-        subtotal={order.subtotal}
-      />
+      {order.fulfillments &&
+        order.fulfillments.map((fulfillment, index) => (
+          <CartTable
+            fulfillment={fulfillment}
+            isHeader={index > 0 ? false : true}
+          />
+        ))}
 
       <table className="ushop-price-table" style={{ fontSize: "1rem" }}>
         <tbody>

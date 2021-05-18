@@ -279,15 +279,9 @@ export enum FulfillmentLineUstatus {
 /**
  * An enumeration.
  */
-export enum FulfillmentUstatus {
-  ATUK = "ATUK",
+export enum FulfillmentStatus {
   CANCELED = "CANCELED",
-  DELAYED = "DELAYED",
-  DRAFT = "DRAFT",
-  INMONGOLIA = "INMONGOLIA",
-  NEW = "NEW",
-  RECEIVED = "RECEIVED",
-  SHIPPING = "SHIPPING",
+  FULFILLED = "FULFILLED",
 }
 
 /**

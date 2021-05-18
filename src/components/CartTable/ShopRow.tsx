@@ -24,9 +24,11 @@ const ShopRow: React.FC<{
   // const ushopStatusRender = (line: any) =>
   //   `${line.ustatus} /${isSoonDate(line)}/`;
 
+  console.log(line);
+
   return (
     <tr>
-      <td className="no-padding" colSpan={mediumScreen ? 5 : 4}>
+      <td className="no-padding" colSpan={mediumScreen ? 6 : 5}>
         <h5 className="cart__shop__title">
           <span className="cart__shop__name">
             <img

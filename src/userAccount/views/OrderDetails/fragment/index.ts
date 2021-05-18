@@ -104,10 +104,53 @@ export const checkoutProductVariantFragment = gql`
   }
 `;
 
+export const orderLineFragment = gql`
+  fragment OrderLineFragment on OrderLine {
+    id
+    isShippingRequired
+    variant {
+      product {
+        isAvailableForPurchase
+        isPublished
+      }
+      quantityAvailable
+    }
+    productName
+    productSku
+    quantity
+    quantityFulfilled
+    variant {
+      ...ProductVariant
+    }
+    unitPrice {
+      gross {
+        amount
+        currency
+      }
+      net {
+        amount
+        currency
+      }
+    }
+    unitPrice {
+      currency
+      ...OrderPrice
+    }
+    totalPrice {
+      currency
+      ...OrderPrice
+    }
+    thumbnail {
+      url
+    }
+  }
+`
+
 export const orderDetailFragment = gql`
   ${orderPriceFragment}
   ${checkoutAddressFragment}
   ${checkoutProductVariantFragment}
+  ${orderLineFragment}
   fragment OrderDetail on Order {
     userEmail
     paymentStatus
@@ -125,6 +168,7 @@ export const orderDetailFragment = gql`
       ...Address
     }
     lines {
+      id
       productName
       quantity
       variant {
@@ -141,13 +185,23 @@ export const orderDetailFragment = gql`
     }
     fulfillments {
       id
+      fulfillmentOrder
+      status
+      trackingNumber
       ukDate
-      ustatus
       lines {
         id
+        quantity
+        orderLine {
+          ...OrderLineFragment
+        }
         ustatus
         changedDate
         soonDate
+      }
+      warehouse {
+        id
+        name
       }
     }
     subtotal {
@@ -171,3 +225,4 @@ export const invoiceFragment = gql`
     status
   }
 `;
+

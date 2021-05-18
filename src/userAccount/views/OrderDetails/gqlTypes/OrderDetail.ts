@@ -2,7 +2,7 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { PaymentChargeStatusEnum, OrderStatus, FulfillmentStatus, FulfillmentLineUstatus } from "./../../../../../../gqlTypes/globalTypes";
+import { PaymentChargeStatusEnum, OrderStatus, FulfillmentStatus, FulfillmentLineUstatus } from "./../../../../../gqlTypes/globalTypes";
 
 // ====================================================
 // GraphQL fragment: OrderDetail
@@ -404,33 +404,22 @@ export interface OrderDetail_lines {
   totalPrice: OrderDetail_lines_totalPrice | null;
 }
 
-export interface OrderDetail_fulfillments_lines_orderLine_variant_product_thumbnail {
-  __typename: "Image";
-  /**
-   * The URL of the image.
-   */
-  url: string;
-  /**
-   * Alt text for an image.
-   */
-  alt: string | null;
-}
-
-export interface OrderDetail_fulfillments_lines_orderLine_variant_product_thumbnail2x {
-  __typename: "Image";
-  /**
-   * The URL of the image.
-   */
-  url: string;
-}
-
 export interface OrderDetail_fulfillments_lines_orderLine_variant_product_productType {
   __typename: "ProductType";
   /**
    * The ID of the object.
    */
   id: string;
-  isShippingRequired: boolean;
+  name: string;
+}
+
+export interface OrderDetail_fulfillments_lines_orderLine_variant_product_ushop {
+  __typename: "Ushop";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
 }
 
 export interface OrderDetail_fulfillments_lines_orderLine_variant_product_metadata {
@@ -445,28 +434,6 @@ export interface OrderDetail_fulfillments_lines_orderLine_variant_product_metada
   value: string;
 }
 
-export interface OrderDetail_fulfillments_lines_orderLine_variant_product_ushop_logoImage {
-  __typename: "Image";
-  /**
-   * Alt text for an image.
-   */
-  alt: string | null;
-  /**
-   * The URL of the image.
-   */
-  url: string;
-}
-
-export interface OrderDetail_fulfillments_lines_orderLine_variant_product_ushop {
-  __typename: "Ushop";
-  /**
-   * The ID of the object.
-   */
-  id: string;
-  name: string;
-  logoImage: OrderDetail_fulfillments_lines_orderLine_variant_product_ushop_logoImage | null;
-}
-
 export interface OrderDetail_fulfillments_lines_orderLine_variant_product {
   __typename: "Product";
   /**
@@ -478,149 +445,12 @@ export interface OrderDetail_fulfillments_lines_orderLine_variant_product {
    * The ID of the object.
    */
   id: string;
-  name: string;
-  /**
-   * The main thumbnail for a product.
-   */
-  thumbnail: OrderDetail_fulfillments_lines_orderLine_variant_product_thumbnail | null;
-  /**
-   * The main thumbnail for a product.
-   */
-  thumbnail2x: OrderDetail_fulfillments_lines_orderLine_variant_product_thumbnail2x | null;
   productType: OrderDetail_fulfillments_lines_orderLine_variant_product_productType;
+  ushop: OrderDetail_fulfillments_lines_orderLine_variant_product_ushop | null;
   /**
    * List of public metadata items. Can be accessed without permissions.
    */
   metadata: (OrderDetail_fulfillments_lines_orderLine_variant_product_metadata | null)[];
-  ushop: OrderDetail_fulfillments_lines_orderLine_variant_product_ushop | null;
-}
-
-export interface OrderDetail_fulfillments_lines_orderLine_variant_pricing_priceUndiscounted_gross {
-  __typename: "Money";
-  /**
-   * Amount of money.
-   */
-  amount: number;
-  /**
-   * Currency code.
-   */
-  currency: string;
-}
-
-export interface OrderDetail_fulfillments_lines_orderLine_variant_pricing_priceUndiscounted_net {
-  __typename: "Money";
-  /**
-   * Amount of money.
-   */
-  amount: number;
-  /**
-   * Currency code.
-   */
-  currency: string;
-}
-
-export interface OrderDetail_fulfillments_lines_orderLine_variant_pricing_priceUndiscounted {
-  __typename: "TaxedMoney";
-  /**
-   * Amount of money including taxes.
-   */
-  gross: OrderDetail_fulfillments_lines_orderLine_variant_pricing_priceUndiscounted_gross;
-  /**
-   * Amount of money without taxes.
-   */
-  net: OrderDetail_fulfillments_lines_orderLine_variant_pricing_priceUndiscounted_net;
-}
-
-export interface OrderDetail_fulfillments_lines_orderLine_variant_pricing_price_gross {
-  __typename: "Money";
-  /**
-   * Amount of money.
-   */
-  amount: number;
-  /**
-   * Currency code.
-   */
-  currency: string;
-}
-
-export interface OrderDetail_fulfillments_lines_orderLine_variant_pricing_price_net {
-  __typename: "Money";
-  /**
-   * Amount of money.
-   */
-  amount: number;
-  /**
-   * Currency code.
-   */
-  currency: string;
-}
-
-export interface OrderDetail_fulfillments_lines_orderLine_variant_pricing_price {
-  __typename: "TaxedMoney";
-  /**
-   * Amount of money including taxes.
-   */
-  gross: OrderDetail_fulfillments_lines_orderLine_variant_pricing_price_gross;
-  /**
-   * Amount of money without taxes.
-   */
-  net: OrderDetail_fulfillments_lines_orderLine_variant_pricing_price_net;
-}
-
-export interface OrderDetail_fulfillments_lines_orderLine_variant_pricing {
-  __typename: "VariantPricingInfo";
-  /**
-   * Whether it is in sale or not.
-   */
-  onSale: boolean | null;
-  /**
-   * The price without any discount.
-   */
-  priceUndiscounted: OrderDetail_fulfillments_lines_orderLine_variant_pricing_priceUndiscounted | null;
-  /**
-   * The price, with any discount subtracted.
-   */
-  price: OrderDetail_fulfillments_lines_orderLine_variant_pricing_price | null;
-}
-
-export interface OrderDetail_fulfillments_lines_orderLine_variant_attributes_attribute {
-  __typename: "Attribute";
-  /**
-   * The ID of the object.
-   */
-  id: string;
-  /**
-   * Name of an attribute displayed in the interface.
-   */
-  name: string | null;
-}
-
-export interface OrderDetail_fulfillments_lines_orderLine_variant_attributes_values {
-  __typename: "AttributeValue";
-  /**
-   * The ID of the object.
-   */
-  id: string;
-  /**
-   * Name of a value displayed in the interface.
-   */
-  name: string | null;
-  /**
-   * Name of a value displayed in the interface.
-   */
-  value: string | null;
-}
-
-export interface OrderDetail_fulfillments_lines_orderLine_variant_attributes {
-  __typename: "SelectedAttribute";
-  /**
-   * Name of an attribute displayed in the interface.
-   */
-  attribute: OrderDetail_fulfillments_lines_orderLine_variant_attributes_attribute;
-  /**
-   * Values of an attribute.
-   */
-  values: (OrderDetail_fulfillments_lines_orderLine_variant_attributes_values | null)[];
 }
 
 export interface OrderDetail_fulfillments_lines_orderLine_variant {
@@ -635,19 +465,6 @@ export interface OrderDetail_fulfillments_lines_orderLine_variant {
    */
   id: string;
   name: string;
-  sku: string;
-  /**
-   * Whether the variant is in stock and visible or not.
-   */
-  isAvailable: boolean | null;
-  /**
-   * Lists the storefront variant's pricing, the current price and discounts, only meant for displaying.
-   */
-  pricing: OrderDetail_fulfillments_lines_orderLine_variant_pricing | null;
-  /**
-   * List of attributes assigned to this variant.
-   */
-  attributes: OrderDetail_fulfillments_lines_orderLine_variant_attributes[];
 }
 
 export interface OrderDetail_fulfillments_lines_orderLine_unitPrice_gross {

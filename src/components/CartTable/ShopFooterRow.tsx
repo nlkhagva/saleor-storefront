@@ -8,7 +8,7 @@ const CostRow: React.FC<{
   cost: OrderByToken_orderByToken_lines_unitPrice_gross;
 }> = ({ mediumScreen, heading, cost }) => (
   <tr>
-    <td colSpan={mediumScreen ? 4 : 3}>{heading}</td>
+    <td colSpan={mediumScreen ? 5 : 4}>{heading}</td>
     <td className="text-right money">
       {cost ? <Money money={cost} /> : "Тодорхойгүй"}
     </td>

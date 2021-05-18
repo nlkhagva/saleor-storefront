@@ -3,6 +3,9 @@ import { FormattedMessage } from "react-intl";
 // import { FormattedMessage, useIntl } from "react-intl";
 import Media from "react-media";
 import { commonMessages } from "@temp/intl";
+import { maybe } from "@temp/misc";
+import { PRODUCT_TYPE_SHIPPING } from "@temp/constants";
+import { FulfillmentStatus } from "@temp/components/types/globalTypes";
 
 // import CostRow from "./CostRow";
 import ProductRow, { EditableProductRowProps, ILine } from "./ProductRow";
@@ -26,76 +29,88 @@ export interface IShopLine {
 }
 
 interface TableProps extends EditableProductRowProps {
-  lines: IShopLine[];
-  subtotal: React.ReactNode;
-  deliveryCost?: React.ReactNode;
-  totalCost?: React.ReactNode;
-  discount?: React.ReactNode;
-  discountName?: string;
+  fulfillment: any;
+  isHeader: boolean;
 }
 
 const Table: React.FC<TableProps> = ({
-  subtotal,
-  deliveryCost,
-  totalCost,
-  discount,
-  discountName,
-  lines,
+  fulfillment,
+  isHeader,
   ...rowProps
 }) => {
-  // const intl = useIntl();
+  const lines = maybe(
+    () =>
+      fulfillment.lines.filter(
+        (l) =>
+          l.orderLine.variant.product.productType.id !== PRODUCT_TYPE_SHIPPING
+      ),
+    []
+  );
+  const shippingUk = maybe(() =>
+    fulfillment.lines.find(
+      (l) =>
+        l.orderLine.variant.product.productType.id === PRODUCT_TYPE_SHIPPING
+    )
+  );
+
+  const ushop = maybe(() => lines[0].orderLine.variant.product.ushop);
   return (
     <Media query={{ minWidth: smallScreen }}>
-      {mediumScreen => (
+      {(mediumScreen) => (
         <table className="cart-table">
-          <thead>
-            <tr>
-              <th>
-                <FormattedMessage {...commonMessages.products} />
-              </th>
-              {mediumScreen && (
-                <th className="text-right">
-                  <FormattedMessage {...commonMessages.price} />
+          {isHeader && (
+            <thead>
+              <tr>
+                <th>
+                  <FormattedMessage {...commonMessages.products} />
                 </th>
-              )}
-              <th>
-                <FormattedMessage {...commonMessages.variant} />
-              </th>
-              <th className="cart-table__quantity-header text-right">
-                <FormattedMessage {...commonMessages.qty} />
-              </th>
-              <th className="text-right">
-                {mediumScreen ? (
-                  <FormattedMessage {...commonMessages.totalPrice} />
-                ) : (
-                  <FormattedMessage {...commonMessages.price} />
+                <th>
+                  <FormattedMessage {...commonMessages.status} />
+                </th>
+                {mediumScreen && (
+                  <th className="text-right">
+                    <FormattedMessage {...commonMessages.price} />
+                  </th>
                 )}
-              </th>
-            </tr>
-          </thead>
-          {lines.map(shop => (
+                <th>
+                  <FormattedMessage {...commonMessages.variant} />
+                </th>
+                <th className="cart-table__quantity-header text-right">
+                  <FormattedMessage {...commonMessages.qty} />
+                </th>
+                <th className="text-right">
+                  {mediumScreen ? (
+                    <FormattedMessage {...commonMessages.totalPrice} />
+                  ) : (
+                    <FormattedMessage {...commonMessages.price} />
+                  )}
+                </th>
+              </tr>
+            </thead>
+          )}
+          {lines && (
             <tbody>
-              <ShopRow key={shop.id} line={shop} mediumScreen={mediumScreen} />
-              {shop.lines.map(line => (
+              <ShopRow
+                key={ushop.id}
+                line={ushop}
+                mediumScreen={mediumScreen}
+              />
+              {lines.map((line) => (
                 <ProductRow
-                  key={`${shop.id}-${line.id}`}
+                  key={`${ushop.id}-${line.id}`}
                   line={line}
                   mediumScreen={mediumScreen}
                   {...rowProps}
                 />
               ))}
               <ShopFooterRow
-                key={`footer${shop.id}`}
+                key={`footer${ushop.id}`}
                 mediumScreen={mediumScreen}
                 heading="Англи дотоод хүргэлт"
-                cost={
-                  shop.shippingVariant
-                    ? shop.shippingVariant.pricing.price.gross
-                    : null
-                }
+                cost={shippingUk ? shippingUk.orderLine.unitPrice.gross : null}
               />
             </tbody>
-          ))}
+          )}
         </table>
       )}
     </Media>
