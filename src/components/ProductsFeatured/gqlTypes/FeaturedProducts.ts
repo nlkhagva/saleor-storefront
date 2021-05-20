@@ -6,18 +6,6 @@
 // GraphQL query operation: FeaturedProducts
 // ====================================================
 
-export interface FeaturedProducts_shop_homepageCollection_products_edges_node_metadata {
-  __typename: "MetadataItem";
-  /**
-   * Key of a metadata item.
-   */
-  key: string;
-  /**
-   * Value of a metadata item.
-   */
-  value: string;
-}
-
 export interface FeaturedProducts_shop_homepageCollection_products_edges_node_thumbnail {
   __typename: "Image";
   /**
@@ -38,6 +26,27 @@ export interface FeaturedProducts_shop_homepageCollection_products_edges_node_th
   url: string;
 }
 
+export interface FeaturedProducts_shop_homepageCollection_products_edges_node_productType {
+  __typename: "ProductType";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  isShippingRequired: boolean;
+}
+
+export interface FeaturedProducts_shop_homepageCollection_products_edges_node_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface FeaturedProducts_shop_homepageCollection_products_edges_node_ushop_logoImage {
   __typename: "Image";
   /**
@@ -50,6 +59,66 @@ export interface FeaturedProducts_shop_homepageCollection_products_edges_node_us
   alt: string | null;
 }
 
+export interface FeaturedProducts_shop_homepageCollection_products_edges_node_ushop_shippingProduct_productType {
+  __typename: "ProductType";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+}
+
+export interface FeaturedProducts_shop_homepageCollection_products_edges_node_ushop_shippingProduct_variants_pricing_price_gross {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
+export interface FeaturedProducts_shop_homepageCollection_products_edges_node_ushop_shippingProduct_variants_pricing_price {
+  __typename: "TaxedMoney";
+  /**
+   * Amount of money including taxes.
+   */
+  gross: FeaturedProducts_shop_homepageCollection_products_edges_node_ushop_shippingProduct_variants_pricing_price_gross;
+}
+
+export interface FeaturedProducts_shop_homepageCollection_products_edges_node_ushop_shippingProduct_variants_pricing {
+  __typename: "VariantPricingInfo";
+  /**
+   * The price, with any discount subtracted.
+   */
+  price: FeaturedProducts_shop_homepageCollection_products_edges_node_ushop_shippingProduct_variants_pricing_price | null;
+}
+
+export interface FeaturedProducts_shop_homepageCollection_products_edges_node_ushop_shippingProduct_variants {
+  __typename: "ProductVariant";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+  /**
+   * Lists the storefront variant's pricing, the current price and discounts, only meant for displaying.
+   */
+  pricing: FeaturedProducts_shop_homepageCollection_products_edges_node_ushop_shippingProduct_variants_pricing | null;
+}
+
+export interface FeaturedProducts_shop_homepageCollection_products_edges_node_ushop_shippingProduct {
+  __typename: "Product";
+  name: string;
+  productType: FeaturedProducts_shop_homepageCollection_products_edges_node_ushop_shippingProduct_productType;
+  /**
+   * List of variants for the product.
+   */
+  variants: (FeaturedProducts_shop_homepageCollection_products_edges_node_ushop_shippingProduct_variants | null)[] | null;
+}
+
 export interface FeaturedProducts_shop_homepageCollection_products_edges_node_ushop {
   __typename: "Ushop";
   /**
@@ -57,8 +126,8 @@ export interface FeaturedProducts_shop_homepageCollection_products_edges_node_us
    */
   id: string;
   name: string;
-  url: string;
   logoImage: FeaturedProducts_shop_homepageCollection_products_edges_node_ushop_logoImage | null;
+  shippingProduct: FeaturedProducts_shop_homepageCollection_products_edges_node_ushop_shippingProduct | null;
 }
 
 export interface FeaturedProducts_shop_homepageCollection_products_edges_node_pricing_priceRangeUndiscounted_start_gross {
@@ -260,10 +329,6 @@ export interface FeaturedProducts_shop_homepageCollection_products_edges_node {
    * The ID of the object.
    */
   id: string;
-  /**
-   * List of public metadata items. Can be accessed without permissions.
-   */
-  metadata: (FeaturedProducts_shop_homepageCollection_products_edges_node_metadata | null)[];
   name: string;
   /**
    * The main thumbnail for a product.
@@ -276,6 +341,11 @@ export interface FeaturedProducts_shop_homepageCollection_products_edges_node {
   slug: string;
   seoTitle: string | null;
   seoDescription: string | null;
+  productType: FeaturedProducts_shop_homepageCollection_products_edges_node_productType;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (FeaturedProducts_shop_homepageCollection_products_edges_node_metadata | null)[];
   ushop: FeaturedProducts_shop_homepageCollection_products_edges_node_ushop | null;
   /**
    * Lists the storefront product's pricing, the current price and discounts, only meant for displaying.

@@ -52,7 +52,7 @@ const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
     SHIPPING_STATUS.filter(l => l.value === value)[0].label;
 
   return (
-    <React.Fragment>
+    <>
       <tr
         className={classNames({
           "cart-table-row--processing": processing,
@@ -92,7 +92,7 @@ const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
           <TaxedMoney taxedMoney={line.orderLine.totalPrice} />
         </td>
       </tr>
-    </React.Fragment>
+    </>
   );
 };
 

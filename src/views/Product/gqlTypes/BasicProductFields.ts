@@ -6,18 +6,6 @@
 // GraphQL fragment: BasicProductFields
 // ====================================================
 
-export interface BasicProductFields_metadata {
-  __typename: "MetadataItem";
-  /**
-   * Key of a metadata item.
-   */
-  key: string;
-  /**
-   * Value of a metadata item.
-   */
-  value: string;
-}
-
 export interface BasicProductFields_thumbnail {
   __typename: "Image";
   /**
@@ -38,6 +26,27 @@ export interface BasicProductFields_thumbnail2x {
   url: string;
 }
 
+export interface BasicProductFields_productType {
+  __typename: "ProductType";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  isShippingRequired: boolean;
+}
+
+export interface BasicProductFields_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface BasicProductFields_ushop_logoImage {
   __typename: "Image";
   /**
@@ -50,6 +59,66 @@ export interface BasicProductFields_ushop_logoImage {
   alt: string | null;
 }
 
+export interface BasicProductFields_ushop_shippingProduct_productType {
+  __typename: "ProductType";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+}
+
+export interface BasicProductFields_ushop_shippingProduct_variants_pricing_price_gross {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
+export interface BasicProductFields_ushop_shippingProduct_variants_pricing_price {
+  __typename: "TaxedMoney";
+  /**
+   * Amount of money including taxes.
+   */
+  gross: BasicProductFields_ushop_shippingProduct_variants_pricing_price_gross;
+}
+
+export interface BasicProductFields_ushop_shippingProduct_variants_pricing {
+  __typename: "VariantPricingInfo";
+  /**
+   * The price, with any discount subtracted.
+   */
+  price: BasicProductFields_ushop_shippingProduct_variants_pricing_price | null;
+}
+
+export interface BasicProductFields_ushop_shippingProduct_variants {
+  __typename: "ProductVariant";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+  /**
+   * Lists the storefront variant's pricing, the current price and discounts, only meant for displaying.
+   */
+  pricing: BasicProductFields_ushop_shippingProduct_variants_pricing | null;
+}
+
+export interface BasicProductFields_ushop_shippingProduct {
+  __typename: "Product";
+  name: string;
+  productType: BasicProductFields_ushop_shippingProduct_productType;
+  /**
+   * List of variants for the product.
+   */
+  variants: (BasicProductFields_ushop_shippingProduct_variants | null)[] | null;
+}
+
 export interface BasicProductFields_ushop {
   __typename: "Ushop";
   /**
@@ -57,8 +126,8 @@ export interface BasicProductFields_ushop {
    */
   id: string;
   name: string;
-  url: string;
   logoImage: BasicProductFields_ushop_logoImage | null;
+  shippingProduct: BasicProductFields_ushop_shippingProduct | null;
 }
 
 export interface BasicProductFields {
@@ -67,10 +136,6 @@ export interface BasicProductFields {
    * The ID of the object.
    */
   id: string;
-  /**
-   * List of public metadata items. Can be accessed without permissions.
-   */
-  metadata: (BasicProductFields_metadata | null)[];
   name: string;
   /**
    * The main thumbnail for a product.
@@ -83,5 +148,10 @@ export interface BasicProductFields {
   slug: string;
   seoTitle: string | null;
   seoDescription: string | null;
+  productType: BasicProductFields_productType;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (BasicProductFields_metadata | null)[];
   ushop: BasicProductFields_ushop | null;
 }

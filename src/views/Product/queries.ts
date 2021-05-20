@@ -22,10 +22,6 @@ export const priceFragment = gql`
 export const basicProductFragment = gql`
   fragment BasicProductFields on Product {
     id
-    metadata {
-      key
-      value
-    }
     name
     thumbnail {
       url
@@ -37,13 +33,39 @@ export const basicProductFragment = gql`
     slug
     seoTitle
     seoDescription
+    productType {
+      id
+      isShippingRequired
+    }
+    metadata {
+      key
+      value
+    }
     ushop {
       id
       name
-      url
       logoImage {
         url
         alt
+      }
+      shippingProduct {
+        name
+        productType {
+          id
+          name
+        }
+        variants {
+          id
+          name
+          pricing {
+            price {
+              gross {
+                amount
+                currency
+              }
+            }
+          }
+        }
       }
     }
   }

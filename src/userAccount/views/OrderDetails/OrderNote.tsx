@@ -1,20 +1,18 @@
 import React from "react";
 
-import { OrderByToken_orderByToken } from "@saleor/sdk/lib/queries/gqlTypes/OrderByToken";
-import { UserOrderByToken_orderByToken } from "@saleor/sdk/lib/queries/gqlTypes/UserOrderByToken";
-
 import { TypedOrderAddNoteMutation, TypedOrderChatsQuery } from "./query";
 import { OrderChats } from "./OrderChats";
 
 export interface NoteProps {
-  order: OrderByToken_orderByToken | UserOrderByToken_orderByToken;
+  orderId: string;
+  userEmail: string;
 }
 
 export const OrderNote: React.FC<NoteProps> = (props: NoteProps) => {
-  const { order } = props;
+  const { orderId, userEmail } = props;
 
   return (
-    <TypedOrderChatsQuery variables={{ id: order.id }}>
+    <TypedOrderChatsQuery variables={{ id: orderId }}>
       {({ data, refetch }) => {
         const onCompletedNote = () => {
           refetch();
@@ -26,7 +24,8 @@ export const OrderNote: React.FC<NoteProps> = (props: NoteProps) => {
                 <OrderChats
                   addMessage={orderAddNote}
                   chats={data.orderChats}
-                  order={order}
+                  orderId={orderId}
+                  userEmail={userEmail}
                 />
               );
             }}

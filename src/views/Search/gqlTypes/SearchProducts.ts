@@ -221,6 +221,110 @@ export interface SearchProducts_products_edges_node_category {
   name: string;
 }
 
+export interface SearchProducts_products_edges_node_productType {
+  __typename: "ProductType";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  isShippingRequired: boolean;
+}
+
+export interface SearchProducts_products_edges_node_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
+export interface SearchProducts_products_edges_node_ushop_logoImage {
+  __typename: "Image";
+  /**
+   * The URL of the image.
+   */
+  url: string;
+  /**
+   * Alt text for an image.
+   */
+  alt: string | null;
+}
+
+export interface SearchProducts_products_edges_node_ushop_shippingProduct_productType {
+  __typename: "ProductType";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+}
+
+export interface SearchProducts_products_edges_node_ushop_shippingProduct_variants_pricing_price_gross {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
+export interface SearchProducts_products_edges_node_ushop_shippingProduct_variants_pricing_price {
+  __typename: "TaxedMoney";
+  /**
+   * Amount of money including taxes.
+   */
+  gross: SearchProducts_products_edges_node_ushop_shippingProduct_variants_pricing_price_gross;
+}
+
+export interface SearchProducts_products_edges_node_ushop_shippingProduct_variants_pricing {
+  __typename: "VariantPricingInfo";
+  /**
+   * The price, with any discount subtracted.
+   */
+  price: SearchProducts_products_edges_node_ushop_shippingProduct_variants_pricing_price | null;
+}
+
+export interface SearchProducts_products_edges_node_ushop_shippingProduct_variants {
+  __typename: "ProductVariant";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+  /**
+   * Lists the storefront variant's pricing, the current price and discounts, only meant for displaying.
+   */
+  pricing: SearchProducts_products_edges_node_ushop_shippingProduct_variants_pricing | null;
+}
+
+export interface SearchProducts_products_edges_node_ushop_shippingProduct {
+  __typename: "Product";
+  name: string;
+  productType: SearchProducts_products_edges_node_ushop_shippingProduct_productType;
+  /**
+   * List of variants for the product.
+   */
+  variants: (SearchProducts_products_edges_node_ushop_shippingProduct_variants | null)[] | null;
+}
+
+export interface SearchProducts_products_edges_node_ushop {
+  __typename: "Ushop";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+  logoImage: SearchProducts_products_edges_node_ushop_logoImage | null;
+  shippingProduct: SearchProducts_products_edges_node_ushop_shippingProduct | null;
+}
+
 export interface SearchProducts_products_edges_node {
   __typename: "Product";
   /**
@@ -244,6 +348,12 @@ export interface SearchProducts_products_edges_node {
    */
   thumbnail2x: SearchProducts_products_edges_node_thumbnail2x | null;
   category: SearchProducts_products_edges_node_category | null;
+  productType: SearchProducts_products_edges_node_productType;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (SearchProducts_products_edges_node_metadata | null)[];
+  ushop: SearchProducts_products_edges_node_ushop | null;
 }
 
 export interface SearchProducts_products_edges {

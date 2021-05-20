@@ -7,8 +7,8 @@ export const Wrapper = styled.div`
 export const Breadcrumbs = styled.div``;
 
 export const Title = styled.div`
-  margin-top: 80px;
-  margin-bottom: 60px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 `;
 
 export const CartHeader = styled.div`

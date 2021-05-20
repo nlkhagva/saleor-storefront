@@ -17,9 +17,9 @@ import { ITaxedMoney } from "@types";
 import { IProps } from "./types";
 
 const title = (
-  <h1 data-test="cartPageTitle">
-    <FormattedMessage defaultMessage="My Cart" />
-  </h1>
+  <h3 data-test="cartPageTitle">
+    <FormattedMessage defaultMessage="Таны сагс" />
+  </h3>
 );
 
 const getShoppingButton = (history: History) => (

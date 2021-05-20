@@ -5,8 +5,6 @@ import Moment from "react-moment";
 import { Formik } from "formik";
 import ReactSVG from "react-svg";
 
-import { OrderByToken_orderByToken } from "@saleor/sdk/lib/queries/gqlTypes/OrderByToken";
-import { UserOrderByToken_orderByToken } from "@saleor/sdk/lib/queries/gqlTypes/UserOrderByToken";
 import { TextField } from "@components/molecules";
 import SendIcon from "images/send.svg";
 
@@ -15,14 +13,15 @@ import { OrderChats_orderChats } from "./gqlTypes/OrderChats";
 export interface ChatProps {
   addMessage: any;
   chats: OrderChats_orderChats[];
-  order: OrderByToken_orderByToken | UserOrderByToken_orderByToken;
+  orderId: string;
+  userEmail: string;
 }
 interface ChatFormValues {
   message: string;
 }
 
 export const OrderChats: React.FC<ChatProps> = props => {
-  const { addMessage, chats, order } = props;
+  const { addMessage, chats, orderId, userEmail } = props;
   const initialValues: ChatFormValues = { message: "" };
 
   return (
@@ -32,7 +31,7 @@ export const OrderChats: React.FC<ChatProps> = props => {
       <ul className="chat-body">
         {chats.map((chat, index) => (
           <li
-            className={order.userEmail === chat.user.email ? "is-me" : ""}
+            className={userEmail === chat.user.email ? "is-me" : ""}
             key={index}
           >
             {/* <span className="user" /> */}
@@ -52,7 +51,7 @@ export const OrderChats: React.FC<ChatProps> = props => {
         onSubmit={(values, { resetForm }) => {
           addMessage({
             variables: {
-              order: order.id,
+              order: orderId,
               input: {
                 message: values.message,
               },

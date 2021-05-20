@@ -7,6 +7,13 @@ export const PRODUCT: ProductList_products_edges_node = {
   slug: "apple-juice",
   seoDescription: "Apple juice",
   seoTitle: "Apple juice",
+  ushop: null,
+  metadata: [null],
+  productType: {
+    __typename: "ProductType",
+    id: "dasf",
+    isShippingRequired: false,
+  },
   pricing: {
     __typename: "ProductPricingInfo",
     onSale: true,

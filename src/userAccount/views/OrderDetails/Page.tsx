@@ -191,7 +191,7 @@ const Page: React.FC<{
       </div>
       {!guest && (
         <div>
-          <OrderNote order={order} />
+          <OrderNote orderId={order.id} userEmail={order.userEmail} />
         </div>
       )}
     </>

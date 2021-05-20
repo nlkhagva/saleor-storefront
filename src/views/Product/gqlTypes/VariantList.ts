@@ -153,18 +153,6 @@ export interface VariantList_productVariants_edges_node_attributes {
   values: (VariantList_productVariants_edges_node_attributes_values | null)[];
 }
 
-export interface VariantList_productVariants_edges_node_product_metadata {
-  __typename: "MetadataItem";
-  /**
-   * Key of a metadata item.
-   */
-  key: string;
-  /**
-   * Value of a metadata item.
-   */
-  value: string;
-}
-
 export interface VariantList_productVariants_edges_node_product_thumbnail {
   __typename: "Image";
   /**
@@ -185,6 +173,27 @@ export interface VariantList_productVariants_edges_node_product_thumbnail2x {
   url: string;
 }
 
+export interface VariantList_productVariants_edges_node_product_productType {
+  __typename: "ProductType";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  isShippingRequired: boolean;
+}
+
+export interface VariantList_productVariants_edges_node_product_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface VariantList_productVariants_edges_node_product_ushop_logoImage {
   __typename: "Image";
   /**
@@ -197,6 +206,66 @@ export interface VariantList_productVariants_edges_node_product_ushop_logoImage 
   alt: string | null;
 }
 
+export interface VariantList_productVariants_edges_node_product_ushop_shippingProduct_productType {
+  __typename: "ProductType";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+}
+
+export interface VariantList_productVariants_edges_node_product_ushop_shippingProduct_variants_pricing_price_gross {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
+export interface VariantList_productVariants_edges_node_product_ushop_shippingProduct_variants_pricing_price {
+  __typename: "TaxedMoney";
+  /**
+   * Amount of money including taxes.
+   */
+  gross: VariantList_productVariants_edges_node_product_ushop_shippingProduct_variants_pricing_price_gross;
+}
+
+export interface VariantList_productVariants_edges_node_product_ushop_shippingProduct_variants_pricing {
+  __typename: "VariantPricingInfo";
+  /**
+   * The price, with any discount subtracted.
+   */
+  price: VariantList_productVariants_edges_node_product_ushop_shippingProduct_variants_pricing_price | null;
+}
+
+export interface VariantList_productVariants_edges_node_product_ushop_shippingProduct_variants {
+  __typename: "ProductVariant";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+  /**
+   * Lists the storefront variant's pricing, the current price and discounts, only meant for displaying.
+   */
+  pricing: VariantList_productVariants_edges_node_product_ushop_shippingProduct_variants_pricing | null;
+}
+
+export interface VariantList_productVariants_edges_node_product_ushop_shippingProduct {
+  __typename: "Product";
+  name: string;
+  productType: VariantList_productVariants_edges_node_product_ushop_shippingProduct_productType;
+  /**
+   * List of variants for the product.
+   */
+  variants: (VariantList_productVariants_edges_node_product_ushop_shippingProduct_variants | null)[] | null;
+}
+
 export interface VariantList_productVariants_edges_node_product_ushop {
   __typename: "Ushop";
   /**
@@ -204,8 +273,8 @@ export interface VariantList_productVariants_edges_node_product_ushop {
    */
   id: string;
   name: string;
-  url: string;
   logoImage: VariantList_productVariants_edges_node_product_ushop_logoImage | null;
+  shippingProduct: VariantList_productVariants_edges_node_product_ushop_shippingProduct | null;
 }
 
 export interface VariantList_productVariants_edges_node_product {
@@ -214,10 +283,6 @@ export interface VariantList_productVariants_edges_node_product {
    * The ID of the object.
    */
   id: string;
-  /**
-   * List of public metadata items. Can be accessed without permissions.
-   */
-  metadata: (VariantList_productVariants_edges_node_product_metadata | null)[];
   name: string;
   /**
    * The main thumbnail for a product.
@@ -230,6 +295,11 @@ export interface VariantList_productVariants_edges_node_product {
   slug: string;
   seoTitle: string | null;
   seoDescription: string | null;
+  productType: VariantList_productVariants_edges_node_product_productType;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (VariantList_productVariants_edges_node_product_metadata | null)[];
   ushop: VariantList_productVariants_edges_node_product_ushop | null;
 }
 

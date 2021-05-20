@@ -24,8 +24,8 @@ const AccountConfirm: React.FC<RouteComponentProps> = ({ history }) => {
         content:
           anyErrors.length > 0
             ? anyErrors.map(error => error.message).join(" ")
-            : "You can now log in",
-        title: anyErrors.length > 0 ? "Error" : "Account confirmed",
+            : "Та одоо нэвтэрч болно",
+        title: anyErrors.length > 0 ? "Error" : "Бүртгэл баталгаажлаа",
       },
       { type: anyErrors.length > 0 ? "error" : "success", timeout: 5000 }
     );

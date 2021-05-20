@@ -59,7 +59,6 @@ export const Image = styled.div`
   width: auto;
   height: 100%;
   max-width: 100%;
-  display: flex;
   position: relative;
 
   > img {

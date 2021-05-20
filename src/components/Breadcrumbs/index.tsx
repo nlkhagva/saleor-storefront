@@ -73,10 +73,6 @@ const Breadcrumbs: React.FC<{
           <Link to={getBackLink(breadcrumbs)}>
             <FormattedMessage defaultMessage="Буцах" />
           </Link>
-          <h3>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            {breadcrumbs[breadcrumbs.length - 1].value}
-          </h3>
         </div>
       )
     }

@@ -8,18 +8,6 @@ import { CountryCode } from "./../../../../gqlTypes/globalTypes";
 // GraphQL query operation: ProductDetails
 // ====================================================
 
-export interface ProductDetails_product_metadata {
-  __typename: "MetadataItem";
-  /**
-   * Key of a metadata item.
-   */
-  key: string;
-  /**
-   * Value of a metadata item.
-   */
-  value: string;
-}
-
 export interface ProductDetails_product_thumbnail {
   __typename: "Image";
   /**
@@ -40,6 +28,27 @@ export interface ProductDetails_product_thumbnail2x {
   url: string;
 }
 
+export interface ProductDetails_product_productType {
+  __typename: "ProductType";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  isShippingRequired: boolean;
+}
+
+export interface ProductDetails_product_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface ProductDetails_product_ushop_logoImage {
   __typename: "Image";
   /**
@@ -52,6 +61,66 @@ export interface ProductDetails_product_ushop_logoImage {
   alt: string | null;
 }
 
+export interface ProductDetails_product_ushop_shippingProduct_productType {
+  __typename: "ProductType";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+}
+
+export interface ProductDetails_product_ushop_shippingProduct_variants_pricing_price_gross {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
+export interface ProductDetails_product_ushop_shippingProduct_variants_pricing_price {
+  __typename: "TaxedMoney";
+  /**
+   * Amount of money including taxes.
+   */
+  gross: ProductDetails_product_ushop_shippingProduct_variants_pricing_price_gross;
+}
+
+export interface ProductDetails_product_ushop_shippingProduct_variants_pricing {
+  __typename: "VariantPricingInfo";
+  /**
+   * The price, with any discount subtracted.
+   */
+  price: ProductDetails_product_ushop_shippingProduct_variants_pricing_price | null;
+}
+
+export interface ProductDetails_product_ushop_shippingProduct_variants {
+  __typename: "ProductVariant";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+  /**
+   * Lists the storefront variant's pricing, the current price and discounts, only meant for displaying.
+   */
+  pricing: ProductDetails_product_ushop_shippingProduct_variants_pricing | null;
+}
+
+export interface ProductDetails_product_ushop_shippingProduct {
+  __typename: "Product";
+  name: string;
+  productType: ProductDetails_product_ushop_shippingProduct_productType;
+  /**
+   * List of variants for the product.
+   */
+  variants: (ProductDetails_product_ushop_shippingProduct_variants | null)[] | null;
+}
+
 export interface ProductDetails_product_ushop {
   __typename: "Ushop";
   /**
@@ -59,8 +128,8 @@ export interface ProductDetails_product_ushop {
    */
   id: string;
   name: string;
-  url: string;
   logoImage: ProductDetails_product_ushop_logoImage | null;
+  shippingProduct: ProductDetails_product_ushop_shippingProduct | null;
 }
 
 export interface ProductDetails_product_pricing_priceRangeUndiscounted_start_gross {
@@ -247,18 +316,6 @@ export interface ProductDetails_product_pricing {
   priceRange: ProductDetails_product_pricing_priceRange | null;
 }
 
-export interface ProductDetails_product_category_products_edges_node_metadata {
-  __typename: "MetadataItem";
-  /**
-   * Key of a metadata item.
-   */
-  key: string;
-  /**
-   * Value of a metadata item.
-   */
-  value: string;
-}
-
 export interface ProductDetails_product_category_products_edges_node_thumbnail {
   __typename: "Image";
   /**
@@ -279,6 +336,27 @@ export interface ProductDetails_product_category_products_edges_node_thumbnail2x
   url: string;
 }
 
+export interface ProductDetails_product_category_products_edges_node_productType {
+  __typename: "ProductType";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  isShippingRequired: boolean;
+}
+
+export interface ProductDetails_product_category_products_edges_node_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface ProductDetails_product_category_products_edges_node_ushop_logoImage {
   __typename: "Image";
   /**
@@ -291,6 +369,66 @@ export interface ProductDetails_product_category_products_edges_node_ushop_logoI
   alt: string | null;
 }
 
+export interface ProductDetails_product_category_products_edges_node_ushop_shippingProduct_productType {
+  __typename: "ProductType";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+}
+
+export interface ProductDetails_product_category_products_edges_node_ushop_shippingProduct_variants_pricing_price_gross {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
+export interface ProductDetails_product_category_products_edges_node_ushop_shippingProduct_variants_pricing_price {
+  __typename: "TaxedMoney";
+  /**
+   * Amount of money including taxes.
+   */
+  gross: ProductDetails_product_category_products_edges_node_ushop_shippingProduct_variants_pricing_price_gross;
+}
+
+export interface ProductDetails_product_category_products_edges_node_ushop_shippingProduct_variants_pricing {
+  __typename: "VariantPricingInfo";
+  /**
+   * The price, with any discount subtracted.
+   */
+  price: ProductDetails_product_category_products_edges_node_ushop_shippingProduct_variants_pricing_price | null;
+}
+
+export interface ProductDetails_product_category_products_edges_node_ushop_shippingProduct_variants {
+  __typename: "ProductVariant";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+  /**
+   * Lists the storefront variant's pricing, the current price and discounts, only meant for displaying.
+   */
+  pricing: ProductDetails_product_category_products_edges_node_ushop_shippingProduct_variants_pricing | null;
+}
+
+export interface ProductDetails_product_category_products_edges_node_ushop_shippingProduct {
+  __typename: "Product";
+  name: string;
+  productType: ProductDetails_product_category_products_edges_node_ushop_shippingProduct_productType;
+  /**
+   * List of variants for the product.
+   */
+  variants: (ProductDetails_product_category_products_edges_node_ushop_shippingProduct_variants | null)[] | null;
+}
+
 export interface ProductDetails_product_category_products_edges_node_ushop {
   __typename: "Ushop";
   /**
@@ -298,8 +436,8 @@ export interface ProductDetails_product_category_products_edges_node_ushop {
    */
   id: string;
   name: string;
-  url: string;
   logoImage: ProductDetails_product_category_products_edges_node_ushop_logoImage | null;
+  shippingProduct: ProductDetails_product_category_products_edges_node_ushop_shippingProduct | null;
 }
 
 export interface ProductDetails_product_category_products_edges_node_pricing_priceRangeUndiscounted_start_gross {
@@ -492,10 +630,6 @@ export interface ProductDetails_product_category_products_edges_node {
    * The ID of the object.
    */
   id: string;
-  /**
-   * List of public metadata items. Can be accessed without permissions.
-   */
-  metadata: (ProductDetails_product_category_products_edges_node_metadata | null)[];
   name: string;
   /**
    * The main thumbnail for a product.
@@ -508,6 +642,11 @@ export interface ProductDetails_product_category_products_edges_node {
   slug: string;
   seoTitle: string | null;
   seoDescription: string | null;
+  productType: ProductDetails_product_category_products_edges_node_productType;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (ProductDetails_product_category_products_edges_node_metadata | null)[];
   ushop: ProductDetails_product_category_products_edges_node_ushop | null;
   /**
    * Lists the storefront product's pricing, the current price and discounts, only meant for displaying.
@@ -771,10 +910,6 @@ export interface ProductDetails_product {
    * The ID of the object.
    */
   id: string;
-  /**
-   * List of public metadata items. Can be accessed without permissions.
-   */
-  metadata: (ProductDetails_product_metadata | null)[];
   name: string;
   /**
    * The main thumbnail for a product.
@@ -787,6 +922,11 @@ export interface ProductDetails_product {
   slug: string;
   seoTitle: string | null;
   seoDescription: string | null;
+  productType: ProductDetails_product_productType;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (ProductDetails_product_metadata | null)[];
   ushop: ProductDetails_product_ushop | null;
   /**
    * Lists the storefront product's pricing, the current price and discounts, only meant for displaying.

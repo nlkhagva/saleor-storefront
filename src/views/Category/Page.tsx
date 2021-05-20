@@ -90,6 +90,7 @@ const Page: React.FC<PageProps> = ({
     <div className="category">
       <div className="container">
         <Breadcrumbs breadcrumbs={extractBreadcrumbs(category)} />
+        <h3>{category.name}</h3>
         <FilterSidebar
           show={showFilters}
           hide={() => setShowFilters(false)}

@@ -42,6 +42,41 @@ export const searchProductsQuery = gql`
             id
             name
           }
+          productType {
+            id
+            isShippingRequired
+          }
+          metadata {
+            key
+            value
+          }
+          ushop {
+            id
+            name
+            logoImage {
+              url
+              alt
+            }
+            shippingProduct {
+              name
+              productType {
+                id
+                name
+              }
+              variants {
+                id
+                name
+                pricing {
+                  price {
+                    gross {
+                      amount
+                      currency
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
       pageInfo {
