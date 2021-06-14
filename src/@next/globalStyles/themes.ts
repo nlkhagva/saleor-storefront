@@ -128,7 +128,7 @@ export const defaultTheme = {
   },
   modal: {
     modalMinHeight: 455,
-    modalWidth: 555,
+    modalWidth: 414,
   },
   productItem: {
     productItemCategoryColor: C.gray,

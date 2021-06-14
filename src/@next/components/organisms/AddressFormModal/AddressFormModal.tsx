@@ -4,7 +4,7 @@ import { useCreateUserAddress, useUpdateUserAddress } from "@saleor/sdk";
 import { CountryCode } from "@saleor/sdk/lib/gqlTypes/globalTypes";
 
 import { AddressForm } from "../AddressForm";
-import { Modal } from "../Modal";
+import { ModalSafari as Modal } from "../ModalSafari";
 import { IProps } from "./types";
 
 export const AddressFormModal: React.FC<IProps> = ({

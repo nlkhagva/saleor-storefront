@@ -158,13 +158,13 @@ export const checkoutMessages = defineMessages({
     defaultMessage: "Захиалга өгөх",
   },
   addNewAddress: {
-    defaultMessage: "Add new address",
+    defaultMessage: "Шинэ хаяг оруулах",
   },
   shippingMethod: {
     defaultMessage: "SHIPPING METHOD",
   },
   billingAddress: {
-    defaultMessage: "Тооцооны хаяг",
+    defaultMessage: "Төлбөрийн картын хаяг",
   },
   paymentMethod: {
     defaultMessage: "Төлбөрийн нөхцөл",

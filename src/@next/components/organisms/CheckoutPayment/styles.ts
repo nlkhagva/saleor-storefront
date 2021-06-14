@@ -52,11 +52,11 @@ export const TileRow = styled.label<{ checked: boolean }>`
   &.right{float: right;}
   b { font-weight: bold; }
   &:after{
+    content: "Сонгох";
     position: absolute;
     bottom: -15px;
     left: 50%;
     transform: translate(-50%, 0);
-    content: "Сонгох";
     border: 1px solid #323232;
     background-color: ${props => props.theme.colors.light};
     padding: 3px 10px;

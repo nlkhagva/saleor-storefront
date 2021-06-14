@@ -9,6 +9,7 @@ TextField.displayName = "S.TextField";
 export const HelpText = styled.span`
   color: ${props => props.theme.input.labelColor};
   font-size: ${props => props.theme.input.labelFontSize};
+  margin-bottom: 0.5rem;
 `;
 
 export const ErrorMessages = styled.div`

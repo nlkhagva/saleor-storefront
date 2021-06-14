@@ -1,4 +1,4 @@
-import { styled } from "@styles";
+import { styled, media } from "@styles";
 import { css, keyframes } from "styled-components";
 import { Position, TransitionState } from "./types";
 
@@ -70,6 +70,26 @@ export const Lightbox = styled.div<IStyleProps>`
   }}
 `;
 Lightbox.displayName = "S.Lightbox";
+export const LightboxSafari = styled.div<IStyleProps>`
+  display: flex;
+  position: relative;
+  width: ${({ position, theme: { modal } }) =>
+    lightboxHeight(modal.modalWidth)[position]};
+  min-height: ${props => props.theme.modal.modalMinHeight}px;
+  overflow-y: auto;
+  background-color: ${props => props.theme.colors.white};
+  ${({ open, position }) => {
+    if (position === "left" || position === "right") {
+      return css`
+        ${position}: 0;
+        transform: translateX(${getTranslate(position)});
+        animation: ${slideAnimation(open, position)} 0.4s both;
+        animation-delay: ${open ? ".1s" : 0};
+      `;
+    }
+  }}
+`;
+LightboxSafari.displayName = "S.LightboxSafari";
 
 export const Overlay = styled.div<IStyleProps>`
   display: flex;
@@ -89,3 +109,25 @@ export const Overlay = styled.div<IStyleProps>`
   opacity: ${({ state }) => opacity[state]};
 `;
 Overlay.displayName = "S.Overlay";
+
+export const OverlaySafari = styled.div<IStyleProps>`
+  display: flex;
+  position: fixed;
+  overflow-y: auto;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  top: 0;
+  z-index: 30;
+  transition: opacity 0.2s ease;
+  transition-delay: ${({ open }) => (open ? 0 : ".4s")};
+  background-color: ${({ transparent, theme }) =>
+    transparent ? "" : theme.colors.overlay};
+  justify-content: ${({ position }) => justify[position]};
+  opacity: ${({ state }) => opacity[state]};
+  align-items: center;
+  ${media.smallScreen`
+    align-items: inherit;
+  `}
+`;
+OverlaySafari.displayName = "S.OverlaySafari";
