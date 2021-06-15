@@ -289,6 +289,8 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
             onSubmitSuccess={data =>
               handleStepSubmitSuccess(CheckoutStep.Review, data)
             }
+            is30={is30}
+            totalPrice={totalPrice}
             {...props}
           />
         )}

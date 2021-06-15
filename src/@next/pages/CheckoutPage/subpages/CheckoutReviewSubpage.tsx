@@ -22,6 +22,8 @@ export interface ICheckoutReviewSubpageHandles {
 }
 
 interface IProps extends RouteComponentProps<any> {
+  is30: boolean;
+  totalPrice: any;
   selectedPaymentGatewayToken?: string;
   paymentGatewayFormRef: React.RefObject<HTMLFormElement>;
   changeSubmitProgress: (submitInProgress: boolean) => void;
@@ -37,6 +39,8 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
     paymentGatewayFormRef,
     changeSubmitProgress,
     onSubmitSuccess,
+    is30,
+    totalPrice,
     ...props
   }: IProps,
   ref
@@ -114,6 +118,8 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
       paymentMethodName={getPaymentMethodDescription()}
       email={checkout?.email}
       errors={errors}
+      is30={is30}
+      totalPrice={totalPrice}
     />
   );
 };

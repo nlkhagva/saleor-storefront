@@ -87,6 +87,19 @@ const CheckoutAddress: React.FC<IProps> = ({
         </>
       )}
       <section>
+        <S.AlertContainer>
+          <S.AlertTitle>Санамж: </S.AlertTitle>
+          <S.AlertContent>
+            1. Нэг төрлийн бараа хоёроос дээш тоогоор
+            <br />
+            2. Хөдөлмөрийн хөлсний доод хэмжээг 10 нугалсанаас дээш үнийн дүнтэй
+            бараа захиалсан тохиолдолд Монгол улсын гаалийн татвар төлөхийг
+            анхаарна уу
+          </S.AlertContent>
+        </S.AlertContainer>
+      </section>
+
+      <section style={{ display: "none" }}>
         <S.Title data-test="checkoutPageSubtitle">
           <FormattedMessage {...checkoutMessages.billingAddress} />
         </S.Title>

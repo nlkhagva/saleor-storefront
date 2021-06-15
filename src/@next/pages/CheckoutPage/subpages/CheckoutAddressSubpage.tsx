@@ -87,10 +87,10 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
   }));
 
   const [billingAsShippingState, setBillingAsShippingState] = useState(
-    billingAsShipping
+    !billingAsShipping
   );
   useEffect(() => {
-    setBillingAsShippingState(billingAsShipping);
+    setBillingAsShippingState(!billingAsShipping);
   }, [billingAsShipping]);
 
   const handleSetShippingAddress = async (
@@ -102,10 +102,11 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
       setShippingErrors([
         {
           message: intl.formatMessage({
-            defaultMessage: "Please provide shipping address.",
+            defaultMessage: "Хүргэлтийн хаягаа сонгоно уу.",
           }),
         },
       ]);
+      alert("Хүргэлтийн хаягаа сонгоно уу.");
       return;
     }
 
@@ -118,6 +119,8 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
           message: intl.formatMessage(commonMessages.provideEmailAddress),
         },
       ]);
+
+      alert(intl.formatMessage(commonMessages.provideEmailAddress));
       return;
     }
 
@@ -132,6 +135,10 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
     const errors = dataError?.error;
     if (errors) {
       setShippingErrors(errors);
+      if (errors[0] !== undefined) {
+        alert(errors[0].message);
+      }
+
       changeSubmitProgress(false);
     } else {
       setShippingErrors([]);
@@ -155,10 +162,11 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
       setBillingErrors([
         {
           message: intl.formatMessage({
-            defaultMessage: "Please provide billing address.",
+            defaultMessage: "Төлбөрийн картын хаягаа сонгоно уу",
           }),
         },
       ]);
+      alert("Төлбөрийн картын хаягаа сонгоно уу");
       return;
     }
 
@@ -175,6 +183,8 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
           message: intl.formatMessage(commonMessages.provideEmailAddress),
         },
       ]);
+
+      alert(intl.formatMessage(commonMessages.provideEmailAddress));
       return;
     }
 

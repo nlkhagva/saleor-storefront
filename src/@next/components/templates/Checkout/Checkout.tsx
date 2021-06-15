@@ -31,6 +31,18 @@ const Checkout: React.FC<IProps> = ({
         <S.Checkout>{checkout}</S.Checkout>
         <S.PaymentGateways hide={hidePaymentGateways}>
           {paymentGateways}
+          <S.Divider />
+          <section>
+            <S.AlertContainer>
+              <S.AlertTitle>Санамж: </S.AlertTitle>
+              <S.AlertContent>
+                1кг хүртлэх ачаа: £8
+                <br /> 1кг-с дээш ачааг 100 грамм тутамд £0.8 тооцно. Энэ нь
+                Монголд ирэх тээврийн зардал ба одоогийн үнэ дээр{" "}
+                <b>НЭМЭГДЭХ</b>-г анхаарна уу.
+              </S.AlertContent>
+            </S.AlertContainer>
+          </section>
         </S.PaymentGateways>
         <S.CartSummary>{cartSummary}</S.CartSummary>
         <S.Button>{button}</S.Button>

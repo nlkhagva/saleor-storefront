@@ -166,7 +166,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                   }
 
                   if (canDisplayFilters) {
-                    const handleLoadMore = () =>
+                    const handleLoadMore = async () => {
                       categoryProducts.loadMore(
                         (prev, next) => ({
                           ...prev,
@@ -184,6 +184,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                             categoryProducts.data.products.pageInfo.endCursor,
                         }
                       );
+                    };
 
                     return (
                       <MetaWrapper
