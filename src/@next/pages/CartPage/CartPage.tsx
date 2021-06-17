@@ -5,7 +5,6 @@ import { useHistory } from "react-router-dom";
 
 import { Button, CartFooter, CartHeader } from "@components/atoms";
 import { TaxedMoney } from "@components/containers";
-import { CartRow } from "@components/organisms";
 import { Cart, CartEmpty } from "@components/templates";
 import { useAuth, useCart, useCheckout } from "@saleor/sdk";
 import { IItems } from "@saleor/sdk/lib/api/Cart/types";
@@ -15,6 +14,7 @@ import { checkoutMessages } from "@temp/intl";
 import { ITaxedMoney } from "@types";
 
 import { IProps } from "./types";
+import GroupUshop from "./GroupUshop";
 
 const title = (
   <h3 data-test="cartPageTitle">
@@ -36,7 +36,7 @@ const getCheckoutButton = (history: History, user?: UserDetails_me | null) => (
     testingContext="proceedToCheckoutButton"
     onClick={() => history.push(user ? `/checkout/` : `/login/`)}
   >
-    <FormattedMessage defaultMessage="PROCEED TO CHECKOUT" />
+    <FormattedMessage defaultMessage="Захиалах" />
   </Button>
 );
 
@@ -68,6 +68,33 @@ const prepareCartFooter = (
   />
 );
 
+const generateCart = (
+  items: IItems,
+  removeItem: (variantId: string) => any,
+  updateItem: (variantId: string, quantity: number) => any,
+  addItem: (variantId: string, quantity: number) => any
+) => {
+  const missingVariants = () => {
+    return items?.find(item => !item.variant || !item.totalPrice);
+  };
+
+  return (
+    <>
+      {missingVariants() ? (
+        <p>Loading...</p>
+      ) : (
+        <GroupUshop
+          lines={items}
+          removeItem={removeItem}
+          updateItem={updateItem}
+          addItem={addItem}
+        />
+      )}
+    </>
+  );
+};
+
+/*
 const generateCart = (
   items: IItems,
   removeItem: (variantId: string) => any,
@@ -108,6 +135,7 @@ const generateCart = (
     />
   ));
 };
+*/
 
 export const CartPage: React.FC<IProps> = ({}: IProps) => {
   const history = useHistory();
@@ -115,6 +143,7 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
   const { checkout } = useCheckout();
   const {
     loaded,
+    addItem,
     removeItem,
     updateItem,
     items,
@@ -148,7 +177,7 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
           promoTaxedPrice,
           subtotalPrice
         )}
-        cart={items && generateCart(items, removeItem, updateItem)}
+        cart={items && generateCart(items, removeItem, updateItem, addItem)}
       />
     );
   }

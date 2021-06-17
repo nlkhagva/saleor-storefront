@@ -165,6 +165,7 @@ const Page: React.FC<
                   /> */}
                   {product && wasPrice && (
                     <div className="product-page__product__sale">
+                      -
                       {getSalePercent(
                         wasPrice,
                         product.pricing.priceRange?.start?.gross.amount

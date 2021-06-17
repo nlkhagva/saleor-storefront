@@ -53,4 +53,6 @@ export interface IProps {
     attribute: { id: string; name: string };
     values: Array<{ name: string }>;
   }>;
+
+  line?: any;
 }

@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
   grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr 0.5fr;
   align-items: center;
   border-bottom: 1px solid rgba(50, 50, 50, 0.1);
-  padding: 0.8rem 0.5rem;
+  padding: 0.8rem 0;
   ${media.mediumScreen`
     grid-template-columns: 1fr 2fr 2fr;
     grid-row-gap: 15px;
@@ -94,7 +94,7 @@ export const SingleAttribute = styled.p`
 
 export const Name = styled.p`
   font-weight: ${props => props.theme.typography.boldFontWeight};
-  font-size: ${props => props.theme.typography.h4FontSize};
+  /* font-size: ${props => props.theme.typography.h4FontSize}; */
   text-align: left;
   text-transform: uppercase;
   margin-bottom: 6px;
@@ -106,7 +106,7 @@ export const LightFont = styled.span`
 `;
 
 export const Price = styled.div`
-  font-size: ${props => props.theme.typography.h4FontSize};
+  /* font-size: ${props => props.theme.typography.h4FontSize}; */
   display: flex;
   justify-content: center;
   font-weight: bold;

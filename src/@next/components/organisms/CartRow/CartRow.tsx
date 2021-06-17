@@ -3,7 +3,7 @@ import { FormattedMessage, useIntl } from "react-intl";
 import { Link } from "react-router-dom";
 
 import { Icon, IconButton } from "@components/atoms";
-import { CachedImage, TextField } from "@components/molecules";
+import { TextField, Thumbnail } from "@components/molecules";
 import { commonMessages } from "@temp/intl";
 
 import { generateProductUrl } from "../../../../core/utils";
@@ -38,10 +38,10 @@ export const CartRow: React.FC<IProps> = ({
   quantity,
   maxQuantity,
   onQuantityChange,
-  thumbnail,
   attributes = [],
   onRemove,
   id,
+  line,
 }: IProps) => {
   const [tempQuantity, setTempQuantity] = useState<string>(quantity.toString());
   const [isTooMuch, setIsTooMuch] = useState(false);
@@ -102,7 +102,8 @@ export const CartRow: React.FC<IProps> = ({
     <S.Wrapper data-test="cartRow" data-test-id={sku}>
       <S.Photo>
         <Link to={productUrl}>
-          <CachedImage data-test="itemImage" {...thumbnail} />
+          {/* <CachedImage data-test="itemImage" {...thumbnail} /> */}
+          <Thumbnail source={line?.variant?.product} />
         </Link>
       </S.Photo>
       <S.Description>
