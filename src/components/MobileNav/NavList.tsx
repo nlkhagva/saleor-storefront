@@ -5,13 +5,13 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 // import { commonMessages } from "@temp/intl";
+import { generatePageUrl, generateCategoryUrl } from "@temp/core/utils";
 
 import { baseUrl } from "../../app/routes";
 import backImg from "../../images/arrow-back.svg";
 // import logoImg from "../../images/logo.svg";
 import logoImg from "../../images/unurshop/xd/light-logo.svg";
 import NavItem, { INavItem } from "./NavItem";
-import { generateCategoryUrl } from "../../core/utils";
 
 interface NavListProps {
   items: INavItem[];
@@ -128,7 +128,7 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
         <ul className="static-nav">
           <li>
             <Link
-              to={baseUrl}
+              to={generatePageUrl("about")}
               className="side-nav__menu-item-link"
               onClick={hideOverlay}
             >
@@ -137,7 +137,7 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
           </li>
           <li>
             <Link
-              to={baseUrl}
+              to={generatePageUrl("contact-us")}
               className="side-nav__menu-item-link"
               onClick={hideOverlay}
             >
@@ -146,14 +146,14 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
           </li>
           <li>
             <Link
-              to={baseUrl}
+              to={generatePageUrl("faq")}
               className="side-nav__menu-item-link"
               onClick={hideOverlay}
             >
               Түгээмэл асуулт, хариулт
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link
               to={baseUrl}
               className="side-nav__menu-item-link"
@@ -161,10 +161,10 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
             >
               Зөвлөгөө
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link
-              to={baseUrl}
+              to={generatePageUrl("term-condition")}
               className="side-nav__menu-item-link"
               onClick={hideOverlay}
             >

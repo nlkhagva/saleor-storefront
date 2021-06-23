@@ -1,3 +1,5 @@
+import { PRODUCT_TYPE_FBLIVE } from "@temp/constants";
+
 export function getLinkImages(product) {
   const metadata = product?.metadata
     ? product?.metadata.find(el => el.key === "linkImages")
@@ -24,6 +26,9 @@ export function getAvatarImage2x(product) {
     : null;
 }
 export function getWasPrice(product) {
+  if (product.wasPrice) {
+    return product.wasPrice;
+  }
   const metadata = product?.metadata
     ? product?.metadata.find(el => el.key === "wasPrice")
     : null;
@@ -41,4 +46,27 @@ export const getProductLink = product => {
     : null;
 
   return metadata ? metadata.value : null;
+};
+
+export const getFbLiveAttrs = product => {
+  if (product.attributes && product.productType.id === PRODUCT_TYPE_FBLIVE) {
+    const size = product.attributes.find(
+      i => i.attribute.slug === "all-size" && i.values.length > 0
+    );
+    const brand = product.attributes.find(
+      i => i.attribute.slug === "all-brand" && i.values.length > 0
+    );
+    const texts = [];
+
+    if (brand) texts.push(brand.values[0].name);
+    if (size) {
+      let val = size.values[0].name;
+      if (parseInt(val, 10).toString() === val) {
+        val = `UK ${val}`;
+      }
+      texts.push(val);
+    }
+
+    return texts.join("-");
+  }
 };

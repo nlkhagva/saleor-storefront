@@ -185,7 +185,7 @@ const GroupUshop: React.FC<IProps> = ({
                     </td>
                   </tr>
                   <tr>
-                    <td>{`Англи дотоод хүргэлт`}</td>
+                    <td>Англи дотоод хүргэлт</td>
                     {/* <td>{`Англи дотоод хүргэлт (${_shop.name})`}</td> */}
                     <td>
                       {selectedShipping ? (
@@ -211,6 +211,8 @@ const GroupUshop: React.FC<IProps> = ({
                             )
                           )}
                         </select>
+                      ) : _shop.id === "VXNob3A6MQ==" ? (
+                        "Free"
                       ) : (
                         "Тодорхойгүй"
                       )}

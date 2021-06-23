@@ -39,6 +39,14 @@ export const STATIC_PAGES = [
     url: generatePageUrl("about"),
   },
   {
+    label: "Холбоо барих",
+    url: generatePageUrl("contact-us"),
+  },
+  {
+    label: "Асуулт хариулт",
+    url: generatePageUrl("faq"),
+  },
+  {
     label: "Захиалгын журам",
     url: generatePageUrl("term-condition"),
   },

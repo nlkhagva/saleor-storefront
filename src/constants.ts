@@ -10,6 +10,7 @@ export const PRODUCT_TYPE_SHIPPING = "UHJvZHVjdFR5cGU6MTY=";
 export const PRODUCT_TYPE_ONLINE_ZAHIALGA = "UHJvZHVjdFR5cGU6MTU=";
 export const PRODUCT_CATEGORY_SHIPPING = "Q2F0ZWdvcnk6MjQ=";
 export const PRODUCT_CATEGORY_ONLINE_ZAHIALGA = "Q2F0ZWdvcnk6MjM=";
+export const PRODUCT_TYPE_FBLIVE = "UHJvZHVjdFR5cGU6MTk=";
 
 export const SHIPPING_STATUS = [
   { label: "Draft", value: "DRAFT" },

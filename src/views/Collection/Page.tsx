@@ -3,6 +3,7 @@ import "../Category/scss/index.scss";
 import * as React from "react";
 import { useIntl } from "react-intl";
 
+// import { RichTextContent } from "@components/atoms";
 import { commonMessages } from "@temp/intl";
 import { IFilterAttributes, IFilters } from "@types";
 import { ProductListHeader } from "../../@next/components/molecules";
@@ -102,6 +103,8 @@ const Page: React.FC<PageProps> = ({
           attributes={attributes}
           filters={filters}
         />
+
+        <h2>{collection.name}</h2>
         <ProductListHeader
           activeSortOption={activeSortOption}
           openFiltersMenu={() => setShowFilters(true)}

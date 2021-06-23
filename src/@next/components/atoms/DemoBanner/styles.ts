@@ -15,7 +15,7 @@ export const BorderedWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   max-height: ${props => props.theme.demoBanner.height};
-  padding: 1.5em 0;
+  padding: 1em 0;
   background-image: ${props => `linear-gradient(
     to right,
     ${props.theme.colors.bannerEdge} 13%,
@@ -40,9 +40,15 @@ export const Link = styled.a`
 `;
 
 export const TextEmphasis = styled.span`
-  color: ${props => props.theme.colors.bannerLink};
-  text-transform: uppercase;
+  color: ${props => props.theme.colors.ushopRed};
   font-weight: 600;
+  text-align: center;
+`;
+export const TextEmphasis2 = styled.span`
+  color: ${props => props.theme.colors.dark};
+  font-weight: 600;
+  font-size: 13px;
+  text-align: center;
 `;
 
 export const Divider = styled.div`

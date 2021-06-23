@@ -6,7 +6,7 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 
 import {
-  Button,
+  // Button,
   Loader,
   // ProductsFeatured,
   // UshopFeatured,
@@ -57,7 +57,7 @@ const Page: React.FC<{
                   categories.edges[0].node.name
                 )}
               >
-                <Button testingContext="sale-btn">Бараа захиалах</Button>
+                {/* <Button testingContext="sale-btn">Бараа захиалах</Button> */}
               </Link>
             )
           )}
@@ -68,8 +68,8 @@ const Page: React.FC<{
       {categoriesExist() && (
         <div className="home-page__categories">
           <div className="container">
-            <h4 className="t-c">Шинэ загварууд</h4>
-            <h3 className="t-c m-b3">Онцлох бараа</h3>
+            <h4 className="t-c">Зуны хямдрал</h4>
+            <h3 className="t-c m-b3">Онцлох хямдралууд</h3>
             <div className="home-page__categories__list">
               {categories.edges.map(({ node: category }) => (
                 <div key={category.id}>

@@ -194,6 +194,50 @@ export interface VariantList_productVariants_edges_node_product_metadata {
   value: string;
 }
 
+export interface VariantList_productVariants_edges_node_product_attributes_attribute {
+  __typename: "Attribute";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
+   * Name of an attribute displayed in the interface.
+   */
+  name: string | null;
+  /**
+   * Internal representation of an attribute name.
+   */
+  slug: string | null;
+}
+
+export interface VariantList_productVariants_edges_node_product_attributes_values {
+  __typename: "AttributeValue";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
+   * Name of a value displayed in the interface.
+   */
+  name: string | null;
+  /**
+   * Name of a value displayed in the interface.
+   */
+  value: string | null;
+}
+
+export interface VariantList_productVariants_edges_node_product_attributes {
+  __typename: "SelectedAttribute";
+  /**
+   * Name of an attribute displayed in the interface.
+   */
+  attribute: VariantList_productVariants_edges_node_product_attributes_attribute;
+  /**
+   * Values of an attribute.
+   */
+  values: (VariantList_productVariants_edges_node_product_attributes_values | null)[];
+}
+
 export interface VariantList_productVariants_edges_node_product_ushop_logoImage {
   __typename: "Image";
   /**
@@ -300,6 +344,10 @@ export interface VariantList_productVariants_edges_node_product {
    * List of public metadata items. Can be accessed without permissions.
    */
   metadata: (VariantList_productVariants_edges_node_product_metadata | null)[];
+  /**
+   * List of attributes assigned to this product.
+   */
+  attributes: VariantList_productVariants_edges_node_product_attributes[];
   ushop: VariantList_productVariants_edges_node_product_ushop | null;
 }
 

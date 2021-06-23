@@ -192,6 +192,7 @@ export interface ProductPricingField_pricing {
 
 export interface ProductPricingField {
   __typename: "Product";
+  wasPrice: number | null;
   /**
    * Lists the storefront product's pricing, the current price and discounts, only meant for displaying.
    */

@@ -327,6 +327,7 @@ export interface SearchProducts_products_edges_node_ushop {
 
 export interface SearchProducts_products_edges_node {
   __typename: "Product";
+  wasPrice: number | null;
   /**
    * Lists the storefront product's pricing, the current price and discounts, only meant for displaying.
    */

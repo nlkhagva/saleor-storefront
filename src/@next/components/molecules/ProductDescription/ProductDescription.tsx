@@ -53,6 +53,16 @@ export const ProductDescription: React.FC<IProps> = ({
       {activeTab === TABS.DESCRIPTION &&
         (descriptionJson ? (
           <>
+            <RichTextContent descriptionJson={descriptionJson} />
+            {attributes &&
+              attributes.map((attribute, index) => (
+                <li key={index}>
+                  <S.AttributeName>
+                    {attribute.attribute.name}:{" "}
+                  </S.AttributeName>{" "}
+                  {attribute.values.map(value => value.name).join(", ")}
+                </li>
+              ))}
             {ushop && (
               <>
                 <a href={ushop.url} target="_blank" rel="noreferrer">
@@ -66,7 +76,6 @@ export const ProductDescription: React.FC<IProps> = ({
                 Барааны линк
               </a>
             )}
-            <RichTextContent descriptionJson={descriptionJson} />
           </>
         ) : (
           <p>{description}</p>

@@ -41,6 +41,18 @@ export const basicProductFragment = gql`
       key
       value
     }
+    attributes {
+      attribute {
+        id
+        name
+        slug
+      }
+      values {
+        id
+        name
+        value: name
+      }
+    }
     ushop {
       id
       name
@@ -74,6 +86,7 @@ export const basicProductFragment = gql`
 export const productPricingFragment = gql`
   ${priceFragment}
   fragment ProductPricingField on Product {
+    wasPrice
     pricing {
       onSale
       priceRangeUndiscounted {

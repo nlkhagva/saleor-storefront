@@ -21,6 +21,7 @@ import OtherProducts from "./Other";
 import { structuredData } from "../../core/SEO/Product/structuredData";
 import { IProps } from "./types";
 import {
+  getFbLiveAttrs,
   getWasPrice,
   getSalePercent,
   getLinkImages,
@@ -84,7 +85,7 @@ const Page: React.FC<
       items={items}
       product={product}
       productId={product.id}
-      name={product.name}
+      name={`${product.name} ${getFbLiveAttrs(product)}`}
       productVariants={product.variants}
       productPricing={product.pricing}
       queryAttributes={queryAttributes}

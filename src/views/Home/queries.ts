@@ -16,7 +16,7 @@ export const homePageQuery = gql`
         name
       }
     }
-    categories(level: 0, first: 4) {
+    categories(level: 0, first: 1, filter: { search: "facebook" }) {
       edges {
         node {
           id

@@ -49,6 +49,50 @@ export interface CollectionProducts_collection_products_edges_node_metadata {
   value: string;
 }
 
+export interface CollectionProducts_collection_products_edges_node_attributes_attribute {
+  __typename: "Attribute";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
+   * Name of an attribute displayed in the interface.
+   */
+  name: string | null;
+  /**
+   * Internal representation of an attribute name.
+   */
+  slug: string | null;
+}
+
+export interface CollectionProducts_collection_products_edges_node_attributes_values {
+  __typename: "AttributeValue";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
+   * Name of a value displayed in the interface.
+   */
+  name: string | null;
+  /**
+   * Name of a value displayed in the interface.
+   */
+  value: string | null;
+}
+
+export interface CollectionProducts_collection_products_edges_node_attributes {
+  __typename: "SelectedAttribute";
+  /**
+   * Name of an attribute displayed in the interface.
+   */
+  attribute: CollectionProducts_collection_products_edges_node_attributes_attribute;
+  /**
+   * Values of an attribute.
+   */
+  values: (CollectionProducts_collection_products_edges_node_attributes_values | null)[];
+}
+
 export interface CollectionProducts_collection_products_edges_node_ushop_logoImage {
   __typename: "Image";
   /**
@@ -348,7 +392,12 @@ export interface CollectionProducts_collection_products_edges_node {
    * List of public metadata items. Can be accessed without permissions.
    */
   metadata: (CollectionProducts_collection_products_edges_node_metadata | null)[];
+  /**
+   * List of attributes assigned to this product.
+   */
+  attributes: CollectionProducts_collection_products_edges_node_attributes[];
   ushop: CollectionProducts_collection_products_edges_node_ushop | null;
+  wasPrice: number | null;
   /**
    * Lists the storefront product's pricing, the current price and discounts, only meant for displaying.
    */
@@ -403,6 +452,8 @@ export interface CollectionProducts_collection {
    * The ID of the object.
    */
   id: string;
+  name: string;
+  description: string;
   /**
    * List of products in this collection.
    */

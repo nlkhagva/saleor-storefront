@@ -49,6 +49,50 @@ export interface ProductDetails_product_metadata {
   value: string;
 }
 
+export interface ProductDetails_product_attributes_attribute {
+  __typename: "Attribute";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
+   * Name of an attribute displayed in the interface.
+   */
+  name: string | null;
+  /**
+   * Internal representation of an attribute name.
+   */
+  slug: string | null;
+}
+
+export interface ProductDetails_product_attributes_values {
+  __typename: "AttributeValue";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
+   * Name of a value displayed in the interface.
+   */
+  name: string | null;
+  /**
+   * Name of a value displayed in the interface.
+   */
+  value: string | null;
+}
+
+export interface ProductDetails_product_attributes {
+  __typename: "SelectedAttribute";
+  /**
+   * Name of an attribute displayed in the interface.
+   */
+  attribute: ProductDetails_product_attributes_attribute;
+  /**
+   * Values of an attribute.
+   */
+  values: (ProductDetails_product_attributes_values | null)[];
+}
+
 export interface ProductDetails_product_ushop_logoImage {
   __typename: "Image";
   /**
@@ -357,6 +401,50 @@ export interface ProductDetails_product_category_products_edges_node_metadata {
   value: string;
 }
 
+export interface ProductDetails_product_category_products_edges_node_attributes_attribute {
+  __typename: "Attribute";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
+   * Name of an attribute displayed in the interface.
+   */
+  name: string | null;
+  /**
+   * Internal representation of an attribute name.
+   */
+  slug: string | null;
+}
+
+export interface ProductDetails_product_category_products_edges_node_attributes_values {
+  __typename: "AttributeValue";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
+   * Name of a value displayed in the interface.
+   */
+  name: string | null;
+  /**
+   * Name of a value displayed in the interface.
+   */
+  value: string | null;
+}
+
+export interface ProductDetails_product_category_products_edges_node_attributes {
+  __typename: "SelectedAttribute";
+  /**
+   * Name of an attribute displayed in the interface.
+   */
+  attribute: ProductDetails_product_category_products_edges_node_attributes_attribute;
+  /**
+   * Values of an attribute.
+   */
+  values: (ProductDetails_product_category_products_edges_node_attributes_values | null)[];
+}
+
 export interface ProductDetails_product_category_products_edges_node_ushop_logoImage {
   __typename: "Image";
   /**
@@ -647,7 +735,12 @@ export interface ProductDetails_product_category_products_edges_node {
    * List of public metadata items. Can be accessed without permissions.
    */
   metadata: (ProductDetails_product_category_products_edges_node_metadata | null)[];
+  /**
+   * List of attributes assigned to this product.
+   */
+  attributes: ProductDetails_product_category_products_edges_node_attributes[];
   ushop: ProductDetails_product_category_products_edges_node_ushop | null;
+  wasPrice: number | null;
   /**
    * Lists the storefront product's pricing, the current price and discounts, only meant for displaying.
    */
@@ -691,42 +784,6 @@ export interface ProductDetails_product_images {
    * The URL of the image.
    */
   url: string;
-}
-
-export interface ProductDetails_product_attributes_attribute {
-  __typename: "Attribute";
-  /**
-   * The ID of the object.
-   */
-  id: string;
-  /**
-   * Name of an attribute displayed in the interface.
-   */
-  name: string | null;
-}
-
-export interface ProductDetails_product_attributes_values {
-  __typename: "AttributeValue";
-  /**
-   * The ID of the object.
-   */
-  id: string;
-  /**
-   * Name of a value displayed in the interface.
-   */
-  name: string | null;
-}
-
-export interface ProductDetails_product_attributes {
-  __typename: "SelectedAttribute";
-  /**
-   * Name of an attribute displayed in the interface.
-   */
-  attribute: ProductDetails_product_attributes_attribute;
-  /**
-   * Values of an attribute.
-   */
-  values: (ProductDetails_product_attributes_values | null)[];
 }
 
 export interface ProductDetails_product_variants_images {
@@ -927,7 +984,12 @@ export interface ProductDetails_product {
    * List of public metadata items. Can be accessed without permissions.
    */
   metadata: (ProductDetails_product_metadata | null)[];
+  /**
+   * List of attributes assigned to this product.
+   */
+  attributes: ProductDetails_product_attributes[];
   ushop: ProductDetails_product_ushop | null;
+  wasPrice: number | null;
   /**
    * Lists the storefront product's pricing, the current price and discounts, only meant for displaying.
    */
@@ -938,10 +1000,6 @@ export interface ProductDetails_product {
    * List of images for the product.
    */
   images: (ProductDetails_product_images | null)[] | null;
-  /**
-   * List of attributes assigned to this product.
-   */
-  attributes: ProductDetails_product_attributes[];
   /**
    * List of variants for the product.
    */

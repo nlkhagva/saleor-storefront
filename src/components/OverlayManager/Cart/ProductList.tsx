@@ -177,6 +177,8 @@ const ProductList: React.SFC<{
                     <td>
                       {selectedShipping ? (
                         <Money money={selectedShipping.pricing.price.gross} />
+                      ) : _shop.id === "VXNob3A6MQ==" ? (
+                        "Free"
                       ) : (
                         "Тодорхойгүй"
                       )}

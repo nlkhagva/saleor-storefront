@@ -17,6 +17,8 @@ export const collectionProductsDataQuery = gql`
       id
       slug
       name
+      description
+      descriptionJson
       seoDescription
       seoTitle
       backgroundImage {
@@ -62,6 +64,8 @@ export const collectionProductsQuery = gql`
   ) {
     collection(id: $id) {
       id
+      name
+      description
       products(
         after: $after
         first: $pageSize

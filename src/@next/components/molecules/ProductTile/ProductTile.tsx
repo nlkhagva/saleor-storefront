@@ -2,7 +2,11 @@ import React from "react";
 
 import { TaxedMoney, Money } from "@components/containers";
 import { Thumbnail } from "@components/molecules";
-import { getWasPrice, getSalePercent } from "@temp/views/Product/utils";
+import {
+  getWasPrice,
+  getSalePercent,
+  getFbLiveAttrs,
+} from "@temp/views/Product/utils";
 
 // import ZaraLogo from '../../../../images/unurshop/xd/zara.jpg';
 // import UshopLogo from "../../../../images/unurshop/logo-v3.png";
@@ -17,7 +21,6 @@ export const ProductTile: React.FC<any> = ({ product }: any) => {
       ? product.pricing.priceRange.start
       : undefined;
   const wasPrice = getWasPrice(product);
-
   return (
     <S.Wrapper>
       <S.Image data-test="productThumbnail">
@@ -28,7 +31,9 @@ export const ProductTile: React.FC<any> = ({ product }: any) => {
       </S.Image>
       <S.RowLk>
         <S.ShopLogo>
-          <img src={product.ushop.logoImage.url} alt="Zara" />
+          {product.ushop && (
+            <img src={product.ushop?.logoImage.url} alt="Zara" />
+          )}
         </S.ShopLogo>
         <S.TitleAndPrice>
           <S.Price>
@@ -48,7 +53,9 @@ export const ProductTile: React.FC<any> = ({ product }: any) => {
             )}
           </S.Price>
 
-          <S.Title>{product.name}</S.Title>
+          <S.Title>
+            {product.name} {getFbLiveAttrs(product)}
+          </S.Title>
         </S.TitleAndPrice>
       </S.RowLk>
     </S.Wrapper>
