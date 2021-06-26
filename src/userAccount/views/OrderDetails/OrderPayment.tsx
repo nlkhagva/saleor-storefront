@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
-// import { OrderByToken_orderByToken } from "@saleor/sdk/lib/queries/gqlTypes/OrderByToken";
-// import { UserOrderByToken_orderByToken } from "@saleor/sdk/lib/queries/gqlTypes/UserOrderByToken";
+// import { OrderByToken_orderByToken } from "unurshop-sdk/lib/queries/gqlTypes/OrderByToken";
+// import { UserOrderByToken_orderByToken } from "unurshop-sdk/lib/queries/gqlTypes/UserOrderByToken";
 import { IFormError } from "@types";
 import { Button } from "@components/atoms";
 import { Money } from "@components/containers";

@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
 import { RouteComponentProps } from "react-router";
 import { useHistory } from "react-router-dom";
 
-import { useCart } from "@saleor/sdk";
+import { useCart } from "unurshop-sdk";
 
 import { Loader } from "@components/atoms";
 import { MetaWrapper, NotFound, OfflinePlaceholder } from "../../components";

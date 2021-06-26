@@ -1,9 +1,9 @@
 import * as React from "react";
-import { ICheckoutModelLine } from "@saleor/sdk/lib/helpers";
+import { ICheckoutModelLine } from "unurshop-sdk/lib/helpers";
 import {
   ProductDetails_product_variants_pricing,
   ProductDetails_product_pricing,
-} from "@saleor/sdk/lib/queries/gqlTypes/ProductDetails";
+} from "unurshop-sdk/lib/queries/gqlTypes/ProductDetails";
 import { isEqual } from "lodash";
 import { TaxedMoney } from "../../containers";
 

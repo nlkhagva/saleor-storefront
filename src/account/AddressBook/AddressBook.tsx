@@ -4,15 +4,15 @@ import React from "react";
 import { useIntl } from "react-intl";
 
 import { AddressFormModal, AddressGrid } from "@components/organisms";
-import { useDefaultUserAddress, useDeleteUserAddresss } from "@saleor/sdk";
+import { useDefaultUserAddress, useDeleteUserAddresss } from "unurshop-sdk";
 import { checkoutMessages, commonMessages } from "@temp/intl";
 
 import {
   AddressTypeEnum,
   AccountErrorCode,
-} from "@saleor/sdk/lib/gqlTypes/globalTypes";
-import { getUserDetailsQuery } from "@saleor/sdk/lib/queries/user";
-import { User } from "@saleor/sdk/lib/fragments/gqlTypes/User";
+} from "unurshop-sdk/lib/gqlTypes/globalTypes";
+import { getUserDetailsQuery } from "unurshop-sdk/lib/queries/user";
+import { User } from "unurshop-sdk/lib/fragments/gqlTypes/User";
 import { ShopContext } from "../../components/ShopProvider/context";
 
 const AddressBook: React.FC<{

@@ -3,7 +3,7 @@ import "./scss/index.scss";
 import * as React from "react";
 import { useIntl } from "react-intl";
 
-import { useAuth } from "@saleor/sdk";
+import { useAuth } from "unurshop-sdk";
 import { demoMode } from "@temp/constants";
 import { commonMessages } from "@temp/intl";
 

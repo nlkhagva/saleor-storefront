@@ -8,7 +8,7 @@ import React, {
 import { RouteComponentProps } from "react-router";
 
 import { CheckoutShipping } from "@components/organisms";
-import { useCheckout } from "@saleor/sdk";
+import { useCheckout } from "unurshop-sdk";
 import { IFormError } from "@types";
 
 export interface ICheckoutShippingSubpageHandles {

@@ -4,7 +4,7 @@ import React from "react";
 import Media from "react-media";
 import { PRODUCT_TYPE_SHIPPING } from "@app/custom/constants";
 
-import { useAuth, useCart } from "@saleor/sdk";
+import { useAuth, useCart } from "unurshop-sdk";
 
 import { OverlayContext } from "..";
 import { mediumScreen } from "../../globalStyles/scss/variables.scss";

@@ -1,4 +1,4 @@
-import { useOrdersByUser } from "@saleor/sdk/";
+import { useOrdersByUser } from "unurshop-sdk/";
 import React from "react";
 import { FormattedMessage } from "react-intl";
 

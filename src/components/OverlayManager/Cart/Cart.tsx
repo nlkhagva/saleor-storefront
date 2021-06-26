@@ -7,7 +7,7 @@ import { generatePath, Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
 import { TaxedMoney } from "@components/containers";
-import { useAuth, useCart, useCheckout } from "@saleor/sdk";
+import { useAuth, useCart, useCheckout } from "unurshop-sdk";
 
 // import { commonMessages } from '@temp/intl';
 import {

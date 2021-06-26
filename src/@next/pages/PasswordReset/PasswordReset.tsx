@@ -1,4 +1,4 @@
-import { setAuthToken, useSetPassword } from "@saleor/sdk";
+import { setAuthToken, useSetPassword } from "unurshop-sdk";
 import { Formik } from "formik";
 import React from "react";
 import * as Yup from "yup";

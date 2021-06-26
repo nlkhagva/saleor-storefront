@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { useCart } from "@saleor/sdk";
+import { useCart } from "unurshop-sdk";
 import UUID from "node-uuid";
 import {
   PRODUCT_CATEGORY_ONLINE_ZAHIALGA,

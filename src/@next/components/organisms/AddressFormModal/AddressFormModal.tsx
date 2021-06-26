@@ -1,7 +1,7 @@
 import React from "react";
 
-import { useCreateUserAddress, useUpdateUserAddress } from "@saleor/sdk";
-import { CountryCode } from "@saleor/sdk/lib/gqlTypes/globalTypes";
+import { useCreateUserAddress, useUpdateUserAddress } from "unurshop-sdk";
+import { CountryCode } from "unurshop-sdk/lib/gqlTypes/globalTypes";
 
 import { AddressForm } from "../AddressForm";
 import { ModalSafari as Modal } from "../ModalSafari";

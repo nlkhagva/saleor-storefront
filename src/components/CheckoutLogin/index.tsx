@@ -3,7 +3,7 @@ import "./scss/index.scss";
 import React, { useContext } from "react";
 import { Redirect } from "react-router";
 
-import { useAuth } from "@saleor/sdk";
+import { useAuth } from "unurshop-sdk";
 
 import { Offline, OfflinePlaceholder, Online, OverlayContext } from "..";
 

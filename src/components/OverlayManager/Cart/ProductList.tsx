@@ -1,6 +1,6 @@
 import React from "react";
 // import { FormattedMessage } from 'react-intl';
-import { ICheckoutModelLine } from "@saleor/sdk/lib/helpers";
+import { ICheckoutModelLine } from "unurshop-sdk/lib/helpers";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { useShopDetails } from "@saleor/sdk";
+import { useShopDetails } from "unurshop-sdk";
 import { maybe } from "../../core/utils";
 import { defaultContext, ShopContext } from "./context";
 

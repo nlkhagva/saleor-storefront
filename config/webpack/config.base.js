@@ -125,7 +125,7 @@ module.exports = ({ sourceDir, distDir }) => ({
     alias: {
       // Explicitely set react's path here because npm-link doesn't do well
       // when it comes to peer dependencies, and we need to somehow develop
-      // @saleor/sdk package
+      // unurshop-sdk package
       react: path.resolve("./node_modules/react"),
       "react-dom": "@hot-loader/react-dom",
     },

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Money } from "@components/containers";
-import { OrderByToken_orderByToken_lines_unitPrice_gross } from "@saleor/sdk/lib/queries/gqlTypes/OrderByToken";
+import { OrderByToken_orderByToken_lines_unitPrice_gross } from "unurshop-sdk/lib/queries/gqlTypes/OrderByToken";
 
 const CostRow: React.FC<{
   heading: string;

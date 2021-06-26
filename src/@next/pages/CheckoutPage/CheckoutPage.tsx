@@ -11,14 +11,14 @@ import {
   adyenNotNegativeConfirmationStatusCodes,
 } from "@components/organisms";
 import { Checkout } from "@components/templates";
-import { useCart, useCheckout } from "@saleor/sdk";
-// import { IItems } from "@saleor/sdk/lib/api/Cart/types";
+import { useCart, useCheckout } from "unurshop-sdk";
+// import { IItems } from "unurshop-sdk/lib/api/Cart/types";
 import { CHECKOUT_STEPS, CheckoutStep } from "@temp/core/config";
 import { checkoutMessages } from "@temp/intl";
 // import { ITaxedMoney, ICheckoutStep, ICardData, IFormError } from "@types";
 import { ICheckoutStep, ICardData, IFormError } from "@types";
 import { parseQueryString } from "@temp/core/utils";
-import { CompleteCheckout_checkoutComplete_order } from "@saleor/sdk/lib/mutations/gqlTypes/CompleteCheckout";
+import { CompleteCheckout_checkoutComplete_order } from "unurshop-sdk/lib/mutations/gqlTypes/CompleteCheckout";
 
 import { CheckoutRouter } from "./CheckoutRouter";
 import {

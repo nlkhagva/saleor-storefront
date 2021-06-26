@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 
 import { TaxedMoney } from "@components/containers";
 import { Thumbnail } from "@components/molecules";
-import { ProductVariant } from "@saleor/sdk/lib/fragments/gqlTypes/ProductVariant";
-import { OrderByToken_orderByToken_lines_unitPrice } from "@saleor/sdk/lib/queries/gqlTypes/OrderByToken";
+import { ProductVariant } from "unurshop-sdk/lib/fragments/gqlTypes/ProductVariant";
+import { OrderByToken_orderByToken_lines_unitPrice } from "unurshop-sdk/lib/queries/gqlTypes/OrderByToken";
 
 // import { maybe } from "@temp/misc";
 // import { SHIPPING_STATUS } from "@temp/constants";

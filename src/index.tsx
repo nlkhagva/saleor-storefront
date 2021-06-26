@@ -9,8 +9,8 @@ import { QueryParamProvider } from "use-query-params";
 
 import { NotificationTemplate } from "@components/atoms";
 import { ServiceWorkerProvider } from "@components/containers";
-import { SaleorProvider } from "@saleor/sdk";
-import { ConfigInput } from "@saleor/sdk/lib/types";
+import { SaleorProvider } from "unurshop-sdk";
+import { ConfigInput } from "unurshop-sdk/lib/types";
 import { Integrations as ApmIntegrations } from "@sentry/apm";
 import * as Sentry from "@sentry/browser";
 import { defaultTheme, GlobalStyle } from "@styles";

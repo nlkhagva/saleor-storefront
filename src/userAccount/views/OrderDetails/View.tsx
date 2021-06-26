@@ -4,7 +4,7 @@ import * as React from "react";
 import { RouteComponentProps } from "react-router";
 
 import { Loader } from "@components/atoms";
-import { useAuth } from "@saleor/sdk";
+import { useAuth } from "unurshop-sdk";
 import { TypedUserOrderByToken } from "./query";
 
 import Page from "./Page";

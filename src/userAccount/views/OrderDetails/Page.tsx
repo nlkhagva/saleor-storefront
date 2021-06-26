@@ -6,9 +6,9 @@ import { Link } from "react-router-dom";
 
 import { DropdownMenu, IconButton } from "@components/atoms";
 import { TaxedMoney } from "@components/containers";
-// import { OrderDetail_lines } from "@saleor/sdk/lib/fragments/gqlTypes/OrderDetail";
-// import { OrderByToken_orderByToken } from "@saleor/sdk/lib/queries/gqlTypes/OrderByToken";
-// import { UserOrderByToken_orderByToken } from "@saleor/sdk/lib/queries/gqlTypes/UserOrderByToken";
+// import { OrderDetail_lines } from "unurshop-sdk/lib/fragments/gqlTypes/OrderDetail";
+// import { OrderByToken_orderByToken } from "unurshop-sdk/lib/queries/gqlTypes/OrderByToken";
+// import { UserOrderByToken_orderByToken } from "unurshop-sdk/lib/queries/gqlTypes/UserOrderByToken";
 import {
   checkoutMessages,
   translateOrderStatus,

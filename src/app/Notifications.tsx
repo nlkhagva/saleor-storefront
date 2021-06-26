@@ -2,7 +2,7 @@ import React from "react";
 import { useIntl } from "react-intl";
 import { useAlert } from "react-alert";
 
-import { useAuth } from "@saleor/sdk";
+import { useAuth } from "unurshop-sdk";
 import { ServiceWorkerContext } from "@components/containers";
 
 const Notifications: React.FC = () => {

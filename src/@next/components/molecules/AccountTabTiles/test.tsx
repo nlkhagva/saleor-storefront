@@ -8,7 +8,7 @@ import { TextField } from "..";
 import { AccountTile } from "./AccountTile";
 import { PasswordTile } from "./PasswordTile";
 
-jest.mock("@saleor/sdk", () => ({
+jest.mock("unurshop-sdk", () => ({
   useAccountUpdate: () => [jest.fn(), { data: null, error: null }],
   useAuth: () => ({ user: { firstName: "John", lastName: "Doe" } }),
   usePasswordChange: () => [jest.fn(), { data: null, error: null }],

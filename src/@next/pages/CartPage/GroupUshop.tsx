@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { IItems } from "@saleor/sdk/lib/api/Cart/types";
+import { IItems } from "unurshop-sdk/lib/api/Cart/types";
 import { CartRow } from "@components/organisms";
 import { Money, TaxedMoney } from "@components/containers";
 

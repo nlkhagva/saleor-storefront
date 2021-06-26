@@ -2,7 +2,7 @@ import "../globalStyles/scss/index.scss";
 
 import React from "react";
 
-import { useAuth } from "@saleor/sdk";
+import { useAuth } from "unurshop-sdk";
 import { DemoBanner, Loader } from "@components/atoms";
 // import { demoMode } from "@temp/constants";
 import {

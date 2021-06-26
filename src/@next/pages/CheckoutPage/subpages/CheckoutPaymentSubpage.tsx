@@ -9,7 +9,7 @@ import { useIntl } from "react-intl";
 import { RouteComponentProps } from "react-router";
 
 import { CheckoutPayment } from "@components/organisms";
-import { useCheckout } from "@saleor/sdk";
+import { useCheckout } from "unurshop-sdk";
 import { commonMessages } from "@temp/intl";
 import { IFormError } from "@types";
 

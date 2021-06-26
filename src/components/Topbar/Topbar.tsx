@@ -7,7 +7,7 @@ import ReactSVG from "react-svg";
 import { FormattedMessage } from "react-intl";
 import { commonMessages } from "@temp/intl";
 
-import { useAuth } from "@saleor/sdk";
+import { useAuth } from "unurshop-sdk";
 
 // import { useSignOut, useUserDetails } from '@sdk/react';
 // import { OverlayContext } from "..";

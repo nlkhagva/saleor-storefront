@@ -3,7 +3,7 @@ import { useIntl } from "react-intl";
 import Media from "react-responsive";
 import { RouteComponentProps, withRouter } from "react-router";
 import { commonMessages } from "@temp/intl";
-import { useAuth } from "@saleor/sdk";
+import { useAuth } from "unurshop-sdk";
 
 import { smallScreen } from "@styles/constants";
 import { AccountMenu, AccountMenuMobile } from "@components/molecules";

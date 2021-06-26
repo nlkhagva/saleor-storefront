@@ -11,7 +11,7 @@ import { useIntl } from "react-intl";
 import { RouteComponentProps } from "react-router";
 
 import { CheckoutAddress } from "@components/organisms";
-import { useAuth, useCheckout, useCart } from "@saleor/sdk";
+import { useAuth, useCheckout, useCart } from "unurshop-sdk";
 import { ShopContext } from "@temp/components/ShopProvider/context";
 import { commonMessages } from "@temp/intl";
 import { IAddress, IFormError } from "@types";
