@@ -14,7 +14,7 @@ export const DemoBanner: React.FC = () => {
         {/* eslint-disable-next-line react/jsx-no-target-blank */}
         <S.LinkList>
           <S.TextEmphasis>
-            <FormattedMessage defaultMessage="ТУРШИЛТИЙН ХУВИЛБАР" />
+            <FormattedMessage defaultMessage="Beta version" />
           </S.TextEmphasis>
         </S.LinkList>
         <S.LinkList>
