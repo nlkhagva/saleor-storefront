@@ -26,6 +26,8 @@
       "@types/*": ["./src/@next/types/*"],
       "@app/*": ["./src/@next/*"],
       "@locale/*": ["./locale/*"],
+      "@saleor/sdk/lib/*": ["./lib/@saleor/sdk/lib/*"],
+      "@saleor/sdk": ["./lib/@saleor/sdk/lib/index.js"],
       "@temp/*": ["./src/*"]
     },
     "resolveJsonModule": true,

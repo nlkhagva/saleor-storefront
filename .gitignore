@@ -13,7 +13,7 @@
 !.prettierignore
 !.tx
 dist
-node_modules
+/node_modules
 src/locales/_build
 
 cypress/videos
