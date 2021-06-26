@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import {
   // Button,
   Loader,
-  // ProductsFeatured,
+  ProductsFeatured,
   // UshopFeatured,
 } from "../../components";
 // import { Loader, UshopFeatured } from "../../components";
@@ -63,7 +63,7 @@ const Page: React.FC<{
           )}
         </div>
       </div>
-      {/* <ProductsFeatured /> */}
+      <ProductsFeatured />
       {/* <UshopFeatured /> */}
       {categoriesExist() && (
         <div className="home-page__categories">

@@ -27,9 +27,10 @@ import { DebouncedTextField } from "../../Debounce";
 import { Error } from "../../Error";
 import NetworkStatus from "../../NetworkStatus";
 import { SearchResults } from "./gqlTypes/SearchResults";
+import { SearchBySKUResults } from "./gqlTypes/SearchBySKUResults";
 import NothingFound from "./NothingFound";
 import ProductItem from "./ProductItem";
-import { TypedSearchResults } from "./queries";
+import { TypedSearchResults, TypedSearchBySKUResults } from "./queries";
 
 interface SearchProps extends WrappedComponentProps, RouteComponentProps {
   overlay: OverlayContextInterface;
@@ -63,6 +64,13 @@ class Search extends React.Component<SearchProps, SearchState> {
     return !!pattern.test(this.state.search);
   }
 
+  get isFbLive() {
+    const reg = /^(FB|fb|Fb|fB).*/g;
+    const pattern = new RegExp(reg);
+
+    return !!pattern.test(this.state.search);
+  }
+
   get redirectTo() {
     return { pathname: searchUrl, search: `?${this.searchQs}` };
   }
@@ -73,6 +81,9 @@ class Search extends React.Component<SearchProps, SearchState> {
 
   hasResults = (data: SearchResults) =>
     maybe(() => !!data.products.edges.length);
+
+  hasResultsBySku = (data: SearchBySKUResults) =>
+    maybe(() => !!data.productVariant);
 
   handleSubmit = (evt: React.FormEvent) => {
     if (this.hasSearchPhrase && this.submitBtnRef.current) {
@@ -121,6 +132,55 @@ class Search extends React.Component<SearchProps, SearchState> {
             >
               <NetworkStatus>
                 {isOnline => {
+                  if (this.hasSearchPhrase && this.isFbLive) {
+                    return (
+                      <TypedSearchBySKUResults
+                        renderOnError
+                        displayError={false}
+                        errorPolicy="all"
+                        variables={{
+                          sku: this.state.search.toUpperCase(),
+                        }}
+                      >
+                        {({ data, error, loading }) => {
+                          if (this.hasResultsBySku(data)) {
+                            return (
+                              <>
+                                <ul>
+                                  <ProductItem
+                                    node={data.productVariant.product}
+                                  />
+                                </ul>
+                                <div className="search__products__footer">
+                                  {loading ? (
+                                    <Loader />
+                                  ) : (
+                                    <Button
+                                      testingContext="searchProductsButton"
+                                      btnRef={this.submitBtnRef}
+                                      type="submit"
+                                    >
+                                      Бүх үр дүнг харах
+                                    </Button>
+                                  )}
+                                </div>
+                              </>
+                            );
+                          }
+
+                          if (error) {
+                            return isOnline ? (
+                              <Error error={error.message} />
+                            ) : (
+                              <OfflinePlaceholder />
+                            );
+                          }
+
+                          return <NothingFound search={this.state.search} />;
+                        }}
+                      </TypedSearchBySKUResults>
+                    );
+                  }
                   if (this.hasSearchPhrase && !this.isProductLink) {
                     return (
                       <TypedSearchResults

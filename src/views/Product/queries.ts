@@ -27,7 +27,7 @@ export const basicProductFragment = gql`
       url
       alt
     }
-    thumbnail2x: thumbnail(size: 510) {
+    thumbnail2x: thumbnail(size: 1080) {
       url
     }
     slug

@@ -4,11 +4,10 @@ import { Link } from "react-router-dom";
 import { Thumbnail } from "@components/molecules";
 
 import { generateProductUrl } from "../../../core/utils";
-import { SearchResults_products_edges } from "./gqlTypes/SearchResults";
+// import { SearchResults_products_edges } from "./gqlTypes/SearchResults";
+// import { SearchBySResults_products_edges } from "./gqlTypes/SearchBySKUResults";
 
-const ProductItem: React.FC<SearchResults_products_edges> = ({
-  node: product,
-}) => (
+const ProductItem: React.FC<any> = ({ node: product }) => (
   <li className="search__products__item">
     <Link to={generateProductUrl(product.id, product.name)}>
       <Thumbnail source={product} />

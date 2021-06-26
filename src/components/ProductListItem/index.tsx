@@ -4,6 +4,7 @@ import isEqual from "lodash/isEqual";
 import * as React from "react";
 
 import { Thumbnail } from "@components/molecules";
+import { getFbLiveAttrs } from "@temp/views/Product/utils";
 
 import { TaxedMoney } from "../../@next/components/containers";
 import { FeaturedProducts_shop_homepageCollection_products_edges_node } from "../ProductsFeatured/gqlTypes/FeaturedProducts";
@@ -36,7 +37,9 @@ const ProductListItem: React.FC<ProductListItemProps> = ({ product }) => {
       <div className="product-list-item__image">
         <Thumbnail source={product} />
       </div>
-      <h4 className="product-list-item__title">{product.name}</h4>
+      <h4 className="product-list-item__title">
+        {product.name} {getFbLiveAttrs(product)}
+      </h4>
       <p className="product-list-item__category">{category?.name}</p>
       <p className="product-list-item__price">{getProductPrice()}</p>
     </div>
