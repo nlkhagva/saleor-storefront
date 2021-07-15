@@ -32,10 +32,10 @@ interface TableProps extends EditableProductRowProps {
 const Table: React.FC<TableProps> = ({ lines, ...rowProps }) => {
   const ushops = [];
   const productLines = lines.filter(
-    i => i.variant.product?.productType.id !== PRODUCT_TYPE_SHIPPING
+    i => i.variant?.product?.productType.id !== PRODUCT_TYPE_SHIPPING
   );
   const shippingUkLines = lines.filter(
-    i => i.variant.product?.productType.id === PRODUCT_TYPE_SHIPPING
+    i => i.variant?.product?.productType.id === PRODUCT_TYPE_SHIPPING
   );
 
   productLines.map(line => {

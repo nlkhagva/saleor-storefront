@@ -50,7 +50,7 @@ const CheckoutAddress: React.FC<IProps> = ({
               </S.Title>
             )}
 
-            {userAddresses ? (
+            {userAddresses?.length ? (
               <AddressGridSelector
                 testingContext="shipping"
                 formId={shippingFormId}

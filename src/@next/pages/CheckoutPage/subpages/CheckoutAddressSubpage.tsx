@@ -213,9 +213,8 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
     }
   };
 
-  const userAdresses = user?.addresses
-    ?.filter(filterNotEmptyArrayItems)
-    .map(address => ({
+  const userAdresses =
+    user?.addresses?.filter(filterNotEmptyArrayItems).map(address => ({
       address: {
         ...address,
         isDefaultBillingAddress: address.isDefaultBillingAddress || false,
@@ -224,7 +223,7 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
       },
       id: address?.id || "",
       onSelect: () => null,
-    }));
+    })) || [];
 
   return (
     <CheckoutAddress

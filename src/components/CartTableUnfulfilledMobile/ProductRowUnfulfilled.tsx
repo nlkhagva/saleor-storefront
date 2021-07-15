@@ -48,14 +48,14 @@ const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
         <td className="cart-table__thumbnail ">
           <div>
             <Link to={productUrl}>
-              <Thumbnail source={line.variant.product} />
+              <Thumbnail source={line} />
             </Link>
           </div>
         </td>
 
         <td>
-          <Link to={productUrl}>{line.variant.product.name}</Link>
-          {line.variant.attributes.map(
+          <Link to={productUrl}>{line.productName}</Link>
+          {line.variant?.attributes.map(
             ({ attribute, values }, attributeIndex) => (
               <p key={attribute.id}>
                 {attribute.name}: {values.map(value => value.name).join(", ")}
@@ -64,7 +64,7 @@ const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
           )}
         </td>
         <td className="text-right">
-          <TaxedMoney taxedMoney={line.variant.pricing.price} />
+          <TaxedMoney taxedMoney={line.unitPrice} />
         </td>
 
         <td className="cart-table__quantity-cell text-right">

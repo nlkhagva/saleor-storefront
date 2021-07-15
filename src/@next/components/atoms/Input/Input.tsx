@@ -22,7 +22,7 @@ export const Input: React.FC<IProps> = ({
 }: IProps) => {
   const elementRef = React.useRef(null);
   const [active, setActive] = React.useState(false);
-  const [labelBackground, setColor] = React.useState<string>("transparent");
+  const [labelBackground, setColor] = React.useState<string>("#fff");
 
   React.useEffect(() => {
     if (elementRef) {
@@ -67,6 +67,7 @@ export const Input: React.FC<IProps> = ({
           disabled={disabled}
           onChange={onChange}
           labelBackground={labelBackground}
+          // placeholder={placeholder}
         />
         {label && (
           <InputLabel

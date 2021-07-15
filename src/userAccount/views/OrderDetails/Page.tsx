@@ -67,7 +67,6 @@ const Page: React.FC<{
   const unfulfilled = maybe(() => order.lines, []).filter(
     line => line.quantityFulfilled < line.quantity
   );
-
   return order ? (
     <>
       {!guest && (

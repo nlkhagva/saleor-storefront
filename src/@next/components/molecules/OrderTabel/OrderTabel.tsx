@@ -69,6 +69,7 @@ export const OrderTabel: React.FC<IProps> = ({ orders, history }: IProps) => {
                         <>
                           <S.ProductsOrdered>
                             {order.node.lines
+                              .filter((line: any) => line.variant)
                               .filter(
                                 (line: any) =>
                                   line.variant.product.productType.id !==

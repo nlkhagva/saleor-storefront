@@ -30,6 +30,7 @@ const getEdgeColor = (
 
 export const Wrapper = styled.div<WrapperProps>`
   display: flex;
+  background: #fff;
   border: 1px solid ${props => getEdgeColor(props)};
   border-radius: ${props => props.theme.borderRadius.small};
   color: ${props => getEdgeColor(props)};
@@ -70,5 +71,7 @@ export const Input = styled.input<{ labelBackground: string | null }>`
     & + label {
       ${props => activeLabelStyles(props.theme, props.labelBackground)};
     }
+  }
+  &::placeholder {
   }
 `;
