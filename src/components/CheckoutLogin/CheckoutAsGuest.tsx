@@ -1,9 +1,9 @@
-import { Button, OverlayTheme, OverlayType } from "..";
-
+import React from "react";
 import { FormattedMessage } from "react-intl";
 import { Link } from "react-router-dom";
+
+import { Button, OverlayTheme, OverlayType } from "..";
 import { OverlayContextInterface } from "../Overlay";
-import React from "react";
 
 // import { OverlayTheme, OverlayType } from "..";
 
@@ -18,7 +18,7 @@ const CheckoutAsGuest: React.FC<{
     <p>
       {/* <FormattedMessage defaultMessage="" /> */}
       Та манай дэлгүүрт бүртгүүлэхгүйгээр захиалга үүсгэж болох ба үүнийг хүсвэл
-      <b style={{ fontWeight: "bold" }}> "Зочины хувиар үргэлжлүүл"</b> товчин
+      <b style={{ fontWeight: "bold" }}> Зочины хувиар үргэлжлүүл</b> товчин
       дээр даран цааш захиалгаа үргэлжлүүлнэ үү
     </p>
     <Link to={checkoutUrl}>

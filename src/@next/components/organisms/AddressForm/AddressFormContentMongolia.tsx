@@ -1,10 +1,10 @@
-import * as S from "./styles";
+import React from "react";
+import { useIntl } from "react-intl";
 
 import { InputSelect, TextField } from "@components/molecules";
-
-import React from "react";
 import { commonMessages } from "@temp/intl";
-import { useIntl } from "react-intl";
+
+import * as S from "./styles";
 
 export const AddressFormContentMongolia: React.FC<any> = ({
   basicInputProps,
