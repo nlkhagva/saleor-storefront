@@ -10,8 +10,11 @@ const SignInForm: React.FC<{
     <h3 className="checkout__header">
       <FormattedMessage defaultMessage="Нэвтрэх" />
     </h3>
-    <LoginForm />
-    <ForgottenPassword onClick={onForgottenPasswordClick} />
+    <LoginForm
+      forgottenPassword={
+        <ForgottenPassword onClick={onForgottenPasswordClick} />
+      }
+    />
   </>
 );
 

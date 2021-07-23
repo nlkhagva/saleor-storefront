@@ -19,7 +19,6 @@ export const AlertContainer = styled.div`
   border: 1px solid #ffecb5;
   border-radius: 0.25rem;
   color: #664d03;
-  font-size: 12px;
   padding: 1rem;
 `;
 export const AlertTitle = styled.h6`
@@ -27,3 +26,12 @@ export const AlertTitle = styled.h6`
   margin-bottom: 0.5rem;
 `;
 export const AlertContent = styled.div``;
+
+export const SuccessContainer = styled.div`
+  border: 1px solid #c3e6cb;
+  border-radius: 0.25rem;
+  padding: 1rem;
+  color: #155724;
+  background-color: #d4edda;
+  margin-bottom: 1rem;
+`;

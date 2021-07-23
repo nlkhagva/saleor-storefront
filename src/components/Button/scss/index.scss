@@ -21,7 +21,6 @@ button.button {
     width: 100%;
     max-width: 100%;
   }
-
   > span {
     display: inline-block;
     color: $white;
@@ -30,6 +29,14 @@ button.button {
     font-weight: $button-font-weight;
     line-height: $button-line-height;
     transform: $button-content-transform;
+  }
+
+  &.small {
+    > span {
+      font-size: 1rem;
+      font-weight: $button-font-weight;
+      line-height: 1rem;
+    }
   }
 
   &:hover {

@@ -1,10 +1,11 @@
 import "./scss/index.scss";
 
 import * as React from "react";
-import { FormattedMessage } from "react-intl";
+// import { FormattedMessage } from "react-intl";
 import ReactSVG from "react-svg";
 
 import loginSymbol from "images/unurshop/loginSymbol.svg";
+import logoImg from "images/unurshop/logo-without-border.svg";
 
 import {
   LoginForm,
@@ -19,7 +20,6 @@ import {
 import RegisterForm from "./RegisterForm";
 
 import closeImg from "../../../images/x.svg";
-import logoImg from "../../../images/unurshop/logo-without-border.svg";
 import ForgottenPassword from "./ForgottenPassword";
 
 class Login extends React.Component<
@@ -51,7 +51,7 @@ class Login extends React.Component<
           <Online>
             <div className="overlay__header">
               <p className="overlay__header-text">
-                <ReactSVG path={logoImg} />
+                {/* <ReactSVG path={logoImg} /> */}
                 {/* <FormattedMessage defaultMessage="UNURSHOP" /> */}
               </p>
               <ReactSVG
@@ -60,7 +60,7 @@ class Login extends React.Component<
                 className="overlay__header__close-icon"
               />
             </div>
-            <div className="login__tabs">
+            {/* <div className="login__tabs">
               <span
                 data-test="loginTab"
                 onClick={() => this.changeActiveTab("login")}
@@ -75,20 +75,35 @@ class Login extends React.Component<
               >
                 <FormattedMessage defaultMessage="Бүртгүүлэх" />
               </span>
-            </div>
+            </div> */}
             <div className="login__content">
               {this.state.active === "login" ? (
                 <>
-                  <LoginForm hide={hide} />
-                  <ForgottenPassword
-                    onClick={() => {
-                      show(OverlayType.password, OverlayTheme.right);
-                    }}
+                  <div className="login__content__header">
+                    <ReactSVG path={logoImg} className="login__content__logo" />
+                    <h4>Unurshop руу нэвтрэх </h4>
+                  </div>
+
+                  <LoginForm
+                    hide={hide}
+                    forgottenPassword={
+                      <ForgottenPassword
+                        onClick={() => {
+                          show(OverlayType.password, OverlayTheme.right);
+                        }}
+                      />
+                    }
                   />
                 </>
               ) : (
                 <>
-                  <RegisterForm hide={hide} />
+                  <RegisterForm
+                    hide={hide}
+                    _email=""
+                    _setEmail={v => {}}
+                    _setPage={v => {}}
+                    loading={false}
+                  />
                 </>
               )}
               <ReactSVG path={loginSymbol} className="login-symbol" />

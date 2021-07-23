@@ -1,6 +1,6 @@
-import { useOrdersByUser } from "unurshop-sdk/";
 import React from "react";
 import { FormattedMessage } from "react-intl";
+import { useOrdersByUser } from "unurshop-sdk";
 
 import { Button, Loader } from "@components/atoms";
 import { OrderTabel } from "@components/molecules";
