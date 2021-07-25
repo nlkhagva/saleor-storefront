@@ -54,40 +54,6 @@ export interface OrdersByUser_me_orders_edges_node_total {
   net: OrdersByUser_me_orders_edges_node_total_net;
 }
 
-export interface OrdersByUser_me_orders_edges_node_lines_variant_product_metadata {
-  __typename: "MetadataItem";
-  /**
-   * Key of a metadata item.
-   */
-  key: string;
-  /**
-   * Value of a metadata item.
-   */
-  value: string;
-}
-
-export interface OrdersByUser_me_orders_edges_node_lines_variant_product {
-  __typename: "Product";
-  name: string;
-  /**
-   * The ID of the object.
-   */
-  id: string;
-  /**
-   * List of public metadata items. Can be accessed without permissions.
-   */
-  metadata: (OrdersByUser_me_orders_edges_node_lines_variant_product_metadata | null)[];
-}
-
-export interface OrdersByUser_me_orders_edges_node_lines_variant {
-  __typename: "ProductVariant";
-  /**
-   * The ID of the object.
-   */
-  id: string;
-  product: OrdersByUser_me_orders_edges_node_lines_variant_product;
-}
-
 export interface OrdersByUser_me_orders_edges_node_lines_thumbnail {
   __typename: "Image";
   /**
@@ -114,10 +80,7 @@ export interface OrdersByUser_me_orders_edges_node_lines {
    * The ID of the object.
    */
   id: string;
-  /**
-   * A purchased product variant. Note: this field may be null if the variant has been removed from stock at all.
-   */
-  variant: OrdersByUser_me_orders_edges_node_lines_variant | null;
+  productName: string;
   /**
    * The main thumbnail for the ordered product.
    */

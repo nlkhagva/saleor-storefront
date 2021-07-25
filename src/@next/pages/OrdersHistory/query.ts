@@ -1,4 +1,7 @@
+import { TypedQuery } from "@temp/core/queries";
 import gql from "graphql-tag";
+
+import { OrdersByUser, OrdersByUserVariables } from "./gqlTypes/OrdersByUser";
 
 export const ordersByUser = gql`
   query OrdersByUser($perPage: Int!, $after: String) {
@@ -28,17 +31,7 @@ export const ordersByUser = gql`
             }
             lines {
               id
-              variant {
-                id
-                product {
-                  name
-                  id
-                  metadata {
-                    key
-                    value
-                  }
-                }
-              }
+              productName
               thumbnail {
                 alt
                 url
@@ -53,3 +46,8 @@ export const ordersByUser = gql`
     }
   }
 `;
+
+export const TypedOrdersByUser = TypedQuery<
+  OrdersByUser,
+  OrdersByUserVariables
+>(ordersByUser);

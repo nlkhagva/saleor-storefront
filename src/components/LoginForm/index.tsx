@@ -58,7 +58,6 @@ const LoginForm: React.FC<ILoginForm> = ({ hide, forgottenPassword }) => {
   return (
     <TypedHasUserQuery variables={{ email: _email }}>
       {({ loading: queryLoading, data }) => {
-        console.log("fetched data");
         const formData = demoMode
           ? {
               email: "admin@example.com",

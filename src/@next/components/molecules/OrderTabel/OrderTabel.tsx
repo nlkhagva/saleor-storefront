@@ -69,27 +69,34 @@ export const OrderTabel: React.FC<IProps> = ({ orders, history }: IProps) => {
                         <>
                           <S.ProductsOrdered>
                             {order.node.lines
-                              .filter((line: any) => line.variant)
+                              // .filter((line: any) => line.variant)
+                              // .filter(
+                              //   (line: any) =>
+                              //     line.variant.product.productType.id !==
+                              //     PRODUCT_TYPE_SHIPPING
+                              // )
                               .filter(
                                 (line: any) =>
-                                  line.variant.product.productType.id !==
-                                  PRODUCT_TYPE_SHIPPING
+                                  String(line.productName)
+                                    .toLowerCase()
+                                    .search("cargo") === -1
                               )
                               .slice(0, 5)
                               .map((product: any) => (
                                 <span
-                                  key={product.variant.product.id}
-                                  onClick={evt => {
-                                    evt.stopPropagation();
-                                    history.push(
-                                      generateProductUrl(
-                                        product.variant.product.id,
-                                        product.variant.product.name
-                                      )
-                                    );
-                                  }}
+                                  key={product.id}
+                                  // onClick={evt => {
+                                  //   evt.stopPropagation();
+                                  //   history.push(
+                                  //     generateProductUrl(
+                                  //       product.id,
+                                  //       product.variant.product.name
+                                  //     )
+                                  //   );
+                                  // }}
                                 >
-                                  <Thumbnail source={product.variant.product} />
+                                  {/* {product.productName} */}
+                                  <Thumbnail source={product} />
                                 </span>
                               ))}
                           </S.ProductsOrdered>
