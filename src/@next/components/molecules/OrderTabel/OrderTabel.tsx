@@ -5,10 +5,10 @@ import { ThemeContext } from "styled-components";
 
 import { TaxedMoney } from "@components/containers";
 import { commonMessages, translateOrderStatus } from "@temp/intl";
-import { PRODUCT_TYPE_SHIPPING } from "@app/custom/constants";
+// import { PRODUCT_TYPE_SHIPPING } from "@app/custom/constants";
 
 import { Thumbnail } from "..";
-import { generateProductUrl } from "../../../../core/utils";
+// import { generateProductUrl } from "../../../../core/utils";
 
 import * as S from "./styles";
 import { IProps } from "./types";
