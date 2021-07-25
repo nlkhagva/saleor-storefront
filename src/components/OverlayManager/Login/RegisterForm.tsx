@@ -162,7 +162,7 @@ const RegisterForm: React.FC<{
               className="full small"
               onClick={() => _setPage("login")}
             >
-              Нэвтрэх
+              Буцах
             </Button>
           </>
         );
