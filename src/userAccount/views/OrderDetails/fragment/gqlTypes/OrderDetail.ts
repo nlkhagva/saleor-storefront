@@ -8,6 +8,42 @@ import { PaymentChargeStatusEnum, OrderStatus, FulfillmentStatus, FulfillmentLin
 // GraphQL fragment: OrderDetail
 // ====================================================
 
+export interface OrderDetail_payments_capturedAmount {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface OrderDetail_payments {
+  __typename: "Payment";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  gateway: string;
+  /**
+   * Internal payment status.
+   */
+  chargeStatus: PaymentChargeStatusEnum;
+  isActive: boolean;
+  created: any;
+  modified: any;
+  /**
+   * Total amount captured for this payment.
+   */
+  capturedAmount: OrderDetail_payments_capturedAmount | null;
+}
+
 export interface OrderDetail_totalBalance {
   __typename: "Money";
   /**
@@ -299,7 +335,7 @@ export interface OrderDetail_lines_variant {
    * List of attributes assigned to this variant.
    */
   attributes: OrderDetail_lines_variant_attributes[];
-  product: OrderDetail_lines_variant_product;
+  product: OrderDetail_lines_variant_product | null;
 }
 
 export interface OrderDetail_lines_unitPrice_gross {
@@ -626,7 +662,7 @@ export interface OrderDetail_fulfillments_lines_orderLine_variant_attributes {
 
 export interface OrderDetail_fulfillments_lines_orderLine_variant {
   __typename: "ProductVariant";
-  product: OrderDetail_fulfillments_lines_orderLine_variant_product;
+  product: OrderDetail_fulfillments_lines_orderLine_variant_product | null;
   /**
    * Quantity of a product available for sale in one checkout.
    */
@@ -932,6 +968,10 @@ export interface OrderDetail {
    * User-friendly payment status.
    */
   paymentStatusDisplay: string | null;
+  /**
+   * List of payments for the order.
+   */
+  payments: (OrderDetail_payments | null)[] | null;
   status: OrderStatus;
   /**
    * User-friendly order status.

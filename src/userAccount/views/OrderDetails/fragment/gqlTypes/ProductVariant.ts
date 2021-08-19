@@ -244,5 +244,5 @@ export interface ProductVariant {
    * List of attributes assigned to this variant.
    */
   attributes: ProductVariant_attributes[];
-  product: ProductVariant_product;
+  product: ProductVariant_product | null;
 }

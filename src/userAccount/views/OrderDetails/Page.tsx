@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useAlert } from "react-alert";
 import Media from "react-responsive";
-import { FormattedMessage, useIntl } from "react-intl";
+import { FormattedDate, FormattedMessage, useIntl } from "react-intl";
 import { Link } from "react-router-dom";
 
 import { DropdownMenu, IconButton } from "@components/atoms";
@@ -116,6 +116,32 @@ const Page: React.FC<{
         )}
       </div>
       <div className="">
+        <table style={{ margin: "2rem 0" }}>
+          {order?.payments && (
+            <tr>
+              <th colSpan={2} style={{ fontWeight: "bold" }}>
+                Төлбөрийн түүх
+              </th>
+            </tr>
+          )}
+          {order?.payments
+            .filter(payment => payment.chargeStatus === "FULLY_CHARGED")
+            .map(payment => (
+              <tr key={payment.id}>
+                <td>
+                  {payment.gateway === "mirumee.payments.stripe"
+                    ? "Stripe-р төлсөн"
+                    : payment.gateway}
+                  <span style={{ fontSize: 12 }}>
+                    &nbsp; [<FormattedDate value={payment.modified} />]
+                  </span>
+                </td>
+                <td style={{ textAlign: "right" }}>
+                  {payment.capturedAmount.localized}
+                </td>
+              </tr>
+            ))}
+        </table>
         {Math.abs(order.totalBalance.amount) > 0 && (
           <TypedPaymentOrderRemain onCompleted={onCompletedPayment}>
             {paymentOrderRemain => (

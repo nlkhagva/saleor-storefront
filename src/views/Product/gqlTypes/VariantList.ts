@@ -379,7 +379,7 @@ export interface VariantList_productVariants_edges_node {
    * List of attributes assigned to this variant.
    */
   attributes: VariantList_productVariants_edges_node_attributes[];
-  product: VariantList_productVariants_edges_node_product;
+  product: VariantList_productVariants_edges_node_product | null;
 }
 
 export interface VariantList_productVariants_edges {

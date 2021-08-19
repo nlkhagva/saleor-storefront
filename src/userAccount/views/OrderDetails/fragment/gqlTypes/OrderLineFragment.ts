@@ -227,7 +227,7 @@ export interface OrderLineFragment_variant_attributes {
 
 export interface OrderLineFragment_variant {
   __typename: "ProductVariant";
-  product: OrderLineFragment_variant_product;
+  product: OrderLineFragment_variant_product | null;
   /**
    * Quantity of a product available for sale in one checkout.
    */

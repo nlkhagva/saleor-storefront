@@ -77,7 +77,7 @@ export interface SearchBySKUResults_productVariant {
   id: string;
   name: string;
   sku: string;
-  product: SearchBySKUResults_productVariant_product;
+  product: SearchBySKUResults_productVariant_product | null;
 }
 
 export interface SearchBySKUResults {

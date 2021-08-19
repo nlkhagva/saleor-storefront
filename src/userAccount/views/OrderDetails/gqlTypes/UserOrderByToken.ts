@@ -8,6 +8,42 @@ import { PaymentChargeStatusEnum, OrderStatus, FulfillmentStatus, FulfillmentLin
 // GraphQL query operation: UserOrderByToken
 // ====================================================
 
+export interface UserOrderByToken_orderByToken_payments_capturedAmount {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface UserOrderByToken_orderByToken_payments {
+  __typename: "Payment";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  gateway: string;
+  /**
+   * Internal payment status.
+   */
+  chargeStatus: PaymentChargeStatusEnum;
+  isActive: boolean;
+  created: any;
+  modified: any;
+  /**
+   * Total amount captured for this payment.
+   */
+  capturedAmount: UserOrderByToken_orderByToken_payments_capturedAmount | null;
+}
+
 export interface UserOrderByToken_orderByToken_totalBalance {
   __typename: "Money";
   /**
@@ -299,7 +335,7 @@ export interface UserOrderByToken_orderByToken_lines_variant {
    * List of attributes assigned to this variant.
    */
   attributes: UserOrderByToken_orderByToken_lines_variant_attributes[];
-  product: UserOrderByToken_orderByToken_lines_variant_product;
+  product: UserOrderByToken_orderByToken_lines_variant_product | null;
 }
 
 export interface UserOrderByToken_orderByToken_lines_unitPrice_gross {
@@ -626,7 +662,7 @@ export interface UserOrderByToken_orderByToken_fulfillments_lines_orderLine_vari
 
 export interface UserOrderByToken_orderByToken_fulfillments_lines_orderLine_variant {
   __typename: "ProductVariant";
-  product: UserOrderByToken_orderByToken_fulfillments_lines_orderLine_variant_product;
+  product: UserOrderByToken_orderByToken_fulfillments_lines_orderLine_variant_product | null;
   /**
    * Quantity of a product available for sale in one checkout.
    */
@@ -953,6 +989,10 @@ export interface UserOrderByToken_orderByToken {
    * User-friendly payment status.
    */
   paymentStatusDisplay: string | null;
+  /**
+   * List of payments for the order.
+   */
+  payments: (UserOrderByToken_orderByToken_payments | null)[] | null;
   status: OrderStatus;
   /**
    * User-friendly order status.

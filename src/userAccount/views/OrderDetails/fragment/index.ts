@@ -155,6 +155,19 @@ export const orderDetailFragment = gql`
     userEmail
     paymentStatus
     paymentStatusDisplay
+    payments {
+      id
+      gateway
+      chargeStatus
+      isActive
+      created
+      modified
+      capturedAmount {
+        amount
+        currency
+        localized
+      }
+    }
     status
     statusDisplay
     id
