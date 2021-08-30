@@ -88,7 +88,7 @@ const RegisterForm: React.FC<{
                   const redirectUrl = `${window.location.origin}${accountConfirmUrl}`;
                   registerCustomer({
                     variables: {
-                      email,
+                      email: email.trim().toLowerCase(),
                       password,
                       firstName,
                       lastName,

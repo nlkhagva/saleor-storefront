@@ -43,7 +43,10 @@ const LoginForm: React.FC<ILoginForm> = ({ hide, forgottenPassword }) => {
     evt.preventDefault();
     setLoading(true);
 
-    const { data, dataError } = await signIn(email, password);
+    const { data, dataError } = await signIn(
+      email.trim().toLowerCase(),
+      password
+    );
     setLoading(false);
     if (dataError?.error) {
       setErrors(dataError.error);
@@ -56,7 +59,7 @@ const LoginForm: React.FC<ILoginForm> = ({ hide, forgottenPassword }) => {
   const intl = useIntl();
 
   return (
-    <TypedHasUserQuery variables={{ email: _email }}>
+    <TypedHasUserQuery variables={{ email: _email.trim().toLowerCase() }}>
       {({ loading: queryLoading, data }) => {
         const formData = demoMode
           ? {
