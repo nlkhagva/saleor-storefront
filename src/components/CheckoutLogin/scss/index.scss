@@ -3,6 +3,7 @@
 .checkout-login {
   margin: $spacer * 10 0;
   display: flex;
+  justify-content: center;
 
   @media (max-width: $medium-screen) {
     display: block;

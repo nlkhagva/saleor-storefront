@@ -7,7 +7,7 @@ import { useAuth } from "unurshop-sdk";
 
 import { Offline, OfflinePlaceholder, Online, OverlayContext } from "..";
 
-import CheckoutAsGuest from "./CheckoutAsGuest";
+// import CheckoutAsGuest from "./CheckoutAsGuest";
 import SignInForm from "./SignInForm";
 import { OverlayType, OverlayTheme } from "../Overlay";
 
@@ -27,7 +27,7 @@ const CheckoutLogin: React.FC<{}> = () => {
     <div className="container">
       <Online>
         <div className="checkout-login">
-          <CheckoutAsGuest overlay={overlay} checkoutUrl="/checkout/" />
+          {/* <CheckoutAsGuest overlay={overlay} checkoutUrl="/checkout/" /> */}
           <div className="checkout-login__user">
             <SignInForm onForgottenPasswordClick={showPasswordResetOverlay} />
           </div>
