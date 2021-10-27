@@ -172,7 +172,7 @@ export const productDetailsQuery = gql`
       category {
         id
         name
-        products(first: 3) {
+        products(first: 12) {
           edges {
             node {
               ...BasicProductFields
