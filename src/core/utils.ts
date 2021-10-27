@@ -13,6 +13,7 @@ export const slugify = (text: string | number): string =>
     .toString()
     .toLowerCase()
     .trim()
+    .replace(/%/g, "-precent-") // Replace & with 'and'
     .replace(/\s+/g, "-") // Replace spaces with -
     .replace(/&/g, "-and-") // Replace & with 'and'
     // .replace(/[^\w\-]+/g, "") // Remove all non-word chars unicode solihiin ynzlah yostoi
