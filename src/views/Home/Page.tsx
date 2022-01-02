@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import {
   // Button,
   Loader,
-  ProductsFeatured,
+  // ProductsFeatured,
   // UshopFeatured,
 } from "../../components";
 // import { Loader, UshopFeatured } from "../../components";
@@ -21,6 +21,7 @@ import {
   ProductsList_shop,
   ProductsList_shop_homepageCollection_backgroundImage,
 } from "./gqlTypes/ProductsList";
+import LatestProducts from "./LatestProducts";
 
 const Page: React.FC<{
   loading: boolean;
@@ -63,9 +64,11 @@ const Page: React.FC<{
           )}
         </div>
       </div>
-      <ProductsFeatured />
+      {/* <ProductsFeatured /> */}
       {/* <UshopFeatured /> */}
-      {categoriesExist() && (
+      <LatestProducts />
+
+      {false && categoriesExist() && (
         <div className="home-page__categories">
           <div className="container">
             <h4 className="t-c">Зуны хямдрал</h4>
