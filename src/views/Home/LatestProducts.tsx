@@ -8,13 +8,12 @@ import { TypedLatestProductsQuery } from "./queries";
 
 const LatestProducts = ({}) => {
   return (
-    <TypedLatestProductsQuery
-      variables={{ pageSize: 12 }}
-      alwaysRender
-      displayLoader={false}
-      errorPolicy="all"
-    >
+    <TypedLatestProductsQuery variables={{ pageSize: 12 }}>
       {latestData => {
+        // if (latestData.loading) {
+        //   return <Loader />;
+        // }
+
         const products = maybe(() => latestData.data?.products.edges, []);
 
         const handleLoadMore = async () => {
@@ -32,10 +31,6 @@ const LatestProducts = ({}) => {
             }
           );
         };
-
-        if (latestData.loading) {
-          return <Loader />;
-        }
 
         if (products.length) {
           return (
